@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Pages on annesede的博客</title>
+        <link>https://example.com/page/</link>
+        <description>Recent content in Pages on annesede的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>annesede</copyright><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>关于</title>
+        <link>https://example.com/%E5%85%B3%E4%BA%8E/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/%E5%85%B3%E4%BA%8E/</guid>
+        <description>&lt;p&gt;技术：C, ffmpeg, pr/ps/au, sata/spss, matlab/mathematica&lt;/p&gt;
+&lt;p&gt;Mathorcup数学建模竞赛一等奖 &lt;/br&gt;
+全国大学生数学竞赛省级一等奖 &lt;/br&gt;
+人工智能法学会议论文（三作） &lt;/br&gt;
+经济学SCI中科院1区论文（一作） &lt;/br&gt;
+信息安全学习中&lt;/p&gt;
+</description>
+        </item>
+        <item>
+        <title>归档</title>
+        <link>https://example.com/archives/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/archives/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>链接</title>
+        <link>https://example.com/%E9%93%BE%E6%8E%A5/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/%E9%93%BE%E6%8E%A5/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>搜索</title>
+        <link>https://example.com/search/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/search/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>

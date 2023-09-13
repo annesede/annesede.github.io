@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='未整理完'>
+<title>密码学数学基础</title>
+
+<link rel='canonical' href='https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='密码学数学基础'>
+<meta property='og:description' content='未整理完'>
+<meta property='og:url' content='https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='annesede的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-14T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="密码学数学基础">
+<meta name="twitter:description" content="未整理完">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu753714c8df5506bae6b3b709f3103a1b_67963_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">⭐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">annesede的博客</a></h1>
+            <h2 class="site-description">Some words were just written here to fill the blank.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/annesede'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/" >
+                密码学
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/">密码学数学基础</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            未整理完
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-09-04</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 5 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h1 id="整除">整除</h1>
+<p>性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. </br>
+最大公因数: ${\rm gcd}(a,b)={\rm sub}_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.</p>
+<p>辗转相除求${\rm gcd}$:
+$$\begin{align}
+&amp;a=q_1b+r_1\\
+&amp;b=q_2r_1+r_2\\
+&amp;&hellip;\\
+&amp;r_{n-2}=q_nr_{n-1}+r_n
+\end{align}$$
+当 $r_n=0$ 时, 有 $r_{n-1}={\rm gcd}(a,b)$.</p>
+<p>对序列中被除数与除数从$1$开始编号, 进而有递归:
+$$\begin{align}
+&amp;a_i=(a_i/b_i)b_i+(a_i\%b_i)\\
+&amp;a_i=b_{i-1}\\
+&amp;b_i=a_{i-1}\%b_{i-1}
+\end{align}$$
+并约定 ${\rm gcd}(a,0)=a$.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">Euclid</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span> <span class="nl">a</span> <span class="p">:</span> <span class="nf">Euclid</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Bezout定理: 给定 $a,b\in\mathbb{Z}$, Diophantine方程 $ax+by=m$ 有解 $\Longleftrightarrow$ ${\rm gcd}(a,b)|m$.</p>
+<p>可仅考查 $m={\rm gcd}(a,b)$, 不然, 结果只需乘相应倍数. </br>
+在递归中, 显然有 ${\rm gcd}(a,b)={\rm gcd}(a_i,b_i)$,  即 $\exists x_i,y_i\in\mathbb{Z}$ s.t. $a_ix_i+b_iy_i=m$.
+$$\begin{align}
+m&amp;=a_ix_i+b_iy_i\\
+&amp;=b_{i-1}x_i+(a_{i-1}\%b_{i-1})y_i\\
+&amp;=b_{i-1}x_i+[a_{i-1}-(a_{i-1}/b_{i-1})b_{i-1}]y_i\\
+&amp;=y_ia_{i-1}+[x_i-(a_{i-1}/b_{i-1})y_i]b_{i-1}\\
+&amp;=x_{i-1}a_{i-1}+y_{i-1}b_{i-1}
+\end{align}$$</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">extEuclid</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">y</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">tempX</span><span class="p">,</span><span class="n">tempY</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">gcd</span> <span class="o">=</span> <span class="nf">extEuclid</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempX</span><span class="p">,</span><span class="o">&amp;</span><span class="n">tempY</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">y</span> <span class="o">=</span> <span class="n">tempX</span><span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">tempY</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="o">*</span><span class="n">x</span> <span class="o">=</span> <span class="n">tempY</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">gcd</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>而使用CPP元组写法上更优雅些:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C++" data-lang="C++"><span class="line"><span class="cl"><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="n">extEuclidCpp</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">make_tuple</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">gcd</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">tie</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">gcd</span><span class="p">)</span> <span class="o">=</span> <span class="n">extEuclidCpp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nf">make_tuple</span><span class="p">(</span><span class="n">gcd</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="o">-</span><span class="p">(</span><span class="n">a</span><span class="o">/</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">y</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>定理: 素数i $p$ 及 $a,b\in\mathbb{Z}$, 若 $p|ab$ 则 $p|a$ 或 $p|b$.</p>
+<blockquote>
+<p>设 $p\nmid a$ 且 $p\nmid b$, 则 $\exists x,y$ s.t. $xp+ya=1$, 故 $x(ab)+(by)p=b$, 有 $p|b$, 矛盾.</p>
+</blockquote>
+<p>唯一分解: $\forall n\in\mathbb{Z}$, $n=\prod p_i^{k_i}$, $p_i$ 为不同素数, $k_i\in\mathbb{Z}_+$, 形式唯一.</p>
+<h1 id="同余">同余</h1>
+<p>性质: $\forall m\in\mathbb{Z}_+$, $a\equiv b({\rm mod}\ m) \Longleftrightarrow m|a-b$.</p>
+<ul>
+<li>$a\equiv b({\rm mod}\ m)$, $c\equiv d({\rm mod}\ m) \Longrightarrow a+c\equiv b+d({\rm mod}\ m)$, $ac\equiv bd({\rm mod}\ m)$, $a^n\equiv b^n({\rm mod}\ m)$.</li>
+<li>$ak\equiv bk({\rm mod}\ m) \Longrightarrow a\equiv b({\rm mod}\ \frac{m}{{\rm gcd}(m,k)})$.</li>
+</ul>
+<p>模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. </br>
+最小非负完全剩余系: $\mathbb{Z}_m={0,1&hellip;,m-1}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$.
+既约剩余系: $\mathbb{Z}_m^*={a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1}$. </br></p>
+<p>Euler $\varphi$ 函数: </br>
+$$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$</p>
+<p>当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*={1,2,&hellip;,p-1}$ 为循环群, 生成元个数为$\varphi(p-1)$.</p>
+<p>考察函数性质:</p>
+<ul>
+<li>若素数 $p|n$, 则 $\varphi(pn)=p\varphi(n)$;</li>
+<li>若素数 $p\nmid n$, 则 $\varphi(pn)=(p-1)\varphi(n)$;</li>
+<li>若 ${\rm gcd}(m,n)=1$, 则 $\varphi(m,n)=\varphi(m)\varphi(n)$.</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// O(n), 每个数均只遍历一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">phiEulerLinerSieve</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">prime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">bool</span> <span class="n">isSieved</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isSieved</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">			<span class="n">prime</span><span class="p">[</span><span class="n">count</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">composite</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">isSieved</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="n">primep</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>定理: 若 ${\rm \gcd}(a,m)=1$, $x$ 遍历 $\mathbb{Z}_m^*$, 则 $ax$ 也遍历$\mathbb{Z}_m^*$.</p>
+<blockquote>
+<p>考虑 ${\rm gcd}(ax,m)=1$ 及 $ax_i\not\equiv ax_j({\rm mod}\ m)$, $i\neq j$.</p>
+</blockquote>
+<p>逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$.
+Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
+<blockquote>
+<p>$\mathbb{Z}_m^*={x_1,&hellip;,x_{\varphi(m)}}={ax_1,&hellip;,a_{\varphi(m)}}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.</p>
+</blockquote>
+<p>特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$.
+由扩展Euclid, ${\rm gcd}(a,m)=1$, $\exists s,t\in\mathbb{Z}$ s.t. $as+tm=1$, 即 $a^{-1}\equiv s({\rm mod}\ m)$.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">inverseExtEuclid</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">gcd</span> <span class="o">=</span> <span class="nf">extEuclid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">gcd</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>wilson: 素数 $p$ 有 $(p-1)!\equiv -1({\rm mod}\ p)$.</p>
+<blockquote>
+<p>$\mathbb{Z}_m^*$ 中元素均存在逆, 自逆仅 $1,p-1$; ${2,3,&hellip;,p-2}$ 中两两配对互逆.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">wilson</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">factMod</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">factMod</span> <span class="o">=</span> <span class="p">(</span><span class="n">factMod</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="n">p</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">factMod</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="同余式">同余式</h1>
+<p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$.
+同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).</p>
+<p>一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.</p>
+<blockquote>
+<p>$ax\equiv b({\rm mod}\ m)$ 在 ${\rm gcd}(a,m)=1$ 时有唯一解 $x\equiv a^{-1}b({\rm mod}\ m)$.
+记 $d={\rm gcd}(a,m)$, 有 $\frac{a}{d}x\equiv \frac{b}{d}({\rm mod}\ \frac{m}{d})$, 即 $x=\frac{b}{d}(\frac{a}{d})^{-1}+k\frac{m}{d}$, $k\in\mathbb{Z}$.
+考虑 $k=qd+r$, $q,r\in\mathbb{Z}$, $0\leq r&lt; d$, $x=[\frac{b}{d}(\frac{a}{d})^{-1}({\rm mod}\frac{m}{d})+r\frac{m}{d}]({\rm mod\ m})$.</p>
+</blockquote>
+<p>求解步骤:</p>
+<ol>
+<li>扩展Euclid求 $d={\rm gcd}(a,m)$, 记 $sa+tm=d$;</li>
+<li>$b%d=0$ 判断有无解;</li>
+<li>设  $b&rsquo;=b/d$, $m&rsquo;=m/d$, $s&rsquo;\equiv s({\rm mod}\ m&rsquo;)$;</li>
+<li>得 $x\equiv s&rsquo;b&rsquo;+rm&rsquo;\ ({\rm mod}\ m)$, $r=0,1,&hellip;,d-1$.</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">linearCongEq</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ansX</span><span class="p">[]){</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">%=</span> <span class="n">m</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">%=</span> <span class="n">m</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">origM</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="nf">extEuclid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span><span class="o">%</span><span class="n">d</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">/=</span> <span class="n">d</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">/=</span> <span class="n">d</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">%=</span> <span class="n">m</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">ansX</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="n">origM</span><span class="p">)</span><span class="o">+</span><span class="n">origM</span><span class="p">)</span><span class="o">%</span><span class="n">origM</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">d</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一次同余组(CRT): $m_{i{1\leq i \leq k}}$ 两两互素, 同余组 $x\equiv a_i({\rm mod\ m_i})_{{1\leq i\leq k}}$ 有唯一解 $x=\sum M_i M_i^{-1} a_i \ ({\rm mod}\ m)$. 其中, $m=\prod m_i$, $M_i=m/m_i$, $M_i^{-1}$ 为模 $m_i$ 上的逆.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">long</span> <span class="nf">crt</span> <span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">[],</span><span class="kt">int</span> <span class="n">m</span><span class="p">[],</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">modSepM</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">modIevM</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">modM</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">prodM</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">prodM</span> <span class="o">*=</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">1L</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">*</span><span class="n">prodM</span><span class="o">/</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1L</span><span class="o">*</span><span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">inverseExtEuclid</span><span class="p">(</span><span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>  
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">1L</span><span class="o">*</span><span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">prodM</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>  
+</span></span><span class="line"><span class="cl">    <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">prodM</span><span class="p">)</span><span class="o">%</span><span class="n">prodM</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.</p>
+<ul>
+<li>公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.</li>
+<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$.
+快速模幂 $r\equiv t^e({\rm mod}\ n)$</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">quickPowerMod</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ex</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ex</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1LL</span><span class="o">*</span><span class="n">r</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">%</span><span class="n">modular</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1LL</span><span class="o">*</span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">%</span><span class="n">modular</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ex</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
+        
+            <a href="/tags/c/">C</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-09-14
+        </span>
+    </section></footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 annesede
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>分类 on annesede的博客</title>
+        <link>https://example.com/categories/</link>
+        <description>Recent content in 分类 on annesede的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>annesede</copyright>
+        <lastBuildDate>Mon, 04 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>密码学</title>
+        <link>https://example.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+        <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+        <description></description>
+        </item>
+        
+    </channel>
+</rss>
