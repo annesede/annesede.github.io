@@ -111,7 +111,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h1 id=&#34;自同步序列密码&#34;&gt;自同步序列密码&lt;/h1&gt;
-&lt;p&gt;种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密序列 $k=k_0k_1k_2&amp;hellip;$.&lt;/p&gt;
+&lt;p&gt;种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&amp;hellip;$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;加密 $c_i=E_{k}(m)=m_i\oplus k_i$, $\oplus$ 为异或(位加法).&lt;/li&gt;
 &lt;li&gt;解密 $m_i=D_{k}(m)=c_i\oplus k_i$.&lt;/li&gt;
@@ -160,7 +160,7 @@
 &lt;/div&gt;&lt;p&gt;(本节未完待续)&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$m$ 序列条件&lt;/li&gt;
-&lt;li&gt;反推 $LFSR$ 构成&lt;/li&gt;
+&lt;li&gt;反推LFSR构成&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
