@@ -7,20 +7,52 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Mon, 04 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 14 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>blog</title>
+        <link>https://example.com/tags/blog/</link>
+        <pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/blog/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>hugo</title>
+        <link>https://example.com/tags/hugo/</link>
+        <pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/hugo/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>C</title>
         <link>https://example.com/tags/c/</link>
-        <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+        <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/c/</guid>
         <description></description>
         </item>
         <item>
+        <title>C&#43;&#43;</title>
+        <link>https://example.com/tags/c&#43;&#43;/</link>
+        <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/c&#43;&#43;/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>数学</title>
         <link>https://example.com/tags/%E6%95%B0%E5%AD%A6/</link>
-        <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+        <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/%E6%95%B0%E5%AD%A6/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>verligo</title>
+        <link>https://example.com/tags/verligo/</link>
+        <pubDate>Mon, 04 Sep 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/verligo/</guid>
         <description></description>
         </item>
         

@@ -10,7 +10,7 @@
 <meta property='og:description' content='未整理完'>
 <meta property='og:url' content='https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-14T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='C' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2023-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-14T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="密码学数学基础">
 <meta name="twitter:description" content="未整理完">
     </head>
@@ -267,7 +267,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023-09-04</time>
+                <time class="article-time--published">2023-09-05</time>
             </div>
         
 
@@ -282,7 +282,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -297,7 +297,8 @@
     <section class="article-content">
     
     
-    <h1 id="整除">整除</h1>
+    <p>文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)</p>
+<h1 id="整除">整除</h1>
 <p>性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. </br>
 最大公因数: ${\rm gcd}(a,b)={\rm sub}_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.</p>
 <p>辗转相除求${\rm gcd}$:
@@ -521,16 +522,21 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">wilson</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">wilson</span><span class="p">(</span><span class="kt">int</span> <span class="n">p</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">factMod</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">p</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">){</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">factMod</span> <span class="o">=</span> <span class="p">(</span><span class="n">factMod</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">%</span><span class="n">p</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">factMod</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="同余式">同余式</h1>
+</div><p>仿射: ${\rm gcd}(a,26)=1$, 密钥对数量 $26\varphi(26)-1=311$.</p>
+<ul>
+<li>加密 $c=E_{a,b}(m)=am+b({\rm mod}\ 26)$.</li>
+<li>解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.</li>
+</ul>
+<h1 id="同余式">同余式</h1>
 <p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$.
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).</p>
 <p>一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.</p>
@@ -578,7 +584,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl">        <span class="n">b</span> <span class="o">/=</span> <span class="n">d</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">/=</span> <span class="n">d</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">s</span> <span class="o">%=</span> <span class="n">m</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">r</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">d</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="o">++</span><span class="n">r</span><span class="p">){</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">ansX</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">s</span><span class="o">*</span><span class="n">b</span><span class="o">+</span><span class="n">r</span><span class="o">*</span><span class="n">m</span><span class="p">)</span><span class="o">%</span><span class="p">(</span><span class="n">origM</span><span class="p">)</span><span class="o">+</span><span class="n">origM</span><span class="p">)</span><span class="o">%</span><span class="n">origM</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>  
 </span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">d</span><span class="p">;</span>  
@@ -622,10 +628,10 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">modM</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">prodM</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">prodM</span> <span class="o">*=</span> <span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">1L</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>  
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">*</span><span class="n">prodM</span><span class="o">/</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1L</span><span class="o">*</span><span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">inverseExtEuclid</span><span class="p">(</span><span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  
@@ -662,7 +668,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">quickPowerMod</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fastPowerMod</span> <span class="p">(</span><span class="kt">int</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">ex</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ex</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">ex</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">){</span>
@@ -675,7 +681,110 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h1 id="二次剩余">二次剩余</h1>
+<p>$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. </br>
+仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.</p>
+<p>Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:</p>
+<ul>
+<li>模 $p$ 的二次剩余恰有 $\frac{p-1}{2}$ 个.</li>
+<li>$a$ 为模 $p$ 二次剩余 $\iff a^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$, 此时 $x^2\equiv a({\rm mod}\ p)$ 有二解.</li>
+<li>$a$ 为模 $p$ 二次非剩余 $\iff a^{\frac{p-1}{2}}\equiv -1({\rm mod}\ p)$.</li>
+</ul>
+<blockquote>
+<p>显然 $i^2\equiv(p-i)^2({\rm mod}\ p)$; 若 $j^2\equiv i^2({\rm mod}\ p)$, $1\leq i&lt;j&lt;\frac{p}{2}$, 则 $p|j-i$ 或 $p|j+i$, 但 $j+i&lt;p$, 矛盾.</p>
+<p>$a$ 为模 $p$ 二次剩余时, $\exists x_0\in\mathbb{Z}$, ${\rm gcd}(x_0,p)=1$, $x_0^2\equiv a({\rm mod}\ p)$, 故 $a^{\frac{p-1}{2}}\equiv x_0^{p-1}\equiv 1({\rm mod}\ p)$.</p>
+<p>$a$ 为模 $p$ 二次非剩余时, 考虑 $a^{p-1}\equiv 1({\rm mod}\ p)$, 则 $p|{\frac{p-1}{2}}-1$ 或 $p|{\frac{p-1}{2}}+1$, 但 $x^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$ 的全部解恰为全部的二次剩余.</p>
+</blockquote>
+<p>Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}%p=1\ or\ -1\ or\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.</p>
+<p>$$
+(\frac{-1}{p})=\begin{cases}
+&amp;1,\ &amp;p\%4=1\\
+&amp;-1,\ &amp;p\%4=3
+\end{cases}$$</p>
+<p>$$
+(\frac{2}{p})=\begin{cases}
+&amp;1,\ &amp;p\%8=1,7\\
+&amp;-1,\ &amp;p\%8=3,5
+\end{cases}$$</p>
+<p>二次互反: $(\frac{p}{q})(\frac{q}{p})=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}$, $p\ne q$ 为奇素数.</p>
+<blockquote>
+<p>Guass: 奇素数 $p$, $a\in\mathbb{Z}$, ${\rm gcd}(a,p)=1$, 设 $M_{a,p}={ka\%p, \ k=1,2,&hellip;,\frac{p-1}{2}\ |\ ka\%p&gt;\frac{p}{2}}$, 记 $m(a,p)=|M_{a,p}|$, 则 $(\frac{a}{p})=(-1)^{m(a,p)}$.</p>
+<p>设 $K={ka\%p\ |\ k=1,2,&hellip;,\frac{p-1}{2}}$, $b_i\in M$, $c_j\in M-K$, $i=1,2,..,m(a,p)$, $j=1,2,&hellip;,\frac{p-1}{2}-m(a,p)$.</p>
+<p>显然有 $c_j\ne p-b_i$, $\forall i,j$; 否则 $p|b_i+c_j$, 即 $\exists x,y\in\mathbb{Z}$, $x,y&lt;\frac{p}{2}$ s.t. $p|a(x+y)$, 但 $x+y&lt;p$, 矛盾.</p>
+<p>故 $a^{\frac{p-1}{2}}(\frac{p-1}{2})!\equiv\prod c_j \prod (p-b_i)\equiv (-1)^{m(a,p)}(\frac{p-1}{2})!({\rm mod}\ p)$.</p>
+</blockquote>
+<blockquote>
+<p>Eisenstein: $a$ 为奇数时, 记$e(a,p)=\sum\lfloor\frac{ka}{p}\rfloor$, 有 $e(a,p)\equiv m(a,p)({\rm mod}\ 2)$.</p>
+<p>不妨设 $ka=d_kp+r_k$, $0\leq r_k\leq p-1$, $d_k,r_k\in\mathbb{Z}$, 有 $p\sum d_k+\sum r_k=\sum ka = \sum c_j+\sum (p-b_i)$, 故 $\sum d_k\equiv m(a,p)({\rm mod}\ 2)$; 显然 $e(a,p)=\sum d_k$.</p>
+</blockquote>
+<blockquote>
+<p>$q\ne p$ 为奇素数时, $\not\exists x,y\in\mathbb{Z}$, $x,y&lt;\frac{p}{2}$ s.t. $xp=qy$, 即 $e(p,q)+e(q,p)=\frac{p-1}{2}\frac{q-1}{2}$.</p>
+</blockquote>
+<blockquote>
+<p>$a=2$ 时, $\lfloor\frac{p}{4}\rfloor\leq k\leq \lfloor\frac{p}{2}\rfloor$, 有 $m=\lfloor\frac{p}{2}\rfloor-\lfloor\frac{p}{4}\rfloor$.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">fastLegendre</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">p</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">e</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">a</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">a</span> <span class="o">/=</span> <span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">e</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">p</span><span class="o">%</span><span class="mi">8</span> <span class="o">==</span> <span class="mi">1</span> <span class="o">||</span> <span class="n">p</span><span class="o">%</span><span class="mi">8</span> <span class="o">==</span> <span class="mi">7</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">p</span><span class="o">%</span><span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span> <span class="o">&amp;&amp;</span> <span class="n">a</span><span class="o">%</span><span class="mi">4</span> <span class="o">==</span> <span class="mi">3</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">s</span> <span class="o">=</span> <span class="o">-</span><span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="n">s</span><span class="o">*</span><span class="nf">fastLegendre</span><span class="p">(</span><span class="n">p</span><span class="o">%</span><span class="n">a</span><span class="p">,</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>Rabin: 素数 $p\equiv q\equiv 3({\rm mod}\ 4)$.</p>
+<ul>
+<li>公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$.</li>
+<li>私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2 in 4)$.</li>
+</ul>
+
 </section>
 
 
@@ -686,6 +795,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
             <a href="/tags/%E6%95%B0%E5%AD%A6/">数学</a>
         
             <a href="/tags/c/">C</a>
+        
+            <a href="/tags/c&#43;&#43;/">C&#43;&#43;</a>
         
     </section>
 
@@ -747,6 +858,28 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
     
 
     
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">对称加密</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
 
      
     
