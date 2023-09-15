@@ -264,7 +264,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;p&gt;求解步骤:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;扩展Euclid求 $d={\rm gcd}(a,m)$, 记 $sa+tm=d$;&lt;/li&gt;
-&lt;li&gt;$b%d=0$ 判断有无解;&lt;/li&gt;
+&lt;li&gt;$b\%d=0$ 判断有无解;&lt;/li&gt;
 &lt;li&gt;设  $b&amp;rsquo;=b/d$, $m&amp;rsquo;=m/d$, $s&amp;rsquo;\equiv s({\rm mod}\ m&amp;rsquo;)$;&lt;/li&gt;
 &lt;li&gt;得 $x\equiv s&amp;rsquo;b&amp;rsquo;+rm&amp;rsquo;\ ({\rm mod}\ m)$, $r=0,1,&amp;hellip;,d-1$.&lt;/li&gt;
 &lt;/ol&gt;
@@ -411,7 +411,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;p&gt;$a$ 为模 $p$ 二次剩余时, $\exists x_0\in\mathbb{Z}$, ${\rm gcd}(x_0,p)=1$, $x_0^2\equiv a({\rm mod}\ p)$, 故 $a^{\frac{p-1}{2}}\equiv x_0^{p-1}\equiv 1({\rm mod}\ p)$.&lt;/p&gt;
 &lt;p&gt;$a$ 为模 $p$ 二次非剩余时, 考虑 $a^{p-1}\equiv 1({\rm mod}\ p)$, 则 $p|{\frac{p-1}{2}}-1$ 或 $p|{\frac{p-1}{2}}+1$, 但 $x^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$ 的全部解恰为全部的二次剩余.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}%p=1\ or\ -1\ or\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.&lt;/p&gt;
+&lt;p&gt;Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}\%p=1\ {\rm or}\ -1\ {\rm or}\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.&lt;/p&gt;
 &lt;p&gt;$$
 (\frac{-1}{p})=\begin{cases}
 &amp;amp;1,\ &amp;amp;p\%4=1\\

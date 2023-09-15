@@ -548,7 +548,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <p>求解步骤:</p>
 <ol>
 <li>扩展Euclid求 $d={\rm gcd}(a,m)$, 记 $sa+tm=d$;</li>
-<li>$b%d=0$ 判断有无解;</li>
+<li>$b\%d=0$ 判断有无解;</li>
 <li>设  $b&rsquo;=b/d$, $m&rsquo;=m/d$, $s&rsquo;\equiv s({\rm mod}\ m&rsquo;)$;</li>
 <li>得 $x\equiv s&rsquo;b&rsquo;+rm&rsquo;\ ({\rm mod}\ m)$, $r=0,1,&hellip;,d-1$.</li>
 </ol>
@@ -695,7 +695,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <p>$a$ 为模 $p$ 二次剩余时, $\exists x_0\in\mathbb{Z}$, ${\rm gcd}(x_0,p)=1$, $x_0^2\equiv a({\rm mod}\ p)$, 故 $a^{\frac{p-1}{2}}\equiv x_0^{p-1}\equiv 1({\rm mod}\ p)$.</p>
 <p>$a$ 为模 $p$ 二次非剩余时, 考虑 $a^{p-1}\equiv 1({\rm mod}\ p)$, 则 $p|{\frac{p-1}{2}}-1$ 或 $p|{\frac{p-1}{2}}+1$, 但 $x^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$ 的全部解恰为全部的二次剩余.</p>
 </blockquote>
-<p>Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}%p=1\ or\ -1\ or\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.</p>
+<p>Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}\%p=1\ {\rm or}\ -1\ {\rm or}\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.</p>
 <p>$$
 (\frac{-1}{p})=\begin{cases}
 &amp;1,\ &amp;p\%4=1\\
