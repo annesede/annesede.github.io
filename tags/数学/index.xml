@@ -123,8 +123,8 @@ m&amp;amp;=a_ix_i+b_iy_i\\
 &lt;li&gt;$ak\equiv bk({\rm mod}\ m) \Longrightarrow a\equiv b({\rm mod}\ \frac{m}{{\rm gcd}(m,k)})$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. &lt;/br&gt;
-最小非负完全剩余系: $\mathbb{Z}_m={0,1&amp;hellip;,m-1}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$.
-既约剩余系: $\mathbb{Z}_m^*={a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1}$. &lt;/br&gt;&lt;/p&gt;
+最小非负完全剩余系: $\mathbb{Z}_m={0,1&amp;hellip;,m-1}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. &lt;/br&gt;
+既约剩余系: $\mathbb{Z}_m^*={a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1}$.&lt;/p&gt;
 &lt;p&gt;Euler $\varphi$ 函数: &lt;/br&gt;
 $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$&lt;/p&gt;
 &lt;p&gt;当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*={1,2,&amp;hellip;,p-1}$ 为循环群, 生成元个数为$\varphi(p-1)$.&lt;/p&gt;
@@ -192,12 +192,12 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 &lt;blockquote&gt;
 &lt;p&gt;考虑 ${\rm gcd}(ax,m)=1$ 及 $ax_i\not\equiv ax_j({\rm mod}\ m)$, $i\neq j$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$.
+&lt;p&gt;逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. &lt;/br&gt;
 Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;$\mathbb{Z}_m^*={x_1,&amp;hellip;,x_{\varphi(m)}}={ax_1,&amp;hellip;,a_{\varphi(m)}}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$.
+&lt;p&gt;特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. &lt;/br&gt;
 由扩展Euclid, ${\rm gcd}(a,m)=1$, $\exists s,t\in\mathbb{Z}$ s.t. $as+tm=1$, 即 $a^{-1}\equiv s({\rm mod}\ m)$.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -253,7 +253,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;li&gt;解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&#34;同余式&#34;&gt;同余式&lt;/h1&gt;
-&lt;p&gt;同余式 $f(x)\equiv a_nx^n+&amp;hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$.
+&lt;p&gt;同余式 $f(x)\equiv a_nx^n+&amp;hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. &lt;/br&gt;
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).&lt;/p&gt;
 &lt;p&gt;一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -412,6 +412,9 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;p&gt;$a$ 为模 $p$ 二次非剩余时, 考虑 $a^{p-1}\equiv 1({\rm mod}\ p)$, 则 $p|{\frac{p-1}{2}}-1$ 或 $p|{\frac{p-1}{2}}+1$, 但 $x^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$ 的全部解恰为全部的二次剩余.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;Legendre: $(\frac{a}{p})=a^{\frac{p-1}{2}}\%p=1\ {\rm or}\ -1\ {\rm or}\ 0$, $p$ 为素数, $a\in\mathbb{Z}$.&lt;/p&gt;
+&lt;p&gt;$$
+(\frac{1}{p}) = 1;\ (\frac{ab}{p})=(\frac{a}{p})(\frac{b}{p}); \ (\frac{a+b}{p})=(\frac{a}{p})+(\frac{b}{p})$$&lt;/p&gt;
+&lt;p&gt;$$(\frac{a^2}{p})=1,\ {\rm gcd}(a,p)=1$$&lt;/p&gt;
 &lt;p&gt;$$
 (\frac{-1}{p})=\begin{cases}
 &amp;amp;1,\ &amp;amp;p\%4=1\\

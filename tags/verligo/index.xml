@@ -111,11 +111,27 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h1 id=&#34;自同步序列密码&#34;&gt;自同步序列密码&lt;/h1&gt;
+&lt;p&gt;异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 理论安全, $P(M|C)=P(M)$ 密文得到明文的条件概率即明文先验概论; 可逆.&lt;/p&gt;
 &lt;p&gt;种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&amp;hellip;$.&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;加密 $c_i=E_{k}(m)=m_i\oplus k_i$, $\oplus$ 为异或(位加法).&lt;/li&gt;
+&lt;li&gt;加密 $c_i=E_{k}(m)=m_i\oplus k_i$.&lt;/li&gt;
 &lt;li&gt;解密 $m_i=D_{k}(m)=c_i\oplus k_i$.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;LFSR: 状态 $(s_0,s_1,&amp;hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&amp;hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i$, $s_i,g_i,x_i\in GF(2)$.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-crypto-sym-LFSR.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;egLFSR&#34;
+	
+	
+&gt; &lt;/br&gt;
+e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. &lt;/br&gt;
+$S_0=(1,0,1,1,1)$, $k=101110111011101110111&amp;hellip;$, $T=8$.&lt;/p&gt;
+&lt;/blockquote&gt;
 &lt;p&gt;使用verligo实现LFSR.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -157,11 +173,20 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;endmodule&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;(本节未完待续)&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;$m$ 序列条件&lt;/li&gt;
-&lt;li&gt;反推LFSR构成&lt;/li&gt;
-&lt;/ul&gt;
+&lt;/div&gt;&lt;p&gt;定理: $n$ 次特征多项式为 $GF(2^n)$ 上本原多项式时, 输出 $\max T=2^n-1$ 序列($m$ 序列).&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;&lt;/li&gt;
+&lt;li&gt;保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&amp;lt;a&amp;lt;2^n-1$ 的因式.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;截获长度 $n\leq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&amp;hellip;,S_{i+n+1}$ 个状态; &lt;/br&gt;
+记 $X=(S_i,&amp;hellip;,S_n)$, $Y=(S_{i+1},&amp;hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$, $H$ 为特征多项式的友矩阵.&lt;/p&gt;
+&lt;p&gt;$$H=\left( \begin{array}{}
+0 &amp;amp; 1 &amp;amp; 0 &amp;amp; &amp;hellip; &amp;amp; 0 \\
+0 &amp;amp; 0 &amp;amp; 1 &amp;amp; &amp;hellip; &amp;amp; 0 \\
+&amp;hellip; \\
+0 &amp;amp; 0 &amp;amp; 0 &amp;amp; &amp;hellip; &amp;amp; 1 \\
+g_0 &amp;amp; g_1 &amp;amp; g_2 &amp;amp; &amp;hellip; &amp;amp; g_{n-1}
+\end{array}\right )$$&lt;/p&gt;
 </description>
         </item>
         

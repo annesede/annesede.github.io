@@ -55,6 +55,14 @@
         <guid>https://example.com/tags/verligo/</guid>
         <description></description>
         </item>
+        <item>
+        <title>前端</title>
+        <link>https://example.com/tags/%E5%89%8D%E7%AB%AF/</link>
+        <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E5%89%8D%E7%AB%AF/</guid>
+        <description></description>
+        </item>
         
     </channel>
 </rss>

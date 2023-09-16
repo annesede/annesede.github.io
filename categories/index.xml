@@ -23,6 +23,14 @@
         <guid>https://example.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
         <description></description>
         </item>
+        <item>
+        <title>WEB</title>
+        <link>https://example.com/categories/web/</link>
+        <pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/web/</guid>
+        <description></description>
+        </item>
         
     </channel>
 </rss>

@@ -395,11 +395,27 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="自同步序列密码">自同步序列密码</h1>
+<p>异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 理论安全, $P(M|C)=P(M)$ 密文得到明文的条件概率即明文先验概论; 可逆.</p>
 <p>种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&hellip;$.</p>
 <ul>
-<li>加密 $c_i=E_{k}(m)=m_i\oplus k_i$, $\oplus$ 为异或(位加法).</li>
+<li>加密 $c_i=E_{k}(m)=m_i\oplus k_i$.</li>
 <li>解密 $m_i=D_{k}(m)=c_i\oplus k_i$.</li>
 </ul>
+<p>LFSR: 状态 $(s_0,s_1,&hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i$, $s_i,g_i,x_i\in GF(2)$.</p>
+<blockquote>
+<p><img src="/img/post-crypto-sym-LFSR.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="egLFSR"
+	
+	
+> </br>
+e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. </br>
+$S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
+</blockquote>
 <p>使用verligo实现LFSR.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -441,11 +457,20 @@
 </span></span><span class="line"><span class="cl"><span class="n">endmodule</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>(本节未完待续)</p>
-<ul>
-<li>$m$ 序列条件</li>
-<li>反推LFSR构成</li>
-</ul>
+</div><p>定理: $n$ 次特征多项式为 $GF(2^n)$ 上本原多项式时, 输出 $\max T=2^n-1$ 序列($m$ 序列).</p>
+<ol>
+<li>将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;</li>
+<li>保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&lt;a&lt;2^n-1$ 的因式.</li>
+</ol>
+<p>截获长度 $n\leq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; </br>
+记 $X=(S_i,&hellip;,S_n)$, $Y=(S_{i+1},&hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$, $H$ 为特征多项式的友矩阵.</p>
+<p>$$H=\left( \begin{array}{}
+0 &amp; 1 &amp; 0 &amp; &hellip; &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; &hellip; &amp; 0 \\
+&hellip; \\
+0 &amp; 0 &amp; 0 &amp; &hellip; &amp; 1 \\
+g_0 &amp; g_1 &amp; g_2 &amp; &hellip; &amp; g_{n-1}
+\end{array}\right )$$</p>
 
 </section>
 
