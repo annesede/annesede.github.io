@@ -13,7 +13,7 @@
         <pubDate>Thu, 14 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
-        <description>&lt;h1 id=&#34;preparation&#34;&gt;PREPARATION&lt;/h1&gt;
+        <description>&lt;h2 id=&#34;preparation&#34;&gt;PREPARATION&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;git download&lt;/a&gt; &lt;/br&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
@@ -30,7 +30,7 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo version
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;on-premises&#34;&gt;ON PREMISES&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;on-premises&#34;&gt;ON PREMISES&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -49,7 +49,7 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;hugo server
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;first-commit&#34;&gt;FIRST COMMIT&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;first-commit&#34;&gt;FIRST COMMIT&lt;/h2&gt;
 &lt;p&gt;Github Create Repositoriy: username.github.io&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -71,7 +71,7 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push -u origin master
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;later-commit&#34;&gt;LATER COMMIT&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;later-commit&#34;&gt;LATER COMMIT&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -90,7 +90,7 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;git push
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;katex-confusion&#34;&gt;KATEX CONFUSION&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;katex-confusion&#34;&gt;KATEX CONFUSION&lt;/h2&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;

@@ -222,7 +222,39 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#仿射密码">仿射密码</a></li>
+    <li><a href="#自同步序列密码">自同步序列密码</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -303,7 +335,7 @@
 <li>分析: 唯密文攻击, 已知明文攻击, 选择明文攻击, 选择密文攻击, 自适应选择明文攻击, 选择密钥攻击</li>
 <li>评价: 无条件安全, 计算安全(破解代价超过信息价值;破解时间超过信息时效)</li>
 </ul>
-<h1 id="仿射密码">仿射密码</h1>
+<h2 id="仿射密码">仿射密码</h2>
 <p>古典密码中单表代换的代表.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -394,7 +426,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="自同步序列密码">自同步序列密码</h1>
+</div><h2 id="自同步序列密码">自同步序列密码</h2>
 <p>异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 理论安全, $P(M|C)=P(M)$ 密文得到明文的条件概率即明文先验概论; 可逆.</p>
 <p>种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&hellip;$.</p>
 <ul>
@@ -462,7 +494,7 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 <li>将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;</li>
 <li>保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&lt;a&lt;2^n-1$ 的因式.</li>
 </ol>
-<p>截获长度 $n\leq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; </br>
+<p>截获长度 $n\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; </br>
 记 $X=(S_i,&hellip;,S_n)$, $Y=(S_{i+1},&hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$, $H$ 为特征多项式的友矩阵.</p>
 <p>$$H=\left( \begin{array}{}
 0 &amp; 1 &amp; 0 &amp; &hellip; &amp; 0 \\

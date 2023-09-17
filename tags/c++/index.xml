@@ -14,9 +14,9 @@
         
         <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
         <description>&lt;p&gt;文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)&lt;/p&gt;
-&lt;h1 id=&#34;整除&#34;&gt;整除&lt;/h1&gt;
+&lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
 &lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;/br&gt;
-最大公因数: ${\rm gcd}(a,b)={\rm sub}_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.&lt;/p&gt;
+最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.&lt;/p&gt;
 &lt;p&gt;辗转相除求${\rm gcd}$:
 $$\begin{align}
 &amp;amp;a=q_1b+r_1\\
@@ -116,7 +116,7 @@ m&amp;amp;=a_ix_i+b_iy_i\\
 &lt;p&gt;设 $p\nmid a$ 且 $p\nmid b$, 则 $\exists x,y$ s.t. $xp+ya=1$, 故 $x(ab)+(by)p=b$, 有 $p|b$, 矛盾.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;唯一分解: $\forall n\in\mathbb{Z}$, $n=\prod p_i^{k_i}$, $p_i$ 为不同素数, $k_i\in\mathbb{Z}_+$, 形式唯一.&lt;/p&gt;
-&lt;h1 id=&#34;同余&#34;&gt;同余&lt;/h1&gt;
+&lt;h2 id=&#34;同余&#34;&gt;同余&lt;/h2&gt;
 &lt;p&gt;性质: $\forall m\in\mathbb{Z}_+$, $a\equiv b({\rm mod}\ m) \Longleftrightarrow m|a-b$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;$a\equiv b({\rm mod}\ m)$, $c\equiv d({\rm mod}\ m) \Longrightarrow a+c\equiv b+d({\rm mod}\ m)$, $ac\equiv bd({\rm mod}\ m)$, $a^n\equiv b^n({\rm mod}\ m)$.&lt;/li&gt;
@@ -252,7 +252,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;li&gt;加密 $c=E_{a,b}(m)=am+b({\rm mod}\ 26)$.&lt;/li&gt;
 &lt;li&gt;解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;同余式&#34;&gt;同余式&lt;/h1&gt;
+&lt;h2 id=&#34;同余式&#34;&gt;同余式&lt;/h2&gt;
 &lt;p&gt;同余式 $f(x)\equiv a_nx^n+&amp;hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. &lt;/br&gt;
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).&lt;/p&gt;
 &lt;p&gt;一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.&lt;/p&gt;
@@ -397,7 +397,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;二次剩余&#34;&gt;二次剩余&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;二次剩余&#34;&gt;二次剩余&lt;/h2&gt;
 &lt;p&gt;$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. &lt;/br&gt;
 仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.&lt;/p&gt;
 &lt;p&gt;Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:&lt;/p&gt;

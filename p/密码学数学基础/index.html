@@ -222,7 +222,41 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#整除">整除</a></li>
+    <li><a href="#同余">同余</a></li>
+    <li><a href="#同余式">同余式</a></li>
+    <li><a href="#二次剩余">二次剩余</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -298,9 +332,9 @@
     
     
     <p>文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)</p>
-<h1 id="整除">整除</h1>
+<h2 id="整除">整除</h2>
 <p>性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. </br>
-最大公因数: ${\rm gcd}(a,b)={\rm sub}_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.</p>
+最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.</p>
 <p>辗转相除求${\rm gcd}$:
 $$\begin{align}
 &amp;a=q_1b+r_1\\
@@ -400,7 +434,7 @@ m&amp;=a_ix_i+b_iy_i\\
 <p>设 $p\nmid a$ 且 $p\nmid b$, 则 $\exists x,y$ s.t. $xp+ya=1$, 故 $x(ab)+(by)p=b$, 有 $p|b$, 矛盾.</p>
 </blockquote>
 <p>唯一分解: $\forall n\in\mathbb{Z}$, $n=\prod p_i^{k_i}$, $p_i$ 为不同素数, $k_i\in\mathbb{Z}_+$, 形式唯一.</p>
-<h1 id="同余">同余</h1>
+<h2 id="同余">同余</h2>
 <p>性质: $\forall m\in\mathbb{Z}_+$, $a\equiv b({\rm mod}\ m) \Longleftrightarrow m|a-b$.</p>
 <ul>
 <li>$a\equiv b({\rm mod}\ m)$, $c\equiv d({\rm mod}\ m) \Longrightarrow a+c\equiv b+d({\rm mod}\ m)$, $ac\equiv bd({\rm mod}\ m)$, $a^n\equiv b^n({\rm mod}\ m)$.</li>
@@ -536,7 +570,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <li>加密 $c=E_{a,b}(m)=am+b({\rm mod}\ 26)$.</li>
 <li>解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.</li>
 </ul>
-<h1 id="同余式">同余式</h1>
+<h2 id="同余式">同余式</h2>
 <p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. </br>
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).</p>
 <p>一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.</p>
@@ -681,7 +715,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h1 id="二次剩余">二次剩余</h1>
+</div><h2 id="二次剩余">二次剩余</h2>
 <p>$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. </br>
 仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.</p>
 <p>Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:</p>

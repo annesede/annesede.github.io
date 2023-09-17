@@ -14,7 +14,7 @@
         
         <guid>https://example.com/p/css3/</guid>
         <description>&lt;p&gt;Cascading Style Sheets&lt;/p&gt;
-&lt;h1 id=&#34;基本结构&#34;&gt;基本结构&lt;/h1&gt;
+&lt;h2 id=&#34;基本结构&#34;&gt;基本结构&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -25,7 +25,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;继承: Netscape4不支持 &lt;/br&gt;
 格式化: 块级元素, 行内元素&lt;/p&gt;
-&lt;h1 id=&#34;多重样式&#34;&gt;多重样式&lt;/h1&gt;
+&lt;h2 id=&#34;多重样式&#34;&gt;多重样式&lt;/h2&gt;
 &lt;p&gt;更详细定义 - 继承 &lt;/br&gt;
 重复定义 - 优先级: 同级别下权重大, 同权重下后定义 &lt;/br&gt;&lt;/p&gt;
 &lt;ul&gt;
@@ -120,7 +120,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 父子 tag&amp;gt;tag 仅限子元素 &lt;/br&gt;
 相邻 tag+tag 仅对紧邻元素 &lt;/br&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;外部链接&#34;&gt;外部链接&lt;/h1&gt;
+&lt;h2 id=&#34;外部链接&#34;&gt;外部链接&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -133,7 +133,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;err&#34;&gt;&amp;lt;&lt;/span&gt;\head&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;常用属性&#34;&gt;常用属性&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;常用属性&#34;&gt;常用属性&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;背景: background, -attachment (scroll; fixed; local; initial; inherit), -color, -image, -position, -repeat, -clip, -origin (padding-box; border-box; content-box), -size&lt;/li&gt;
 &lt;li&gt;字体: @font-face (font-family; src); font, -family, -size, -style (normal; italic; oblique), -variant (normal; small-caps), -weight&lt;/li&gt;
@@ -155,7 +155,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;li&gt;动画: @keyframes; animation, -name, -duration, -timing-funcion, -delay, -iteration-count, -direction, -play-state&lt;/li&gt;
 &lt;li&gt;过渡: transition, -property, -duration, -timing-function, -delay&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;实例-简单表单&#34;&gt;实例: 简单表单&lt;/h1&gt;
+&lt;h2 id=&#34;实例-简单表单&#34;&gt;实例: 简单表单&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -342,7 +342,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h1 id=&#34;潜在漏洞&#34;&gt;潜在漏洞&lt;/h1&gt;
+&lt;/div&gt;&lt;h2 id=&#34;潜在漏洞&#34;&gt;潜在漏洞&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;iframe transparent&lt;/li&gt;
 &lt;/ul&gt;
@@ -382,7 +382,7 @@ $= 匹配以值结尾 &lt;/br&gt;
         
         <guid>https://example.com/p/html5/</guid>
         <description>&lt;p&gt;HyperText Markup Language&lt;/p&gt;
-&lt;h1 id=&#34;基本结构&#34;&gt;基本结构&lt;/h1&gt;
+&lt;h2 id=&#34;基本结构&#34;&gt;基本结构&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -442,7 +442,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;/div&gt;&lt;ul&gt;
 &lt;li&gt;小写文件名, 完整后缀.html&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;常用标签&#34;&gt;常用标签&lt;/h1&gt;
+&lt;h2 id=&#34;常用标签&#34;&gt;常用标签&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;基础: !DOCTYPE, html, head, title, body, h1, &amp;hellip;, h6, p, br, hr, !&amp;ndash;&amp;hellip;&amp;ndash;&lt;/li&gt;
 &lt;li&gt;格式: abbr, b, cite, code, del, i, q, s, small, sup, sub, template, time, u, var, wbr&lt;/li&gt;
@@ -457,7 +457,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;li&gt;元信息: base, meta&lt;/li&gt;
 &lt;li&gt;程序: script, noscript, embed, object&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;常用属性&#34;&gt;常用属性&lt;/h1&gt;
+&lt;h2 id=&#34;常用属性&#34;&gt;常用属性&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;全局: class, contenteditable, data-*, dir, draggable, hidden, id, lang, spellcheck, style, tabindex, title&lt;/li&gt;
 &lt;li&gt;html: manifest&lt;/li&gt;
@@ -492,7 +492,7 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;li&gt;embed: height, src, type, width&lt;/li&gt;
 &lt;li&gt;object: data, height, name, type, usemap, width&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1 id=&#34;字符集&#34;&gt;字符集&lt;/h1&gt;
+&lt;h2 id=&#34;字符集&#34;&gt;字符集&lt;/h2&gt;
 &lt;p&gt;ASCII, utf-8, ISO-8859-1, URL, 实体符号, ISO-639-1&lt;/p&gt;
 </description>
         </item>
