@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='5分钟完成个人博客搭建'>
-<title>hugo快速入门</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='持续更新中'>
+<title>NOJ(C)易错总结</title>
 
-<link rel='canonical' href='https://example.com/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+<link rel='canonical' href='https://example.com/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/'>
 
-<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='hugo快速入门'>
-<meta property='og:description' content='5分钟完成个人博客搭建'>
-<meta property='og:url' content='https://example.com/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='NOJ(C)易错总结'>
+<meta property='og:description' content='持续更新中'>
+<meta property='og:url' content='https://example.com/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='hugo' /><meta property='article:tag' content='blog' /><meta property='article:published_time' content='2023-09-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-14T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="hugo快速入门">
-<meta name="twitter:description" content="5分钟完成个人博客搭建">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-19T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="NOJ(C)易错总结">
+<meta name="twitter:description" content="持续更新中">
     </head>
     <body class="
     article-page
@@ -244,11 +244,16 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#preparation">PREPARATION</a></li>
-    <li><a href="#on-premises">ON PREMISES</a></li>
-    <li><a href="#first-commit">FIRST COMMIT</a></li>
-    <li><a href="#later-commit">LATER COMMIT</a></li>
-    <li><a href="#katex-confusion">KATEX CONFUSION</a></li>
+    <li><a href="#001">001</a></li>
+    <li><a href="#002">002</a></li>
+    <li><a href="#003">003</a></li>
+    <li><a href="#004">004</a></li>
+    <li><a href="#005">005</a></li>
+    <li><a href="#006">006</a></li>
+    <li><a href="#007">007</a></li>
+    <li><a href="#008">008</a></li>
+    <li><a href="#009">009</a></li>
+    <li><a href="#010">010</a></li>
   </ol>
 </nav>
         </div>
@@ -276,12 +281,12 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">hugo快速入门</a>
+            <a href="/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/">NOJ(C)易错总结</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            5分钟完成个人博客搭建
+            持续更新中
         </h3>
         
     </div>
@@ -302,7 +307,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023-09-14</time>
+                <time class="article-time--published">2023-09-19</time>
             </div>
         
 
@@ -332,44 +337,29 @@
     <section class="article-content">
     
     
-    <h2 id="preparation">PREPARATION</h2>
-<p><a class="link" href="https://git-scm.com/download"  target="_blank" rel="noopener"
-    >git download</a> </br>
-<a class="link" href="https://github.com/gohugoio/hugo/releases"  target="_blank" rel="noopener"
-    >hugo download</a> </br>
-Check git &amp; hugo added in the environment variables (Windows).</p>
-<p>The following steps are in Bash.</p>
+    <p>主要给出了WA时可能会出现的错误, 节省调试时间, 并方便日后回顾; 建议提交一次后对照查询, 其他问题请本地调试解决.</p>
+<h2 id="001">001</h2>
+<p>略.</p>
+<h2 id="002">002</h2>
+<p>略.</p>
+<h2 id="003">003</h2>
+<p>使用CHAR_MAX等宏时, 注意包含头文件&lt;limits.h&gt;.</p>
+<h2 id="004">004</h2>
+<p>求平均数时, 注意直接相加可能会越界.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git version
-</span></span><span class="line"><span class="cl">hugo version
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">avg</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="on-premises">ON PREMISES</h2>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo new site blog
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> blog
-</span></span><span class="line"><span class="cl">git clone https://themeName themes/themeName
-</span></span><span class="line"><span class="cl">cp themes/themeName/exampleSite/* ./ -r
-</span></span><span class="line"><span class="cl">rm hugo.toml
-</span></span><span class="line"><span class="cl">hugo server
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="first-commit">FIRST COMMIT</h2>
-<p>Github Create Repositoriy: username.github.io</p>
+</div><h2 id="005">005</h2>
+<p>输出大写十六进制需使用&quot;%X&quot;, &ldquo;%x&quot;会输出小写十六进制.</p>
+<h2 id="006">006</h2>
+<p>略.</p>
+<h2 id="007">007</h2>
+<p>使用&quot;tmp/10&quot;做十进制向右移位获取输入数字长度.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -377,70 +367,39 @@ Check git &amp; hugo added in the environment variables (Windows).</p>
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
-</span></span><span class="line"><span class="cl">git init
-</span></span><span class="line"><span class="cl">git remote add origin https://github.com/username/username.github.io.git
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;first commit&#34;</span>
-</span></span><span class="line"><span class="cl">git push -u origin master
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">++</span><span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="later-commit">LATER COMMIT</h2>
+</div><h2 id="008">008</h2>
+<p>C中三角函数仅接收弧度参数, 需先将经纬度转换为弧度.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">hugo
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> public
-</span></span><span class="line"><span class="cl">git add .
-</span></span><span class="line"><span class="cl">git status
-</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;add blog post&#34;</span>
-</span></span><span class="line"><span class="cl">git push
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define Pi 3.1415926
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">phi1</span> <span class="o">=</span> <span class="n">phi1</span><span class="o">*</span><span class="n">PI</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="katex-confusion">KATEX CONFUSION</h2>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>display</th>
-<th>obsidian</th>
-<th>hugo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>newline</td>
-<td>\\</td>
-<td>\\\</td>
-</tr>
-<tr>
-<td>%</td>
-<td>\%</td>
-<td>\\%</td>
-</tr>
-<tr>
-<td>suffix</td>
-<td>{ }_</td>
-<td>{ }\_</td>
-</tr>
-<tr>
-<td>*</td>
-<td>*</td>
-<td>\*</td>
-</tr>
-</tbody>
-</table></div>
+</div><h2 id="009">009</h2>
+<p>注意输出要求四舍五入, 只做类型转换是截断.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">chillInt</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">chillDouble</span><span class="o">+</span><span class="mf">0.5f</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="010">010</h2>
+<p>提交未过(WA/CE). 本地测试均能通过.</p>
 
 </section>
 
@@ -449,9 +408,7 @@ Check git &amp; hugo added in the environment variables (Windows).</p>
     
     <section class="article-tags">
         
-            <a href="/tags/hugo/">hugo</a>
-        
-            <a href="/tags/blog/">blog</a>
+            <a href="/tags/c/">C</a>
         
     </section>
 
@@ -509,12 +466,12 @@ Check git &amp; hugo added in the environment variables (Windows).</p>
             
                 
 <article class="">
-    <a href="/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/">
+    <a href="/p/c%E6%9D%82%E8%B0%88/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">NOJ(C)易错总结</h2>
+            <h2 class="article-title">C杂谈</h2>
         </div>
     </a>
 </article>
@@ -522,12 +479,12 @@ Check git &amp; hugo added in the environment variables (Windows).</p>
             
                 
 <article class="">
-    <a href="/p/c%E6%9D%82%E8%B0%88/">
+    <a href="/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">C杂谈</h2>
+            <h2 class="article-title">hugo快速入门</h2>
         </div>
     </a>
 </article>
