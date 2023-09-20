@@ -251,6 +251,9 @@
     <li><a href="#内存对齐">内存对齐</a></li>
     <li><a href="#动态数组">动态数组</a></li>
     <li><a href="#深入理解指针">深入理解指针</a></li>
+    <li><a href="#字符串长度">字符串长度</a></li>
+    <li><a href="#逻辑短路">逻辑短路</a></li>
+    <li><a href="#内存溢出和内存泄漏">内存溢出和内存泄漏</a></li>
   </ol>
 </nav>
         </div>
@@ -319,7 +322,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -1067,8 +1070,134 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 <p>函数也存在地址, 自然也可以有指向函数的指针. 但声明函数指针时, 运算优先级问题往往让人感到困惑: 如参数列表&rdquo;()&ldquo;的优先级高于&rdquo;*&rdquo;. </br>
 在分析函数声明时, 可以借助网站: <a class="link" href="https://cdecl.org/"  target="_blank" rel="noopener"
     >https://cdecl.org/</a>.</p>
+<h2 id="字符串长度">字符串长度</h2>
+<p>C中字符串应以&quot;NULL&rdquo;(或&rdquo;\0&quot;或0)结尾, 字符串的长度应当包含结尾的&quot;NULL&quot;, 但使用&lt;string.h&gt;库中的&quot;strlen()&ldquo;函数时, 返回的是字符串的有效长度: 如在第n-1位遇到NULL, 则返回n.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;string&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%llu&#34;</span><span class="p">,</span><span class="nf">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>字符串和数组一样有多种声明方式. </br>
+以长度声明字符串时, 需注意留一位给末尾的&quot;NULL&rdquo;. 动态长度字符串同数组, 同时使用&quot;memset()&ldquo;函数初始化. </br>
+若用&quot;strlen()&ldquo;得到其他字符串输出时, 想要得到相同有效长度的字符串需要声明长度为&quot;strlen(string)+1&rdquo;. </br>
+尽管不以&quot;NULL&quot;结尾有时不会得到错误的输出, 但应当避免不规范的使用. </br>
+仅以字符串值声明字符串时, 编译器会默认在结尾添加&quot;NULL&rdquo;, 无论字符串值末尾是否有&quot;\0&quot;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;C is the best language!</span><span class="se">\0</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 此处打断点调试, 发现字符串长度为25, 但有效字符只有23个, 最后两个均为&#34;NULL&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="逻辑短路">逻辑短路</h2>
+<p>对于逻辑运算符与&quot;&amp;&amp;&ldquo;和或&rdquo;||&ldquo;存在短路规则, &ldquo;&amp;&amp;&ldquo;前若已为假则忽略后续直接返回&quot;fasle&rdquo;, 同理&rdquo;||&ldquo;前若已为真则忽略后续直接返回&quot;true&rdquo;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="o">++</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">b</span> <span class="o">||</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="o">++</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">f</span> <span class="o">=</span> <span class="n">b</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="o">++</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">t</span> <span class="o">=</span> <span class="n">a</span> <span class="o">||</span> <span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="n">c</span><span class="o">++</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">c</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>运算优先级上, &ldquo;()&ldquo;和&rdquo;++&ldquo;都高于&rdquo;&amp;&amp;&ldquo;和&rdquo;||&rdquo;, 但第一次f和t赋值中有副作用的&rdquo;++&ldquo;一次也没有被执行, 第二次中都被执行了.</p>
+<h2 id="内存溢出和内存泄漏">内存溢出和内存泄漏</h2>
+<p>内存溢出指申请空间没有足够的空间可以使用, 如声明&quot;int&quot;类型变量, 但赋值了超出&quot;int&quot;类型的数.</p>
+<p>内存泄漏指申请使用内存后, 无法释放已经申请的内存空间; 内存泄漏累积就会造成内存溢出. </br>
+(在某些优化较差的游戏中, 如刺客信条: 大革命, 游玩时会突然卡死, 打开任务管理器发现内存占用率100%, 可能就是遇到了内存泄漏问题.) </br>
+对于个人用户, 内存泄漏也许不严重, 结束程序进程时会释放所有已分配的内存; 但对于服务器, 某些程序需要一直保持运行, 内存泄漏会不断累积并造成严重后果.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 比较低级的错误: 分配的内存使用完后没有释放
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 指针重新赋值时, 原指向位置丢失
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*</span><span class="n">np</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 内存释放时, 造成位置孤立
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">head</span> <span class="o">-&gt;</span> <span class="n">next</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">free</span><span class="p">(</span><span class="n">head</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 分配了没有指针指向的内存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="nf">memory</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">lost</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memory</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>防止内存泄漏的核心思想是: 进行任何内存有关的操作时, 始终确保每个内存都有指针指向.</p>
 <blockquote>
-<p>待更新内容: 聚合体与字节序, 逻辑短路, 内存泄漏, 副作用, 按位运算妙用, 宏函数, 变长参数, 线程</p>
+<p>待更新内容: 聚合体与字节序, 副作用, 按位运算妙用, 宏函数, 变长参数, 线程</p>
 </blockquote>
 
 </section>
