@@ -942,7 +942,7 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;防止内存泄漏的核心思想是: 进行任何内存有关的操作时, 始终确保每个内存都有指针指向.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;防止内存泄漏的核心思想是: 进行任何内存有关的操作时, 始终确保每个已分配的内存都有指针指向.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;待更新内容: 聚合体与字节序, 副作用, 按位运算妙用, 宏函数, 变长参数, 线程&lt;/p&gt;
 &lt;/blockquote&gt;

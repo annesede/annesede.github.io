@@ -10,7 +10,7 @@
 <meta property='og:description' content='未整理完'>
 <meta property='og:url' content='https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='C' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2023-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-14T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='数学' /><meta property='article:tag' content='C' /><meta property='article:tag' content='C&#43;&#43;' /><meta property='article:published_time' content='2023-09-05T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-21T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="密码学数学基础">
 <meta name="twitter:description" content="未整理完">
     </head>
@@ -248,6 +248,7 @@
     <li><a href="#同余">同余</a></li>
     <li><a href="#同余式">同余式</a></li>
     <li><a href="#二次剩余">二次剩余</a></li>
+    <li><a href="#原根">原根</a></li>
   </ol>
 </nav>
         </div>
@@ -316,7 +317,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 7 分钟
+                    阅读时长: 8 分钟
                 </time>
             </div>
         
@@ -821,6 +822,35 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <li>公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$.</li>
 <li>私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2 in 4)$.</li>
 </ul>
+<h2 id="原根">原根</h2>
+<p>原根: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.</p>
+<p>定理: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 则 $a^n\equiv 1({rm mod}\ m)\iff {\rm ord}_m(a)|n$. 特别, ${\rm ord}_m(a)|\varphi(m)$.</p>
+<p>定理: $g$ 为模 $m$ 原根 $\iff g^{\frac{\varphi(m)}{p_i}}\not\equiv 1({\rm mod}\ m)$, $\forall$ 素数 $p_i|\varphi(m)$.</p>
+<blockquote>
+<p>必要性: 显然.</p>
+<p>充分性: 若 $\exists e&lt;\varphi(m)$ s.t. $g^e\equiv 1({\rm mod}\ m)$; 不妨设 $\frac{\varphi(m)}{e}=kp$, $k\in\mathbb{Z}$, $p$ 为素数; 进而 $g^{\frac{\varphi(m)}{e}\equiv(g^p)^k\equiv 1({\rm mod}\ m)}$, 矛盾.</p>
+</blockquote>
+<p>定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. </br>
+推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. </br>
+以下显然:</p>
+<ul>
+<li>${\rm ord}_m(a)={\rm ord}_m(a^{-1})$.</li>
+<li>$b\equiv a({\rm mod}\ m)$, 则 ${\rm ord}_m(b)={\rm ord}_m(a)$.</li>
+<li>${\rm gcd}(a,m)=1$, $a^0,a^1,&hellip;,a^{{\rm ord}_m(a)-1}$ 两两模 $m$ 不同余.</li>
+<li>特别, $g$ 为模 $m$ 原根时, 恰好有 $\mathbb{Z}_p^*={g^0,g^1,&hellip;,g^{\varphi(g)-1}}$.</li>
+<li>$g$ 为模 $m$ 原根时, $x,y\in\mathbb{Z}$, $g^x\equiv g^y({\rm mod}\ m) \iff x\equiv y({\rm mod}\ \varphi(m))$.</li>
+</ul>
+<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$.</p>
+<ul>
+<li>公钥 $(p,g)$, 私钥 $x,y$.</li>
+<li>握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$.</li>
+<li>密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$.</li>
+</ul>
+<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$.</p>
+<ul>
+<li>公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$.</li>
+<li>私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u_a}({\rm mod}\ p)$.</li>
+</ul>
 
 </section>
 
@@ -860,7 +890,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 
 
         <span>
-            最后更新于 2023-09-14
+            最后更新于 2023-09-21
         </span>
     </section></footer>
 
