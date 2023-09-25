@@ -155,7 +155,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;使用&amp;quot;strlen()&amp;ldquo;获取长度, 也需引入头文件&amp;lt;string.h&amp;gt;.&lt;/p&gt;
-&lt;p&gt;翻转分为数字改变和位置改变. 数字(实则为字符)改变为: &amp;lsquo;2&amp;rsquo;-&amp;gt;&amp;lsquo;5&amp;rsquo;, &amp;lsquo;5&amp;rsquo;-&amp;gt;&amp;lsquo;2&amp;rsquo;, &amp;lsquo;6&amp;rsquo;-&amp;gt;&amp;lsquo;9&amp;rsquo;, &amp;lsquo;9&amp;rsquo;-&amp;gt;&amp;lsquo;6&amp;rsquo;, &amp;lsquo;0&amp;rsquo;-&amp;gt;&amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;-&amp;gt;&amp;lsquo;1&amp;rsquo;, &amp;lsquo;8&amp;rsquo;-&amp;gt;&amp;lsquo;8&amp;rsquo;. 位置改变为第i位换到第(len-i-1)位.&lt;/p&gt;
+&lt;p&gt;翻转分为数字改变和位置改变. 数字(实则为字符)改变为: &amp;lsquo;6&amp;rsquo;-&amp;gt;&amp;lsquo;9&amp;rsquo;, &amp;lsquo;9&amp;rsquo;-&amp;gt;&amp;lsquo;6&amp;rsquo;, &amp;lsquo;0&amp;rsquo;-&amp;gt;&amp;lsquo;0&amp;rsquo;, &amp;lsquo;1&amp;rsquo;-&amp;gt;&amp;lsquo;1&amp;rsquo;, &amp;lsquo;8&amp;rsquo;-&amp;gt;&amp;lsquo;8&amp;rsquo;. 位置改变为第i位换到第(len-i-1)位.&lt;/p&gt;
 &lt;p&gt;可使用switch-case翻转后再逐位判断, 或直接判断; 包含其他数字时(default)则直接输出&amp;quot;No&amp;rdquo;.&lt;/p&gt;
 &lt;h2 id=&#34;幂数模&#34;&gt;幂数模&lt;/h2&gt;
 &lt;p&gt;直接求幂再求模可能会越界超时, 须使用快速模幂.&lt;/p&gt;
