@@ -10,7 +10,7 @@
 <meta property='og:description' content='持续更新中'>
 <meta property='og:url' content='https://example.com/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-19T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-25T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="NOJ(C)易错总结">
 <meta name="twitter:description" content="持续更新中">
     </head>
@@ -244,16 +244,26 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#001">001</a></li>
-    <li><a href="#002">002</a></li>
-    <li><a href="#003">003</a></li>
-    <li><a href="#004">004</a></li>
-    <li><a href="#005">005</a></li>
-    <li><a href="#006">006</a></li>
-    <li><a href="#007">007</a></li>
-    <li><a href="#008">008</a></li>
-    <li><a href="#009">009</a></li>
-    <li><a href="#010">010</a></li>
+    <li><a href="#hello-world">Hello World</a></li>
+    <li><a href="#ab">A+B</a></li>
+    <li><a href="#数据类型大小及范围">数据类型大小及范围</a></li>
+    <li><a href="#平均值">平均值</a></li>
+    <li><a href="#进制转换">进制转换</a></li>
+    <li><a href="#浮点数输出">浮点数输出</a></li>
+    <li><a href="#动态宽度输出">动态宽度输出</a></li>
+    <li><a href="#计算地球上两点之间的距离">计算地球上两点之间的距离</a></li>
+    <li><a href="#风寒指数">风寒指数</a></li>
+    <li><a href="#颜色模型转换">颜色模型转换</a></li>
+    <li><a href="#乘数模">乘数模</a></li>
+    <li><a href="#方阵">方阵</a></li>
+    <li><a href="#分数的加减乘除法">分数的加、减、乘、除法</a></li>
+    <li><a href="#操作数">操作数</a></li>
+    <li><a href="#组合数">组合数</a></li>
+    <li><a href="#比率">比率</a></li>
+    <li><a href="#级数和">级数和</a></li>
+    <li><a href="#对称数">对称数</a></li>
+    <li><a href="#幂数模">幂数模</a></li>
+    <li><a href="#倍数和">倍数和</a></li>
   </ol>
 </nav>
         </div>
@@ -322,7 +332,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 1 分钟
+                    阅读时长: 2 分钟
                 </time>
             </div>
         
@@ -338,14 +348,16 @@
     
     
     <p>主要给出了WA时可能会出现的错误, 节省调试时间, 并方便日后回顾; 建议提交一次后对照查询, 其他问题请本地调试解决.</p>
-<h2 id="001">001</h2>
+<p>由于从11题开始题目顺序会打乱, 故给出题目名称, 请按题目名称查找.</p>
+<h2 id="hello-world">Hello World</h2>
 <p>略.</p>
-<h2 id="002">002</h2>
+<h2 id="ab">A+B</h2>
 <p>略.</p>
-<h2 id="003">003</h2>
+<h2 id="数据类型大小及范围">数据类型大小及范围</h2>
+<p>可使用switch-case进行条件判断.</p>
 <p>使用CHAR_MAX等宏时, 注意包含头文件&lt;limits.h&gt;.</p>
-<h2 id="004">004</h2>
-<p>求平均数时, 注意直接相加可能会越界.</p>
+<h2 id="平均值">平均值</h2>
+<p>直接相加可能会越界.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -354,12 +366,12 @@
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">avg</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="005">005</h2>
+</div><h2 id="进制转换">进制转换</h2>
 <p>输出大写十六进制需使用&quot;%X&quot;, &ldquo;%x&quot;会输出小写十六进制.</p>
-<h2 id="006">006</h2>
+<h2 id="浮点数输出">浮点数输出</h2>
 <p>略.</p>
-<h2 id="007">007</h2>
-<p>使用&quot;tmp/10&quot;做十进制向右移位获取输入数字长度.</p>
+<h2 id="动态宽度输出">动态宽度输出</h2>
+<p>可使用&quot;tmp/10&quot;做十进制向右移位获取输入数字长度.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -376,7 +388,7 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="008">008</h2>
+</div><h2 id="计算地球上两点之间的距离">计算地球上两点之间的距离</h2>
 <p>C中三角函数仅接收弧度参数, 需先将经纬度转换为弧度.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -388,19 +400,166 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">phi1</span> <span class="o">=</span> <span class="n">phi1</span><span class="o">*</span><span class="n">PI</span><span class="o">/</span><span class="mi">180</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="009">009</h2>
-<p>注意输出要求四舍五入, 只做类型转换是截断.</p>
+</div><h2 id="风寒指数">风寒指数</h2>
+<p>输出要求四舍五入, 只做类型转换是截断.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">chillInt</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">chillDouble</span><span class="o">+</span><span class="mf">0.5f</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">chillInt</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">chillDouble</span><span class="o">+</span><span class="mf">0.5f</span><span class="p">);</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="010">010</h2>
-<p>提交未过(WA/CE). 本地测试均能通过.</p>
-
+</div><h2 id="颜色模型转换">颜色模型转换</h2>
+<p>取最大值和最小值, 可使用三目运算符.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 注: 以上为正确写法, 但由于该题后台样例错误, 需要人为将min改错才能AC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">minWrong</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 错误, 但能AC
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果使用浮点型比较, 浮点数不精确, 不能直接使用&quot;a == b&rdquo;, 应当使用&quot;a-b &lt; 1e-9&quot;, 并引入头文件&lt;math.h&gt;.</p>
+<p>如果使用整型比较, 计算时应当进行类型转换(强制或隐式), 否则&quot;/&ldquo;左右操作数均为整数时只能得到整数.</p>
+<p>此外, 每个除数都应当判断不为0.</p>
+<h2 id="乘数模">乘数模</h2>
+<p>直接相乘可能会越界, 先取模再相乘再取模.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">r</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span><span class="o">%</span><span class="n">m</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">%</span><span class="n">m</span><span class="p">))</span><span class="o">%</span><span class="n">m</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="方阵">方阵</h2>
+<p>可使用三目运算符得到矩阵元素. 无需使用数组.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">raw</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="n">col</span><span class="o">-</span><span class="n">raw</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">raw</span><span class="o">-</span><span class="n">col</span><span class="p">);</span> <span class="c1">// a[col][raw]
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="分数的加减乘除法">分数的加、减、乘、除法</h2>
+<p>可使用&quot;getchar();&ldquo;取走输入中的&rdquo;/&rdquo;.</p>
+<p>约分时, 可使用辗转相除法得到分子分母最大公因数, 再分别除掉.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">gcd</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="操作数">操作数</h2>
+<p>同“动态宽度输出”, &ldquo;%10&quot;可以得到个位数, &ldquo;/10&quot;可以十进制下向右移动一位.</p>
+<h2 id="组合数">组合数</h2>
+<p>暴搜, 不会超时.</p>
+<h2 id="比率">比率</h2>
+<p>&ldquo;*10&quot;实现十进制下向左移动一位, 直到变成整数, 判断不是整数可使用&quot;x != floor(x)&rdquo;.</p>
+<p>得到最大公因数并约分, 同&quot;分数的加、减、乘、除法&rdquo;.</p>
+<h2 id="级数和">级数和</h2>
+<p>&ldquo;/10&quot;实现十进制下右移一位, 直到没有整数部分, 判断有整数部分可使用&rdquo;(int)x&rdquo;.</p>
+<p>舍去末尾的0, 可使用&quot;%g&quot;格式化输出.</p>
+<h2 id="对称数">对称数</h2>
+<p>&ldquo;fget(num,11,stdin)&ldquo;获取数字为字符串, 并替换掉末尾空格.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="nf">strchr</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span> <span class="c1">// strchr()在头文件&lt;string.h&gt;中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="n">find</span><span class="p">)</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>使用&quot;strlen()&ldquo;获取长度, 也需引入头文件&lt;string.h&gt;.</p>
+<p>翻转分为数字改变和位置改变. 数字(实则为字符)改变为: &lsquo;2&rsquo;-&gt;&lsquo;5&rsquo;, &lsquo;5&rsquo;-&gt;&lsquo;2&rsquo;, &lsquo;6&rsquo;-&gt;&lsquo;9&rsquo;, &lsquo;9&rsquo;-&gt;&lsquo;6&rsquo;, &lsquo;0&rsquo;-&gt;&lsquo;0&rsquo;, &lsquo;1&rsquo;-&gt;&lsquo;1&rsquo;, &lsquo;8&rsquo;-&gt;&lsquo;8&rsquo;. 位置改变为第i位换到第(len-i-1)位.</p>
+<p>可使用switch-case翻转后再逐位判断, 或直接判断; 包含其他数字时(default)则直接输出&quot;No&rdquo;.</p>
+<h2 id="幂数模">幂数模</h2>
+<p>直接求幂再求模可能会越界超时, 须使用快速模幂.</p>
+<p>$b=2k$ 时, 有 $a^b\equiv(a^k)^2 ({\rm mod}\ m)$; </br>
+$b=2k+1$ 时, 有 $a^b\equiv(a^k)^2\times a ({\rm mod}\ m)$.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">uint64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">uint64</span> <span class="nf">fastPowerMod</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">t</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">e</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">m</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint64</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">e</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">e</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">%</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">%</span><span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">e</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="倍数和">倍数和</h2>
+<p>建议先跳过, 暴搜和快速算法都会WA.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 快速算法(目前WA)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">uint64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">uint64</span> <span class="nf">sumMulti</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">n</span><span class="p">,</span> <span class="n">uint64</span> <span class="n">a</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint64</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="o">%</span><span class="n">a</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">a</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="n">n</span><span class="o">/</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">m</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -425,7 +584,19 @@
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-09-25
+        </span>
+    </section></footer>
 
 
     
