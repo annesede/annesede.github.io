@@ -689,7 +689,10 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description>
+&lt;/div&gt;&lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
+&lt;h2 id=&#34;环&#34;&gt;环&lt;/h2&gt;
+&lt;h2 id=&#34;域&#34;&gt;域&lt;/h2&gt;
+</description>
         </item>
         <item>
         <title>对称加密</title>

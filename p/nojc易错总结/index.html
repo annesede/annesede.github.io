@@ -264,6 +264,16 @@
     <li><a href="#对称数">对称数</a></li>
     <li><a href="#幂数模">幂数模</a></li>
     <li><a href="#倍数和">倍数和</a></li>
+    <li><a href="#余数和">余数和</a></li>
+    <li><a href="#最大数字">最大数字</a></li>
+    <li><a href="#倒水">倒水</a></li>
+    <li><a href="#好数字">好数字</a></li>
+    <li><a href="#毕达哥拉斯三元组">毕达哥拉斯三元组</a></li>
+    <li><a href="#竖式乘法">竖式乘法</a></li>
+    <li><a href="#查找数列">查找数列</a></li>
+    <li><a href="#俄罗斯农夫乘法">俄罗斯农夫乘法</a></li>
+    <li><a href="#阶乘倍数">阶乘倍数</a></li>
+    <li><a href="#方案数">方案数</a></li>
   </ol>
 </nav>
         </div>
@@ -332,7 +342,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 3 分钟
+                    阅读时长: 5 分钟
                 </time>
             </div>
         
@@ -379,13 +389,15 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="o">++</span><span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">n</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="计算地球上两点之间的距离">计算地球上两点之间的距离</h2>
@@ -411,22 +423,18 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="颜色模型转换">颜色模型转换</h2>
-<p>取最大值和最小值, 可使用三目运算符.</p>
+<p>取最大值和最小值, 可使用比较运算符.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&lt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 注: 以上为正确写法, 但由于该题后台样例错误, 需要人为将min改错才能AC
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">minWrong</span> <span class="o">=</span> <span class="n">r</span> <span class="o">&lt;=</span> <span class="n">g</span> <span class="o">?</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">r</span> <span class="o">&gt;=</span> <span class="n">b</span> <span class="o">?</span> <span class="nl">r</span> <span class="p">:</span> <span class="n">b</span><span class="p">);</span> <span class="c1">// 错误, 但能AC
-</span></span></span></code></pre></td></tr></table>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>如果使用浮点型比较, 浮点数不精确, 不能直接使用&quot;a == b&rdquo;, 应当使用&quot;a-b &lt; 1e-9&quot;, 并引入头文件&lt;math.h&gt;.</p>
+</div><p>如果使用浮点型比较, 浮点数不精确, 不能直接使用&quot;a == b&rdquo;, 应当使用&quot;a-b &lt; 1e-9&quot;.</p>
 <p>如果使用整型比较, 计算时应当进行类型转换(强制或隐式), 否则&quot;/&ldquo;左右操作数均为整数时只能得到整数.</p>
 <p>此外, 每个除数都应当判断不为0.</p>
 <h2 id="乘数模">乘数模</h2>
@@ -440,7 +448,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="方阵">方阵</h2>
-<p>可使用三目运算符得到矩阵元素. 无需使用数组.</p>
+<p>可使用比较运算符得到矩阵元素. 无需使用数组.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -464,6 +472,17 @@
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">a</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="k">return</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="o">%</span><span class="n">b</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>结果中若出现负分数, 只需保证最大公因数为正即可.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="nf">gcd</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span> <span class="o">=</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">d</span> <span class="p">:</span> <span class="o">-</span><span class="n">d</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="操作数">操作数</h2>
@@ -555,7 +574,119 @@ $b=2k+1$ 时, 有 $a^b\equiv(a^k)^2\times a ({\rm mod}\ m)$.</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="倍数和">倍数和</h2>
-<p>输入采用动态数组或足够大的数组均可.</p>
+<p>输入采用动态数组或足够大的数组或直接循环均可.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%u&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 以下四种方法任选其一
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="p">];</span> <span class="c1">// 1. MSVC会报错, 但GCC支持, 可以AC
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">));</span> <span class="c1">// 2. MSVC和GCC均支持, 但需引入头文件&lt;malloc.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="mi">100000</span><span class="p">]</span> <span class="c1">// 3. 足够大的数组, 不会溢出, 不会超出内存限制
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 4. 循环读取输入并输出
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>暴搜, 不会超时.</p>
+<h2 id="余数和">余数和</h2>
+<p>输入顺序.</p>
+<h2 id="最大数字">最大数字</h2>
+<p>条件为小于或等于 $n$.</p>
+<h2 id="倒水">倒水</h2>
+<p>使用BFS(广度优先), 将水杯状态视为顶点, 状态间的转移即为边, 每次转移相对(初始状态)距离加1; $(0,0)$为初始状态, 检索到 $(0,d)$ 或 $(d,0)$ 时终止, 此时距离矩阵中对应元素值即为最小操作次数.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#define INF 0x3f3f3f3f </span><span class="c1">// 无穷大, 表示未检索
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">distTable</span><span class="p">[</span><span class="mi">10000</span><span class="p">][</span><span class="mi">10000</span><span class="p">];</span> <span class="c1">// 距离矩阵
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">memset</span><span class="p">(</span><span class="n">distTable</span><span class="p">,</span> <span class="mh">0x3f</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">distTable</span><span class="p">));</span> <span class="c1">// 初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">distTable</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 设置初始状态
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>每次状态转移共有八种情况: (记左为0, 右为1)</p>
+<ul>
+<li>装满0: $(a,b)\to (n,b)$;</li>
+<li>装满1: $(a,b)\to (a,m)$;</li>
+<li>倒空0: $(a,b)\to (0,b)$;</li>
+<li>倒空1: $(a,b)\to (a,0)$;</li>
+<li>0倒入1, 1未满: $(a,b)\to (0,a+b)$, $a+b&lt;m$;</li>
+<li>0倒入1, 1已满: $(a,b)\to (a+b-m,m)$, $a+b\geq m$;</li>
+<li>1倒入0, 0未满: $(a,b)\to (a+b,0)$, $a+b&lt;n$;</li>
+<li>1倒入0, 0已满: $(a,b)\to (n,a+b-n)$, $a+b\geq n$.</li>
+</ul>
+<p>使用数组表示循环队列, 当前状态为队首, 转移后插入至队尾.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define MAXSIZE 10000
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">queue</span><span class="p">[</span><span class="n">MAXSIZE</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// 循环队列并初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 队首指向0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">tail</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 队尾指向1
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 移动队首队尾时用取余实现循环效果
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">head</span> <span class="o">=</span> <span class="p">(</span><span class="n">head</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">MAXSIZE</span>
+</span></span><span class="line"><span class="cl"><span class="n">tail</span> <span class="o">=</span> <span class="p">(</span><span class="n">tail</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="n">MAXSIZE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="好数字">好数字</h2>
+<p>同幂数模.</p>
+<p>$$\frac{n+1}{2} = \begin{cases}
+k, \ n=2k \\
+k+1, \ n=2k+1 \\
+\end{cases}$$</p>
+<h2 id="毕达哥拉斯三元组">毕达哥拉斯三元组</h2>
+<p>不妨设 $a$ 为短直角边, $b$ 为长直角边; 则 $a\in (0,\frac{n}{4})$, $b\in [a,\frac{n}{2})$.</p>
+<p>另须判断 $a,b,c$ 构成三角形: $a+b&gt;c$.</p>
+<h2 id="竖式乘法">竖式乘法</h2>
+<p>&ldquo;/10&quot;获取位数&quot;len(num)&rdquo;.</p>
+<p>获取右数第 $n$ 位数字.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;math.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">/=</span> <span class="p">(</span><span class="n">uint</span><span class="p">)</span><span class="nf">pow</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">x</span> <span class="o">%=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>总宽度为&quot;lenTotal = len(ans)+1;&rdquo;, 加算中第 $i$ 列空格数为 &ldquo;j &lt;= lenTotal-len(current)-(i-1);&rdquo; 亦即 &ldquo;j &lt; lenTotal-len(current)-i&rdquo;.</p>
+<h2 id="查找数列">查找数列</h2>
+<p>写成下三角形式, 第 $n$ 列末尾项数为 $1+2+&hellip;+n$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -567,16 +698,140 @@ $b=2k+1$ 时, 有 $a^b\equiv(a^k)^2\times a ({\rm mod}\ m)$.</p>
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">t</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%u&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 以下三种方法任选其一
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="p">];</span> <span class="c1">// 1. MSVC会报错, 但GCC支持, 可以AC
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">));</span> <span class="c1">// 2. MSVC和GCC均支持, 但需引入头文件&lt;malloc.h&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="mi">100000</span><span class="p">]</span> <span class="c1">// 3. 足够大的数组, 不会溢出, 不会超出内存限制
-</span></span></span></code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">sum</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sum</span> <span class="o">+=</span> <span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">sum</span> <span class="o">-=</span> <span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">ans</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">?</span> <span class="nl">cnt</span> <span class="p">:</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">sum</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
 </div>
-</div><p>暴搜, 不会超时.</p>
+</div><h2 id="俄罗斯农夫乘法">俄罗斯农夫乘法</h2>
+<p>在循环输出中判断并累加即可.</p>
+<h2 id="阶乘倍数">阶乘倍数</h2>
+<p>枚举阶乘模可能会超时, 可以改为对 $k$ 因子分解后二分查找.</p>
+<p>可以使用两个数组记录因子分解情况再二分查找, 也可以在二分查找过程中不断分解 $k$.</p>
+<p>正整数均有唯一分解形式: $k=\prod p_i^{\alpha_i}$, $p_i$ 为素数.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">int64</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">pFactNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 素因子个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">int64</span> <span class="n">prime</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">exponent</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// 前19个素数相乘已经非常大了
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="n">int64</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">pFactNum</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="o">++</span><span class="n">exponent</span><span class="p">[</span><span class="n">pFactNum</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">k</span> <span class="o">/=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 无法分解, 说明k为素数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">pFactNum</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">++</span><span class="n">exponent</span><span class="p">[</span><span class="n">pFactNum</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>匹配时, $n!$ 中含有素因子个数应当超过 $k$ 中对应素因子的指数.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">primeNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">primeNum</span> <span class="o">+=</span> <span class="n">tmp</span><span class="o">/</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// n!中含有k的第i个素因子的个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">tmp</span> <span class="o">/=</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>二分查找时, 中间值满足条件说明在左区间, 不满足则在右区间; 可以使用开区间或闭区间, 但均须保证不重不漏, 并避免死循环.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="mf">1e19</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 闭区间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">((</span><span class="n">right</span><span class="o">-</span><span class="n">left</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 开区间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span> <span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mid</span> <span class="o">=</span> <span class="p">((</span><span class="n">right</span><span class="o">-</span><span class="n">left</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">)</span><span class="o">+</span><span class="n">left</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">right</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ans</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">left</span> <span class="o">=</span> <span class="n">mid</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="方案数">方案数</h2>
+<p>枚举首项可能会超时, 可以改为枚举项数.</p>
+<p>不妨设存在时, 首项为 $a$, 项数为 $m$, 有 $\frac{m(2a+m-1)}{2}=n$, 即 $a=\frac{n-m(m-1)/2}{m}\geq 1$. 故存在时有 $m|n-m(m-1)/2$ 和 $m&lt;\sqrt{2n}$.</p>
 
 </section>
 
