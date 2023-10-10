@@ -16,7 +16,7 @@
         <description>&lt;p&gt;文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)&lt;/p&gt;
 &lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
 &lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;/br&gt;
-最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}{sa+tb|s,t\in\mathbb{Z}}$.&lt;/p&gt;
+最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.&lt;/p&gt;
 &lt;p&gt;辗转相除求${\rm gcd}$:
 $$\begin{align}
 &amp;amp;a=q_1b+r_1\\
@@ -123,11 +123,11 @@ m&amp;amp;=a_ix_i+b_iy_i\\
 &lt;li&gt;$ak\equiv bk({\rm mod}\ m) \Longrightarrow a\equiv b({\rm mod}\ \frac{m}{{\rm gcd}(m,k)})$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. &lt;/br&gt;
-最小非负完全剩余系: $\mathbb{Z}_m={0,1&amp;hellip;,m-1}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. &lt;/br&gt;
-既约剩余系: $\mathbb{Z}_m^*={a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1}$.&lt;/p&gt;
+最小非负完全剩余系: $\mathbb{Z}_m=\{0,1&amp;hellip;,m-1\}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. &lt;/br&gt;
+既约剩余系: $\mathbb{Z}_m^*=\{a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1\}$.&lt;/p&gt;
 &lt;p&gt;Euler $\varphi$ 函数: &lt;/br&gt;
 $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$&lt;/p&gt;
-&lt;p&gt;当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*={1,2,&amp;hellip;,p-1}$ 为循环群, 生成元个数为$\varphi(p-1)$.&lt;/p&gt;
+&lt;p&gt;当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*=\{1,2,&amp;hellip;,p-1\}$ 为循环群, 生成元个数为$\varphi(p-1)$.&lt;/p&gt;
 &lt;p&gt;考察函数性质:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;若素数 $p|n$, 则 $\varphi(pn)=p\varphi(n)$;&lt;/li&gt;
@@ -195,7 +195,7 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 &lt;p&gt;逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. &lt;/br&gt;
 Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;$\mathbb{Z}_m^*={x_1,&amp;hellip;,x_{\varphi(m)}}={ax_1,&amp;hellip;,a_{\varphi(m)}}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.&lt;/p&gt;
+&lt;p&gt;$\mathbb{Z}_m^*=\{x_1,&amp;hellip;,x_{\varphi(m)}\}=\{ax_1,&amp;hellip;,a_{\varphi(m)}\}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. &lt;/br&gt;
 由扩展Euclid, ${\rm gcd}(a,m)=1$, $\exists s,t\in\mathbb{Z}$ s.t. $as+tm=1$, 即 $a^{-1}\equiv s({\rm mod}\ m)$.&lt;/p&gt;
@@ -427,8 +427,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 \end{cases}$$&lt;/p&gt;
 &lt;p&gt;二次互反: $(\frac{p}{q})(\frac{q}{p})=(-1)^{\frac{p-1}{2}\frac{q-1}{2}}$, $p\ne q$ 为奇素数.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;Guass: 奇素数 $p$, $a\in\mathbb{Z}$, ${\rm gcd}(a,p)=1$, 设 $M_{a,p}={ka\%p, \ k=1,2,&amp;hellip;,\frac{p-1}{2}\ |\ ka\%p&amp;gt;\frac{p}{2}}$, 记 $m(a,p)=|M_{a,p}|$, 则 $(\frac{a}{p})=(-1)^{m(a,p)}$.&lt;/p&gt;
-&lt;p&gt;设 $K={ka\%p\ |\ k=1,2,&amp;hellip;,\frac{p-1}{2}}$, $b_i\in M$, $c_j\in M-K$, $i=1,2,..,m(a,p)$, $j=1,2,&amp;hellip;,\frac{p-1}{2}-m(a,p)$.&lt;/p&gt;
+&lt;p&gt;Guass: 奇素数 $p$, $a\in\mathbb{Z}$, ${\rm gcd}(a,p)=1$, 设 $M_{a,p}=\{ka\%p, \ k=1,2,&amp;hellip;,\frac{p-1}{2}\ |\ ka\%p&amp;gt;\frac{p}{2}\}$, 记 $m(a,p)=|M_{a,p}|$, 则 $(\frac{a}{p})=(-1)^{m(a,p)}$.&lt;/p&gt;
+&lt;p&gt;设 $K=\{ka\%p\ |\ k=1,2,&amp;hellip;,\frac{p-1}{2}\}$, $b_i\in M$, $c_j\in M-K$, $i=1,2,..,m(a,p)$, $j=1,2,&amp;hellip;,\frac{p-1}{2}-m(a,p)$.&lt;/p&gt;
 &lt;p&gt;显然有 $c_j\ne p-b_i$, $\forall i,j$; 否则 $p|b_i+c_j$, 即 $\exists x,y\in\mathbb{Z}$, $x,y&amp;lt;\frac{p}{2}$ s.t. $p|a(x+y)$, 但 $x+y&amp;lt;p$, 矛盾.&lt;/p&gt;
 &lt;p&gt;故 $a^{\frac{p-1}{2}}(\frac{p-1}{2})!\equiv\prod c_j \prod (p-b_i)\equiv (-1)^{m(a,p)}(\frac{p-1}{2})!({\rm mod}\ p)$.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -504,7 +504,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;li&gt;私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2 in 4)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;原根&#34;&gt;原根&lt;/h2&gt;
-&lt;p&gt;原根: $a,m\in\mathbb{Z}$, $m&amp;gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.&lt;/p&gt;
+&lt;p&gt;原根: $a,m\in\mathbb{Z}$, $m&amp;gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf\{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)\}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.&lt;/p&gt;
 &lt;p&gt;定理: $a,m\in\mathbb{Z}$, $m&amp;gt;1$, ${\rm gcd}(a,m)=1$, 则 $a^n\equiv 1({rm mod}\ m)\iff {\rm ord}_m(a)|n$. 特别, ${\rm ord}_m(a)|\varphi(m)$.&lt;/p&gt;
 &lt;p&gt;定理: $g$ 为模 $m$ 原根 $\iff g^{\frac{\varphi(m)}{p_i}}\not\equiv 1({\rm mod}\ m)$, $\forall$ 素数 $p_i|\varphi(m)$.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -690,6 +690,22 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
+&lt;p&gt;有限群: 有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); 记 $|G|={\rm Card}(G)$ 为阶; 定义 $a^{-n}=(a^{-1})^n$, $a^0=e$.&lt;/p&gt;
+&lt;p&gt;元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$; $|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.&lt;/p&gt;
+&lt;p&gt;子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&amp;lt;G$; 真子群即非平凡子群({e},G); $H&amp;lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&amp;lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.&lt;/p&gt;
+&lt;p&gt;循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&amp;lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; 特别 $S={a}$ 时, 循环子群 $\langle S\rangle=\langle a\rangle=\{a^n\ |\ n\in\mathbb{Z}\}$; 特别 $G=\langle a\rangle$ 时为循环群 $\iff\exists a\in G$ s.t. $|a|=|G|$; 循环群子群仍为循环群; 无限循环群同构于 $\mathbb{Z}$, $n$ 阶循环群同构于 $\mathbb{Z}_n$.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不妨设 $H&amp;lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;陪集: $H&amp;lt;G$, $\forall a\in G$, $aH$ 为左陪集; $a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.&lt;/p&gt;
+&lt;p&gt;Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.&lt;/p&gt;
+&lt;p&gt;正规子群: $H&amp;lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&amp;lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.&lt;/p&gt;
+&lt;p&gt;商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.&lt;/p&gt;
+&lt;p&gt;同态: 保持代数运算不变的映射, 双射时为同构. &lt;/br&gt;
+群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.&lt;/p&gt;
+&lt;p&gt;置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; 特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.&lt;/p&gt;
+&lt;p&gt;轮换: $f\in S_n$, $i_1,&amp;hellip;,i_r\in X$, $f(i_1)=i_2,&amp;hellip;,f(i_{r-1})=i_r,f(i_r)=i_1$ 且保持其他元素不变时, $f=(i_1,i_2,&amp;hellip;,i_r)$ 称为 $r$ -轮换; 特别 $r=1$ 时为恒等变换, $r=2$ 时称为对换; 任意置换可唯一表示为不相交的轮换之积; 任意轮换可以表示为对换之积.&lt;/p&gt;
+&lt;p&gt;Cayley: 任意有限群同构于一置换群.&lt;/p&gt;
 &lt;h2 id=&#34;环&#34;&gt;环&lt;/h2&gt;
 &lt;h2 id=&#34;域&#34;&gt;域&lt;/h2&gt;
 </description>

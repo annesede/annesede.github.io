@@ -274,6 +274,16 @@
     <li><a href="#俄罗斯农夫乘法">俄罗斯农夫乘法</a></li>
     <li><a href="#阶乘倍数">阶乘倍数</a></li>
     <li><a href="#方案数">方案数</a></li>
+    <li><a href="#哈沙德数">哈沙德数</a></li>
+    <li><a href="#素数">素数</a></li>
+    <li><a href="#基思数">基思数</a></li>
+    <li><a href="#二进制表示">二进制表示</a></li>
+    <li><a href="#光线追踪">光线追踪</a></li>
+    <li><a href="#冰雹数列">冰雹数列</a></li>
+    <li><a href="#佩尔数">佩尔数</a></li>
+    <li><a href="#可变参数累加">可变参数累加</a></li>
+    <li><a href="#运动会">运动会</a></li>
+    <li><a href="#可变参数平均">可变参数平均</a></li>
   </ol>
 </nav>
         </div>
@@ -342,7 +352,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 5 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -666,7 +676,7 @@ k+1, \ n=2k+1 \\
 \end{cases}$$</p>
 <h2 id="毕达哥拉斯三元组">毕达哥拉斯三元组</h2>
 <p>不妨设 $a$ 为短直角边, $b$ 为长直角边; 则 $a\in (0,\frac{n}{4})$, $b\in [a,\frac{n}{2})$.</p>
-<p>另须判断 $a,b,c$ 构成三角形: $a+b&gt;c$.</p>
+<p>$a\times b\times c$可能越界, 使用unsigned long long.</p>
 <h2 id="竖式乘法">竖式乘法</h2>
 <p>&ldquo;/10&quot;获取位数&quot;len(num)&rdquo;.</p>
 <p>获取右数第 $n$ 位数字.</p>
@@ -759,7 +769,7 @@ k+1, \ n=2k+1 \\
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>匹配时, $n!$ 中含有素因子个数应当超过 $k$ 中对应素因子的指数.</p>
+</div><p>匹配时, $n!$ 中含有素因子个数($\lfloor\frac{n}{p}\rfloor+\lfloor\frac{n}{p^2}\rfloor+&hellip;$)应当超过 $k$ 中对应素因子的指数.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -767,12 +777,14 @@ k+1, \ n=2k+1 \\
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">primeNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">primeNum</span> <span class="o">+=</span> <span class="n">tmp</span><span class="o">/</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// n!中含有k的第i个素因子的个数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">tmp</span> <span class="o">/=</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// n!中含有k的第i个素因子的个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">primeNum</span> <span class="o">+=</span> <span class="n">tmp</span><span class="o">/</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">/=</span> <span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -832,7 +844,254 @@ k+1, \ n=2k+1 \\
 </div><h2 id="方案数">方案数</h2>
 <p>枚举首项可能会超时, 可以改为枚举项数.</p>
 <p>不妨设存在时, 首项为 $a$, 项数为 $m$, 有 $\frac{m(2a+m-1)}{2}=n$, 即 $a=\frac{n-m(m-1)/2}{m}\geq 1$. 故存在时有 $m|n-m(m-1)/2$ 和 $m&lt;\sqrt{2n}$.</p>
-
+<h2 id="哈沙德数">哈沙德数</h2>
+<p>易知 $n=10^k$ 或 $1\leq n\leq 9$ 时会导致死循环, 在HarshadNumber中添加&quot;if (s == 1) return 1;&rdquo;, 并修改while.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">((</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">n</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">n</span> <span class="o">=</span> <span class="nf">HarshadNumber</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="素数">素数</h2>
+<p>根据题目提示可以得到埃氏筛法, 但埃氏筛法中形如 $p_1&hellip;p_k$ 的数会被素数 $p_1,&hellip;,p_k$ 反复筛取导致时间较长. 可使用数组存储每个数被筛情况, 即线性筛.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">prime</span><span class="p">(</span><span class="n">uint64</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isPrime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">isPrime</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 需引入头文件&lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">uint64</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span><span class="o">*</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">isPrime</span><span class="p">[</span><span class="n">j</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 线性筛
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="基思数">基思数</h2>
+<p>可使用循环数组存储数列, 存储时低位在右端, 高位在左端, 从右到左循环遍历.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// 最大位数为8
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">tmp</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span> <span class="c1">// 低位在右端, 高位在左端
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">tmp</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">sum</span> <span class="o">+=</span> <span class="n">arr</span><span class="p">[(</span><span class="n">i</span><span class="o">-</span><span class="n">j</span><span class="o">+</span><span class="n">len</span><span class="p">)</span><span class="o">%</span><span class="n">len</span><span class="p">];</span> <span class="c1">// 从右到左遍历
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">sum</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">+</span><span class="n">len</span><span class="p">)</span><span class="o">%</span><span class="n">len</span><span class="p">;</span> <span class="c1">// 左移
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="二进制表示">二进制表示</h2>
+<p>递归函数实现, 从高位依次取二进制位, 超过范围时进入递归, 设置标识判断何时输出加号.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;+&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="err">\\</span> <span class="n">i进入递归</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(0)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="光线追踪">光线追踪</h2>
+<p>反射经过的三边总长相等(否则无法回到入射点), 即可以通过平移得到等边三角形; 每轮反射时相当于累加更相减损的结果, 或说Euclid算法减去余数部分; 而最终余数为 ${\rm gcd}(n,x)$, 故总长度为 $3(n-{\rm gcd(n,x)})$.</p>
+<p>使用&quot;unsigned int&quot;.</p>
+<h2 id="冰雹数列">冰雹数列</h2>
+<p>最后一位不能有空格.</p>
+<h2 id="佩尔数">佩尔数</h2>
+<p>略.</p>
+<h2 id="可变参数累加">可变参数累加</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdarg.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">([</span><span class="kr">typename</span><span class="p">]</span> <span class="n">start</span><span class="p">,</span> <span class="p">...){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">va_list</span> <span class="n">vaList</span><span class="p">;</span> <span class="err">\\</span> <span class="err">初始化参数列表</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">va_start</span><span class="p">(</span><span class="n">vaList</span><span class="p">,</span><span class="n">start</span><span class="p">);</span> <span class="err">\\</span> <span class="err">开始参数列表</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="kr">typename</span><span class="p">]</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">start</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">curr</span> <span class="o">!=</span> <span class="n">num</span><span class="p">){</span> <span class="err">\\</span> <span class="err">读到</span><span class="n">num时停止循环</span>
+</span></span><span class="line"><span class="cl">        <span class="n">curr</span> <span class="o">=</span> <span class="nf">va_arg</span><span class="p">(</span><span class="n">vaList</span><span class="p">,[</span><span class="kr">typename</span><span class="p">]);</span> <span class="err">\\</span> <span class="err">获取参数列表中下一个参数</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">va_end</span><span class="p">(</span><span class="n">vaList</span><span class="p">)</span> <span class="err">\\</span> <span class="err">结束参数列表</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="运动会">运动会</h2>
+<p>以队长为原点构建平面直角坐标系, 观察可得所求即互素对 $(x,y)$, $1\leq x,y\leq N-1$ 个数, 即 $2\sum_{i=1}^{n-1}\varphi(i)+1$. $\varphi(n)$ 为Euler函数, 含义为所有小于 $n$ 且与 $n$ 互素的数的个数.</p>
+<p>Euler函数满足如下性质:</p>
+<ul>
+<li>若素数 $p|n$, 则 $\varphi(pn)=p\varphi(n)$;</li>
+<li>若素数 $p\nmid n$, 则 $\varphi(pn)=(p-1)\varphi(n)$;</li>
+<li>若 ${\rm gcd}(m,n)=1$, 则 $\varphi(m,n)=\varphi(m)\varphi(n)$;</li>
+<li>若 $n=\prod_{i=1}^k p_i^{\alpha_i}$, 则 $\varphi(n)=n\prod_{i=1}^k(1-\frac{1}{p_i})$.</li>
+</ul>
+<p>在 $n$ 较小时, 可使用线性筛节省时间; 在 $n$ 较大时, 可使用因式分解节省空间.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">phiEuler</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">prime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isSieved</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">comp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">isSieved</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">prime</span><span class="p">[</span><span class="n">cnt</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="c1">// Euler函数性质
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">comp</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">isSieved</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// 线性筛
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="n">phi</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// Euler函数性质
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span> <span class="k">else</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">phi</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="c1">// Euler函数性质
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="可变参数平均">可变参数平均</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">func</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="p">...){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">va_list</span> <span class="n">vaList</span><span class="p">;</span> <span class="err">\\</span> <span class="err">初始化参数列表</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">va_start</span><span class="p">(</span><span class="n">vaList</span><span class="p">,</span><span class="n">start</span><span class="p">);</span> <span class="err">\\</span> <span class="err">开始参数列表</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">num</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span> <span class="err">\\</span> <span class="err">读取</span><span class="n">num个后停止循环</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="kr">typename</span><span class="p">]</span> <span class="n">curr</span> <span class="o">=</span> <span class="nf">va_arg</span><span class="p">(</span><span class="n">vaList</span><span class="p">,[</span><span class="kr">typename</span><span class="p">]);</span> <span class="err">\\</span> <span class="err">获取参数列表中下一个参数</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">va_end</span><span class="p">(</span><span class="n">vaList</span><span class="p">)</span> <span class="err">\\</span> <span class="err">结束参数列表</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
