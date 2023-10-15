@@ -10,7 +10,7 @@
 <meta property='og:description' content='持续更新中'>
 <meta property='og:url' content='https://example.com/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-09-25T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:published_time' content='2023-09-19T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-14T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="NOJ(C)易错总结">
 <meta name="twitter:description" content="持续更新中">
     </head>
@@ -498,7 +498,7 @@
 </div><h2 id="操作数">操作数</h2>
 <p>同“动态宽度输出”, &ldquo;%10&quot;可以得到个位数, &ldquo;/10&quot;可以十进制下向右移动一位.</p>
 <h2 id="组合数">组合数</h2>
-<p>暴搜, 不会超时.</p>
+<p>动态规划题, 但由于 $n\leq 50$, 暴搜不会超时.</p>
 <h2 id="比率">比率</h2>
 <p>&ldquo;*10&quot;实现十进制下向左移动一位, 直到变成整数, 判断不是整数可使用&quot;x != floor(x)&rdquo;.</p>
 <p>得到最大公因数并约分, 同&quot;分数的加、减、乘、除法&rdquo;.</p>
@@ -747,12 +747,12 @@ k+1, \ n=2k+1 \\
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">int64</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="kt">long</span> <span class="n">uint64</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">pFactNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 素因子个数
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">int64</span> <span class="n">prime</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">exponent</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// 前19个素数相乘已经非常大了
+</span></span><span class="line"><span class="cl"><span class="n">uint64</span> <span class="n">pFactNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 素因子个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">uint64</span> <span class="n">prime</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">exponent</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span> <span class="c1">// 前19个素数相乘已经非常大了
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
-</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="n">int64</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">i</span> <span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="n">prime</span><span class="p">[</span><span class="o">++</span><span class="n">pFactNum</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="p">(</span><span class="n">k</span><span class="o">%</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
@@ -780,7 +780,7 @@ k+1, \ n=2k+1 \\
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">int64</span> <span class="n">primeNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint64</span> <span class="n">primeNum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1">// n!中含有k的第i个素因子的个数
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">while</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="n">primeNum</span> <span class="o">+=</span> <span class="n">tmp</span><span class="o">/</span><span class="n">prime</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> 
@@ -897,7 +897,7 @@ k+1, \ n=2k+1 \\
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="基思数">基思数</h2>
-<p>可使用循环数组存储数列, 存储时低位在右端, 高位在左端, 从右到左循环遍历.</p>
+<p>可使用循环数组存储数列, 存储时低位在左端, 高位在右端, 从右到左循环遍历.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -923,7 +923,7 @@ k+1, \ n=2k+1 \\
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">tmp</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span> <span class="c1">// 低位在右端, 高位在左端
+</span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">len</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">%</span><span class="mi">10</span><span class="p">;</span> <span class="c1">// 低位在左端, 高位在右端
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">tmp</span> <span class="o">/=</span> <span class="mi">10</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
@@ -954,19 +954,23 @@ k+1, \ n=2k+1 \\
 </span><span class="lnt">10
 </span><span class="lnt">11
 </span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">flag</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;+&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">            <span class="err">\\</span> <span class="n">i进入递归</span>
-</span></span><span class="line"><span class="cl">            <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="n">i</span><span class="p">)</span><span class="o">&amp;</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">flag</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;+&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">binary</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(0)&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;2(0)&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">flag</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1126,7 +1130,7 @@ k+1, \ n=2k+1 \\
 
 
         <span>
-            最后更新于 2023-09-25
+            最后更新于 2023-10-14
         </span>
     </section></footer>
 
@@ -1175,6 +1179,19 @@ k+1, \ n=2k+1 \\
 
         <div class="article-details">
             <h2 class="article-title">C杂谈</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python快速入门</h2>
         </div>
     </a>
 </article>

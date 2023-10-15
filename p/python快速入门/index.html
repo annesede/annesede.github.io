@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='持续更新中'>
+<title>python快速入门</title>
+
+<link rel='canonical' href='https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='python快速入门'>
+<meta property='og:description' content='持续更新中'>
+<meta property='og:url' content='https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
+<meta property='og:site_name' content='annesede的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2023-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-14T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="python快速入门">
+<meta name="twitter:description" content="持续更新中">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu753714c8df5506bae6b3b709f3103a1b_67963_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">⭐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">annesede的博客</a></h1>
+            <h2 class="site-description">Some words were just written here to fill the blank.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/annesede'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#运算">运算</a></li>
+    <li><a href="#变量">变量</a>
+      <ol>
+        <li><a href="#基本输入输出">基本输入输出</a></li>
+        <li><a href="#字符串">字符串</a></li>
+        <li><a href="#列表">列表</a></li>
+        <li><a href="#元组">元组</a></li>
+        <li><a href="#字典">字典</a></li>
+        <li><a href="#集合">集合</a></li>
+      </ol>
+    </li>
+    <li><a href="#流程控制">流程控制</a></li>
+    <li><a href="#函数">函数</a></li>
+    <li><a href="#模块">模块</a></li>
+    <li><a href="#类">类</a></li>
+    <li><a href="#其他">其他</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E6%9D%82%E9%A1%B9/" >
+                杂项
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">python快速入门</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            持续更新中
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-10-14</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 6 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <h2 id="运算">运算</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 除法自动转换为浮点数</span>
+</span></span><span class="line"><span class="cl"><span class="mi">35</span> <span class="o">/</span> <span class="mi">5</span> <span class="c1"># =&gt; 7.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 向下取整除法</span>
+</span></span><span class="line"><span class="cl"><span class="mi">3</span> <span class="o">//</span> <span class="o">-</span><span class="mi">5</span> <span class="c1"># =&gt; -1</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="mf">5.0</span> <span class="o">//</span> <span class="mf">3.0</span> <span class="c1"># =&gt; -2.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 取模正负与模数相同</span>
+</span></span><span class="line"><span class="cl"><span class="o">-</span><span class="mi">7</span> <span class="o">%</span> <span class="mi">3</span> <span class="c1"># =&gt; 2</span>
+</span></span><span class="line"><span class="cl"><span class="mi">7</span> <span class="o">%</span> <span class="o">-</span><span class="mi">3</span> <span class="c1"># =&gt; -2</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 乘方</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span> <span class="o">**</span> <span class="mi">4</span> <span class="c1"># =&gt; 16</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 逻辑运算符</span>
+</span></span><span class="line"><span class="cl"><span class="kc">True</span> <span class="ow">and</span> <span class="mi">0</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="ow">not</span> <span class="o">-</span><span class="mi">5</span> <span class="ow">or</span> <span class="kc">False</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 大小比较相连</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># if 表达式, 同比较元运算符&#34; ? : &#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;python!&#34;</span> <span class="k">if</span> <span class="mi">0</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="s2">&#34;java!&#34;</span> <span class="c1"># =&gt; java!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># is 表示是否为同个对象; == 表示值是否相同</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="ow">is</span> <span class="n">a</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="ow">is</span> <span class="n">a</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="n">b</span> <span class="o">==</span> <span class="n">a</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># None 是一个对象, 只能用 is 判断</span>
+</span></span><span class="line"><span class="cl"><span class="mi">0</span> <span class="ow">is</span> <span class="kc">None</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="kc">None</span> <span class="ow">is</span> <span class="kc">None</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># None, 0, 空字符串, 空列表, 空字典, 空元组都是 False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">(</span><span class="s2">&#34;&#34;</span><span class="p">)</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">([])</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">({})</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl"><span class="nb">bool</span><span class="p">(())</span> <span class="c1"># =&gt; False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="变量">变量</h2>
+<h3 id="基本输入输出">基本输入输出</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 输出, 默认以空行结尾, 使用附加参数可改变结尾</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Hello world&#34;</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="s2">&#34;!&#34;</span><span class="p">)</span> <span class="c1"># =&gt; Hello world!</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 输入, 返回字符串</span>
+</span></span><span class="line"><span class="cl"><span class="n">input_string_var</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&#34;Enter some data: &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自动数据类型, 不用声明</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 数字类型: 整型, 浮点型, 布尔型, 复数型; 布尔型是整型的子类; 不可变类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mf">5.5</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mi">4</span><span class="o">+</span><span class="mi">3</span><span class="n">j</span> <span class="c1"># 元组解包赋值</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="nb">type</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; &lt;class &#39;int&#39;&gt; &lt;class &#39;float&#39;&gt; &lt;class &#39;bool&#39;&gt; &lt;class &#39;complex&#39;&gt; </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 访问未赋值变量会抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_unknown_var</span> <span class="c1"># =&gt; NameError</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字符串">字符串</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 字符串类型 (string), 不可变类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="s2">&#34;This is a string&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;c&#39;</span> <span class="c1"># =&gt; TypeError</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 字符串可以用单引号或双引号</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;这是字符串&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s1">&#39;这也是字符串&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 字符串连接</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Hello &#34;</span> <span class="o">+</span> <span class="s2">&#34;World!&#34;</span> <span class="c1"># =&gt; &#34;Hello World!&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Hello &#34;</span> <span class="s2">&#34;python!&#34;</span> <span class="c1"># =&gt; &#34;Hello python!&#34; 非变量形式时</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># f-srings 格式化字符串, 大括号内可加入任何表达式 (3.6+)</span>
+</span></span><span class="line"><span class="cl"><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;python&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="sa">f</span><span class="s2">&#34;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> is </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="si">}</span><span class="s2"> characters long&#34;</span> <span class="c1"># =&gt; python is 6 characters long</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># .format 格式化字符串, 可使用参数或关键字</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="si">{0}</span><span class="s2"> be nimble, </span><span class="si">{0}</span><span class="s2"> be quick, </span><span class="si">{0}</span><span class="s2"> jump over the </span><span class="si">{1}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&#34;Jack&#34;</span><span class="p">,</span> <span class="s2">&#34;candle stick&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; &#34;Jack be nimble, Jack be quick, Jack jump over the candle stick&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="si">{name}</span><span class="s2"> wants to eat </span><span class="si">{food}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;Bob&#34;</span><span class="p">,</span> <span class="n">food</span> <span class="o">=</span> <span class="s2">&#34;lasagna&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; &#34;Bob wants to eat lasagna&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># %s 格式化字符串 (2.5-)</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> can be </span><span class="si">%s</span><span class="s2"> the </span><span class="si">%s</span><span class="s2"> way&#34;</span> <span class="o">%</span> <span class="p">(</span><span class="s2">&#34;strings&#34;</span><span class="p">,</span> <span class="s2">&#34;interpolated&#34;</span><span class="p">,</span> <span class="s2">&#34;old&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># =&gt; strings can be interpolated the old way</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="列表">列表</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 列表类型 (list), 可变类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl"><span class="n">other_li</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 尾插与尾删</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># li 为 [1]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># li 为 [1, 2]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># li 为 [1, 2, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>     <span class="c1"># li 为 [1, 2]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># li 为 [1, 2, 3]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># li 为 [1, 2, 3, 4]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 存取同数组, 从 0 开始, -1 表示取尾</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># =&gt;4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 越界存取会抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="c1"># =&gt; IndexError</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 切割 list[begin:end:step], 范围相当于 [begin,end)</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>     <span class="c1"># =&gt; [2,3]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>      <span class="c1"># =&gt; [3,4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>      <span class="c1"># =&gt; [1, 2, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>     <span class="c1"># =&gt; [1,4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>    <span class="c1"># =&gt; [4, 3, 2, 1]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li2</span> <span class="o">=</span> <span class="n">li</span><span class="p">[:]</span> <span class="c1"># =&gt; li2为[1, 2, 3, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li2</span> <span class="ow">is</span> <span class="n">li</span>   <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除指定位置元素</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">li2</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>      <span class="c1"># =&gt; li2 为 [1, 2, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除匹配的第一个元素, 无匹配时抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>    <span class="c1"># =&gt; li 为 [1, 3, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>    <span class="c1"># =&gt; ValueError: 0 is not in the list</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定位置插入元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># =&gt; li 为 [1, 2, 3, 4]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取匹配的第一个元素的位置, 无匹配时抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>     <span class="c1"># =&gt; 0</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>     <span class="c1"># =&gt; ValueError: 0 is not in the list</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 列表相加</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span> <span class="o">+</span> <span class="n">li_other</span> <span class="c1"># =&gt; [1, 2, 3, 4, 4, 5, 6]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 列表拼接</span>
+</span></span><span class="line"><span class="cl"><span class="n">li</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">li_other</span><span class="p">)</span> <span class="c1"># =&gt; li 变为 [1, 2, 3, 4, 4, 5, 6]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># in 判断是否包含值</span>
+</span></span><span class="line"><span class="cl"><span class="mi">6</span> <span class="ow">in</span> <span class="n">li_other</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># len 获取长度</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">li</span><span class="p">)</span> <span class="c1"># =&gt; 7</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="元组">元组</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 元组类型 (tuple), 不可变类型</span>
+</span></span><span class="line"><span class="cl"><span class="n">tup</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">tup</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1"># =&gt; TypeError 抛出异常</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 元素数量为1的元组必须要在末尾加逗号</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">((</span><span class="mi">1</span><span class="p">))</span>   <span class="c1"># =&gt; &lt;class &#39;int&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">((</span><span class="mi">1</span><span class="p">,))</span>  <span class="c1"># =&gt; &lt;class &#39;tuple&#39;&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">type</span><span class="p">(())</span>    <span class="c1"># =&gt; &lt;class &#39;tuple&#39;&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 大部分操作同列表, 更改元素除外</span>
+</span></span><span class="line"><span class="cl"><span class="nb">len</span><span class="p">(</span><span class="n">tup</span><span class="p">)</span> <span class="c1"># =&gt; 3</span>
+</span></span><span class="line"><span class="cl"><span class="n">tup</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="c1"># =&gt; (1, 2, 3, 4, 5, 6)</span>
+</span></span><span class="line"><span class="cl"><span class="n">tup</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># =&gt; (1, 2)</span>
+</span></span><span class="line"><span class="cl"><span class="mi">2</span> <span class="ow">in</span> <span class="n">tup</span> <span class="c1"># =&gt; true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 元组解包赋值</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="c1"># a 为 1, b 为 2, c 为 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 扩展解包</span>
+</span></span><span class="line"><span class="cl"><span class="n">a</span><span class="p">,</span> <span class="o">*</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># a 为 1, b 为 [2, 3], c 为 3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 元组括号可省略</span>
+</span></span><span class="line"><span class="cl"><span class="n">d</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">f</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 交换变量值</span>
+</span></span><span class="line"><span class="cl"><span class="n">e</span><span class="p">,</span> <span class="n">d</span> <span class="o">=</span> <span class="n">d</span><span class="p">,</span> <span class="n">e</span> <span class="c1"># d 为 5, e 为 4</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字典">字典</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 字典类型 (dictionary), 可变类型, 存储 key 和 value 的映射关系</span>
+</span></span><span class="line"><span class="cl"><span class="n">empty_dict</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;one&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;two&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;three&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># key 必须为不可变类型且无重复值, 为确保 key 被转换为唯一的 hash-value 以用于快速查询</span>
+</span></span><span class="line"><span class="cl"><span class="n">invalid_dict</span> <span class="o">=</span> <span class="p">{[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]:</span> <span class="s2">&#34;123&#34;</span><span class="p">}</span> <span class="c1"># =&gt; TypeError: unhashable type &#39;list&#39; 抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">valid_dict</span> <span class="o">=</span> <span class="p">{(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">):</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]}</span> <span class="c1"># =&gt; value 可为任何类型</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># in 只能判断字典中是否包含 key</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;one&#34;</span> <span class="ow">in</span> <span class="n">filled_dict</span> <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl"><span class="mi">1</span> <span class="ow">in</span> <span class="n">filled_dict</span>     <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># [key] 取值, key 不存在时抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="p">[</span><span class="s2">&#34;one&#34;</span><span class="p">]</span> <span class="c1"># =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="p">[</span><span class="s2">&#34;four&#34;</span><span class="p">]</span> <span class="c1"># =&gt; KeyError</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .get(key) 避免异常, 不存在时返回默认值, 无默认值时返回 None</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;one&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>    <span class="c1"># =&gt; 1</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;four&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>   <span class="c1"># =&gt; 4</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;four&#34;</span><span class="p">)</span>      <span class="c1"># =&gt; None</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .keys() 获取所有 key, 用 .values() 获取所有 value</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 返回可迭代对象, 需要包含在 list() 中以转换为列表</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># (3.7-) 无序, (3.7+) 按照插入顺序</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">filled_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="c1"># =&gt; [&#34;one&#34;, &#34;two&#34;, &#34;three&#34;] (3.7+)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">filled_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())</span> <span class="c1"># =&gt; [1, 2, 3] (3.7+)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># .setdefault() 在 key 不存在时插入新项</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&#34;four&#34;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span> <span class="c1"># =&gt; &#34;four&#34;: 5</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s2">&#34;four&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># =&gt; &#34;four&#34;: 5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .update(key, value) 赋值</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s2">&#34;four&#34;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_dict</span><span class="p">[</span><span class="s2">&#34;five&#34;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>         <span class="c1"># 另一种赋值方法</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># del 删除项</span>
+</span></span><span class="line"><span class="cl"><span class="k">del</span> <span class="n">filled_dict</span><span class="p">[</span><span class="s2">&#34;five&#34;</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="集合">集合</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 集合类型 (set), 可变类型, 元素必须为不可变类型, 元素不会重复</span>
+</span></span><span class="line"><span class="cl"><span class="n">empty_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span> <span class="c1"># some_set 为 {1, 2, 3, 4}</span>
+</span></span><span class="line"><span class="cl"><span class="n">invalid_set</span> <span class="o">=</span> <span class="p">{[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">}</span> <span class="c1"># =&gt; TypeError: unhashable type &#39;list&#39; 抛出异常</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 集合运算</span>
+</span></span><span class="line"><span class="cl"><span class="n">other_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span> <span class="o">&amp;</span> <span class="n">other_set</span> <span class="c1"># =&gt; {3, 4, 5} 取交集</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span> <span class="o">|</span> <span class="n">other_set</span> <span class="c1"># =&gt; {1, 2, 3, 4, 5, 6} 取并集</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span> <span class="o">-</span> <span class="n">other_set</span> <span class="c1"># =&gt; {1, 2} 取差集</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span> <span class="o">^</span> <span class="n">other_set</span> <span class="c1"># =&gt; {1, 2, 5, 6} 取对称差集</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .add() 添加元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .discard 删除元素</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">some_set</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="c1"># =&gt; 不会抛出异常</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用 .copy() 复制集合</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_set</span> <span class="o">=</span> <span class="n">some_set</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">filled_set</span> <span class="ow">is</span> <span class="n">some_set</span> <span class="c1"># =&gt; False</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># in 判断元素是否在集合内</span>
+</span></span><span class="line"><span class="cl"><span class="mi">5</span> <span class="ow">in</span> <span class="n">some_set</span> <span class="c1"># =&gt; False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="流程控制">流程控制</h2>
+<h2 id="函数">函数</h2>
+<h2 id="模块">模块</h2>
+<h2 id="类">类</h2>
+<h2 id="其他">其他</h2>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/nojc%E6%98%93%E9%94%99%E6%80%BB%E7%BB%93/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">NOJ(C)易错总结</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/c%E6%9D%82%E8%B0%88/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C杂谈</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">hugo快速入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2023 annesede
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>
