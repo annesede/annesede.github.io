@@ -146,8 +146,8 @@
 		alt=&#34;egLFSR&#34;
 	
 	
-&gt; &lt;/br&gt;
-e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. &lt;/br&gt;
+&gt; &lt;br /&gt;
+e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. &lt;br /&gt;
 $S_0=(1,0,1,1,1)$, $k=101110111011101110111&amp;hellip;$, $T=8$.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;使用verligo实现LFSR.&lt;/p&gt;
@@ -196,8 +196,8 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&amp;hellip;$, $T=8$.&lt;/p&gt;
 &lt;li&gt;将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;&lt;/li&gt;
 &lt;li&gt;保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&amp;lt;a&amp;lt;2^n-1$ 的因式.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&amp;hellip;,S_{i+n+1}$ 个状态; &lt;/br&gt;
-记 $X=(S_i,&amp;hellip;,S_n)$, $Y=(S_{i+1},&amp;hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. &lt;/br&gt;
+&lt;p&gt;截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&amp;hellip;,S_{i+n+1}$ 个状态; &lt;br /&gt;
+记 $X=(S_i,&amp;hellip;,S_n)$, $Y=(S_{i+1},&amp;hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. &lt;br /&gt;
 $m$ 序列时, $X$满秩, $H\equiv YX^{-1}({\rm mod}\ 2)$ 为特征多项式的友矩阵.&lt;/p&gt;
 &lt;p&gt;$$H=\left( \begin{array}{}
 0 &amp;amp; 1 &amp;amp; 0 &amp;amp; &amp;hellip; &amp;amp; 0 \\
@@ -208,7 +208,7 @@ g_0 &amp;amp; g_1 &amp;amp; g_2 &amp;amp; &amp;hellip; &amp;amp; g_{n-1}
 \end{array}\right )$$&lt;/p&gt;
 &lt;p&gt;可引入非线性运算增加复杂性: 与AND($GF(2)$上乘法) $\otimes$.&lt;/p&gt;
 &lt;h3 id=&#34;ad5&#34;&gt;AD5&lt;/h3&gt;
-&lt;p&gt;欧洲移动通信GSM标准, 手机到基站间的链路语音加密. &lt;/br&gt;
+&lt;p&gt;欧洲移动通信GSM标准, 手机到基站间的链路语音加密. &lt;br /&gt;
 由19位, 22位, 23位3个LSR组成; 时钟控制信号来自LSR1第8位, LSR2第10位, LSR3第10位; 若三者相同则均移位, 若两者相同则相同的移位, 不同的不移位; 即每个时钟至少有两个LSR移位.&lt;/p&gt;
 &lt;p&gt;不同文献的连接多项式不同, 其中一个为:&lt;/p&gt;
 &lt;p&gt;$$\begin{cases}
@@ -301,8 +301,8 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;安全问题: 存在弱密钥使得初始化置换后 $S$ 表顺序不变; 存在弱密钥使得密钥流在100万字节内完全重复; 密钥较短的容易被攻击, 但长度超过128位的密钥依然有效.&lt;/p&gt;
 &lt;h3 id=&#34;zuc&#34;&gt;ZUC&lt;/h3&gt;
-&lt;p&gt;LTE-4G国际标准, 包含机密性128-EEA3和完整性128-EIA3, 基于LFSR的非线性组合逻辑结构. &lt;/br&gt;
-分为三层结构: LSFR, Bit重组, 非线性F函数. &lt;/br&gt;
+&lt;p&gt;LTE-4G国际标准, 包含机密性128-EEA3和完整性128-EIA3, 基于LFSR的非线性组合逻辑结构. &lt;br /&gt;
+分为三层结构: LSFR, Bit重组, 非线性F函数. &lt;br /&gt;
 符号约定: $\boxplus$ 为$GF(2^{32})$ 上加法; $|$ 为连接字符串; $_H$ 为高位16位; $_L$ 为低位16位; $&amp;lt; &amp;lt;_o$ 为循环左移.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -843,7 +843,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 &lt;h3 id=&#34;aes&#34;&gt;AES&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;(something wrong in the AES code)&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;高级数据加密标准(Advanced Encryption Standard), 采用10/12/14轮S-P网络非对合加解密(对应128/192/256bit密钥).&lt;/p&gt;
-&lt;p&gt;$GF(2)$ 上多项式域 $GF(2^8)$ 中元素为 $b_{(8)}=b_7x^7+b_6x^6+b_5x^5+b_4x^4+b_3x^3+b_2x^2+b_1x+b_0$, 乘法需对既约多项式 $m(x)=x^8+x^4+x^3+x+1$ 取模, 乘法逆元可由扩展Euclid算法得到. &lt;/br&gt;
+&lt;p&gt;$GF(2)$ 上多项式域 $GF(2^8)\cong  GF(2)[x]/(x^8+x^4+x^3+x+1)$ 中元素为 $b_{(8)}=b_7x^7+b_6x^6+b_5x^5+b_4x^4+b_3x^3+b_2x^2+b_1x+b_0$, 乘法需对既约多项式 $m(x)=x^8+x^4+x^3+x+1$ 取模, 乘法逆元可由扩展Euclid算法得到. &lt;br /&gt;
 考虑 $xb_{(8)}=(b_{(8)}&amp;lt; &amp;lt; 1)\oplus m(x)$, 高次乘法可重复 $x$ 乘实现.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -881,7 +881,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
+&lt;/div&gt;&lt;p&gt;$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)/[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
 考虑 $xb_{(32)}=b_{(32)}&amp;gt; &amp;gt;8$, 高次乘法可视为 $GF(2^8)$ 上矩阵乘法.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;状态矩阵: 128bit明(密)文和密钥按列优先载入4阶方阵, 每列32bit称为&amp;quot;字&amp;quot;, 加(解)密后按列优先输出密(明)文.&lt;/li&gt;

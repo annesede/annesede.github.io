@@ -249,10 +249,12 @@
     <li><a href="#同余式">同余式</a></li>
     <li><a href="#二次剩余">二次剩余</a></li>
     <li><a href="#原根">原根</a></li>
-    <li><a href="#素性检验">素性检验</a></li>
     <li><a href="#群">群</a></li>
-    <li><a href="#环">环</a></li>
-    <li><a href="#域">域</a></li>
+    <li><a href="#环和域">环和域</a></li>
+    <li><a href="#椭圆曲线群">椭圆曲线群</a></li>
+    <li><a href="#传统算法">传统算法</a></li>
+    <li><a href="#量子算法">量子算法</a></li>
+    <li><a href="#格论">格论</a></li>
   </ol>
 </nav>
         </div>
@@ -321,7 +323,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 10 分钟
+                    阅读时长: 12 分钟
                 </time>
             </div>
         
@@ -336,9 +338,9 @@
     <section class="article-content">
     
     
-    <p>文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)</p>
+    <p>(C11 - GCC8.1.0)</p>
 <h2 id="整除">整除</h2>
-<p>性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. </br>
+<p>性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. <br />
 最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.</p>
 <p>辗转相除求${\rm gcd}$:
 $$\begin{align}
@@ -368,7 +370,7 @@ $$\begin{align}
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Bezout定理: 给定 $a,b\in\mathbb{Z}$, Diophantine方程 $ax+by=m$ 有解 $\Longleftrightarrow$ ${\rm gcd}(a,b)|m$.</p>
-<p>可仅考查 $m={\rm gcd}(a,b)$, 不然, 结果只需乘相应倍数. </br>
+<p>可仅考查 $m={\rm gcd}(a,b)$, 不然, 结果只需乘相应倍数. <br />
 在递归中, 显然有 ${\rm gcd}(a,b)={\rm gcd}(a_i,b_i)$,  即 $\exists x_i,y_i\in\mathbb{Z}$ s.t. $a_ix_i+b_iy_i=m$.
 $$\begin{align}
 m&amp;=a_ix_i+b_iy_i\\
@@ -434,7 +436,7 @@ m&amp;=a_ix_i+b_iy_i\\
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>定理: 素数i $p$ 及 $a,b\in\mathbb{Z}$, 若 $p|ab$ 则 $p|a$ 或 $p|b$.</p>
+</div><p>定理: 素数 $p$ 及 $a,b\in\mathbb{Z}$, 若 $p|ab$ 则 $p|a$ 或 $p|b$.</p>
 <blockquote>
 <p>设 $p\nmid a$ 且 $p\nmid b$, 则 $\exists x,y$ s.t. $xp+ya=1$, 故 $x(ab)+(by)p=b$, 有 $p|b$, 矛盾.</p>
 </blockquote>
@@ -445,10 +447,10 @@ m&amp;=a_ix_i+b_iy_i\\
 <li>$a\equiv b({\rm mod}\ m)$, $c\equiv d({\rm mod}\ m) \Longrightarrow a+c\equiv b+d({\rm mod}\ m)$, $ac\equiv bd({\rm mod}\ m)$, $a^n\equiv b^n({\rm mod}\ m)$.</li>
 <li>$ak\equiv bk({\rm mod}\ m) \Longrightarrow a\equiv b({\rm mod}\ \frac{m}{{\rm gcd}(m,k)})$.</li>
 </ul>
-<p>模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. </br>
-最小非负完全剩余系: $\mathbb{Z}_m=\{0,1&hellip;,m-1\}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. </br>
+<p>模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. <br />
+最小非负完全剩余系: $\mathbb{Z}_m=\{0,1&hellip;,m-1\}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. <br />
 既约剩余系: $\mathbb{Z}_m^*=\{a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1\}$.</p>
-<p>Euler $\varphi$ 函数: </br>
+<p>Euler $\varphi$ 函数: <br />
 $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$</p>
 <p>当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*=\{1,2,&hellip;,p-1\}$ 为循环群, 生成元个数为$\varphi(p-1)$.</p>
 <p>考察函数性质:</p>
@@ -483,12 +485,14 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 </span><span class="lnt">22
 </span><span class="lnt">23
 </span><span class="lnt">24
+</span><span class="lnt">25
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// O(n), 每个数均只遍历一次
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">phiEulerLinerSieve</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">prime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">	<span class="kt">bool</span> <span class="n">isSieved</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">phi</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">prime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isSieved</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// O(n), 每个数均只遍历一次
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">phiEuler</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">prime</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">	<span class="n">phi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
@@ -498,13 +502,13 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 </span></span><span class="line"><span class="cl">			<span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">		<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">composite</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">			<span class="n">isSieved</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">			<span class="kt">int</span> <span class="n">comp</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">			<span class="n">isSieved</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">			<span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">%</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="n">primep</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">				<span class="k">break</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">composite</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">				<span class="n">phi</span><span class="p">[</span><span class="n">comp</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prime</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">phi</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">			<span class="p">}</span>
 </span></span><span class="line"><span class="cl">		<span class="p">}</span>
 </span></span><span class="line"><span class="cl">	<span class="p">}</span>
@@ -515,12 +519,12 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 <blockquote>
 <p>考虑 ${\rm gcd}(ax,m)=1$ 及 $ax_i\not\equiv ax_j({\rm mod}\ m)$, $i\neq j$.</p>
 </blockquote>
-<p>逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. </br>
+<p>逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. <br />
 Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <blockquote>
 <p>$\mathbb{Z}_m^*=\{x_1,&hellip;,x_{\varphi(m)}\}=\{ax_1,&hellip;,a_{\varphi(m)}\}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.</p>
 </blockquote>
-<p>特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. </br>
+<p>特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. <br />
 由扩展Euclid, ${\rm gcd}(a,m)=1$, $\exists s,t\in\mathbb{Z}$ s.t. $as+tm=1$, 即 $a^{-1}\equiv s({\rm mod}\ m)$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -535,7 +539,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">inverseExtEuclid</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">inverse</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">s</span><span class="p">,</span><span class="n">t</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">gcd</span> <span class="o">=</span> <span class="nf">extEuclid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="o">&amp;</span><span class="n">s</span><span class="p">,</span><span class="o">&amp;</span><span class="n">t</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">gcd</span> <span class="o">==</span> <span class="mi">1</span><span class="p">){</span>
@@ -548,7 +552,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </div>
 </div><p>wilson: 素数 $p$ 有 $(p-1)!\equiv -1({\rm mod}\ p)$.</p>
 <blockquote>
-<p>$\mathbb{Z}_m^*$ 中元素均存在逆, 自逆仅 $1,p-1$; ${2,3,&hellip;,p-2}$ 中两两配对互逆.</p>
+<p>$\mathbb{Z}_m^*$ 中元素均存在逆, 自逆仅 $1,p-1$; $\{2,3,&hellip;,p-2\}$ 中两两配对互逆.</p>
 </blockquote>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -576,7 +580,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <li>解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.</li>
 </ul>
 <h2 id="同余式">同余式</h2>
-<p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. </br>
+<p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. <br />
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).</p>
 <p>一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.</p>
 <blockquote>
@@ -673,7 +677,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1L</span><span class="o">*</span><span class="n">prodM</span><span class="o">/</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
 </span></span><span class="line"><span class="cl">        <span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1L</span><span class="o">*</span><span class="n">modM</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>  
-</span></span><span class="line"><span class="cl">        <span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">inverseExtEuclid</span><span class="p">(</span><span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  
+</span></span><span class="line"><span class="cl">        <span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">inverse</span><span class="p">(</span><span class="n">modSepM</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">m</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>  
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">modIevM</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>  
 </span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>  
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>  
@@ -689,7 +693,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </div><p>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.</p>
 <ul>
 <li>公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.</li>
-<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$.
+<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$. <br />
 快速模幂 $r\equiv t^e({\rm mod}\ n)$</li>
 </ul>
 <div class="highlight"><div class="chroma">
@@ -721,7 +725,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="二次剩余">二次剩余</h2>
-<p>$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. </br>
+<p>$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. <br />
 仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.</p>
 <p>Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:</p>
 <ul>
@@ -824,7 +828,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </div><p>Rabin: 素数 $p\equiv q\equiv 3({\rm mod}\ 4)$.</p>
 <ul>
 <li>公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$.</li>
-<li>私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2 in 4)$.</li>
+<li>私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2\ {\rm in}\ 4)$.</li>
 </ul>
 <h2 id="原根">原根</h2>
 <p>原根: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf\{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)\}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.</p>
@@ -834,8 +838,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <p>必要性: 显然.</p>
 <p>充分性: 若 $\exists e&lt;\varphi(m)$ s.t. $g^e\equiv 1({\rm mod}\ m)$; 不妨设 $\frac{\varphi(m)}{e}=kp$, $k\in\mathbb{Z}$, $p$ 为素数; 进而 $g^{\frac{\varphi(m)}{e}\equiv(g^p)^k\equiv 1({\rm mod}\ m)}$, 矛盾.</p>
 </blockquote>
-<p>定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. </br>
-推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. </br>
+<p>定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. <br />
+推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. <br />
 以下显然:</p>
 <ul>
 <li>${\rm ord}_m(a)={\rm ord}_m(a^{-1})$.</li>
@@ -917,7 +921,83 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 <li>公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$.</li>
 <li>私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u_a}({\rm mod}\ p)$.</li>
 </ul>
-<h2 id="素性检验">素性检验</h2>
+<h2 id="群">群</h2>
+<p>有限群: 非空有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); <br />
+记 $|G|={\rm Card}(G)$ 为阶; 定义 $a^{-n}=(a^{-1})^n$, $a^0=e$.</p>
+<p>半群: 只满足结合律. <br />
+幺半群: 存在单位元的半群. <br />
+交换半群: 满足交换律的半群. <br />
+交换幺半群: 存在单位元满足交换律的半群. <br />
+Abel群: 满足交换律的群. <br />
+消去律: 可由结合律和逆元推得.</p>
+<p>元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$ 或 $\infty$; <br />
+$|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.</p>
+<p>子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&lt;G$; 真子群即非平凡子群({e},G); <br />
+$H&lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.</p>
+<p>循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; <br />
+特别 $S=\{a\}$ 时, 循环子群 $\langle S\rangle=\langle a\rangle=\{a^n\ |\ n\in\mathbb{Z}\}$; <br />
+特别 $G=\langle a\rangle$ 时为循环群 $\iff\exists a\in G$ s.t. $|a|=|G|$; <br />
+循环群子群仍为循环群; 无限循环群同构于 $\mathbb{Z}$, $n$ 阶循环群同构于 $\mathbb{Z}_n$.</p>
+<blockquote>
+<p>不妨设 $H&lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.</p>
+</blockquote>
+<p>陪集: $H&lt;G$, $\forall a\in G$, $aH$ 为左陪集; <br />
+$a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.</p>
+<p>Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.</p>
+<p>正规子群: $H&lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.</p>
+<p>商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.</p>
+<p>同态: 保持代数运算不变的映射, 双射时为同构. <br />
+群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.</p>
+<p>同态 Paillier: 素数 $p,q$, $n=pq$, $\lambda = {\rm lcm}(p-1)(q-1)$ 最小公倍数, $g\in\mathbb{Z}_{n^2}^*$ s.t. ${\rm gcd} (\frac{g^\lambda \% n^2 -1}{n},n)=1$.</p>
+<ul>
+<li>公钥 $(n,g)$, 加密 $c\equiv E_{n,g}(m)\equiv g^m r^n({\rm mod}\ n^2)$, $r\in\mathbb{Z}_n^*$.</li>
+<li>私钥 $\lambda$, 解密 $m\equiv D_\lambda(c)\equiv\frac{c^\lambda \%n-1}{g^\lambda \&amp;n-1}({\rm mod}\ n^2)$.</li>
+<li>加法同态: $m_1+m_2=D_\lambda[E_{n,g}(m_1)E_{n,g}(m_2)]$.</li>
+</ul>
+<p>置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; <br />
+特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.</p>
+<p>轮换: $f\in S_n$, $i_1,&hellip;,i_r\in X$, $f(i_1)=i_2,&hellip;,f(i_{r-1})=i_r,f(i_r)=i_1$ 且保持其他元素不变时, $f=(i_1,i_2,&hellip;,i_r)$ 称为 $r$ -轮换; <br />
+特别 $r=1$ 时为恒等变换, $r=2$ 时称为对换; <br />
+任意置换可唯一表示为不相交的轮换之积; 任意轮换可以表示为对换之积.</p>
+<p>Cayley: 任意有限群同构于一置换群.</p>
+<h2 id="环和域">环和域</h2>
+<p>环: 非空集合 $R$ 上两个代数运算 $(+,\cdot)$, $(R,+)$ 为Abel群, $(R,\cdot)$ 为半群, $\cdot$ 对 $+$ 有双边分配律; <br />
+为区别, $+$ 的单位元称为零元(记 $0$), 逆元称为负元(记 $-a$). <br /></p>
+<p>单位: $a\in R$, $\exists b\in R$ s.t. $ab=ba=e$, 则称 $a$ 为单位; 环中所有单位构成单位群, 记 $U(R)$; $U(\mathbb{Z}_m)=\mathbb{Z}_m^*$. <br />
+零因子: 非零元 $a,b\in R$ s.t. $ab=0$, $a$ 为 $b$ 的左零因子.</p>
+<p>交换环: $(R,\cdot)$ 为交换半群. <br />
+交换幺环: $(R,\cdot)$ 为交换幺半群. <br />
+无零因子环: $(R,\cdot)$ 为无零因子半群. <br />
+整环: $(R,\cdot)$ 为无零因子交换幺半群. <br />
+域: $(R-\{0\},\cdot)$ 为Abel群.</p>
+<p>双边理想: 非空集合 $I\subset R$, $I$ 对 $+$ 封闭, 对 $\cdot$ 吸收, 即 $\forall s\in R$, $sI\subset I$, $Is\subset I$, 记 $I \lhd R$; $d\mathbb{Z}\lhd\mathbb{Z}$.</p>
+<p>商环: $I\lhd R$, $R/I &lt; R$; $R/I=\{a+I\ | \ a\in R\}$. <br />
+$(a+I)+(b+I)=(a+b)+I$, $(a+I)(b+I)=(ab)+I$.</p>
+<blockquote>
+<p>映射: 不妨设 $a_1+I=a_2+I$, $b_1+I=b_2+I$, 则有 $(a_1b_1)+I=(a_2b_2)+I$. 考虑 $a_1-a_2\in I$, $b_1-b_2\in I$, 有 $a_1=s+a_2$, $b_1=t+b_2$, $s, t\in I$, 进而 $a_1b_1=a_2b_2+x=a_2b_2+(sb_2+ta_2+st)$, 同时 $x\in I$.</p>
+<p>封闭: $\forall x\in I$, $(a+x)(b+x)=ab+(a+b+x)x\in (ab)+I$.</p>
+<p>由此可知, 理想的吸收性可确保商环存在.</p>
+</blockquote>
+<p>生成理想: 非空集合 $S\subset R$, 包含 $S$ 的所有理想的交集; <br />
+特别 $S=\{a\}$ 时, 记 $\langle S\rangle=\langle a\rangle$ 为 $a$ 生成的主理想; <br />
+特别 $R$ 为交换幺环时, 主理想 $\langle a\rangle=\{ra\ | \ r\in R\}$; <br />
+$\mathbb{Z}$ 的所有理想均为主理想.</p>
+<blockquote>
+<p>任取非平凡理想 $I\lhd \mathbb{Z}$, $\exists$ 最小 $t\in\mathbb{Z}_+$, $\forall m\in I$, $m=qt+r$, $q,r\in I$, $0\leq r&lt;t$, 即 $r=0$, $I=\langle t\rangle$.</p>
+</blockquote>
+<p>Euclid整环(ED): 满足Euclid性的整环, $\forall a,b\in R-\{0\}$, 有映射 $\varepsilon: R-\{0\}\to \mathbb{Z}_+$ s.t. $\varepsilon(a)\leq\varepsilon(ab)$, $\exists r,q\in R$ s.t. $a=bq+r$, $\varepsilon(r)&lt;\varepsilon(b)$ 或 $r=0$; 其上有最大公因数. <br />
+主理想整环(PID): 理想均为主理想的整环; 其上素元和不可约元等价; 素元为非零元非单位 $p$ s.t. $a,b\in R$, 若 $p|ab$, 有 $p|a$ 或 $p|b$; 不可约元为非零元非单位 $q$ s.t. $a,b\in R$, 若 $q=ab$, 有 $a$ 或 $b$ 为单位. <br />
+唯一析因整环(UFD): 整环 $R$ 中非零元非单位的元素可以唯一表示为有限个不可约元的积.</p>
+<p>定理: 所有域都是ED; 所有ED都是PID; 所有PID都是UFD.</p>
+<p>特征: ${\rm char}(R)=\inf\{n\in\mathbb{Z}_+\ | \ na=a,\forall a\in R\}$ 或0; ${\rm char}(\mathbb{Z})=0$, ${\rm char}(\mathbb{Z}_m)=m$; <br />
+整环特征必为0或素数, 非空有限域特征必为素数, ${\rm char}(F_p)=p$; <br />
+$\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.</p>
+<blockquote>
+<p>$|e| = \infty$ 时, ${\rm char}(R)=0$.</p>
+<p>$|e| = n$ 时, 若 $n$ 为合数, $\exists p|n$，不妨设 $pc=n$, $ne=(pe)(ce)=0$, 则 $pe=0$ 或 $ce=0$, 矛盾. $\forall a\in R$, $na=(ne)a=0$.</p>
+</blockquote>
+<h2 id="椭圆曲线群">椭圆曲线群</h2>
+<h2 id="传统算法">传统算法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -1012,25 +1092,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="群">群</h2>
-<p>有限群: 有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); 记 $|G|={\rm Card}(G)$ 为阶; 定义 $a^{-n}=(a^{-1})^n$, $a^0=e$.</p>
-<p>元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$; $|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.</p>
-<p>子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&lt;G$; 真子群即非平凡子群({e},G); $H&lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.</p>
-<p>循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; 特别 $S={a}$ 时, 循环子群 $\langle S\rangle=\langle a\rangle=\{a^n\ |\ n\in\mathbb{Z}\}$; 特别 $G=\langle a\rangle$ 时为循环群 $\iff\exists a\in G$ s.t. $|a|=|G|$; 循环群子群仍为循环群; 无限循环群同构于 $\mathbb{Z}$, $n$ 阶循环群同构于 $\mathbb{Z}_n$.</p>
-<blockquote>
-<p>不妨设 $H&lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.</p>
-</blockquote>
-<p>陪集: $H&lt;G$, $\forall a\in G$, $aH$ 为左陪集; $a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.</p>
-<p>Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.</p>
-<p>正规子群: $H&lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.</p>
-<p>商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.</p>
-<p>同态: 保持代数运算不变的映射, 双射时为同构. </br>
-群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.</p>
-<p>置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; 特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.</p>
-<p>轮换: $f\in S_n$, $i_1,&hellip;,i_r\in X$, $f(i_1)=i_2,&hellip;,f(i_{r-1})=i_r,f(i_r)=i_1$ 且保持其他元素不变时, $f=(i_1,i_2,&hellip;,i_r)$ 称为 $r$ -轮换; 特别 $r=1$ 时为恒等变换, $r=2$ 时称为对换; 任意置换可唯一表示为不相交的轮换之积; 任意轮换可以表示为对换之积.</p>
-<p>Cayley: 任意有限群同构于一置换群.</p>
-<h2 id="环">环</h2>
-<h2 id="域">域</h2>
+</div><h2 id="量子算法">量子算法</h2>
+<h2 id="格论">格论</h2>
 
 </section>
 

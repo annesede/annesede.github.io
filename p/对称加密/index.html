@@ -480,8 +480,8 @@
 		alt="egLFSR"
 	
 	
-> </br>
-e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. </br>
+> <br />
+e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. <br />
 $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 </blockquote>
 <p>使用verligo实现LFSR.</p>
@@ -530,8 +530,8 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 <li>将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;</li>
 <li>保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&lt;a&lt;2^n-1$ 的因式.</li>
 </ol>
-<p>截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; </br>
-记 $X=(S_i,&hellip;,S_n)$, $Y=(S_{i+1},&hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. </br>
+<p>截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; <br />
+记 $X=(S_i,&hellip;,S_n)$, $Y=(S_{i+1},&hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. <br />
 $m$ 序列时, $X$满秩, $H\equiv YX^{-1}({\rm mod}\ 2)$ 为特征多项式的友矩阵.</p>
 <p>$$H=\left( \begin{array}{}
 0 &amp; 1 &amp; 0 &amp; &hellip; &amp; 0 \\
@@ -542,7 +542,7 @@ g_0 &amp; g_1 &amp; g_2 &amp; &hellip; &amp; g_{n-1}
 \end{array}\right )$$</p>
 <p>可引入非线性运算增加复杂性: 与AND($GF(2)$上乘法) $\otimes$.</p>
 <h3 id="ad5">AD5</h3>
-<p>欧洲移动通信GSM标准, 手机到基站间的链路语音加密. </br>
+<p>欧洲移动通信GSM标准, 手机到基站间的链路语音加密. <br />
 由19位, 22位, 23位3个LSR组成; 时钟控制信号来自LSR1第8位, LSR2第10位, LSR3第10位; 若三者相同则均移位, 若两者相同则相同的移位, 不同的不移位; 即每个时钟至少有两个LSR移位.</p>
 <p>不同文献的连接多项式不同, 其中一个为:</p>
 <p>$$\begin{cases}
@@ -635,8 +635,8 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </div>
 </div><p>安全问题: 存在弱密钥使得初始化置换后 $S$ 表顺序不变; 存在弱密钥使得密钥流在100万字节内完全重复; 密钥较短的容易被攻击, 但长度超过128位的密钥依然有效.</p>
 <h3 id="zuc">ZUC</h3>
-<p>LTE-4G国际标准, 包含机密性128-EEA3和完整性128-EIA3, 基于LFSR的非线性组合逻辑结构. </br>
-分为三层结构: LSFR, Bit重组, 非线性F函数. </br>
+<p>LTE-4G国际标准, 包含机密性128-EEA3和完整性128-EIA3, 基于LFSR的非线性组合逻辑结构. <br />
+分为三层结构: LSFR, Bit重组, 非线性F函数. <br />
 符号约定: $\boxplus$ 为$GF(2^{32})$ 上加法; $|$ 为连接字符串; $_H$ 为高位16位; $_L$ 为低位16位; $&lt; &lt;_o$ 为循环左移.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1177,7 +1177,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <h3 id="aes">AES</h3>
 <p><em>(something wrong in the AES code)</em></p>
 <p>高级数据加密标准(Advanced Encryption Standard), 采用10/12/14轮S-P网络非对合加解密(对应128/192/256bit密钥).</p>
-<p>$GF(2)$ 上多项式域 $GF(2^8)$ 中元素为 $b_{(8)}=b_7x^7+b_6x^6+b_5x^5+b_4x^4+b_3x^3+b_2x^2+b_1x+b_0$, 乘法需对既约多项式 $m(x)=x^8+x^4+x^3+x+1$ 取模, 乘法逆元可由扩展Euclid算法得到. </br>
+<p>$GF(2)$ 上多项式域 $GF(2^8)\cong  GF(2)[x]/(x^8+x^4+x^3+x+1)$ 中元素为 $b_{(8)}=b_7x^7+b_6x^6+b_5x^5+b_4x^4+b_3x^3+b_2x^2+b_1x+b_0$, 乘法需对既约多项式 $m(x)=x^8+x^4+x^3+x+1$ 取模, 乘法逆元可由扩展Euclid算法得到. <br />
 考虑 $xb_{(8)}=(b_{(8)}&lt; &lt; 1)\oplus m(x)$, 高次乘法可重复 $x$ 乘实现.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -1215,7 +1215,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
+</div><p>$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)/[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
 考虑 $xb_{(32)}=b_{(32)}&gt; &gt;8$, 高次乘法可视为 $GF(2^8)$ 上矩阵乘法.</p>
 <ul>
 <li>状态矩阵: 128bit明(密)文和密钥按列优先载入4阶方阵, 每列32bit称为&quot;字&quot;, 加(解)密后按列优先输出密(明)文.</li>

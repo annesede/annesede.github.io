@@ -15,9 +15,9 @@
         <guid>https://example.com/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
         <description>&lt;h2 id=&#34;preparation&#34;&gt;PREPARATION&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;git download&lt;/a&gt; &lt;/br&gt;
+    &gt;git download&lt;/a&gt; &lt;br /&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;hugo download&lt;/a&gt; &lt;/br&gt;
+    &gt;hugo download&lt;/a&gt; &lt;br /&gt;
 Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;p&gt;The following steps are in Bash.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -119,6 +119,11 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;\*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;{&lt;/td&gt;
+&lt;td&gt;\{&lt;/td&gt;
+&lt;td&gt;\\{&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

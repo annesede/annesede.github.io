@@ -23,11 +23,11 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;selector, ... {property:value; ... }
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;继承: Netscape4不支持 &lt;/br&gt;
+&lt;/div&gt;&lt;p&gt;继承: Netscape4不支持 &lt;br /&gt;
 格式化: 块级元素, 行内元素&lt;/p&gt;
 &lt;h2 id=&#34;多重样式&#34;&gt;多重样式&lt;/h2&gt;
-&lt;p&gt;更详细定义 - 继承 &lt;/br&gt;
-重复定义 - 优先级: 同级别下权重大, 同权重下后定义 &lt;/br&gt;&lt;/p&gt;
+&lt;p&gt;更详细定义 - 继承 &lt;br /&gt;
+重复定义 - 优先级: 同级别下权重大, 同权重下后定义 &lt;br /&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;!important 1-0-0-0-0&lt;/li&gt;
 &lt;li&gt;内联 1-0-0-0&lt;/li&gt;
@@ -73,10 +73,10 @@
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;[property=&amp;#34;value&amp;#34;] {property:value; ... }
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;~= 包含值(完整) &lt;/br&gt;
-|= 以值开头(完整) &lt;/br&gt;
-^= 匹配以值开头 &lt;/br&gt;
-$= 匹配以值结尾 &lt;/br&gt;
+&lt;/div&gt;&lt;p&gt;~= 包含值(完整) &lt;br /&gt;
+|= 以值开头(完整) &lt;br /&gt;
+^= 匹配以值开头 &lt;br /&gt;
+$= 匹配以值结尾 &lt;br /&gt;
 *= 匹配值&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;伪类(pseudo class) 0-1-0&lt;/li&gt;
@@ -115,10 +115,10 @@ $= 匹配以值结尾 &lt;/br&gt;
 &lt;/div&gt;&lt;p&gt;after, before, first-letter, first-line, selection&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;通配符*  关系符, + &amp;gt; ~ &amp;quot;&amp;quot; | |  否定符:not( ) 0-0-0
-分组 tag,tag 共同样式 &lt;/br&gt;
-后代 tag tag 包含元素 &lt;/br&gt;
-父子 tag&amp;gt;tag 仅限子元素 &lt;/br&gt;
-相邻 tag+tag 仅对紧邻元素 &lt;/br&gt;&lt;/li&gt;
+分组 tag,tag 共同样式 &lt;br /&gt;
+后代 tag tag 包含元素 &lt;br /&gt;
+父子 tag&amp;gt;tag 仅限子元素 &lt;br /&gt;
+相邻 tag+tag 仅对紧邻元素 &lt;br /&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;外部链接&#34;&gt;外部链接&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

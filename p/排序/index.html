@@ -343,7 +343,8 @@
     <section class="article-content">
     
     
-    <p>稳定是指关键字相同的记录在排序后保持原有相对次序不变, 只有在原有相对次序有意义时需要考虑.</p>
+    <p>文中所有C代码均编译通过并得到正确结果! (CXX14 - GCC8.1.0)</p>
+<p>稳定是指关键字相同的记录在排序后保持原有相对次序不变, 只有在原有相对次序有意义时需要考虑.</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
@@ -513,7 +514,7 @@
 </span></span><span class="line"><span class="cl">        <span class="kt">bool</span> <span class="n">isSwapped</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// 记录交换情况
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]){</span> <span class="c1">// 若条件改为&#34;&gt;=&#34;则不再稳定
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">std</span><span class="o">::</span><span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>                <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">                <span class="n">isSwapped</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> 
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>

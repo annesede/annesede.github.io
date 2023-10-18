@@ -692,7 +692,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;幂数模&#34;&gt;幂数模&lt;/h2&gt;
 &lt;p&gt;直接求幂再求模可能会越界超时, 须使用快速模幂.&lt;/p&gt;
-&lt;p&gt;$b=2k$ 时, 有 $a^b\equiv(a^k)^2 ({\rm mod}\ m)$; &lt;/br&gt;
+&lt;p&gt;$b=2k$ 时, 有 $a^b\equiv(a^k)^2 ({\rm mod}\ m)$; &lt;br /&gt;
 $b=2k+1$ 时, 有 $a^b\equiv(a^k)^2\times a ({\rm mod}\ m)$.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1246,7 +1246,7 @@ k+1, \ n=2k+1 \\
         <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/c%E6%9D%82%E8%B0%88/</guid>
-        <description>&lt;p&gt;标准默认C11, 编译器默认GCC8.1.0及MSVC1937. &lt;/br&gt;
+        <description>&lt;p&gt;标准默认C11, 编译器默认GCC8.1.0及MSVC1937. &lt;br /&gt;
 内容不分先后顺序, 请按需查阅.&lt;/p&gt;
 &lt;h2 id=&#34;cmake&#34;&gt;CMAKE&lt;/h2&gt;
 &lt;p&gt;使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE.&lt;/p&gt;
@@ -1301,7 +1301,7 @@ k+1, \ n=2k+1 \\
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;一个方便调试的头文件&#34;&gt;一个方便调试的头文件&lt;/h2&gt;
-&lt;p&gt;该头文件中定义用变长参数定义了一系列输出函数, 可以直接采用&amp;quot;PRINT_TYPE(variable);&amp;ldquo;的形式来打印对应类型的变量并换行. &lt;/br&gt;
+&lt;p&gt;该头文件中定义用变长参数定义了一系列输出函数, 可以直接采用&amp;quot;PRINT_TYPE(variable);&amp;ldquo;的形式来打印对应类型的变量并换行. &lt;br /&gt;
 传入数组时, 传入的是数组的首位指针, 还需在外部获取数组长度一并传入.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1434,7 +1434,7 @@ k+1, \ n=2k+1 \\
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;不同数据类型的运算&#34;&gt;不同数据类型的运算&lt;/h2&gt;
-&lt;p&gt;整型提升: &lt;/br&gt;
+&lt;p&gt;整型提升: &lt;br /&gt;
 表达式中存在(unsigned) int, 则 (unsigned) char, (unsigned) short int, enum 均转换为int, 不足时转换为 unsigned int.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1462,11 +1462,11 @@ k+1, \ n=2k+1 \\
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;隐式转换: &lt;/br&gt;
-算术表达式: 低类型转换为高类型, int -&amp;gt; unsigned int -&amp;gt; long -&amp;gt; unsigned long -&amp;gt; long long -&amp;gt; unsigned long long -&amp;gt; float -&amp;gt; double -&amp;gt; long double; &lt;/br&gt;
-赋值表达式: 右值转换为左值; &lt;/br&gt;
-函数传参: 实参转换为形参; &lt;/br&gt;
-函数返回值: 表达式转换为返回值. &lt;/br&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;隐式转换: &lt;br /&gt;
+算术表达式: 低类型转换为高类型, int -&amp;gt; unsigned int -&amp;gt; long -&amp;gt; unsigned long -&amp;gt; long long -&amp;gt; unsigned long long -&amp;gt; float -&amp;gt; double -&amp;gt; long double; &lt;br /&gt;
+赋值表达式: 右值转换为左值; &lt;br /&gt;
+函数传参: 实参转换为形参; &lt;br /&gt;
+函数返回值: 表达式转换为返回值. &lt;br /&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
@@ -1659,9 +1659,9 @@ k+1, \ n=2k+1 \\
 	
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;char占用1字节, 对齐到1的倍数; int占用4字节, 对齐到4的倍数; double占用8字节, 对齐到8的倍数. &lt;/br&gt;
-尽管内存以字节为基本单位, 但CPU会以4字节, 8字节, 甚至16字节进行访问; 在没有对齐机制时, 访问到正确的变量位置需要额外操作. &lt;/br&gt;
-内存对齐系数由编译器决定, 结构体占用内存为对齐系数倍数. &lt;/br&gt;
+&lt;p&gt;char占用1字节, 对齐到1的倍数; int占用4字节, 对齐到4的倍数; double占用8字节, 对齐到8的倍数. &lt;br /&gt;
+尽管内存以字节为基本单位, 但CPU会以4字节, 8字节, 甚至16字节进行访问; 在没有对齐机制时, 访问到正确的变量位置需要额外操作. &lt;br /&gt;
+内存对齐系数由编译器决定, 结构体占用内存为对齐系数倍数. &lt;br /&gt;
 GCC和MSVC中默认对齐系数均为4, 可以通过预编译&amp;rdquo;#pragma pack(n)&amp;ldquo;来改变.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1748,7 +1748,7 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&amp;rdquo;#pragma 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;GCC可以编译通过; 但MSVC不支持变长数组, 会报错. &lt;/br&gt;
+&lt;/div&gt;&lt;p&gt;GCC可以编译通过; 但MSVC不支持变长数组, 会报错. &lt;br /&gt;
 可以考虑用内存分配函数实现, 调用方式同数组.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -1973,10 +1973,10 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&amp;rdquo;#pragma 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 考虑到可读性, 仅推荐array[2]和p[2]两种调用方式.
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;指针自然也可以作为函数参数. 调用函数赋值时, 如&amp;quot;int a = func(b);&amp;rdquo;, CPU将函数返回值复制到寄存器中, 再将寄存器中的数据复制到要改变的变量, 这一过程也就体现为变量的作用域. &lt;/br&gt;
-C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以将数组包含在结构体中; 而若直接返回结构体, 结构体由于本身占用较大, 复制两次导致性能开销过大. &lt;/br&gt;
+&lt;/div&gt;&lt;p&gt;指针自然也可以作为函数参数. 调用函数赋值时, 如&amp;quot;int a = func(b);&amp;rdquo;, CPU将函数返回值复制到寄存器中, 再将寄存器中的数据复制到要改变的变量, 这一过程也就体现为变量的作用域. &lt;br /&gt;
+C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以将数组包含在结构体中; 而若直接返回结构体, 结构体由于本身占用较大, 复制两次导致性能开销过大. &lt;br /&gt;
 此时, 可以在函数外声明结构体或数组, 并将指向结构体的指针或数组传入.&lt;/p&gt;
-&lt;p&gt;函数也存在地址, 自然也可以有指向函数的指针. 但声明函数指针时, 运算优先级问题往往让人感到困惑: 如参数列表&amp;rdquo;()&amp;ldquo;的优先级高于&amp;rdquo;*&amp;rdquo;. &lt;/br&gt;
+&lt;p&gt;函数也存在地址, 自然也可以有指向函数的指针. 但声明函数指针时, 运算优先级问题往往让人感到困惑: 如参数列表&amp;rdquo;()&amp;ldquo;的优先级高于&amp;rdquo;*&amp;rdquo;. &lt;br /&gt;
 在分析函数声明时, 可以借助网站: &lt;a class=&#34;link&#34; href=&#34;https://cdecl.org/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://cdecl.org/&lt;/a&gt;.&lt;/p&gt;
 &lt;h2 id=&#34;字符串长度&#34;&gt;字符串长度&lt;/h2&gt;
@@ -2003,10 +2003,10 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;字符串和数组一样有多种声明方式. &lt;/br&gt;
-以长度声明字符串时, 需注意留一位给末尾的&amp;quot;NULL&amp;rdquo;. 动态长度字符串同数组, 同时使用&amp;quot;memset()&amp;ldquo;函数初始化. &lt;/br&gt;
-若用&amp;quot;strlen()&amp;ldquo;得到其他字符串输出时, 想要得到相同有效长度的字符串需要声明长度为&amp;quot;strlen(string)+1&amp;rdquo;. &lt;/br&gt;
-尽管不以&amp;quot;NULL&amp;quot;结尾有时不会得到错误的输出, 但应当避免不规范的使用. &lt;/br&gt;
+&lt;/div&gt;&lt;p&gt;字符串和数组一样有多种声明方式. &lt;br /&gt;
+以长度声明字符串时, 需注意留一位给末尾的&amp;quot;NULL&amp;rdquo;. 动态长度字符串同数组, 同时使用&amp;quot;memset()&amp;ldquo;函数初始化. &lt;br /&gt;
+若用&amp;quot;strlen()&amp;ldquo;得到其他字符串输出时, 想要得到相同有效长度的字符串需要声明长度为&amp;quot;strlen(string)+1&amp;rdquo;. &lt;br /&gt;
+尽管不以&amp;quot;NULL&amp;quot;结尾有时不会得到错误的输出, 但应当避免不规范的使用. &lt;br /&gt;
 仅以字符串值声明字符串时, 编译器会默认在结尾添加&amp;quot;NULL&amp;rdquo;, 无论字符串值末尾是否有&amp;quot;\0&amp;quot;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2059,8 +2059,8 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 &lt;/div&gt;&lt;p&gt;运算优先级上, &amp;ldquo;()&amp;ldquo;和&amp;rdquo;++&amp;ldquo;都高于&amp;rdquo;&amp;amp;&amp;amp;&amp;ldquo;和&amp;rdquo;||&amp;rdquo;, 但第一次f和t赋值中有副作用的&amp;rdquo;++&amp;ldquo;一次也没有被执行, 第二次中都被执行了.&lt;/p&gt;
 &lt;h2 id=&#34;内存溢出和内存泄漏&#34;&gt;内存溢出和内存泄漏&lt;/h2&gt;
 &lt;p&gt;内存溢出指申请空间没有足够的空间可以使用, 如声明&amp;quot;int&amp;quot;类型变量, 但赋值了超出&amp;quot;int&amp;quot;类型的数.&lt;/p&gt;
-&lt;p&gt;内存泄漏指申请使用内存后, 无法释放已经申请的内存空间; 内存泄漏累积就会造成内存溢出. &lt;/br&gt;
-(在某些优化较差的游戏中, 如刺客信条: 大革命, 游玩时会突然卡死, 打开任务管理器发现内存占用率100%, 可能就是遇到了内存泄漏问题.) &lt;/br&gt;
+&lt;p&gt;内存泄漏指申请使用内存后, 无法释放已经申请的内存空间; 内存泄漏累积就会造成内存溢出. &lt;br /&gt;
+(在某些优化较差的游戏中, 如刺客信条: 大革命, 游玩时会突然卡死, 打开任务管理器发现内存占用率100%, 可能就是遇到了内存泄漏问题.) &lt;br /&gt;
 对于个人用户, 内存泄漏也许不严重, 结束程序进程时会释放所有已分配的内存; 但对于服务器, 某些程序需要一直保持运行, 内存泄漏会不断累积并造成严重后果.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2118,9 +2118,9 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
         <guid>https://example.com/p/hugo%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
         <description>&lt;h2 id=&#34;preparation&#34;&gt;PREPARATION&lt;/h2&gt;
 &lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://git-scm.com/download&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;git download&lt;/a&gt; &lt;/br&gt;
+    &gt;git download&lt;/a&gt; &lt;br /&gt;
 &lt;a class=&#34;link&#34; href=&#34;https://github.com/gohugoio/hugo/releases&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
-    &gt;hugo download&lt;/a&gt; &lt;/br&gt;
+    &gt;hugo download&lt;/a&gt; &lt;br /&gt;
 Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;p&gt;The following steps are in Bash.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -2222,6 +2222,11 @@ Check git &amp;amp; hugo added in the environment variables (Windows).&lt;/p&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;*&lt;/td&gt;
 &lt;td&gt;\*&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;{&lt;/td&gt;
+&lt;td&gt;\{&lt;/td&gt;
+&lt;td&gt;\\{&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;

@@ -13,9 +13,9 @@
         <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;p&gt;文中所有C代码均编译通过并得到正确结果! (C11 - GCC8.1.0)&lt;/p&gt;
+        <description>&lt;p&gt;(C11 - GCC8.1.0)&lt;/p&gt;
 &lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
-&lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;/br&gt;
+&lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;br /&gt;
 最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.&lt;/p&gt;
 &lt;p&gt;辗转相除求${\rm gcd}$:
 $$\begin{align}
@@ -45,7 +45,7 @@ $$\begin{align}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;Bezout定理: 给定 $a,b\in\mathbb{Z}$, Diophantine方程 $ax+by=m$ 有解 $\Longleftrightarrow$ ${\rm gcd}(a,b)|m$.&lt;/p&gt;
-&lt;p&gt;可仅考查 $m={\rm gcd}(a,b)$, 不然, 结果只需乘相应倍数. &lt;/br&gt;
+&lt;p&gt;可仅考查 $m={\rm gcd}(a,b)$, 不然, 结果只需乘相应倍数. &lt;br /&gt;
 在递归中, 显然有 ${\rm gcd}(a,b)={\rm gcd}(a_i,b_i)$,  即 $\exists x_i,y_i\in\mathbb{Z}$ s.t. $a_ix_i+b_iy_i=m$.
 $$\begin{align}
 m&amp;amp;=a_ix_i+b_iy_i\\
@@ -111,7 +111,7 @@ m&amp;amp;=a_ix_i+b_iy_i\\
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;定理: 素数i $p$ 及 $a,b\in\mathbb{Z}$, 若 $p|ab$ 则 $p|a$ 或 $p|b$.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;定理: 素数 $p$ 及 $a,b\in\mathbb{Z}$, 若 $p|ab$ 则 $p|a$ 或 $p|b$.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;设 $p\nmid a$ 且 $p\nmid b$, 则 $\exists x,y$ s.t. $xp+ya=1$, 故 $x(ab)+(by)p=b$, 有 $p|b$, 矛盾.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -122,10 +122,10 @@ m&amp;amp;=a_ix_i+b_iy_i\\
 &lt;li&gt;$a\equiv b({\rm mod}\ m)$, $c\equiv d({\rm mod}\ m) \Longrightarrow a+c\equiv b+d({\rm mod}\ m)$, $ac\equiv bd({\rm mod}\ m)$, $a^n\equiv b^n({\rm mod}\ m)$.&lt;/li&gt;
 &lt;li&gt;$ak\equiv bk({\rm mod}\ m) \Longrightarrow a\equiv b({\rm mod}\ \frac{m}{{\rm gcd}(m,k)})$.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. &lt;/br&gt;
-最小非负完全剩余系: $\mathbb{Z}_m=\{0,1&amp;hellip;,m-1\}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. &lt;/br&gt;
+&lt;p&gt;模 $m$ 剩余类: $\mathbb{Z}/m\mathbb{Z}$. &lt;br /&gt;
+最小非负完全剩余系: $\mathbb{Z}_m=\{0,1&amp;hellip;,m-1\}$, 显然 $\forall x\neq y\in\mathbb{Z}_m$ s.t. $x\not\equiv y({\rm mod}\ m)$. &lt;br /&gt;
 既约剩余系: $\mathbb{Z}_m^*=\{a\in\mathbb{Z}_m|{\rm gcd}(a,m)=1\}$.&lt;/p&gt;
-&lt;p&gt;Euler $\varphi$ 函数: &lt;/br&gt;
+&lt;p&gt;Euler $\varphi$ 函数: &lt;br /&gt;
 $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$&lt;/p&gt;
 &lt;p&gt;当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*=\{1,2,&amp;hellip;,p-1\}$ 为循环群, 生成元个数为$\varphi(p-1)$.&lt;/p&gt;
 &lt;p&gt;考察函数性质:&lt;/p&gt;
@@ -160,12 +160,14 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// O(n), 每个数均只遍历一次
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;phiEulerLinerSieve&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isSieved&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;bool&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;isSieved&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// O(n), 每个数均只遍历一次
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;phiEuler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;count&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
@@ -175,13 +177,13 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;j&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;composite&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;isSieved&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;composite&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;comp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;n&#34;&gt;isSieved&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;comp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;composite&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;primep&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;comp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;k&#34;&gt;break&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;composite&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;				&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;comp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prime&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;j&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;phi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;			&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;		&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
@@ -192,12 +194,12 @@ $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-
 &lt;blockquote&gt;
 &lt;p&gt;考虑 ${\rm gcd}(ax,m)=1$ 及 $ax_i\not\equiv ax_j({\rm mod}\ m)$, $i\neq j$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. &lt;/br&gt;
+&lt;p&gt;逆元: 若 ${\rm gcd}(a,m)=1$, 则 $\exists ! x\in\mathbb{Z}_m^*$ s.t. $ax\equiv 1({\rm mod}\ m)$. &lt;br /&gt;
 Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;$\mathbb{Z}_m^*=\{x_1,&amp;hellip;,x_{\varphi(m)}\}=\{ax_1,&amp;hellip;,a_{\varphi(m)}\}$, 故 $\prod x_i\equiv\prod ax_i({\rm mod}\ m)$, 已知 ${\rm gcd}(x_i,m)=1$, 得 $m|a^{\varphi(m)}-1$.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. &lt;/br&gt;
+&lt;p&gt;特别 $m=p$ 为素数时, Fermat: 若 $p\nmid a$, 则 $a^{p-1}\equiv 1({\rm mod}\ p)$, 有 $a^{-1}\equiv a^{p-2}({\rm mod}\ p)$. &lt;br /&gt;
 由扩展Euclid, ${\rm gcd}(a,m)=1$, $\exists s,t\in\mathbb{Z}$ s.t. $as+tm=1$, 即 $a^{-1}\equiv s({\rm mod}\ m)$.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -212,7 +214,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inverseExtEuclid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inverse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;gcd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;extEuclid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;gcd&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
@@ -225,7 +227,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;wilson: 素数 $p$ 有 $(p-1)!\equiv -1({\rm mod}\ p)$.&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;$\mathbb{Z}_m^*$ 中元素均存在逆, 自逆仅 $1,p-1$; ${2,3,&amp;hellip;,p-2}$ 中两两配对互逆.&lt;/p&gt;
+&lt;p&gt;$\mathbb{Z}_m^*$ 中元素均存在逆, 自逆仅 $1,p-1$; $\{2,3,&amp;hellip;,p-2\}$ 中两两配对互逆.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -253,7 +255,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;li&gt;解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;同余式&#34;&gt;同余式&lt;/h2&gt;
-&lt;p&gt;同余式 $f(x)\equiv a_nx^n+&amp;hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. &lt;/br&gt;
+&lt;p&gt;同余式 $f(x)\equiv a_nx^n+&amp;hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. &lt;br /&gt;
 同余方程 $f(x)\equiv 0({\rm mod}\ m)$ 至多有 $m$ 个解(剩余类).&lt;/p&gt;
 &lt;p&gt;一次同余 $ax\equiv b({\rm mod}\ m)$, $a,b\in\mathbb{Z}$, $m\in\mathbb{Z}_+$ 有解 $\iff {\rm gcd}(a,m)|b$.&lt;/p&gt;
 &lt;blockquote&gt;
@@ -350,7 +352,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;modM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1L&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;prodM&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;/&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;modSepM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1L&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;modM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;])&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;modIevM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inverseExtEuclid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;modSepM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;modIevM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;inverse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;modSepM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;modIevM&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]){&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;  
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;  
@@ -366,7 +368,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/div&gt;&lt;p&gt;RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.&lt;/li&gt;
-&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$.
+&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$. &lt;br /&gt;
 快速模幂 $r\equiv t^e({\rm mod}\ n)$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
@@ -398,7 +400,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;二次剩余&#34;&gt;二次剩余&lt;/h2&gt;
-&lt;p&gt;$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. &lt;/br&gt;
+&lt;p&gt;$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. &lt;br /&gt;
 仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.&lt;/p&gt;
 &lt;p&gt;Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:&lt;/p&gt;
 &lt;ul&gt;
@@ -501,7 +503,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/div&gt;&lt;p&gt;Rabin: 素数 $p\equiv q\equiv 3({\rm mod}\ 4)$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$.&lt;/li&gt;
-&lt;li&gt;私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2 in 4)$.&lt;/li&gt;
+&lt;li&gt;私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2\ {\rm in}\ 4)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;原根&#34;&gt;原根&lt;/h2&gt;
 &lt;p&gt;原根: $a,m\in\mathbb{Z}$, $m&amp;gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf\{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)\}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.&lt;/p&gt;
@@ -511,8 +513,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;p&gt;必要性: 显然.&lt;/p&gt;
 &lt;p&gt;充分性: 若 $\exists e&amp;lt;\varphi(m)$ s.t. $g^e\equiv 1({\rm mod}\ m)$; 不妨设 $\frac{\varphi(m)}{e}=kp$, $k\in\mathbb{Z}$, $p$ 为素数; 进而 $g^{\frac{\varphi(m)}{e}\equiv(g^p)^k\equiv 1({\rm mod}\ m)}$, 矛盾.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. &lt;/br&gt;
-推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. &lt;/br&gt;
+&lt;p&gt;定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. &lt;br /&gt;
+推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. &lt;br /&gt;
 以下显然:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;${\rm ord}_m(a)={\rm ord}_m(a^{-1})$.&lt;/li&gt;
@@ -594,7 +596,83 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;li&gt;公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$.&lt;/li&gt;
 &lt;li&gt;私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u_a}({\rm mod}\ p)$.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&#34;素性检验&#34;&gt;素性检验&lt;/h2&gt;
+&lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
+&lt;p&gt;有限群: 非空有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); &lt;br /&gt;
+记 $|G|={\rm Card}(G)$ 为阶; 定义 $a^{-n}=(a^{-1})^n$, $a^0=e$.&lt;/p&gt;
+&lt;p&gt;半群: 只满足结合律. &lt;br /&gt;
+幺半群: 存在单位元的半群. &lt;br /&gt;
+交换半群: 满足交换律的半群. &lt;br /&gt;
+交换幺半群: 存在单位元满足交换律的半群. &lt;br /&gt;
+Abel群: 满足交换律的群. &lt;br /&gt;
+消去律: 可由结合律和逆元推得.&lt;/p&gt;
+&lt;p&gt;元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$ 或 $\infty$; &lt;br /&gt;
+$|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.&lt;/p&gt;
+&lt;p&gt;子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&amp;lt;G$; 真子群即非平凡子群({e},G); &lt;br /&gt;
+$H&amp;lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&amp;lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.&lt;/p&gt;
+&lt;p&gt;循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&amp;lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; &lt;br /&gt;
+特别 $S=\{a\}$ 时, 循环子群 $\langle S\rangle=\langle a\rangle=\{a^n\ |\ n\in\mathbb{Z}\}$; &lt;br /&gt;
+特别 $G=\langle a\rangle$ 时为循环群 $\iff\exists a\in G$ s.t. $|a|=|G|$; &lt;br /&gt;
+循环群子群仍为循环群; 无限循环群同构于 $\mathbb{Z}$, $n$ 阶循环群同构于 $\mathbb{Z}_n$.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不妨设 $H&amp;lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;陪集: $H&amp;lt;G$, $\forall a\in G$, $aH$ 为左陪集; &lt;br /&gt;
+$a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.&lt;/p&gt;
+&lt;p&gt;Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.&lt;/p&gt;
+&lt;p&gt;正规子群: $H&amp;lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&amp;lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.&lt;/p&gt;
+&lt;p&gt;商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.&lt;/p&gt;
+&lt;p&gt;同态: 保持代数运算不变的映射, 双射时为同构. &lt;br /&gt;
+群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.&lt;/p&gt;
+&lt;p&gt;同态 Paillier: 素数 $p,q$, $n=pq$, $\lambda = {\rm lcm}(p-1)(q-1)$ 最小公倍数, $g\in\mathbb{Z}_{n^2}^*$ s.t. ${\rm gcd} (\frac{g^\lambda \% n^2 -1}{n},n)=1$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公钥 $(n,g)$, 加密 $c\equiv E_{n,g}(m)\equiv g^m r^n({\rm mod}\ n^2)$, $r\in\mathbb{Z}_n^*$.&lt;/li&gt;
+&lt;li&gt;私钥 $\lambda$, 解密 $m\equiv D_\lambda(c)\equiv\frac{c^\lambda \%n-1}{g^\lambda \&amp;amp;n-1}({\rm mod}\ n^2)$.&lt;/li&gt;
+&lt;li&gt;加法同态: $m_1+m_2=D_\lambda[E_{n,g}(m_1)E_{n,g}(m_2)]$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; &lt;br /&gt;
+特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.&lt;/p&gt;
+&lt;p&gt;轮换: $f\in S_n$, $i_1,&amp;hellip;,i_r\in X$, $f(i_1)=i_2,&amp;hellip;,f(i_{r-1})=i_r,f(i_r)=i_1$ 且保持其他元素不变时, $f=(i_1,i_2,&amp;hellip;,i_r)$ 称为 $r$ -轮换; &lt;br /&gt;
+特别 $r=1$ 时为恒等变换, $r=2$ 时称为对换; &lt;br /&gt;
+任意置换可唯一表示为不相交的轮换之积; 任意轮换可以表示为对换之积.&lt;/p&gt;
+&lt;p&gt;Cayley: 任意有限群同构于一置换群.&lt;/p&gt;
+&lt;h2 id=&#34;环和域&#34;&gt;环和域&lt;/h2&gt;
+&lt;p&gt;环: 非空集合 $R$ 上两个代数运算 $(+,\cdot)$, $(R,+)$ 为Abel群, $(R,\cdot)$ 为半群, $\cdot$ 对 $+$ 有双边分配律; &lt;br /&gt;
+为区别, $+$ 的单位元称为零元(记 $0$), 逆元称为负元(记 $-a$). &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;单位: $a\in R$, $\exists b\in R$ s.t. $ab=ba=e$, 则称 $a$ 为单位; 环中所有单位构成单位群, 记 $U(R)$; $U(\mathbb{Z}_m)=\mathbb{Z}_m^*$. &lt;br /&gt;
+零因子: 非零元 $a,b\in R$ s.t. $ab=0$, $a$ 为 $b$ 的左零因子.&lt;/p&gt;
+&lt;p&gt;交换环: $(R,\cdot)$ 为交换半群. &lt;br /&gt;
+交换幺环: $(R,\cdot)$ 为交换幺半群. &lt;br /&gt;
+无零因子环: $(R,\cdot)$ 为无零因子半群. &lt;br /&gt;
+整环: $(R,\cdot)$ 为无零因子交换幺半群. &lt;br /&gt;
+域: $(R-\{0\},\cdot)$ 为Abel群.&lt;/p&gt;
+&lt;p&gt;双边理想: 非空集合 $I\subset R$, $I$ 对 $+$ 封闭, 对 $\cdot$ 吸收, 即 $\forall s\in R$, $sI\subset I$, $Is\subset I$, 记 $I \lhd R$; $d\mathbb{Z}\lhd\mathbb{Z}$.&lt;/p&gt;
+&lt;p&gt;商环: $I\lhd R$, $R/I &amp;lt; R$; $R/I=\{a+I\ | \ a\in R\}$. &lt;br /&gt;
+$(a+I)+(b+I)=(a+b)+I$, $(a+I)(b+I)=(ab)+I$.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;映射: 不妨设 $a_1+I=a_2+I$, $b_1+I=b_2+I$, 则有 $(a_1b_1)+I=(a_2b_2)+I$. 考虑 $a_1-a_2\in I$, $b_1-b_2\in I$, 有 $a_1=s+a_2$, $b_1=t+b_2$, $s, t\in I$, 进而 $a_1b_1=a_2b_2+x=a_2b_2+(sb_2+ta_2+st)$, 同时 $x\in I$.&lt;/p&gt;
+&lt;p&gt;封闭: $\forall x\in I$, $(a+x)(b+x)=ab+(a+b+x)x\in (ab)+I$.&lt;/p&gt;
+&lt;p&gt;由此可知, 理想的吸收性可确保商环存在.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;生成理想: 非空集合 $S\subset R$, 包含 $S$ 的所有理想的交集; &lt;br /&gt;
+特别 $S=\{a\}$ 时, 记 $\langle S\rangle=\langle a\rangle$ 为 $a$ 生成的主理想; &lt;br /&gt;
+特别 $R$ 为交换幺环时, 主理想 $\langle a\rangle=\{ra\ | \ r\in R\}$; &lt;br /&gt;
+$\mathbb{Z}$ 的所有理想均为主理想.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;任取非平凡理想 $I\lhd \mathbb{Z}$, $\exists$ 最小 $t\in\mathbb{Z}_+$, $\forall m\in I$, $m=qt+r$, $q,r\in I$, $0\leq r&amp;lt;t$, 即 $r=0$, $I=\langle t\rangle$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Euclid整环(ED): 满足Euclid性的整环, $\forall a,b\in R-\{0\}$, 有映射 $\varepsilon: R-\{0\}\to \mathbb{Z}_+$ s.t. $\varepsilon(a)\leq\varepsilon(ab)$, $\exists r,q\in R$ s.t. $a=bq+r$, $\varepsilon(r)&amp;lt;\varepsilon(b)$ 或 $r=0$; 其上有最大公因数. &lt;br /&gt;
+主理想整环(PID): 理想均为主理想的整环; 其上素元和不可约元等价; 素元为非零元非单位 $p$ s.t. $a,b\in R$, 若 $p|ab$, 有 $p|a$ 或 $p|b$; 不可约元为非零元非单位 $q$ s.t. $a,b\in R$, 若 $q=ab$, 有 $a$ 或 $b$ 为单位. &lt;br /&gt;
+唯一析因整环(UFD): 整环 $R$ 中非零元非单位的元素可以唯一表示为有限个不可约元的积.&lt;/p&gt;
+&lt;p&gt;定理: 所有域都是ED; 所有ED都是PID; 所有PID都是UFD.&lt;/p&gt;
+&lt;p&gt;特征: ${\rm char}(R)=\inf\{n\in\mathbb{Z}_+\ | \ na=a,\forall a\in R\}$ 或0; ${\rm char}(\mathbb{Z})=0$, ${\rm char}(\mathbb{Z}_m)=m$; &lt;br /&gt;
+整环特征必为0或素数, 非空有限域特征必为素数, ${\rm char}(F_p)=p$; &lt;br /&gt;
+$\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;$|e| = \infty$ 时, ${\rm char}(R)=0$.&lt;/p&gt;
+&lt;p&gt;$|e| = n$ 时, 若 $n$ 为合数, $\exists p|n$，不妨设 $pc=n$, $ne=(pe)(ce)=0$, 则 $pe=0$ 或 $ce=0$, 矛盾. $\forall a\in R$, $na=(ne)a=0$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;椭圆曲线群&#34;&gt;椭圆曲线群&lt;/h2&gt;
+&lt;h2 id=&#34;传统算法&#34;&gt;传统算法&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -689,25 +767,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
-&lt;p&gt;有限群: 有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); 记 $|G|={\rm Card}(G)$ 为阶; 定义 $a^{-n}=(a^{-1})^n$, $a^0=e$.&lt;/p&gt;
-&lt;p&gt;元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$; $|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.&lt;/p&gt;
-&lt;p&gt;子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&amp;lt;G$; 真子群即非平凡子群({e},G); $H&amp;lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&amp;lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.&lt;/p&gt;
-&lt;p&gt;循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&amp;lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; 特别 $S={a}$ 时, 循环子群 $\langle S\rangle=\langle a\rangle=\{a^n\ |\ n\in\mathbb{Z}\}$; 特别 $G=\langle a\rangle$ 时为循环群 $\iff\exists a\in G$ s.t. $|a|=|G|$; 循环群子群仍为循环群; 无限循环群同构于 $\mathbb{Z}$, $n$ 阶循环群同构于 $\mathbb{Z}_n$.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;不妨设 $H&amp;lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;陪集: $H&amp;lt;G$, $\forall a\in G$, $aH$ 为左陪集; $a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.&lt;/p&gt;
-&lt;p&gt;Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.&lt;/p&gt;
-&lt;p&gt;正规子群: $H&amp;lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&amp;lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.&lt;/p&gt;
-&lt;p&gt;商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.&lt;/p&gt;
-&lt;p&gt;同态: 保持代数运算不变的映射, 双射时为同构. &lt;/br&gt;
-群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.&lt;/p&gt;
-&lt;p&gt;置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; 特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.&lt;/p&gt;
-&lt;p&gt;轮换: $f\in S_n$, $i_1,&amp;hellip;,i_r\in X$, $f(i_1)=i_2,&amp;hellip;,f(i_{r-1})=i_r,f(i_r)=i_1$ 且保持其他元素不变时, $f=(i_1,i_2,&amp;hellip;,i_r)$ 称为 $r$ -轮换; 特别 $r=1$ 时为恒等变换, $r=2$ 时称为对换; 任意置换可唯一表示为不相交的轮换之积; 任意轮换可以表示为对换之积.&lt;/p&gt;
-&lt;p&gt;Cayley: 任意有限群同构于一置换群.&lt;/p&gt;
-&lt;h2 id=&#34;环&#34;&gt;环&lt;/h2&gt;
-&lt;h2 id=&#34;域&#34;&gt;域&lt;/h2&gt;
+&lt;/div&gt;&lt;h2 id=&#34;量子算法&#34;&gt;量子算法&lt;/h2&gt;
+&lt;h2 id=&#34;格论&#34;&gt;格论&lt;/h2&gt;
 </description>
         </item>
         
