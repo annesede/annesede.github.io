@@ -7,7 +7,69 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Sat, 14 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>非对称加密</title>
+        <link>https://example.com/p/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</link>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</guid>
+        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
+&lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
+&lt;p&gt;使用对称加密, $n$ 个实体的网络需要 $\frac{(n-1)n}{2}$ 个密钥及同等数量的保密信道, 密钥管理困难. &lt;br /&gt;
+对称加密也难以解决签名和认证问题: 接收方可以伪造原文; 发送方可以否认行为.&lt;/p&gt;
+&lt;p&gt;非对称加密基本条件: (1)安全 $k_e\ne k_d$ 且由 $k_e$ 不能得到 $k_d$; (2) 保密: $D(E(m))=m$; (3)E和D高效; (4) 保真: $E(D(m))=m$.&lt;/p&gt;
+&lt;p&gt;单向陷门函数: $y=f(x)$ 满足: (1)给定 $x$, 计算 $y$ 很容易; (2)给定$y$, 不掌握陷门, 计算 $x=f^{-1}(y)$ 很困难; (3)给定$y$, 掌握陷门, 计算 $xf^{-1}(y)$ 很容易.&lt;/p&gt;
+&lt;p&gt;数学难题&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;大合数分解难题: 大素数乘积容易 $p\times q=n$, 大合数分解困难 $n=p\times q$.&lt;/li&gt;
+&lt;li&gt;离散对数难题(DLP): 有限域 $GF(p)$ 上生成元幂乘容易 $a^b=c$, 求对数困难 $\log_a c=b$.&lt;/li&gt;
+&lt;li&gt;椭圆曲线离散对数难题(ECDLP): 有限域 $GF(p)$ 上解点群基点幂乘容易 $P^d=Q$, 求对数困难 $\log_P Q$.&lt;/li&gt;
+&lt;li&gt;误差还原难题(LWE): 有限域 $GF(p)$ 上矩阵乘法加误差容易 $v=As+e$, 解带噪音的线性方程组困难 $s=A^{-1}(v-e)$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;工作方式&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发送方 $A$: 先用发送方私钥 $k_{Ad}$ 加密 $s=D(m,k_{Ad})$, 再用接收方公钥 $k_{Be}$ 加密 $c=E(s,k_{Be})$.&lt;/li&gt;
+&lt;li&gt;接收方 $B$: 先用接收方私钥 $k_{Bd}$ 解密 $s=E(c,k_{Bd})$, 再用发送方公钥 $k_{Ae}$ 解密 $m=D(s,k_{Ae})$.&lt;/li&gt;
+&lt;li&gt;真实性: 只有发送方有私钥 $k_{Ad}$, 只有发送方可以加密产生中间密文 $s$.&lt;/li&gt;
+&lt;li&gt;机密性: 只有接收方有私钥 $k_{Ae}$, 只有接收方可以解密得到明文 $m$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;rsa&#34;&gt;RSA&lt;/h2&gt;
+&lt;p&gt;RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.&lt;/li&gt;
+&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;证明: $D_{d,n}(E_{e,n}(m))=m$, $E_{e,n}(D_{d,n}(c))=c$.&lt;/p&gt;
+&lt;p&gt;即证 $m_{ed}\equiv m^{(t\varphi(n))+1} \equiv m({\rm mod}\ n)$.&lt;/p&gt;
+&lt;p&gt;${\rm gcd}(M,n)=1$ 时, 有Euler定理 $m^{\varphi(m)}\equiv 1({\rm mod}\ n)$.&lt;/p&gt;
+&lt;p&gt;${\rm gcd}(M,n)\ne 1$ 时, 由于 $m\leq n$, 不妨设 $m = ap$, $a\in\mathbb{Z}$, 有 $m^{\varphi(q)}\equiv 1({\rm mod}\ q)$, 即 $m^t{\varphi(n)}=bq+1$, $b\in\mathbb{Z}$, 故 $m^t{\varphi(n)+1} = abn+M$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;参数选取
+$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. &lt;br /&gt;
+$p,q$ 为强素数, $p-1,p+1,q-1,q+1$ 中均无除 $2$ 外的小因子. &lt;br /&gt;
+$p,q$ 位数不能相差过大或过小. &lt;br /&gt;
+私钥 $d\ne e$. &lt;br /&gt;
+${\rm gcd}(p-1,q-1)$ 尽可能小, 最好为2; 以避免密文迭代攻击. &lt;br /&gt;
+$e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^16+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. &lt;br /&gt;
+$d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. &lt;br /&gt;
+多个用户不得共用同一个模 $n$; 以避免共模攻击.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;大素数产生: Miller素性检验.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;加密优化算法: 快速模幂/滑动窗口, Montgomery.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;解密优化算法: CRT, 快速模幂/滑动窗口, Montgomery.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
         <title>python快速入门</title>
         <link>https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
         <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>

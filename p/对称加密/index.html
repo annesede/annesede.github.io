@@ -347,7 +347,8 @@
     <section class="article-content">
     
     
-    <h1 id="基础">基础</h1>
+    <p><small>(C11 - GCC8.1.0)</small></p>
+<h1 id="基础">基础</h1>
 <p>基本属性: 信息机密性, 信息真实性, 数据完整性, 行为不可否认性.</p>
 <p>体制: $(M,C,K_1,K_2,E,D)$ 明文空间, 密文空间, 加密密钥空间, 解密密钥空间, 加密空间, 解密空间; 加密变换 $c=E_{k_1}(m)$, 解密变换 $m=D_{k_2}(c)$.</p>
 <p>类别: 对称加密, 非对称加密, Hash函数, 密码协议.</p>
@@ -382,13 +383,13 @@
 </span><span class="lnt">11
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">freqAnalyze</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">ciphertext</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">count</span><span class="p">){</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">freqAnalyze</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">count</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">num</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -415,15 +416,15 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineEncrypt</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">plaintext</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">ciphertext</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">plaintext</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineEn</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">plain</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">plain</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -445,15 +446,15 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineDecrypt</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">ciphertext</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">plaintext</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyAReverse</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">);</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineDe</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">plain</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyAReverse</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">cipher</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plaintext</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ciphertext</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -1287,7 +1288,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">mixRoll</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub1</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">24</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub2</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub3</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">)</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub3</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub4</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">];</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">sub1</span><span class="o">&amp;</span><span class="mh">0xff000000</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub2</span><span class="o">&amp;</span><span class="mh">0xff0000</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub3</span><span class="o">&amp;</span><span class="mh">0xff00</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub4</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
@@ -1343,7 +1344,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </span><span class="lnt">29
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 加密, 字节代换, 行位移, 列混合, 轮密钥加, 最后一轮跳过列混合
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 加密: 字节代换, 行位移, 列混合, 轮密钥加, 最后一轮跳过列混合
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">loadState</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">pPlain</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
@@ -1358,7 +1359,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">storeState</span><span class="p">(</span><span class="n">pCipher</span><span class="p">,</span><span class="n">state</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 解密, 密钥顺序相反, 逆行位移, 逆字节代换, 轮密钥加, 逆列混合, 最后一轮跳过逆列混合
+</span></span><span class="line"><span class="cl"><span class="c1">// 解密: 密钥顺序相反, 逆行位移, 逆字节代换, 轮密钥加, 逆列混合, 最后一轮跳过逆列混合
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">loadState</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">pCipher</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
@@ -1533,7 +1534,7 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>安全问题: 能够抵御多种已知针对分组密码的攻击, 主要威胁是侧信道攻击.</p>
+</div><p>安全问题: 主要威胁是侧信道攻击.</p>
 <h3 id="sm4">SM4</h3>
 <p>128bit密钥32轮非平衡Feistel网络. 1字$=$4字节$=$32bit.</p>
 <ul>
@@ -1619,7 +1620,8 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div>
+</div><p>安全问题: 主要威胁是侧信道攻击(故障注入分析).</p>
+
 </section>
 
 
@@ -1696,6 +1698,19 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">非对称加密</h2>
+        </div>
+    </a>
+</article>
+
             
                 
 <article class="">

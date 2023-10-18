@@ -7,12 +7,36 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Sat, 14 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>8086</title>
+        <link>https://example.com/tags/8086/</link>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/8086/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>C</title>
+        <link>https://example.com/tags/c/</link>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/c/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>python</title>
         <link>https://example.com/tags/python/</link>
-        <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/python/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>汇编</title>
+        <link>https://example.com/tags/%E6%B1%87%E7%BC%96/</link>
+        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E6%B1%87%E7%BC%96/</guid>
         <description></description>
         </item>
         <item>
@@ -21,14 +45,6 @@
         <pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/cpp/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>C</title>
-        <link>https://example.com/tags/c/</link>
-        <pubDate>Tue, 19 Sep 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/tags/c/</guid>
         <description></description>
         </item>
         <item>

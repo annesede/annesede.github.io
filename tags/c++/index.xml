@@ -13,7 +13,7 @@
         <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;p&gt;(C11 - GCC8.1.0)&lt;/p&gt;
+        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
 &lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;br /&gt;
 最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.&lt;/p&gt;
