@@ -337,7 +337,7 @@
     <section class="article-content">
     
     
-    <p><small> 标准默认C11, 编译器默认GCC8.1.0及MSVC1937. <br />
+    <p><small> (C11 - GCC13.1.0/MSVC1937) <br />
 内容不分先后顺序, 请按需查阅. </small></p>
 <h2 id="cmake">CMAKE</h2>
 <p>使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE.</p>
@@ -491,7 +491,7 @@
 </div><p>来自: <a class="link" href="https://www.bennyhuo.com/"  target="_blank" rel="noopener"
     >https://www.bennyhuo.com/</a></p>
 <h2 id="赋值语句">赋值语句</h2>
-<p>在赋值语句中, 左值(&quot;=&ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&quot;=&ldquo;右边)一定为数值.</p>
+<p>在赋值语句中, 左值(&quot;=&ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&quot;=&ldquo;右边)可以为数值或变量.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -740,7 +740,7 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>发现结构体内部变量占用空间加起来仅为16个字节, 但结构体占用24个字节, 这就涉及到结构体的内存对齐.</p>
-<p><img src="/img/post-misc-c-memoryAlignment.png"
+<p><img src="/img/post-lang-c-memoryAlignment.png"
 	
 	
 	
@@ -1042,15 +1042,19 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&rdquo;#pragma pack
 </div><p>数组是连续的内存, 由此想到可以通过数组指针来调用数组, 同时数组变量名本质上也是指针.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
@@ -1058,11 +1062,15 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&rdquo;#pragma pack
 </span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">array</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">array</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d %d %d %d %d&#34;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="o">*</span><span class="p">(</span><span class="n">array</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="mi">2</span><span class="p">[</span><span class="n">array</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d %d %d %d %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span><span class="n">array</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="o">*</span><span class="p">(</span><span class="n">p</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="o">*</span><span class="p">(</span><span class="n">array</span><span class="o">+</span><span class="mi">2</span><span class="p">),</span><span class="mi">2</span><span class="p">[</span><span class="n">array</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 考虑到可读性, 仅推荐array[2]和p[2]两种调用方式.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">arr</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%x,%x&#34;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">arr</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="o">*</span><span class="p">(</span><span class="n">arr</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// C中二维数组行优先. 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="c1">// 考虑到可读性, 仅推荐array[2]和p[2]两种调用方式.
-</span></span></span></code></pre></td></tr></table>
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>指针自然也可以作为函数参数. 调用函数赋值时, 如&quot;int a = func(b);&rdquo;, CPU将函数返回值复制到寄存器中, 再将寄存器中的数据复制到要改变的变量, 这一过程也就体现为变量的作用域. <br />
 C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以将数组包含在结构体中; 而若直接返回结构体, 结构体由于本身占用较大, 复制两次导致性能开销过大. <br />

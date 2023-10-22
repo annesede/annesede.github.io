@@ -10,7 +10,7 @@
 <meta property='og:description' content='未整理完'>
 <meta property='og:url' content='https://example.com/p/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-18T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="非对称加密">
 <meta name="twitter:description" content="未整理完">
     </head>
@@ -339,7 +339,7 @@
 <ul>
 <li>大合数分解难题: 大素数乘积容易 $p\times q=n$, 大合数分解困难 $n=p\times q$.</li>
 <li>离散对数难题(DLP): 有限域 $GF(p)$ 上生成元幂乘容易 $a^b=c$, 求对数困难 $\log_a c=b$.</li>
-<li>椭圆曲线离散对数难题(ECDLP): 有限域 $GF(p)$ 上解点群基点幂乘容易 $P^d=Q$, 求对数困难 $\log_P Q$.</li>
+<li>椭圆曲线离散对数难题(ECDLP): 椭圆曲线群 $E_p(a,b)$ 中基点倍乘容易 $dP=Q$, 求倍数困难 $d=\frac{Q}{P}$.</li>
 <li>误差还原难题(LWE): 有限域 $GF(p)$ 上矩阵乘法加误差容易 $v=As+e$, 解带噪音的线性方程组困难 $s=A^{-1}(v-e)$.</li>
 </ul>
 <p>工作方式</p>
@@ -374,15 +374,18 @@ $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. <br />
 多个用户不得共用同一个模 $n$; 以避免共模攻击.</p>
 </li>
 <li>
-<p>大素数产生: Miller素性检验.</p>
+<p>大素数产生: Miller-Rabin测试.</p>
 </li>
 <li>
-<p>加密优化算法: 快速模幂/滑动窗口, Montgomery.</p>
+<p>加密优化算法: 快速模幂, Montgomery.</p>
 </li>
 <li>
-<p>解密优化算法: CRT, 快速模幂/滑动窗口, Montgomery.</p>
+<p>解密优化算法: CRT, 快速模幂, Montgomery.</p>
 </li>
 </ul>
+<p>Montgomery: $a\%m=a-k\times\lfloor[\frac{a}{m}]\rfloor$ 除法运算复杂度较高, 将模乘转换为乘法运算. <br />
+记 $a&rsquo;\equiv aR({\rm mod}\ m)$, $b&rsquo;\equiv bR({\rm mod}\ m)$, $R=2^k&gt;m$, $m$ 为奇数, 即 ${\rm gcd}(R,m)=1$; 此时 $a&rsquo;R^{-1}=a&rsquo;&gt; &gt;k$, $abR\equiv (a&rsquo;b&rsquo;)R^{-1}({\rm mod}\ m)$, $ab\equiv (abR)^R{-1}({\rm mod}\ m)$. <br />
+$\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&lt;2m$; 不妨设 $xR-ym=1$, $0&lt;y&lt;R$, $0&lt;x&lt;m$, 有 $q\equiv ay({\rm mod}\ R)$, 其中 $y\equiv -m^{-1}({\rm mod}\ R)$.</p>
 
 </section>
 
@@ -410,7 +413,19 @@ $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. <br />
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-10-22
+        </span>
+    </section></footer>
 
 
     

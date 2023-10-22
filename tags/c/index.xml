@@ -23,7 +23,7 @@
 &lt;ul&gt;
 &lt;li&gt;大合数分解难题: 大素数乘积容易 $p\times q=n$, 大合数分解困难 $n=p\times q$.&lt;/li&gt;
 &lt;li&gt;离散对数难题(DLP): 有限域 $GF(p)$ 上生成元幂乘容易 $a^b=c$, 求对数困难 $\log_a c=b$.&lt;/li&gt;
-&lt;li&gt;椭圆曲线离散对数难题(ECDLP): 有限域 $GF(p)$ 上解点群基点幂乘容易 $P^d=Q$, 求对数困难 $\log_P Q$.&lt;/li&gt;
+&lt;li&gt;椭圆曲线离散对数难题(ECDLP): 椭圆曲线群 $E_p(a,b)$ 中基点倍乘容易 $dP=Q$, 求倍数困难 $d=\frac{Q}{P}$.&lt;/li&gt;
 &lt;li&gt;误差还原难题(LWE): 有限域 $GF(p)$ 上矩阵乘法加误差容易 $v=As+e$, 解带噪音的线性方程组困难 $s=A^{-1}(v-e)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;工作方式&lt;/p&gt;
@@ -58,15 +58,18 @@ $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. &lt;br /&gt;
 多个用户不得共用同一个模 $n$; 以避免共模攻击.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;大素数产生: Miller素性检验.&lt;/p&gt;
+&lt;p&gt;大素数产生: Miller-Rabin测试.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;加密优化算法: 快速模幂/滑动窗口, Montgomery.&lt;/p&gt;
+&lt;p&gt;加密优化算法: 快速模幂, Montgomery.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;解密优化算法: CRT, 快速模幂/滑动窗口, Montgomery.&lt;/p&gt;
+&lt;p&gt;解密优化算法: CRT, 快速模幂, Montgomery.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;Montgomery: $a\%m=a-k\times\lfloor[\frac{a}{m}]\rfloor$ 除法运算复杂度较高, 将模乘转换为乘法运算. &lt;br /&gt;
+记 $a&amp;rsquo;\equiv aR({\rm mod}\ m)$, $b&amp;rsquo;\equiv bR({\rm mod}\ m)$, $R=2^k&amp;gt;m$, $m$ 为奇数, 即 ${\rm gcd}(R,m)=1$; 此时 $a&amp;rsquo;R^{-1}=a&amp;rsquo;&amp;gt; &amp;gt;k$, $abR\equiv (a&amp;rsquo;b&amp;rsquo;)R^{-1}({\rm mod}\ m)$, $ab\equiv (abR)^R{-1}({\rm mod}\ m)$. &lt;br /&gt;
+$\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&amp;lt;2m$; 不妨设 $xR-ym=1$, $0&amp;lt;y&amp;lt;R$, $0&amp;lt;x&amp;lt;m$, 有 $q\equiv ay({\rm mod}\ R)$, 其中 $y\equiv -m^{-1}({\rm mod}\ R)$.&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -810,7 +813,7 @@ k+1, \ n=2k+1 \\
         <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/c%E6%9D%82%E8%B0%88/</guid>
-        <description>&lt;p&gt;&lt;small&gt; 标准默认C11, 编译器默认GCC8.1.0及MSVC1937. &lt;br /&gt;
+        <description>&lt;p&gt;&lt;small&gt; (C11 - GCC13.1.0/MSVC1937) &lt;br /&gt;
 内容不分先后顺序, 请按需查阅. &lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;cmake&#34;&gt;CMAKE&lt;/h2&gt;
 &lt;p&gt;使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE.&lt;/p&gt;
@@ -964,7 +967,7 @@ k+1, \ n=2k+1 \\
 &lt;/div&gt;&lt;p&gt;来自: &lt;a class=&#34;link&#34; href=&#34;https://www.bennyhuo.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bennyhuo.com/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;赋值语句&#34;&gt;赋值语句&lt;/h2&gt;
-&lt;p&gt;在赋值语句中, 左值(&amp;quot;=&amp;ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&amp;quot;=&amp;ldquo;右边)一定为数值.&lt;/p&gt;
+&lt;p&gt;在赋值语句中, 左值(&amp;quot;=&amp;ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&amp;quot;=&amp;ldquo;右边)可以为数值或变量.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -1213,7 +1216,7 @@ k+1, \ n=2k+1 \\
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;发现结构体内部变量占用空间加起来仅为16个字节, 但结构体占用24个字节, 这就涉及到结构体的内存对齐.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-misc-c-memoryAlignment.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-lang-c-memoryAlignment.png&#34;
 	
 	
 	
@@ -1515,15 +1518,19 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&amp;rdquo;#pragma 
 &lt;/div&gt;&lt;p&gt;数组是连续的内存, 由此想到可以通过数组指针来调用数组, 同时数组变量名本质上也是指针.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;9
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
@@ -1531,11 +1538,15 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&amp;rdquo;#pragma 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d %d %d %d %d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%d %d %d %d %d&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;p&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;array&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// 考虑到可读性, 仅推荐array[2]和p[2]两种调用方式.
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%x,%x&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;][&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;],&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;c1&#34;&gt;// C中二维数组行优先. 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 考虑到可读性, 仅推荐array[2]和p[2]两种调用方式.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;指针自然也可以作为函数参数. 调用函数赋值时, 如&amp;quot;int a = func(b);&amp;rdquo;, CPU将函数返回值复制到寄存器中, 再将寄存器中的数据复制到要改变的变量, 这一过程也就体现为变量的作用域. &lt;br /&gt;
 C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以将数组包含在结构体中; 而若直接返回结构体, 结构体由于本身占用较大, 复制两次导致性能开销过大. &lt;br /&gt;
@@ -1680,7 +1691,7 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
         <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC13.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
 &lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;br /&gt;
 最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.&lt;/p&gt;
@@ -1706,8 +1717,8 @@ $$\begin{align}
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Euclid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Euclid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;gcd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;	&lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;==&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;?&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;gcd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
@@ -2035,8 +2046,8 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;/div&gt;&lt;p&gt;RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.&lt;/li&gt;
-&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$. &lt;br /&gt;
-快速模幂 $r\equiv t^e({\rm mod}\ n)$&lt;/li&gt;
+&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$.&lt;/li&gt;
+&lt;li&gt;快速模幂 $r\equiv t^e({\rm mod}\ n)$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
@@ -2261,7 +2272,7 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.&lt;/p
 &lt;p&gt;ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$.&lt;/li&gt;
-&lt;li&gt;私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u_a}({\rm mod}\ p)$.&lt;/li&gt;
+&lt;li&gt;私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;群&#34;&gt;群&lt;/h2&gt;
 &lt;p&gt;有限群: 非空有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); &lt;br /&gt;
@@ -2327,8 +2338,13 @@ $\mathbb{Z}$ 的所有理想均为主理想.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;任取非平凡理想 $I\lhd \mathbb{Z}$, $\exists$ 最小 $t\in\mathbb{Z}_+$, $\forall m\in I$, $m=qt+r$, $q,r\in I$, $0\leq r&amp;lt;t$, 即 $r=0$, $I=\langle t\rangle$.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;素理想: 交换幺环 $R$, 非平凡 $P\lhd R$, 若 $ab\in P$, 有 $a\in P$ 或 $b\in P$; 特别整环中, 素元 $p$, $\langle p\rangle$ 为素理想. &lt;br /&gt;
+交换幺环 $R$, $P\lhd R$, $R/P$ 为整环 $\iff P$ 为素理想. &lt;br /&gt;
+极大理想: 交换幺环 $R$, 非平凡 $M\lhd R$, 无真包含 $M$ 的非平凡理想. &lt;br /&gt;
+交换幺环 $R$, $M\lhd R$, $R/M$ 为域 $\iff M$ 为极大理想. &lt;br /&gt;
+极大理想一定为素理想, 反之不然.&lt;/p&gt;
 &lt;p&gt;Euclid整环(ED): 满足Euclid性的整环, $\forall a,b\in R-\{0\}$, 有映射 $\varepsilon: R-\{0\}\to \mathbb{Z}_+$ s.t. $\varepsilon(a)\leq\varepsilon(ab)$, $\exists r,q\in R$ s.t. $a=bq+r$, $\varepsilon(r)&amp;lt;\varepsilon(b)$ 或 $r=0$; 其上有最大公因数. &lt;br /&gt;
-主理想整环(PID): 理想均为主理想的整环; 其上素元和不可约元等价; 素元为非零元非单位 $p$ s.t. $a,b\in R$, 若 $p|ab$, 有 $p|a$ 或 $p|b$; 不可约元为非零元非单位 $q$ s.t. $a,b\in R$, 若 $q=ab$, 有 $a$ 或 $b$ 为单位. &lt;br /&gt;
+主理想整环(PID): 理想均为主理想的整环; 其上素元和不可约元等价, 素理想和极大理想等价; 素元为非零元非单位 $p$ s.t. $a,b\in R$, 若 $p|ab$, 有 $p|a$ 或 $p|b$; 不可约元为非零元非单位 $q$ s.t. $a,b\in R$, 若 $q=ab$, 有 $a$ 或 $b$ 为单位. &lt;br /&gt;
 唯一析因整环(UFD): 整环 $R$ 中非零元非单位的元素可以唯一表示为有限个不可约元的积.&lt;/p&gt;
 &lt;p&gt;定理: 所有域都是ED; 所有ED都是PID; 所有PID都是UFD.&lt;/p&gt;
 &lt;p&gt;特征: ${\rm char}(R)=\inf\{n\in\mathbb{Z}_+\ | \ na=a,\forall a\in R\}$ 或0; ${\rm char}(\mathbb{Z})=0$, ${\rm char}(\mathbb{Z}_m)=m$; &lt;br /&gt;
@@ -2338,8 +2354,53 @@ $\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
 &lt;p&gt;$|e| = \infty$ 时, ${\rm char}(R)=0$.&lt;/p&gt;
 &lt;p&gt;$|e| = n$ 时, 若 $n$ 为合数, $\exists p|n$，不妨设 $pc=n$, $ne=(pe)(ce)=0$, 则 $pe=0$ 或 $ce=0$, 矛盾. $\forall a\in R$, $na=(ne)a=0$.&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;单变量多项式环: 整环 $R$ 上整环 $R[x]=\{a_nx^n+&amp;hellip;+a_1x+a_0\ | \ a_i\in R\}$; &lt;br /&gt;
+记 $f(x)=a_nx^n+&amp;hellip;+a_1x+a_0$, $a_n\ne 0$ 时, 记 ${\rm deg}f=n$; 特别 ${\rm deg}0=-\infty$. &lt;br /&gt;
+$f(x),g(x),h(x)\in R[x]$, $f(x)g(x)=h(x)$, 则 ${\rm deg}f+{\rm deg}g={\rm deg}h$. &lt;br /&gt;
+域 $K$, $f(x)\in K[x]$, ${\rm deg}f&amp;gt;0$, $p(x)$ 为 $f(x)$ 次数最小的因式, 则 $p(x)$ 为不可约多项式, 且 ${\rm deg}p\leq \frac{1}{2}{\rm deg}f$.&lt;/p&gt;
+&lt;p&gt;带余除法: $f(x),g(x)\in R[x]$, 则 $\exists q(x),r(x)\in R[x]$ s.t. $f(x)=q(x)g(x)+r(x)$, ${\rm deg}r&amp;lt;{\rm deg}g$. &lt;br /&gt;
+$f(x)\in R[x]$, $a\in R$, 则 $\exists q(x)$ s.t. $f(x)=(x-a)q(x)+f(a)$. &lt;br /&gt;
+$f(x)\in R[x]$, $a\in R$, 则 $x-a|f(x)\iff f(a)=0$. &lt;br /&gt;
+同余: 首一多项式 $m(x)\in R[x]$, $f(x),g(x)\in R[x]$, $m(x)|f(x)-g(x)$, 记 $f(x)\equiv g(x)({\rm mod}\ m(x))$.&lt;/p&gt;
+&lt;p&gt;Euclid: 域 $K$ 上 $K[x]$ 为ED; 即有Euclid性和最大公因式.  &lt;br /&gt;
+$f(x),g(x)\in K[x]$, $g(x)|f(x)\iff r(x)=0$. &lt;br /&gt;
+$f(x)\in K[x]$, $\forall$ 不可约多项式 $p(x)$, ${\rm deg}p\leq {\rm deg}f$, s.t. $p(x)\nmid f(x)$, 则 $f(x)$ 为不可约多项式.&lt;/p&gt;
+&lt;p&gt;定理: 域 $F$ 上 $F[x]$, $f(x)\in F(x)$, 则 $F[x]/f(x)$ 为域 $\iff f(x)$ 为不可约多项式.&lt;/p&gt;
+&lt;p&gt;有限域结构: $\forall$ 素数 $p$, $n\in\mathbb{Z}_+$, 存在同构意义下唯一的有限域 $F_{p^n}$ s.t. $|F_{p^n}|=p^n$, ${\rm char}(F_{p^m})=p$.&lt;/p&gt;
+&lt;p&gt;NTRU: 环 $L=\mathbb{Z}[x]/(x^n-1)$, $n$ 为大素数; 选取大数 $p,q$, 有 ${\rm gcd}(p,q)=1$ 且 $q\ll p$; 选取 $f(x),g(x)\in L$, 有 ${\rm deg}f={\rm deg}g=n-1$. &lt;br /&gt;
+$f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $q$ 逆; $h(x)\equiv f^{-1}_q(x)({\rm mod}\ q)$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公钥 $(n,p,q,h(x))$, 明文多项式 $m(x)=\sum a_ix_i$ 有 $|a_i|\leq \frac{p-1}{2}$ 及 ${\rm deg}m\leq n$, 随机选取噪音 $r(x)\in L$, 加密 $c(x)\equiv pr(x)h(x)+m(x)({\rm mod}\ q)$.&lt;/li&gt;
+&lt;li&gt;私钥 $(f(x),f^{-1}_p(x))$, 解密 $d(x)\equiv f(x)c(c)({\rm mod}q)$, $b(x)\equiv d(x)({\rm mod}\ p)$, $m(x)\equiv f^{-1}_p(x)({\rm mod}\ p)$.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;椭圆曲线群&#34;&gt;椭圆曲线群&lt;/h2&gt;
+&lt;p&gt;定义: 域 $F$, $a,b,c,d,e\in F$, 满足Weierstrass方程 $E=y^2+axy+by=x^3+cx^2+dx+e$ 所有点 $(x,y)$ 和无穷远点 $O$ 的集合.&lt;/p&gt;
+&lt;p&gt;Hasse定理: 有限域 $GF(p)$ 上椭圆曲线, $n$ 为 $E$ 上点 $(x,y)$, $x,y\in\mathbb{Z}_p$ 的个数, 则 $|n-(p+1)|\leq 2\sqrt(p)$.&lt;/p&gt;
+&lt;p&gt;有限域上椭圆曲线: 有限域 $GF(p)$ 上椭圆曲线 $y^2\equiv x^2+ax+b({\rm mod}\ p)$, $a,b,x,y\in GF(P)$, 且满足 $4a^2+27b^2\not\equiv 0({\rm mod}\ p)$ (此时无重根), 记为 $E_p(a,b)$.&lt;/p&gt;
+&lt;p&gt;构造: $x$ 遍历 $\in\mathbb{Z}_p$, $t_x\equiv x^3+ax+b({\rm mod}\ p)$, $a,b\in GF(p)$; Euler保留所有模 $p$ 二次剩余的 $t_x$, 并求出两根; $t=0$ 时只有一根 $y=0$.&lt;/p&gt;
+&lt;p&gt;定理: $E_p(a,b)$ 关于点的加法构成Abel群. &lt;br /&gt;
+无穷远点 $O$ 为单位元, 逆元为关于 $x$ 轴对称点, 横坐标不同的点(相同的只有自身和逆元)相加为连线延长线与曲线的交点, 相同点相加为该点处切线与曲线交点关于 $x$ 轴的对称点.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不妨设 $P,Q\in E_p(a,b)$, $P,Q\ne O$, $P=(x_1,y_1)$, $Q=(x_2,y_2)$, $R=P+Q=(x_3,y_3)\ne O$.&lt;/p&gt;
+&lt;p&gt;则 $x_3=\lambda^2-x_1-x_2$, $y_3=\lambda(x_1-x_3)-y_1$, 其中 $\lambda=\frac{y_2-y_1}{x_2-x_1}\ (P\ne Q);\ \frac{3x^2_2+a}{2y_1}\ (P=Q)$.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-1$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公钥 $(p,G)$, 私钥 $x,y$.&lt;/li&gt;
+&lt;li&gt;握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$.&lt;/li&gt;
+&lt;li&gt;密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;公钥 $(P,G,E,n)$, 加密 $C_1=rG$, $C_2=M+rP$, $C=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-1$.&lt;/li&gt;
+&lt;li&gt;私钥 $d$, 解密 $M=D_{E_p,d}(C)=C_2-dC_1$.&lt;/li&gt;
+&lt;li&gt;快速倍乘 $P=mG$, $m\in\mathbb{Z}_p$, $G\in\ E_p(a,b)$.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;传统算法&#34;&gt;传统算法&lt;/h2&gt;
+&lt;p&gt;素数定理: $\pi(x)$ 为 $\leq x$ 的素数个数, 有 $\lim_{x\to\infty}\frac{\pi(x)}{x/\ln x}=1$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fermat测试: 若 $n$ 为素数, $a\in\mathbb{Z}$, $1\leq a\leq n-1$, 则 $a^{n-1}\equiv 1({\rm mod}\ n)$. 随机测试 $t$ 次, 确为素数可能性大于 $1-\frac{1}{2^t}$.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
@@ -2360,7 +2421,10 @@ $\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Solovay-Stranssen测试: Jacobi符号 $(\frac{a}{m})=\prod(\frac{a}{p_i})^{\alpha_i}$, 其中 $n=\prod(p_i^{\alpha_i})$. 若 $n$ 为素数, $x=(\frac{a}{n})$, $y\equiv a^{\frac{n-1}{2}}({\rm mod}\ n)$, 则 $x\equiv y({\rm mod}\ n)$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
@@ -2384,7 +2448,10 @@ $\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Millar-Rabin测试: Fermat测试时, 不妨设 $a^{n-1}=(a^t)^{2^k}$, $a^t\equiv 1({\rm mod}\ n)$ 则直接满足素性条件, 否则检验 $a^t$ 的 $i=1,&amp;hellip;,k-1$ 次平方, $(a^{t})^{2^i}\equiv -1({\rm mod}\ n)$ 时直接满足素性条件.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
@@ -2434,8 +2501,94 @@ $\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;量子算法&#34;&gt;量子算法&lt;/h2&gt;
-&lt;h2 id=&#34;格论&#34;&gt;格论&lt;/h2&gt;
+&lt;/div&gt;&lt;p&gt;大合数分解: 试除法时间复杂度 $O(\sqrt n)$.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pollard-$\rho$ 法: 有限集上随机函数存在碰撞; $n$ 不为素数或某个素数的幂, 寻找小因子.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rho&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;do&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1LL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1LL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1LL&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;%&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;gcd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;Pollard-$p-1$ 法: 素数 $p|n$, $p-1$ 分解中素因子最大次幂 $q|p-1$, $\forall B\geq q$ s.t. $p-1|B$, 即 $2^{B!}\equiv 2^{p-1}\equiv 1({\rm mod}\ p)$, 故有 $p|{\rm gcd}(n,2^{B!}-1)$.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;pollard&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;B&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;24&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;B&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;fastPowerMod&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;gcd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;随机平方法: $x,y\in\mathbb{Z}$ s.t. $x^2\equiv y^2({\rm mod}\ n)$, $x\not\equiv\pm y({\rm mod}\ n)$, 若 $n|x^2-y^2$ 且 $n\nmid x-y$ ($n\nmid x+y$), 则素数 $p={\rm gcd}(x+y,n)$ ($p={\rm gcd}(x-y,n)$).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;离散对数求解: 有限域 $F_p$ 上遍历需要 $O(p)$ 次乘法.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;小步大步法(Shank): 群阶为 $n$, $m=\lceil\sqrt n\rceil$, 设 $\log_a b=x=mj+i$, $0\leq i,j\leq m-1$, 即 $b(a^{-i})=(a^m)^j$; 搜索树存储 $1,a^m,&amp;hellip;,(a^m)^{m-1}$, 遍历 $b(a^{-i})$ 并匹配.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pollard-$\rho$ 法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;指数演算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pohlig-Hellman算法&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;量子算法&#34;&gt;量子算法&lt;/h2&gt;
 </description>
         </item>
         <item>

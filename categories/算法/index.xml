@@ -13,7 +13,7 @@
         <pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E6%8E%92%E5%BA%8F/</guid>
-        <description>&lt;p&gt;&lt;small&gt;(CXX14 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;small&gt;(CXX17 - G++13.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;稳定是指关键字相同的记录在排序后保持原有相对次序不变, 只有在原有相对次序有意义时需要考虑.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;

@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Intel 8086 - dosbox 0.74 - masm32
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 # dosbox配置 (linux) sudo apt-get install dosbox # 下载MASM32, 仅保留如下文件: # debug.exe LINK.EXE MASM.EXE mkdir ASM mv debug.exe LINK.EXE MASM.EXE /home/xsndz/ASM ls -al vim .dosbox/dosbox-0.74.conf # 在文件末尾添加 mount c /home/xsndz/ASM # 将ASM挂载为dosbox的C盘 c: # 保存并关闭 :wq # 打开dosbox dosbox # 汇编并运行name.'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='持续更新中'>
 <title>汇编快速入门</title>
 
 <link rel='canonical' href='https://example.com/p/%E6%B1%87%E7%BC%96%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
 
 <link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='汇编快速入门'>
-<meta property='og:description' content='Intel 8086 - dosbox 0.74 - masm32
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 # dosbox配置 (linux) sudo apt-get install dosbox # 下载MASM32, 仅保留如下文件: # debug.exe LINK.EXE MASM.EXE mkdir ASM mv debug.exe LINK.EXE MASM.EXE /home/xsndz/ASM ls -al vim .dosbox/dosbox-0.74.conf # 在文件末尾添加 mount c /home/xsndz/ASM # 将ASM挂载为dosbox的C盘 c: # 保存并关闭 :wq # 打开dosbox dosbox # 汇编并运行name.'>
+<meta property='og:description' content='持续更新中'>
 <meta property='og:url' content='https://example.com/p/%E6%B1%87%E7%BC%96%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='汇编' /><meta property='article:tag' content='8086' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-18T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='汇编' /><meta property='article:tag' content='8086' /><meta property='article:published_time' content='2023-10-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-22T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="汇编快速入门">
-<meta name="twitter:description" content="Intel 8086 - dosbox 0.74 - masm32
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 # dosbox配置 (linux) sudo apt-get install dosbox # 下载MASM32, 仅保留如下文件: # debug.exe LINK.EXE MASM.EXE mkdir ASM mv debug.exe LINK.EXE MASM.EXE /home/xsndz/ASM ls -al vim .dosbox/dosbox-0.74.conf # 在文件末尾添加 mount c /home/xsndz/ASM # 将ASM挂载为dosbox的C盘 c: # 保存并关闭 :wq # 打开dosbox dosbox # 汇编并运行name.">
+<meta name="twitter:description" content="持续更新中">
     </head>
     <body class="
     article-page
@@ -249,6 +246,10 @@
   <ol>
     <li><a href="#基础概念">基础概念</a></li>
     <li><a href="#寄存器">寄存器</a></li>
+    <li><a href="#循环指令">循环指令</a></li>
+    <li><a href="#转移指令">转移指令</a></li>
+    <li><a href="#内中断">内中断</a></li>
+    <li><a href="#外中断">外中断</a></li>
   </ol>
 </nav>
         </div>
@@ -279,6 +280,10 @@
             <a href="/p/%E6%B1%87%E7%BC%96%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">汇编快速入门</a>
         </h2>
     
+        
+        <h3 class="article-subtitle">
+            持续更新中
+        </h3>
         
     </div>
 
@@ -313,7 +318,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 2 分钟
+                    阅读时长: 3 分钟
                 </time>
             </div>
         
@@ -405,8 +410,18 @@ CPU: 运算器, 控制器, 寄存器. <br />
 20bit地址总线: 地址加法器, 物理地址$=$段地址$&lt; &lt; 4 +$偏移地址. <br />
 地址分段是cpu行为, 实际上物理地址总是连续的. <br />
 00000-9FFFF为主存, A0000-BFFFF为显存, C0000-FFFFF为各类ROM. <br /></p>
+<p><img src="/img/post-lang-asm-Intel8086.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Intel8086"
+	
+	
+></p>
 <h2 id="寄存器">寄存器</h2>
-<p>通用寄存器(8bit): AX(AH AL), BX(BH BL), CX(CH CL), DX(DH DL).</p>
+<p>通用寄存器(16bit): AX(AH AL), BX(BH BL), CX(CH CL), DX(DH DL).</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -416,14 +431,15 @@ CPU: 运算器, 控制器, 寄存器. <br />
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="mi">00</span><span class="no">FA</span> <span class="c1">; ax = 00FAH
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">al</span><span class="p">,</span><span class="mi">26</span> <span class="c1">; ax = 0020H ; al被视为4bit寄存器, 进位被丢弃
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">8226</span> <span class="c1">; bx = 8226H
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">bx</span><span class="p">,</span><span class="no">bx</span>  <span class="c1">; bx = 044CH ; 进位被丢弃
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="mi">00</span><span class="no">FA</span> <span class="c1">; ax = 00FA
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">al</span><span class="p">,</span><span class="mi">26</span> <span class="c1">; ax = 0020 ; al被视为4bit寄存器, 进位被丢弃
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">8226</span> <span class="c1">; bx = 8226
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">bx</span><span class="p">,</span><span class="no">bx</span>  <span class="c1">; bx = 044C ; 进位被丢弃
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">al</span><span class="p">,</span><span class="mi">100</span> <span class="c1">; 错误, 指令操作对象位数应一致
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p>段寄存器(8bit): CS(段地址), IP(偏移地址). <br />
+</div><p>(代码)段寄存器(16bit): CS. <br />
+(指令)指针寄存器(16bit): IP. <br />
 从CS:IP指向的内存单元读取指令, 指令进入指令缓冲区. <br />
 IP自增指向下一条指令. <br />
 指令缓冲区中指令执行. <br /></p>
@@ -434,12 +450,121 @@ IP自增指向下一条指令. <br />
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="no">B16</span> <span class="c1">; cs = 0003H, ip = 0B16H ; CPU从00B46H处读取指令
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">0</span><span class="no">B16H</span>
-</span></span><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="no">bx</span> <span class="c1">; ip = 0B16H
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="no">B16</span> <span class="c1">; cs = 0003, ip = 0B16 ; CPU从00B46处读取指令
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">0</span><span class="no">B16</span>
+</span></span><span class="line"><span class="cl"><span class="nf">jmp</span> <span class="no">bx</span> <span class="c1">; ip = 0B16
 </span></span></span></code></pre></td></tr></table>
 </div>
+</div><p>字的存储: 小端序, 低位在低地址($n$), 高位在高地址($n+1$). <br />
+(数据)段寄存器(16bit): DS. <br />
+数据偏移地址: [address]</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">1000</span> <span class="c1">; bx = 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">ds</span><span class="p">,</span><span class="no">bx</span> <span class="c1">; ds = 1000
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">al</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">; 1000:0处数据读到al中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">cx</span><span class="p">,</span><span class="mi">23</span><span class="no">E4</span> <span class="c1">; cx = 23E4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="no">cx</span> <span class="c1">; bx中数据写入1000:1处
+</span></span></span><span class="line"><span class="cl"><span class="c1">; 1000:1 E4
+</span></span></span><span class="line"><span class="cl"><span class="c1">; 1000:2 23
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">dx</span><span class="p">,[</span><span class="mi">1</span><span class="p">]</span> <span class="c1">; dx = 23E4
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 段寄存器不能直接传入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">ds</span><span class="p">,</span><span class="mi">1000</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">ds</span><span class="p">,</span><span class="no">ax</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">cs</span><span class="p">,</span><span class="mi">2</span><span class="no">C4E</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">sub</span> <span class="no">cs</span><span class="p">,</span><span class="no">bx</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 内存不能直接传入数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">23</span><span class="no">E4</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="no">E4</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">234</span><span class="no">F</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">sub</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">2</span><span class="no">C</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 指针寄存器不可直接读写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="no">ip</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="no">ip</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">add</span> <span class="no">ip</span><span class="p">,</span><span class="no">ax</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">sub</span> <span class="no">ip</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">; 错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 段寄存器可直接读写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="no">ds</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span> <span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="no">cs</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">ds</span><span class="p">,[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">cs</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>栈: 后进先出(LIFO). <br />
+(栈)段寄存器(16bit): SS. <br />
+(栈)指针寄存器(16bit): SP, 指向栈顶; 栈空时指向栈最高地址的下一个单元. <br />
+最大容量为64KB, sp范围0000~FFFF.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-asm" data-lang="asm"><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="mi">1000</span>
+</span></span><span class="line"><span class="cl"><span class="nf">mov</span> <span class="no">ss</span><span class="p">,</span><span class="no">ax</span> <span class="c1">; 栈范围: 1000:0~1000:F
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">sp</span><span class="p">,</span><span class="mi">0010</span> <span class="c1">; 栈置空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">ax</span><span class="p">,</span><span class="mi">0123</span>
+</span></span><span class="line"><span class="cl"><span class="nf">push</span> <span class="no">ax</span> <span class="c1">; sp = sp - 2, ax内容写入SS:SP处
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">mov</span> <span class="no">bx</span><span class="p">,</span><span class="mi">3210</span>
+</span></span><span class="line"><span class="cl"><span class="nf">push</span> <span class="no">bx</span>
+</span></span><span class="line"><span class="cl"><span class="nf">pop</span> <span class="no">ax</span> <span class="c1">; SS:SP处内容送入ax, sp = sp + 2
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop</span> <span class="no">bx</span>
+</span></span><span class="line"><span class="cl"><span class="c1">; 8086并不限制栈越界(超顶或超底)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="循环指令">循环指令</h2>
+<h2 id="转移指令">转移指令</h2>
+<h2 id="内中断">内中断</h2>
+<h2 id="外中断">外中断</h2>
+
 </section>
 
 
@@ -466,7 +591,19 @@ IP自增指向下一条指令. <br />
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-10-22
+        </span>
+    </section></footer>
 
 
     
