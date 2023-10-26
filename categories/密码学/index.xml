@@ -13,7 +13,7 @@
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86/</guid>
-        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC13.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;基础&#34;&gt;基础&lt;/h2&gt;
 &lt;p&gt;使用对称加密, $n$ 个实体的网络需要 $\frac{(n-1)n}{2}$ 个密钥及同等数量的保密信道, 密钥管理困难. &lt;br /&gt;
 对称加密也难以解决签名和认证问题: 接收方可以伪造原文; 发送方可以否认行为.&lt;/p&gt;
@@ -37,7 +37,7 @@
 &lt;p&gt;RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.&lt;/li&gt;
-&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)&lt;/li&gt;
+&lt;li&gt;私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)$&lt;/li&gt;
 &lt;/ul&gt;
 &lt;blockquote&gt;
 &lt;p&gt;证明: $D_{d,n}(E_{e,n}(m))=m$, $E_{e,n}(D_{d,n}(c))=c$.&lt;/p&gt;
@@ -46,17 +46,17 @@
 &lt;p&gt;${\rm gcd}(M,n)\ne 1$ 时, 由于 $m\leq n$, 不妨设 $m = ap$, $a\in\mathbb{Z}$, 有 $m^{\varphi(q)}\equiv 1({\rm mod}\ q)$, 即 $m^t{\varphi(n)}=bq+1$, $b\in\mathbb{Z}$, 故 $m^t{\varphi(n)+1} = abn+M$.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;参数选取
-$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. &lt;br /&gt;
+&lt;li&gt;参数选取&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. &lt;br /&gt;
 $p,q$ 为强素数, $p-1,p+1,q-1,q+1$ 中均无除 $2$ 外的小因子. &lt;br /&gt;
 $p,q$ 位数不能相差过大或过小. &lt;br /&gt;
 私钥 $d\ne e$. &lt;br /&gt;
 ${\rm gcd}(p-1,q-1)$ 尽可能小, 最好为2; 以避免密文迭代攻击. &lt;br /&gt;
-$e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^16+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. &lt;br /&gt;
+$e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^{16}+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. &lt;br /&gt;
 $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. &lt;br /&gt;
 多个用户不得共用同一个模 $n$; 以避免共模攻击.&lt;/p&gt;
-&lt;/li&gt;
+&lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;大素数产生: Miller-Rabin测试.&lt;/p&gt;
 &lt;/li&gt;
@@ -78,7 +78,7 @@ $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&amp;lt;2m$; 不妨设 $xR-ym=1$
         <pubDate>Tue, 05 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC13.1.0)&lt;/small&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;整除&#34;&gt;整除&lt;/h2&gt;
 &lt;p&gt;性质: $c|a$, $c|b \Longrightarrow$ $c|ax+by$, $\forall x,y\in\mathbb{Z}$. &lt;br /&gt;
 最大公因数: ${\rm gcd}(a,b)=\inf_{\geq 0}\{sa+tb|s,t\in\mathbb{Z}\}$.&lt;/p&gt;
@@ -744,15 +744,16 @@ $\forall a,b\in F_p$, $(a+b)^p=a^p+b^p$.&lt;/p&gt;
 &lt;p&gt;单变量多项式环: 整环 $R$ 上整环 $R[x]=\{a_nx^n+&amp;hellip;+a_1x+a_0\ | \ a_i\in R\}$; &lt;br /&gt;
 记 $f(x)=a_nx^n+&amp;hellip;+a_1x+a_0$, $a_n\ne 0$ 时, 记 ${\rm deg}f=n$; 特别 ${\rm deg}0=-\infty$. &lt;br /&gt;
 $f(x),g(x),h(x)\in R[x]$, $f(x)g(x)=h(x)$, 则 ${\rm deg}f+{\rm deg}g={\rm deg}h$. &lt;br /&gt;
-域 $K$, $f(x)\in K[x]$, ${\rm deg}f&amp;gt;0$, $p(x)$ 为 $f(x)$ 次数最小的因式, 则 $p(x)$ 为不可约多项式, 且 ${\rm deg}p\leq \frac{1}{2}{\rm deg}f$.&lt;/p&gt;
+域 $K$, $f(x)\in K[x]$, ${\rm deg}f&amp;gt;0$, $p(x)$ 为 $f(x)$ 次数最小的因式, 则 $p(x)$ 为 $K[x]$ 上不可约多项式, 且 ${\rm deg}p\leq \frac{1}{2}{\rm deg}f$.&lt;/p&gt;
 &lt;p&gt;带余除法: $f(x),g(x)\in R[x]$, 则 $\exists q(x),r(x)\in R[x]$ s.t. $f(x)=q(x)g(x)+r(x)$, ${\rm deg}r&amp;lt;{\rm deg}g$. &lt;br /&gt;
 $f(x)\in R[x]$, $a\in R$, 则 $\exists q(x)$ s.t. $f(x)=(x-a)q(x)+f(a)$. &lt;br /&gt;
 $f(x)\in R[x]$, $a\in R$, 则 $x-a|f(x)\iff f(a)=0$. &lt;br /&gt;
 同余: 首一多项式 $m(x)\in R[x]$, $f(x),g(x)\in R[x]$, $m(x)|f(x)-g(x)$, 记 $f(x)\equiv g(x)({\rm mod}\ m(x))$.&lt;/p&gt;
 &lt;p&gt;Euclid: 域 $K$ 上 $K[x]$ 为ED; 即有Euclid性和最大公因式.  &lt;br /&gt;
 $f(x),g(x)\in K[x]$, $g(x)|f(x)\iff r(x)=0$. &lt;br /&gt;
-$f(x)\in K[x]$, $\forall$ 不可约多项式 $p(x)$, ${\rm deg}p\leq {\rm deg}f$, s.t. $p(x)\nmid f(x)$, 则 $f(x)$ 为不可约多项式.&lt;/p&gt;
-&lt;p&gt;定理: 域 $F$ 上 $F[x]$, $f(x)\in F(x)$, 则 $F[x]/f(x)$ 为域 $\iff f(x)$ 为不可约多项式.&lt;/p&gt;
+$f(x)\in K[x]$, $\forall K[x]$ 上不可约多项式 $p(x)$, ${\rm deg}p\leq {\rm deg}f$, s.t. $p(x)\nmid f(x)$, 则 $f(x)$ 为 $K[x]$ 上不可约多项式.&lt;/p&gt;
+&lt;p&gt;定理: 域 $F$ 上 $F[x]$, $f(x)\in F(x)$, 则 $F[x]/f(x)$ 为域 $\iff f(x)$ 为 $F[x]$ 上不可约多项式. &lt;br /&gt;
+特别有素数 $p$ 和 $F[x]$ 上不可约多项式 $degr=n$, $F_p[x]/&amp;lt;r(x)&amp;gt;=\{\sum_{i=0}^{n-1}a_0x^i\ |\ a_i\in F_p\}\cong F_{p^n}$, 即有 $|F_p[x]/&amp;lt;r(x)&amp;gt;|=p^n$.&lt;/p&gt;
 &lt;p&gt;有限域结构: $\forall$ 素数 $p$, $n\in\mathbb{Z}_+$, 存在同构意义下唯一的有限域 $F_{p^n}$ s.t. $|F_{p^n}|=p^n$, ${\rm char}(F_{p^m})=p$.&lt;/p&gt;
 &lt;p&gt;NTRU: 环 $L=\mathbb{Z}[x]/(x^n-1)$, $n$ 为大素数; 选取大数 $p,q$, 有 ${\rm gcd}(p,q)=1$ 且 $q\ll p$; 选取 $f(x),g(x)\in L$, 有 ${\rm deg}f={\rm deg}g=n-1$. &lt;br /&gt;
 $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $q$ 逆; $h(x)\equiv f^{-1}_q(x)({\rm mod}\ q)$.&lt;/p&gt;
@@ -762,11 +763,11 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 &lt;/ul&gt;
 &lt;h2 id=&#34;椭圆曲线群&#34;&gt;椭圆曲线群&lt;/h2&gt;
 &lt;p&gt;定义: 域 $F$, $a,b,c,d,e\in F$, 满足Weierstrass方程 $E=y^2+axy+by=x^3+cx^2+dx+e$ 所有点 $(x,y)$ 和无穷远点 $O$ 的集合.&lt;/p&gt;
-&lt;p&gt;Hasse定理: 有限域 $GF(p)$ 上椭圆曲线, $n$ 为 $E$ 上点 $(x,y)$, $x,y\in\mathbb{Z}_p$ 的个数, 则 $|n-(p+1)|\leq 2\sqrt(p)$.&lt;/p&gt;
+&lt;p&gt;Hasse定理: 有限域 $GF(p)$ 上椭圆曲线, $n$ 为 $E$ 上点 $(x,y)$, $x,y\in\mathbb{Z}_p$ 的个数, 则 $|n-(p+1)|\leq 2\sqrt p$.&lt;/p&gt;
 &lt;p&gt;有限域上椭圆曲线: 有限域 $GF(p)$ 上椭圆曲线 $y^2\equiv x^2+ax+b({\rm mod}\ p)$, $a,b,x,y\in GF(P)$, 且满足 $4a^2+27b^2\not\equiv 0({\rm mod}\ p)$ (此时无重根), 记为 $E_p(a,b)$.&lt;/p&gt;
 &lt;p&gt;构造: $x$ 遍历 $\in\mathbb{Z}_p$, $t_x\equiv x^3+ax+b({\rm mod}\ p)$, $a,b\in GF(p)$; Euler保留所有模 $p$ 二次剩余的 $t_x$, 并求出两根; $t=0$ 时只有一根 $y=0$.&lt;/p&gt;
 &lt;p&gt;定理: $E_p(a,b)$ 关于点的加法构成Abel群. &lt;br /&gt;
-无穷远点 $O$ 为单位元, 逆元为关于 $x$ 轴对称点, 横坐标不同的点(相同的只有自身和逆元)相加为连线延长线与曲线的交点, 相同点相加为该点处切线与曲线交点关于 $x$ 轴的对称点.&lt;/p&gt;
+无穷远点 $O$ 为单位元, 逆元为关于 $x$ 轴对称点, 横坐标不同的点(相同的只有自身和逆元)相加为连线延长线与曲线交点关于 $x$ 轴的对称点, 相同点相加为该点处切线与曲线交点关于 $x$ 轴的对称点.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;不妨设 $P,Q\in E_p(a,b)$, $P,Q\ne O$, $P=(x_1,y_1)$, $Q=(x_2,y_2)$, $R=P+Q=(x_3,y_3)\ne O$.&lt;/p&gt;
 &lt;p&gt;则 $x_3=\lambda^2-x_1-x_2$, $y_3=\lambda(x_1-x_3)-y_1$, 其中 $\lambda=\frac{y_2-y_1}{x_2-x_1}\ (P\ne Q);\ \frac{3x^2_2+a}{2y_1}\ (P=Q)$.&lt;/p&gt;
@@ -966,15 +967,23 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 &lt;p&gt;小步大步法(Shank): 群阶为 $n$, $m=\lceil\sqrt n\rceil$, 设 $\log_a b=x=mj+i$, $0\leq i,j\leq m-1$, 即 $b(a^{-i})=(a^m)^j$; 搜索树存储 $1,a^m,&amp;hellip;,(a^m)^{m-1}$, 遍历 $b(a^{-i})$ 并匹配.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Pollard-$\rho$ 法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;指数演算法&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;Pohlig-Hellman算法&lt;/p&gt;
+&lt;p&gt;Pollard-$\rho$ 法: 素数 $p$, $a,b\in\mathbb{Z}_p^*$, 不妨设 $x_i=a^{m_i}b^{n_i}$, 有碰撞 $x_i=x_{2i}$ 时, 有 $\log_a b\equiv (n_{2i}-n_i)^{-1}(m_{2i}-m_i)({\rm mod}\ |a|)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;$$f(x_{i+1},m_{i+1},n{i+1})=\begin{cases}
+(bx,m_i,n_i+1),\ &amp;amp; x_i\in S_1 \\
+(x^2,2m_i,2n_i),\ &amp;amp; x_i\in S_2 \\
+(ax,m_i+1,n+i),\ &amp;amp; x_i\in S_3
+\end{cases},\ S_1\sqcup S_2\sqcup S_3=\mathbb{Z}_p^*$$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;指数演算法: 素数 $p$, 原根 $a\in\mathbb{Z}_p^*$, 小素因子基 $B=\{p_1,p_2,&amp;hellip;,p_k\}$, 选取 $k$ 个 $1\leq x\leq p-2$ 均 s.t. $x\equiv \alpha_1\log_a p_1+\alpha_2\log_a p_2+&amp;hellip;+\alpha_k\log_a p_k({\rm mod}\ p-1)$, 可解得 $\log_a p_1,\log_a p_2,&amp;hellip;,\log_a p_k$; 选取 $1\leq s\leq p-2$ s.t. $\log_a b+s\equiv \gamma_1\log_a p_1+\gamma_2\log_a p_2+&amp;hellip;+\gamma_k\log_a p_k({\rm mod}\ p-1)$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Pohlig-Hellman算法: 素数 $p$, 原根 $a\in\mathbb{Z}_p^*$, 最小原根 $g$, $a\equiv g^m({\rm mod}\ p)$, $b\equiv g^n({\rm mod}\ p)$, 则 $m\log_a b\equiv n({\rm mod}\ p-1)$ 可由扩展Euclid算法给出.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;$p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\equiv \sum_{j=0}^{\alpha_i-1} c_{ij}p_i^j({\rm mod}\ p_i^{k_i})$; 由 Fermat 可得 $g^{c_{ij}\frac{p-1}{p_i^{\alpha_i}}}\equiv a^{\frac{p-1}{p_i}^{\alpha_i}}({\rm mod}\ p)$. 遍历并得到 $0\leq c_{ij}\leq p_i^{\alpha_i}-1$; 对 $k$ 个同余式使用CRT即得到 $m$.&lt;/p&gt;
 &lt;h2 id=&#34;量子算法&#34;&gt;量子算法&lt;/h2&gt;
 </description>
         </item>

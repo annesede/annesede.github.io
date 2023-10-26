@@ -329,7 +329,7 @@
     <section class="article-content">
     
     
-    <p><small>(C11 - GCC8.1.0)</small></p>
+    <p><small>(C11 - GCC13.1.0)</small></p>
 <h2 id="基础">基础</h2>
 <p>使用对称加密, $n$ 个实体的网络需要 $\frac{(n-1)n}{2}$ 个密钥及同等数量的保密信道, 密钥管理困难. <br />
 对称加密也难以解决签名和认证问题: 接收方可以伪造原文; 发送方可以否认行为.</p>
@@ -353,7 +353,7 @@
 <p>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.</p>
 <ul>
 <li>公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.</li>
-<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)</li>
+<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)$</li>
 </ul>
 <blockquote>
 <p>证明: $D_{d,n}(E_{e,n}(m))=m$, $E_{e,n}(D_{d,n}(c))=c$.</p>
@@ -362,17 +362,17 @@
 <p>${\rm gcd}(M,n)\ne 1$ 时, 由于 $m\leq n$, 不妨设 $m = ap$, $a\in\mathbb{Z}$, 有 $m^{\varphi(q)}\equiv 1({\rm mod}\ q)$, 即 $m^t{\varphi(n)}=bq+1$, $b\in\mathbb{Z}$, 故 $m^t{\varphi(n)+1} = abn+M$.</p>
 </blockquote>
 <ul>
-<li>
-<p>参数选取
-$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. <br />
+<li>参数选取</li>
+</ul>
+<p>$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. <br />
 $p,q$ 为强素数, $p-1,p+1,q-1,q+1$ 中均无除 $2$ 外的小因子. <br />
 $p,q$ 位数不能相差过大或过小. <br />
 私钥 $d\ne e$. <br />
 ${\rm gcd}(p-1,q-1)$ 尽可能小, 最好为2; 以避免密文迭代攻击. <br />
-$e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^16+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. <br />
+$e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^{16}+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. <br />
 $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. <br />
 多个用户不得共用同一个模 $n$; 以避免共模攻击.</p>
-</li>
+<ul>
 <li>
 <p>大素数产生: Miller-Rabin测试.</p>
 </li>

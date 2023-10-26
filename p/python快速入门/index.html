@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='持续更新中'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='已完结'>
 <title>python快速入门</title>
 
 <link rel='canonical' href='https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
 
 <link rel="stylesheet" href="/scss/style.min.24ef1cc321916467896e8c70c10c0ad7b98c2a8df14298032fb637216e397f50.css"><meta property='og:title' content='python快速入门'>
-<meta property='og:description' content='持续更新中'>
+<meta property='og:description' content='已完结'>
 <meta property='og:url' content='https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2023-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-14T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2023-10-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-10-24T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="python快速入门">
-<meta name="twitter:description" content="持续更新中">
+<meta name="twitter:description" content="已完结">
     </head>
     <body class="
     article-page
@@ -249,7 +249,6 @@
     <li><a href="#流程控制">流程控制</a></li>
     <li><a href="#函数">函数</a></li>
     <li><a href="#类">类</a></li>
-    <li><a href="#生成器和装饰器">生成器和装饰器</a></li>
   </ol>
 </nav>
         </div>
@@ -282,7 +281,7 @@
     
         
         <h3 class="article-subtitle">
-            持续更新中
+            已完结
         </h3>
         
     </div>
@@ -318,7 +317,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 10 分钟
+                    阅读时长: 14 分钟
                 </time>
             </div>
         
@@ -950,9 +949,22 @@
 </span><span class="lnt">21
 </span><span class="lnt">22
 </span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 可迭代对象: 可遍历, 但不能随机访问, 可以生成迭代器</span>
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 可迭代对象 (iterable) : 可遍历, 但不能随机访问, 可以生成迭代器</span>
 </span></span><span class="line"><span class="cl"><span class="n">filled_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;one&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&#34;two&#34;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&#34;three&#34;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="n">our_iterable</span> <span class="o">=</span> <span class="n">filled_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">our_iterable</span><span class="p">)</span>
@@ -961,7 +973,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">our_iterable</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># TypeError 抛出异常</span>
 </span></span><span class="line"><span class="cl"><span class="n">our_iterator</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">our_iterable</span><span class="p">)</span> <span class="c1"># 生成迭代器</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 迭代器可以记住遍历位置对象</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 迭代器 (iterator) 可以记住遍历位置对象</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">our_iterator</span><span class="p">))</span> <span class="c1"># =&gt; one</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">our_iterator</span><span class="p">))</span> <span class="c1"># =&gt; two</span>
 </span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">our_iterator</span><span class="p">))</span> <span class="c1"># =&gt; three</span>
@@ -975,9 +987,32 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 可用 list 一次性取出可迭代对象或迭代器所有元素</span>
 </span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">filled_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>  <span class="c1"># =&gt; [&#34;one&#34;, &#34;two&#34;, &#34;three&#34;]</span>
 </span></span><span class="line"><span class="cl"><span class="nb">list</span><span class="p">(</span><span class="n">our_iterator</span><span class="p">)</span>  <span class="c1"># =&gt; []</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成器 (generator), 实现惰性运算, 只有在需要时计算下一个值</span>
+</span></span><span class="line"><span class="cl"><span class="n">values</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl"><span class="n">gen_to_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">gen_to_list</span><span class="p">)</span>   <span class="c1"># =&gt; [-1, -2, -3, -4, -5]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成器函数中 yield 返回并暂停迭代</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">prev</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">max</span> <span class="o">-=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">yield</span> <span class="n">curr</span>
+</span></span><span class="line"><span class="cl">        <span class="n">prev</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">,</span> <span class="n">prev</span> <span class="o">+</span> <span class="n">curr</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="函数">函数</h2>
+</div><p><img src="/img/post-lang-python-iterator.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="iterator"
+	
+	
+></p>
+<h2 id="函数">函数</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1158,9 +1193,418 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 模块重名时, 本地文件优先级高于内建库</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 函数闭包: 返回的子函数调用外层函数变量</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">outer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">inner</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 装饰器: 利用函数闭包思路, 在不改变原函数下添加新功能</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">beg</span><span class="p">(</span><span class="n">target_function</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@wraps</span><span class="p">(</span><span class="n">target_function</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">msg</span><span class="p">,</span> <span class="n">say_please</span> <span class="o">=</span> <span class="n">target_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="n">say_please</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span> <span class="s2">&#34;</span><span class="si">{}</span><span class="s2"> </span><span class="si">{}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="s1">&#39;Please! I am poor :(&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">wrapper</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nd">@beg</span>
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="n">say_please</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;Can you buy me a cup of coffee?&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">msg</span><span class="p">,</span> <span class="n">say_please</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">say</span><span class="p">())</span>                        <span class="c1"># =&gt; &#34;Can you buy me a cup of coffee?&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">print</span><span class="p">(</span><span class="n">say</span><span class="p">(</span><span class="n">say_please</span> <span class="o">=</span> <span class="kc">True</span><span class="p">))</span>       <span class="c1"># =&gt; &#34;Can you buy me a cup of coffee? Please! I am poor :(&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
 </div><h2 id="类">类</h2>
-<h2 id="生成器和装饰器">生成器和装饰器</h2>
-
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Human</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 公共属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 私有属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__species</span> <span class="o">=</span> <span class="s1">&#39;H. sapiens&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 特殊方法: __init__, __del__, __repr__ 等</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 参数赋值给实例的 name 字段</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 初始化属性</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_age</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 实例方法, 第一个参数总是self, 即实例对象</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">{name}</span><span class="s2">: </span><span class="si">{message}</span><span class="s2">&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">message</span> <span class="o">=</span> <span class="n">msg</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 私有方法</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">__sing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;yo, yo, check it out...&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 类方法, 被所有此类实例共用</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_height</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">b</span><span class="o">.</span><span class="n">height</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@classmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">get_species</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span><span class="o">.</span><span class="n">__species</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 静态方法, 没有实例或类的绑定</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@staticmethod</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">grunt</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;*grunt*&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 同名只读属性</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@property</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_age</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 允许属性被修改</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@age.setter</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">age</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">_age</span> <span class="o">=</span> <span class="n">age</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 允许属性被删除</span>
+</span></span><span class="line"><span class="cl">    <span class="nd">@age.deleter</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">age</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_age</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重载运算符方法: __add__, __sub__, __mul__, __mod__ 等</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 代码块指挥在模块为主程序时被执行</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 定义实例</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span> <span class="o">=</span> <span class="n">Human</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&#34;Ian&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s2">&#34;hi&#34;</span><span class="p">)</span>                 <span class="c1"># =&gt; &#34;Ian: hi&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 调用类方法</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_species</span><span class="p">())</span>      <span class="c1"># =&gt; &#34;Ian: H. sapiens&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_height</span><span class="p">())</span>       <span class="c1"># =&gt; &#34;Ian: 0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 修改类属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Human</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="mi">170</span>          <span class="c1"># =&gt; 公有属性可以外部修改</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_height</span><span class="p">())</span>       <span class="c1"># =&gt; &#34;Ian: 170&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Human</span><span class="o">.</span><span class="n">__species</span> <span class="o">=</span> <span class="s1">&#39;cat&#39;</span>     <span class="c1"># =&gt; 私有属性不会被外部修改</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">get_species</span><span class="p">())</span>      <span class="c1"># =&gt; &#34;Ian: H. sapiens&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 静态方法</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">Human</span><span class="o">.</span><span class="n">grunt</span><span class="p">())</span>        <span class="c1"># =&gt; &#34;*grunt*&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">grunt</span><span class="p">())</span>            <span class="c1"># =&gt; &#34;*grunt*&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 更新实例属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">24</span>
+</span></span><span class="line"><span class="cl">    <span class="n">i</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>                <span class="c1"># =&gt; &#34;Ian: 24&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">del</span> <span class="n">i</span><span class="o">.</span><span class="n">age</span>                   <span class="c1"># =&gt; AttributeError, 抛出异常</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 上述代码存在 human.py 中</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">human</span> <span class="kn">import</span> <span class="n">Human</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 子类 (继承): 私有对象不能被继承(调用/重载)</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Superhero</span><span class="p">(</span><span class="n">Human</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 重载父类公有属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">height</span> <span class="o">=</span> <span class="mi">2000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 重载构造方法</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">movie</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">superpowers</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&#34;super strength&#34;</span><span class="p">,</span> <span class="s2">&#34;bulletproofing&#34;</span><span class="p">]):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fictional</span> <span class="o">=</span> <span class="kc">True</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">movie</span> <span class="o">=</span> <span class="n">movie</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">superpowers</span> <span class="o">=</span> <span class="n">superpowers</span>
+</span></span><span class="line"><span class="cl">        <span class="c1"># 调用父类的构造方法</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 新增方法</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">boast</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">superpowers</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I wield the power of </span><span class="si">{pow}</span><span class="s2">!&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">pow</span><span class="o">=</span><span class="n">power</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span> <span class="o">=</span> <span class="n">Superhero</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Tick&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sup</span><span class="p">,</span> <span class="n">Human</span><span class="p">):</span>      <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I am human&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">sup</span><span class="p">)</span> <span class="ow">is</span> <span class="n">Superhero</span><span class="p">:</span>      <span class="c1"># =&gt; True</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;I am superhero&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># 获取方法解析顺序</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">Superhero</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">)</span>        <span class="c1"># =&gt; (&lt;class &#39;__main__.Superhero&#39;&gt;,</span>
+</span></span><span class="line"><span class="cl">                                    <span class="c1"># =&gt; &lt;class &#39;human.Human&#39;&gt;, &lt;class &#39;object&#39;&gt;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 继承属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>      <span class="c1"># =&gt; 30</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 子类独有属性</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Am I Oscar eligible?&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">movie</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 父类方法子类属性</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">get_height</span><span class="p">)</span>   <span class="c1"># =&gt; 2000</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 子类独有方法</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span><span class="o">.</span><span class="n">boast</span><span class="p">()</span>         <span class="c1"># =&gt; I wield the power of super strength!</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1"># =&gt; I wield the power of bulletproofing!</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="c1"># 上述代码存在 superhero.py 中</span>
+</span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">superhero</span> <span class="kn">import</span> <span class="n">Superhero</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 定义另一个父类</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Bat</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">__species</span> <span class="o">=</span> <span class="s1">&#39;Baty&#39;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 同样有 height 属性</span>
+</span></span><span class="line"><span class="cl">    <span class="n">heigt</span> <span class="o">=</span> <span class="mi">20</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">can_fly</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">fly</span> <span class="o">=</span> <span class="n">can_fly</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 同样有 say 方法</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">say</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">msg</span> <span class="o">=</span> <span class="s1">&#39;... ... ...&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">msg</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">sonar</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="s1">&#39;))) ... (((&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 多继承</span>
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">Batman</span><span class="p">(</span><span class="n">Superhero</span><span class="p">,</span> <span class="n">Bat</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Superhero</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;anoymous&#39;</span><span class="p">,</span> <span class="n">movie</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">superpowers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Wealthy&#39;</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">Bat</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="n">can_fly</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Sad Affleck&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span> <span class="o">=</span> <span class="n">Batman</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">Batman</span><span class="o">.</span><span class="vm">__mro__</span><span class="p">)</span>       <span class="c1"># =&gt; (&lt;class &#39;__main__.Batman&#39;&gt;,</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1"># =&gt; &lt;class &#39;superhero.Superhero&#39;&gt;,</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1"># =&gt; &lt;class &#39;human.Human&#39;&gt;,</span>
+</span></span><span class="line"><span class="cl">                                <span class="c1"># =&gt; &lt;class &#39;bat.Bat&#39;&gt;, &lt;class &#39;object&#39;&gt;)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 属性/方法重复时, 顺序继承</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">get_height</span><span class="p">())</span>     <span class="c1"># =&gt; 2000</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span><span class="o">.</span><span class="n">say</span><span class="p">(</span><span class="s1">&#39;I agree&#39;</span><span class="p">)</span>          <span class="c1"># =&gt; &#34;Sad Affleck: I agree&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">sonar</span><span class="p">())</span>          <span class="c1"># =&gt; &#34;))) ... (((&#34;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="n">sup</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">100</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">age</span><span class="p">)</span>              <span class="c1"># =&gt; 100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># 继承属性重载</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Can I fly? &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">sup</span><span class="o">.</span><span class="n">fly</span><span class="p">))</span>     <span class="c1"># =&gt; Can I fly? False</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
 </section>
 
 
@@ -1185,7 +1629,19 @@
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2023-10-24
+        </span>
+    </section></footer>
 
 
     
@@ -1232,6 +1688,19 @@
 
         <div class="article-details">
             <h2 class="article-title">汇编快速入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sql%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQL快速入门</h2>
         </div>
     </a>
 </article>
