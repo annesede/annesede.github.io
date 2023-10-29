@@ -905,10 +905,10 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 &lt;p&gt;Pollard-$\rho$ 法: 素数 $p$, $a,b\in\mathbb{Z}_p^*$, 不妨设 $x_i=a^{m_i}b^{n_i}$, 有碰撞 $x_i=x_{2i}$ 时, 有 $\log_a b\equiv (n_{2i}-n_i)^{-1}(m_{2i}-m_i)({\rm mod}\ |a|)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;$$f(x_{i+1},m_{i+1},n{i+1})=\begin{cases}
+&lt;p&gt;$$f(x_{i+1},m_{i+1},n{i_1})=\begin{cases}
 (bx,m_i,n_i+1),\ &amp;amp; x_i\in S_1 \\
 (x^2,2m_i,2n_i),\ &amp;amp; x_i\in S_2 \\
-(ax,m_i+1,n+i),\ &amp;amp; x_i\in S_3
+(ax,m_i+1,n_i),\ &amp;amp; x_i\in S_3
 \end{cases},\ S_1\sqcup S_2\sqcup S_3=\mathbb{Z}_p^*$$&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

@@ -7,20 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Sat, 28 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>语言基础</title>
+        <link>https://example.com/categories/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/categories/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>密码学</title>
         <link>https://example.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/categories/%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>语言基础</title>
-        <link>https://example.com/categories/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</link>
-        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/categories/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/</guid>
         <description></description>
         </item>
         <item>
