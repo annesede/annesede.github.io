@@ -15,16 +15,14 @@
         <guid>https://example.com/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
         <description>&lt;h2 id=&#34;基础语法&#34;&gt;基础语法&lt;/h2&gt;
 &lt;p&gt;/pattern/flags: 匹配模式/修饰符&lt;/p&gt;
-&lt;dl&gt;
-&lt;dt&gt;&lt;strong&gt;修饰符&lt;/strong&gt; &lt;br /&gt;&lt;/dt&gt;
-&lt;dd&gt;默认只匹配第一个 &lt;br /&gt;
+&lt;p&gt;&lt;strong&gt;修饰符&lt;/strong&gt; &lt;br /&gt;
+:  默认只匹配第一个 &lt;br /&gt;
 g: 全局匹配 &lt;br /&gt;
 i: 不区分大小写 &lt;br /&gt;
 m: 多行匹配 &lt;br /&gt;
 s: 使 . 中包含\r\n &lt;br /&gt;
 u: 能够正确处理UTF-16  &lt;br /&gt;
-y: 从剩余第一个位置开始匹配&lt;/dd&gt;
-&lt;/dl&gt;
+y: 从剩余第一个位置开始匹配&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;转义符&lt;/strong&gt; &lt;br /&gt;
 \特殊字符: 转义字符, 匹配特殊字符自身&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;字符&lt;/strong&gt; &lt;br /&gt;
@@ -67,7 +65,7 @@ $: 匹配字符串结束位置 &lt;br /&gt;
 (exp): 分组并捕获子表达式exp &lt;br /&gt;
 (?:exp): 分组但不捕获子表达式exp &lt;br /&gt;
 (exp)\n: 分组并引用第n个捕获子表达式exp &lt;br /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;断言符&lt;/strong&gt;
+&lt;p&gt;&lt;strong&gt;断言符&lt;/strong&gt; &lt;br /&gt;
 exp1(?=exp2): 先行断言, 匹配在exp2前的exp1 &lt;br /&gt;
 exp1(?!exp2): 先行否定断言, 匹配不在exp2前的exp2 &lt;br /&gt;
 (?&amp;lt;=exp2)exp2: 后行断言, 匹配在exp2后的exp1 &lt;br /&gt;
@@ -88,8 +86,8 @@ exp1(?!exp2): 先行否定断言, 匹配不在exp2前的exp2 &lt;br /&gt;
 机制: 先看正则表达式再看字符串, 会发生回溯, 速度较慢. &lt;br /&gt;
 传统: 分支懒惰; Go, PCRE, Perl, PHP, Java, Python, Ruby, grep, less, more, .Net, vi. &lt;br /&gt;
 POSIX: 分支贪婪; mawk.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;贪婪与懒惰&lt;/strong&gt;: 限定符默认为贪婪模式; 传统NFA默认为懒惰模式.
-&lt;strong&gt;回溯陷阱&lt;/strong&gt;: NFA实现的语言应当尽量避免回溯的发生以提高性能.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;贪婪与懒惰&lt;/strong&gt;: 限定符默认为贪婪模式; 传统NFA默认为懒惰模式.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;回溯陷阱&lt;/strong&gt;: NFA实现的语言应当尽量避免回溯的发生以提高性能.&lt;/p&gt;
 </description>
         </item>
         <item>

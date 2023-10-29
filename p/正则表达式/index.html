@@ -331,16 +331,14 @@
     
     <h2 id="基础语法">基础语法</h2>
 <p>/pattern/flags: 匹配模式/修饰符</p>
-<dl>
-<dt><strong>修饰符</strong> <br /></dt>
-<dd>默认只匹配第一个 <br />
+<p><strong>修饰符</strong> <br />
+:  默认只匹配第一个 <br />
 g: 全局匹配 <br />
 i: 不区分大小写 <br />
 m: 多行匹配 <br />
 s: 使 . 中包含\r\n <br />
 u: 能够正确处理UTF-16  <br />
-y: 从剩余第一个位置开始匹配</dd>
-</dl>
+y: 从剩余第一个位置开始匹配</p>
 <p><strong>转义符</strong> <br />
 \特殊字符: 转义字符, 匹配特殊字符自身</p>
 <p><strong>字符</strong> <br />
@@ -383,7 +381,7 @@ $: 匹配字符串结束位置 <br />
 (exp): 分组并捕获子表达式exp <br />
 (?:exp): 分组但不捕获子表达式exp <br />
 (exp)\n: 分组并引用第n个捕获子表达式exp <br /></p>
-<p><strong>断言符</strong>
+<p><strong>断言符</strong> <br />
 exp1(?=exp2): 先行断言, 匹配在exp2前的exp1 <br />
 exp1(?!exp2): 先行否定断言, 匹配不在exp2前的exp2 <br />
 (?&lt;=exp2)exp2: 后行断言, 匹配在exp2后的exp1 <br />
@@ -404,8 +402,8 @@ exp1(?!exp2): 先行否定断言, 匹配不在exp2前的exp2 <br />
 机制: 先看正则表达式再看字符串, 会发生回溯, 速度较慢. <br />
 传统: 分支懒惰; Go, PCRE, Perl, PHP, Java, Python, Ruby, grep, less, more, .Net, vi. <br />
 POSIX: 分支贪婪; mawk.</p>
-<p><strong>贪婪与懒惰</strong>: 限定符默认为贪婪模式; 传统NFA默认为懒惰模式.
-<strong>回溯陷阱</strong>: NFA实现的语言应当尽量避免回溯的发生以提高性能.</p>
+<p><strong>贪婪与懒惰</strong>: 限定符默认为贪婪模式; 传统NFA默认为懒惰模式.</p>
+<p><strong>回溯陷阱</strong>: NFA实现的语言应当尽量避免回溯的发生以提高性能.</p>
 
 </section>
 
