@@ -28,10 +28,10 @@
 &lt;/ul&gt;
 &lt;p&gt;工作方式&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;发送方 $A$: 先用发送方私钥 $k_{Ad}$ 加密 $s=D(m,k_{Ad})$, 再用接收方公钥 $k_{Be}$ 加密 $c=E(s,k_{Be})$.&lt;/li&gt;
-&lt;li&gt;接收方 $B$: 先用接收方私钥 $k_{Bd}$ 解密 $s=E(c,k_{Bd})$, 再用发送方公钥 $k_{Ae}$ 解密 $m=D(s,k_{Ae})$.&lt;/li&gt;
-&lt;li&gt;真实性: 只有发送方有私钥 $k_{Ad}$, 只有发送方可以加密产生中间密文 $s$.&lt;/li&gt;
-&lt;li&gt;机密性: 只有接收方有私钥 $k_{Ae}$, 只有接收方可以解密得到明文 $m$.&lt;/li&gt;
+&lt;li&gt;发送方 $A$: 先用发送方私钥 $k_{Ad}$ 签名 $s=D(m,k_{Ad})$, 再用接收方公钥 $k_{Be}$ 加密 $c=E(s,k_{Be})$.&lt;/li&gt;
+&lt;li&gt;接收方 $B$: 先用接收方私钥 $k_{Bd}$ 解密 $s=E(c,k_{Bd})$, 再用发送方公钥 $k_{Ae}$ 验证 $m=D(s,k_{Ae})$.&lt;/li&gt;
+&lt;li&gt;机密性: 公钥加密, 私钥解密.&lt;/li&gt;
+&lt;li&gt;真实性: 私钥签名, 公钥验证.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&#34;rsa&#34;&gt;RSA&lt;/h2&gt;
 &lt;p&gt;RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.&lt;/p&gt;
