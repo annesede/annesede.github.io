@@ -1336,8 +1336,7 @@ k+1, \ n=2k+1 \\
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="完美矩阵">完美矩阵</h2>
-<p><strong>目前WA</strong>(疑似样例错误)</p>
-<p>暴搜会超时, 考虑使用前缀和/线段树, 根据题目取值范围, 使用线段树更为保险, 但判断方式不变.</p>
+<p>子矩阵只能为方阵. 暴搜会超时, 使用前缀和.</p>
 <p>为方便书写, 数组下标均从 $1$ 开始; 矩阵 $A_{m\times n}$, 将子矩阵记为 $[(x_1,y_1),(x_2,y_2)]$, 意即以元素 $a_{x_1y_1}$ 为左上角元素向右向下的子矩阵 $C_{(x_2-x_1+1)\times(y_2-y_1+1)}$; $s[(x_1,y_1),(x_2,y_2)]$ 表示该子矩阵的元素和.</p>
 <p>将输入的 0-1 矩阵变为 1-(-1) 矩阵, 发现此时条件(3)即为 $s[(x_1,y_1),(x_2,y_2)]\in\{-1,0,1\}$, 条件(2)即为 $s[(x_1,y_1),(x_2,y_2)]-s[(x_1+1,y_1+1)(x_2-1,y_1-1)]=2(y_2-y_1+x_2-x_1)$ (行数及列数至少为3时).</p>
 <div class="highlight"><div class="chroma">
@@ -1366,7 +1365,7 @@ k+1, \ n=2k+1 \\
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>而任意一个 $s[(x_1,y_1),(x_2,y_2)]$ 可以由前缀和/线段树预处理后以 $O(1)$ 的时间复杂度得到.</p>
+</div><p>而任意一个 $s[(x_1,y_1),(x_2,y_2)]$ 可以由前缀和处理后以 $O(1)$ 的时间复杂度得到.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1399,7 +1398,7 @@ k+1, \ n=2k+1 \\
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>遍历子矩阵, 选取基点 $(i,j)$, 从基点向右向下扩展 $(k,l)$, 即可保证不重不漏. 发现子矩阵 $[(x_1,y_1),(x_2,y_2)]$ 为完美矩阵时, $[(x_1,y_1),(x_2+1,y_2)]$, $[(x_1,y_1),(x_2,y_2+1)]$, $[(x_1,y_1),(x_2+1,y_2+1)]$ 均不可能为完美矩阵; 若扩展遍历时遇到元素为 $0$, 该方向的扩展均不可能为完美矩阵 (因为扩展的最外圈总会包含这个 $0$), 由此进行优化.</p>
+</div><p>遍历子矩阵, 选取基点 $(i,j)$, 从基点向右向下扩展 $(k,l)$, 即可保证不重不漏. 发现扩展遍历时遇到元素为 $0$, 该方向的扩展均不可能为完美矩阵 (因为扩展的最外圈总会包含这个 $0$), 由此进行优化.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1416,22 +1415,16 @@ k+1, \ n=2k+1 \\
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">perfectNum</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">l</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">l</span> <span class="o">+</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">l</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span> <span class="o">+</span> <span class="n">l</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                    <span class="k">if</span> <span class="p">(</span><span class="nf">isPerfect</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">l</span><span class="p">))</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">                        <span class="o">++</span><span class="n">cnt</span><span class="p">,</span> <span class="o">++</span><span class="n">k</span><span class="p">,</span> <span class="o">++</span><span class="n">j</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">                    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">+</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">k</span> <span class="o">+</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span> <span class="o">+</span> <span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">arr</span><span class="p">[</span><span class="n">k</span> <span class="o">+</span> <span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">                <span class="k">if</span> <span class="p">(</span><span class="nf">isPerfect</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span> <span class="o">+</span> <span class="n">k</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">                <span class="p">}</span>
 </span></span><span class="line"><span class="cl">            <span class="p">}</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
