@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
     <channel>
-        <title>C&#43;&#43; on annesede的博客</title>
-        <link>https://example.com/tags/c&#43;&#43;/</link>
-        <description>Recent content in C&#43;&#43; on annesede的博客</description>
+        <title>信息安全 on annesede的博客</title>
+        <link>https://example.com/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/</link>
+        <description>Recent content in 信息安全 on annesede的博客</description>
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/c++/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>密码学</title>
         <link>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
         <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
