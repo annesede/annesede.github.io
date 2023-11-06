@@ -257,15 +257,9 @@
         <li><a href="#传统算法">传统算法</a></li>
       </ol>
     </li>
-    <li><a href="#古典密码">古典密码</a>
-      <ol>
-        <li><a href="#仿射密码">仿射密码</a></li>
-        <li><a href="#vernam密码">Vernam密码</a></li>
-      </ol>
-    </li>
+    <li><a href="#古典密码">古典密码</a></li>
     <li><a href="#自同步序列密码">自同步序列密码</a>
       <ol>
-        <li><a href="#ad5">AD5</a></li>
         <li><a href="#rc4">RC4</a></li>
         <li><a href="#zuc">ZUC</a></li>
       </ol>
@@ -279,13 +273,21 @@
     </li>
     <li><a href="#公钥密码">公钥密码</a>
       <ol>
-        <li><a href="#基础">基础</a></li>
         <li><a href="#rsa">RSA</a></li>
         <li><a href="#elgamal型">ElGamal型</a></li>
-        <li><a href="#ntru">NTRU</a></li>
       </ol>
     </li>
-    <li><a href="#hash函数">Hash函数</a></li>
+    <li><a href="#sm2">SM2</a></li>
+    <li><a href="#hash函数">Hash函数</a>
+      <ol>
+        <li><a href="#sha-256">SHA-256</a></li>
+        <li><a href="#sm3">SM3</a></li>
+        <li><a href="#hmac">HMAC</a></li>
+      </ol>
+    </li>
+    <li><a href="#数字签名">数字签名</a></li>
+    <li><a href="#身份认证">身份认证</a></li>
+    <li><a href="#密钥管理">密钥管理</a></li>
   </ol>
 </nav>
         </div>
@@ -354,7 +356,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 29 分钟
+                    阅读时长: 22 分钟
                 </time>
             </div>
         
@@ -370,7 +372,6 @@
     
     
     <p><small>(C11 - GCC8.1.0)</small></p>
-<h1 id="导引">导引</h1>
 <p>基本属性: 信息机密性, 信息真实性, 数据完整性, 行为不可否认性.</p>
 <p>体制: $(M,C,K_1,K_2,E,D)$ 明文空间, 密文空间, 加密密钥空间, 解密密钥空间, 加密空间, 解密空间; 加密变换 $c=E_{k_1}(m)$, 解密变换 $m=D_{k_2}(c)$.</p>
 <p>类别: 对称加密, 非对称加密, Hash函数, 密码协议.</p>
@@ -492,12 +493,10 @@ m&amp;=a_ix_i+b_iy_i\\
 <p>Euler $\varphi$ 函数: <br />
 $$m=\prod_{i=1}^r p_i^{k_i}, |\mathbb{Z}_m^*|=\varphi(m)=\prod_{i=1}^r p_i^{k_i-1}(p_i-1)=m\prod_{p|m}(1-\frac{1}{p})$$</p>
 <p>当 $m=p$ 为素数时, 有 $\varphi(p)=p-1$; $\mathbb{Z}_p^*=\{1,2,&hellip;,p-1\}$ 为循环群, 生成元个数为$\varphi(p-1)$.</p>
-<p>考察函数性质:</p>
-<ul>
-<li>若素数 $p|n$, 则 $\varphi(pn)=p\varphi(n)$;</li>
-<li>若素数 $p\nmid n$, 则 $\varphi(pn)=(p-1)\varphi(n)$;</li>
-<li>若 ${\rm gcd}(m,n)=1$, 则 $\varphi(m,n)=\varphi(m)\varphi(n)$.</li>
-</ul>
+<p>考察函数性质: <br />
+若素数 $p|n$, 则 $\varphi(pn)=p\varphi(n)$; <br />
+若素数 $p\nmid n$, 则 $\varphi(pn)=(p-1)\varphi(n)$; <br />
+若 ${\rm gcd}(m,n)=1$, 则 $\varphi(m,n)=\varphi(m)\varphi(n)$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -613,10 +612,10 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>仿射: ${\rm gcd}(a,26)=1$, 密钥对数量 $26\varphi(26)-1=311$.</p>
-<ul>
-<li>加密 $c=E_{a,b}(m)=am+b({\rm mod}\ 26)$.</li>
-<li>解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.</li>
+</div><ul>
+<li>仿射: ${\rm gcd}(a,26)=1$, 密钥对数量 $26\varphi(26)-1=311$. <br />
+加密 $c=E_{a,b}(m)=am+b({\rm mod}\ 26)$. <br />
+解密 $m=D_{a,b}(c)=a^{-1}(c-b)({\rm mod}\ 26)$.</li>
 </ul>
 <h3 id="同余式">同余式</h3>
 <p>同余式 $f(x)\equiv a_nx^n+&hellip;+a_1x+a_0({\rm mod}\ m)$, $a_i\in\mathbb{z}$, $m\in\mathbb{Z}_+$. <br />
@@ -627,13 +626,11 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 记 $d={\rm gcd}(a,m)$, 有 $\frac{a}{d}x\equiv \frac{b}{d}({\rm mod}\ \frac{m}{d})$, 即 $x=\frac{b}{d}(\frac{a}{d})^{-1}+k\frac{m}{d}$, $k\in\mathbb{Z}$.
 考虑 $k=qd+r$, $q,r\in\mathbb{Z}$, $0\leq r&lt; d$, $x=[\frac{b}{d}(\frac{a}{d})^{-1}({\rm mod}\frac{m}{d})+r\frac{m}{d}]({\rm mod\ m})$.</p>
 </blockquote>
-<p>求解步骤:</p>
-<ol>
-<li>扩展Euclid求 $d={\rm gcd}(a,m)$, 记 $sa+tm=d$;</li>
-<li>$b\%d=0$ 判断有无解;</li>
-<li>设  $b&rsquo;=b/d$, $m&rsquo;=m/d$, $s&rsquo;\equiv s({\rm mod}\ m&rsquo;)$;</li>
-<li>得 $x\equiv s&rsquo;b&rsquo;+rm&rsquo;\ ({\rm mod}\ m)$, $r=0,1,&hellip;,d-1$.</li>
-</ol>
+<p>求解步骤: <br />
+(1) 扩展Euclid求 $d={\rm gcd}(a,m)$, 记 $sa+tm=d$; <br />
+(2) $b\%d=0$ 判断有无解; <br />
+(3) 设  $b&rsquo;=b/d$, $m&rsquo;=m/d$, $s&rsquo;\equiv s({\rm mod}\ m&rsquo;)$; <br />
+(4) 得 $x\equiv s&rsquo;b&rsquo;+rm&rsquo;\ ({\rm mod}\ m)$, $r=0,1,&hellip;,d-1$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -729,12 +726,12 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.</p>
-<ul>
-<li>公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.</li>
-<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$.</li>
-<li>快速模幂 $r\equiv t^e({\rm mod}\ n)$</li>
+</div><ul>
+<li>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$. <br />
+公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$. <br />
+私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv c^d({\rm mod}\ n)$. <br /></li>
 </ul>
+<p>快速模幂 $r\equiv t^e({\rm mod}\ n)$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -766,12 +763,10 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </div><h3 id="二次剩余">二次剩余</h3>
 <p>$ax^2+bx+c\equiv 0({\rm mod}\ m)$ 总能简化为 $x^2\equiv d({\rm mod}\ q^k)$, $q$ 为素数, $a,b,c,d,m,k\in\mathbb{Z}_+$. <br />
 仅考虑 $x^2\equiv a({\rm mod}\ q)$, ${\rm gcd}(a,p)=1$, $a\in\mathbb{Z}$ 为模素数 $q$ 的二次剩余.</p>
-<p>Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$:</p>
-<ul>
-<li>模 $p$ 的二次剩余恰有 $\frac{p-1}{2}$ 个.</li>
-<li>$a$ 为模 $p$ 二次剩余 $\iff a^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$, 此时 $x^2\equiv a({\rm mod}\ p)$ 有二解.</li>
-<li>$a$ 为模 $p$ 二次非剩余 $\iff a^{\frac{p-1}{2}}\equiv -1({\rm mod}\ p)$.</li>
-</ul>
+<p>Euler: ${\rm gcd}(a,p)=1$, $p$ 为奇素数, $a\in\mathbb{Z}$: <br />
+模 $p$ 的二次剩余恰有 $\frac{p-1}{2}$ 个. <br />
+$a$ 为模 $p$ 二次剩余 $\iff a^{\frac{p-1}{2}}\equiv 1({\rm mod}\ p)$, 此时 $x^2\equiv a({\rm mod}\ p)$ 有二解. <br />
+$a$ 为模 $p$ 二次非剩余 $\iff a^{\frac{p-1}{2}}\equiv -1({\rm mod}\ p)$.</p>
 <blockquote>
 <p>显然 $i^2\equiv(p-i)^2({\rm mod}\ p)$; 若 $j^2\equiv i^2({\rm mod}\ p)$, $1\leq i&lt;j&lt;\frac{p}{2}$, 则 $p|j-i$ 或 $p|j+i$, 但 $j+i&lt;p$, 矛盾.</p>
 <p>$a$ 为模 $p$ 二次剩余时, $\exists x_0\in\mathbb{Z}$, ${\rm gcd}(x_0,p)=1$, $x_0^2\equiv a({\rm mod}\ p)$, 故 $a^{\frac{p-1}{2}}\equiv x_0^{p-1}\equiv 1({\rm mod}\ p)$.</p>
@@ -864,29 +859,27 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Rabin: 素数 $p\equiv q\equiv 3({\rm mod}\ 4)$.</p>
-<ul>
-<li>公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$.</li>
-<li>私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2\ {\rm in}\ 4)$.</li>
+</div><ul>
+<li>Rabin: 素数 $p\equiv q\equiv 3({\rm mod}\ 4)$. <br />
+公钥 $n=pq$, 加密 $c\equiv E_{n}(m)\equiv m^2({\rm mod}\ n)$. <br />
+私钥 $(p,q)$, 解密 $m\equiv D_{p,q}(c)\equiv \pm c^{\frac{p+1}{4}}({\rm mod}\ p)\equiv \pm c^{\frac{q+1}{4}}({\rm mod}\ q)\ (2\ {\rm in}\ 4)$.</li>
 </ul>
 <h3 id="原根">原根</h3>
 <p>原根: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 记 ${\rm ord}_m(a)=\inf\{x\in\mathbb{Z}_+\ | \ a^x\equiv 1({\rm mod}\ m)\}$ 称为 $a$ 对模 $m$ 的阶; 特别, ${\rm ord}_m(a)=\varphi(m)$ 时称 $a$ 为模 $m$ 的原根.</p>
-<p>定理: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 则 $a^n\equiv 1({rm mod}\ m)\iff {\rm ord}_m(a)|n$. 特别, ${\rm ord}_m(a)|\varphi(m)$.</p>
+<p>定理: $a,m\in\mathbb{Z}$, $m&gt;1$, ${\rm gcd}(a,m)=1$, 则 $a^n\equiv 1({\rm mod}\ m)\iff {\rm ord}_m(a)|n$. 特别, ${\rm ord}_m(a)|\varphi(m)$.</p>
 <p>定理: $g$ 为模 $m$ 原根 $\iff g^{\frac{\varphi(m)}{p_i}}\not\equiv 1({\rm mod}\ m)$, $\forall$ 素数 $p_i|\varphi(m)$.</p>
 <blockquote>
 <p>必要性: 显然.</p>
 <p>充分性: 若 $\exists e&lt;\varphi(m)$ s.t. $g^e\equiv 1({\rm mod}\ m)$; 不妨设 $\frac{\varphi(m)}{e}=kp$, $k\in\mathbb{Z}$, $p$ 为素数; 进而 $g^{\frac{\varphi(m)}{e}\equiv(g^p)^k\equiv 1({\rm mod}\ m)}$, 矛盾.</p>
 </blockquote>
 <p>定理: $a,m,d\in\mathbb{Z}_+$, ${\rm gcd}(a,m)=1$, ${\rm ord}_m(a^d)=\frac{{\rm ord}_m(a)}{{\rm gcd}({\rm ord}_m(a),d)}$. <br />
-推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. <br />
-以下显然:</p>
-<ul>
-<li>${\rm ord}_m(a)={\rm ord}_m(a^{-1})$.</li>
-<li>$b\equiv a({\rm mod}\ m)$, 则 ${\rm ord}_m(b)={\rm ord}_m(a)$.</li>
-<li>${\rm gcd}(a,m)=1$, $a^0,a^1,&hellip;,a^{{\rm ord}_m(a)-1}$ 两两模 $m$ 不同余.</li>
-<li>特别, $g$ 为模 $m$ 原根时, 恰好有 $\mathbb{Z}_p^*={g^0,g^1,&hellip;,g^{\varphi(g)-1}}$.</li>
-<li>$g$ 为模 $m$ 原根时, $x,y\in\mathbb{Z}$, $g^x\equiv g^y({\rm mod}\ m) \iff x\equiv y({\rm mod}\ \varphi(m))$.</li>
-</ul>
+推论: 模 $m$ 存在原根时, 有 $\varphi(\varphi(m))$ 个原根; 同时原根为模 $m$ 上本原多项式的全部解. <br /></p>
+<p>以下显然: <br />
+${\rm ord}_m(a)={\rm ord}_m(a^{-1})$. <br />
+$b\equiv a({\rm mod}\ m)$, 则 ${\rm ord}_m(b)={\rm ord}_m(a)$. <br />
+${\rm gcd}(a,m)=1$, $a^0,a^1,&hellip;,a^{{\rm ord}_m(a)-1}$ 两两模 $m$ 不同余. <br />
+特别, $g$ 为模 $m$ 原根时, 恰好有 $\mathbb{Z}_p^*={g^0,g^1,&hellip;,g^{\varphi(g)-1}}$. <br />
+$g$ 为模 $m$ 原根时, $x,y\in\mathbb{Z}$, $g^x\equiv g^y({\rm mod}\ m) \iff x\equiv y({\rm mod}\ \varphi(m))$.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -949,16 +942,18 @@ Euler: 若 ${\rm gcd}(a,m)=1$, 则 $a^{\varphi(m)}\equiv 1({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$.</p>
-<ul>
-<li>公钥 $(p,g)$, 私钥 $x,y$.</li>
-<li>握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$.</li>
-<li>密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$.</li>
-</ul>
-<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$.</p>
-<ul>
-<li>公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$.</li>
-<li>私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$.</li>
+</div><ul>
+<li>
+<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$. <br />
+公钥 $(p,g)$, 私钥 $x,y$. <br />
+握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$. <br />
+密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$.</p>
+</li>
+<li>
+<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
+公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$. <br />
+私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$. <br /></p>
+</li>
 </ul>
 <h3 id="群">群</h3>
 <p>有限群: 非空有限集 $G$ 上代数运算满足结合律, 存在单位元(记 $e$), 逆元(记 $a^{-1}$); <br />
@@ -987,11 +982,11 @@ $a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bi
 <p>商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.</p>
 <p>同态: 保持代数运算不变的映射, 双射时为同构. <br />
 群同态: 群 $G_1,G_2$, 映射 $f:G_1\to G_2$, $f(ab)=f(a)f(b)$, $\forall a,b\in G_1$.</p>
-<p>同态 Paillier: 素数 $p,q$, $n=pq$, $\lambda = {\rm lcm}(p-1)(q-1)$ 最小公倍数, $g\in\mathbb{Z}_{n^2}^*$ s.t. ${\rm gcd} (\frac{g^\lambda \% n^2 -1}{n},n)=1$.</p>
 <ul>
-<li>公钥 $(n,g)$, 加密 $c\equiv E_{n,g}(m)\equiv g^m r^n({\rm mod}\ n^2)$, $r\in\mathbb{Z}_n^*$.</li>
-<li>私钥 $\lambda$, 解密 $m\equiv D_\lambda(c)\equiv\frac{c^\lambda \%n-1}{g^\lambda \&amp;n-1}({\rm mod}\ n^2)$.</li>
-<li>加法同态: $m_1+m_2=D_\lambda[E_{n,g}(m_1)E_{n,g}(m_2)]$.</li>
+<li>同态 Paillier: 素数 $p,q$, $n=pq$, $\lambda = {\rm lcm}(p-1)(q-1)$ 最小公倍数, $g\in\mathbb{Z}_{n^2}^*$ s.t. ${\rm gcd} (\frac{g^\lambda \% n^2 -1}{n},n)=1$. <br />
+公钥 $(n,g)$, 加密 $c\equiv E_{n,g}(m)\equiv g^m r^n({\rm mod}\ n^2)$, $r\in\mathbb{Z}_n^*$. <br />
+私钥 $\lambda$, 解密 $m\equiv D_\lambda(c)\equiv\frac{c^\lambda \%n-1}{g^\lambda \&amp;n-1}({\rm mod}\ n^2)$. <br />
+加法同态: $m_1+m_2=D_\lambda[E_{n,g}(m_1)E_{n,g}(m_2)]$.</li>
 </ul>
 <p>置换群: 非空集合 $X$ 上所有可逆变换(双射)关于复合构成对称群 $S_x$; $S_x$ 子群称为变换群; <br />
 特别 $|X|=n$ 时, 记 $S_x = S_n$, $S_n$及其子群称为置换群, 元素 $\sigma$ 称为置换; $|S_n|=n!$.</p>
@@ -1054,11 +1049,11 @@ $f(x)\in K[x]$, $\forall K[x]$ 上不可约多项式 $p(x)$, ${\rm deg}p\leq {\r
 <p>定理: 域 $F$ 上 $F[x]$, $f(x)\in F(x)$, 则 $F[x]/f(x)$ 为域 $\iff f(x)$ 为 $F[x]$ 上不可约多项式. <br />
 特别有素数 $p$ 和 $F[x]$ 上不可约多项式 $degr=n$, $F_p[x]/&lt;r(x)&gt;=\{\sum_{i=0}^{n-1}a_0x^i\ |\ a_i\in F_p\}\cong F_{p^n}$, 即有 $|F_p[x]/&lt;r(x)&gt;|=p^n$.</p>
 <p>有限域结构: $\forall$ 素数 $p$, $n\in\mathbb{Z}_+$, 存在同构意义下唯一的有限域 $F_{p^n}$ s.t. $|F_{p^n}|=p^n$, ${\rm char}(F_{p^m})=p$.</p>
-<p>NTRU: 环 $L=\mathbb{Z}[x]/(x^n-1)$, $n$ 为大素数; 选取大数 $p,q$, 有 ${\rm gcd}(p,q)=1$ 且 $q\ll p$; 选取 $f(x),g(x)\in L$, 有 ${\rm deg}f={\rm deg}g=n-1$. <br />
-$f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $q$ 逆; $h(x)\equiv f^{-1}_q(x)({\rm mod}\ q)$.</p>
 <ul>
-<li>公钥 $(n,p,q,h(x))$, 明文多项式 $m(x)=\sum a_ix_i$ 有 $|a_i|\leq \frac{p-1}{2}$ 及 ${\rm deg}m\leq n$, 随机选取噪音 $r(x)\in L$, 加密 $c(x)\equiv pr(x)h(x)+m(x)({\rm mod}\ q)$.</li>
-<li>私钥 $(f(x),f^{-1}_p(x))$, 解密 $d(x)\equiv f(x)c(c)({\rm mod}q)$, $b(x)\equiv d(x)({\rm mod}\ p)$, $m(x)\equiv f^{-1}_p(x)({\rm mod}\ p)$.</li>
+<li>NTRU: 环 $L=\mathbb{Z}[x]/(x^n-1)$, $n$ 为大素数; 选取大数 $p,q$, 有 ${\rm gcd}(p,q)=1$ 且 $q\ll p$; 选取 $f(x),g(x)\in L$, 有 ${\rm deg}f={\rm deg}g=n-1$. <br />
+$f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $q$ 逆; $h(x)\equiv f^{-1}_q(x)({\rm mod}\ q)$. <br />
+公钥 $(n,p,q,h(x))$, 明文多项式 $m(x)=\sum a_ix_i$ 有 $|a_i|\leq \frac{p-1}{2}$ 及 ${\rm deg}m\leq n$, 随机选取噪音 $r(x)\in L$, 加密 $c(x)\equiv pr(x)h(x)+m(x)({\rm mod}\ q)$. <br />
+私钥 $(f(x),f^{-1}_p(x))$, 解密 $d(x)\equiv f(x)c(c)({\rm mod}q)$, $b(x)\equiv d(x)({\rm mod}\ p)$, $m(x)\equiv f^{-1}_p(x)({\rm mod}\ p)$.</li>
 </ul>
 <h3 id="椭圆曲线群">椭圆曲线群</h3>
 <p>定义: 域 $F$, $a,b,c,d,e\in F$, 满足Weierstrass方程 $E=y^2+axy+by=x^3+cx^2+dx+e$ 所有点 $(x,y)$ 和无穷远点 $O$ 的集合.</p>
@@ -1071,17 +1066,19 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 <p>不妨设 $P,Q\in E_p(a,b)$, $P,Q\ne O$, $P=(x_1,y_1)$, $Q=(x_2,y_2)$, $R=P+Q=(x_3,y_3)\ne O$.</p>
 <p>则 $x_3=\lambda^2-x_1-x_2$, $y_3=\lambda(x_1-x_3)-y_1$, 其中 $\lambda=\frac{y_2-y_1}{x_2-x_1}\ (P\ne Q);\ \frac{3x^2_2+a}{2y_1}\ (P=Q)$.</p>
 </blockquote>
-<p>ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-1$.</p>
 <ul>
-<li>公钥 $(p,G)$, 私钥 $x,y$.</li>
-<li>握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$.</li>
-<li>密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.</li>
-</ul>
-<p>ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$.</p>
-<ul>
-<li>公钥 $(P,G,E,n)$, 加密 $C_1=rG$, $C_2=M+rP$, $C=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-1$.</li>
-<li>私钥 $d$, 解密 $M=D_{E_p,d}(C)=C_2-dC_1$.</li>
-<li>快速倍乘 $P=mG$, $m\in\mathbb{Z}_p$, $G\in\ E_p(a,b)$.</li>
+<li>
+<p>ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-1$. <br />
+公钥 $(p,G)$, 私钥 $x,y$. <br />
+握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$. <br />
+密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.</p>
+</li>
+<li>
+<p>ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$. <br />
+公钥 $(P,G,E,n)$, 加密 $C_1=rG$, $C_2=M+rP$, $C=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-1$. <br />
+私钥 $d$, 解密 $M=D_{E_p,d}(C)=C_2-dC_1$.  <br />
+快速倍乘 $P=mG$, $m\in\mathbb{Z}_p$, $G\in\ E_p(a,b)$.</p>
+</li>
 </ul>
 <h3 id="传统算法">传统算法</h3>
 <p>素数定理: $\pi(x)$ 为 $\leq x$ 的素数个数, 有 $\lim_{x\to\infty}\frac{\pi(x)}{x/\ln x}=1$.</p>
@@ -1279,128 +1276,62 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 <p>指数演算法: 素数 $p$, 原根 $a\in\mathbb{Z}_p^*$, 小素因子基 $B=\{p_1,p_2,&hellip;,p_k\}$, 选取 $k$ 个 $1\leq x\leq p-2$ 均 s.t. $x\equiv \alpha_1\log_a p_1+\alpha_2\log_a p_2+&hellip;+\alpha_k\log_a p_k({\rm mod}\ p-1)$, 可解得 $\log_a p_1,\log_a p_2,&hellip;,\log_a p_k$; 选取 $1\leq s\leq p-2$ s.t. $\log_a b+s\equiv \gamma_1\log_a p_1+\gamma_2\log_a p_2+&hellip;+\gamma_k\log_a p_k({\rm mod}\ p-1)$</p>
 </li>
 <li>
-<p>Pohlig-Hellman算法: 素数 $p$, 原根 $a\in\mathbb{Z}_p^*$, 最小原根 $g$, $a\equiv g^m({\rm mod}\ p)$, $b\equiv g^n({\rm mod}\ p)$, 则 $m\log_a b\equiv n({\rm mod}\ p-1)$ 可由扩展Euclid算法给出.</p>
+<p>Pohlig-Hellman算法: 素数 $p$, 原根 $a\in\mathbb{Z}_p^*$, 最小原根 $g$, $a\equiv g^m({\rm mod}\ p)$, $b\equiv g^n({\rm mod}\ p)$, 则 $m\log_a b\equiv n({\rm mod}\ p-1)$ 可由扩展Euclid算法给出. <br />
+$p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\equiv \sum_{j=0}^{\alpha_i-1} c_{ij}p_i^j({\rm mod}\ p_i^{k_i})$; 由 Fermat 可得 $g^{c_{ij}\frac{p-1}{p_i^{\alpha_i}}}\equiv a^{\frac{p-1}{p_i}^{\alpha_i}}({\rm mod}\ p)$. 遍历并得到 $0\leq c_{ij}\leq p_i^{\alpha_i}-1$; 对 $k$ 个同余式使用CRT即得到 $m$.</p>
 </li>
 </ul>
-<p>$p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\equiv \sum_{j=0}^{\alpha_i-1} c_{ij}p_i^j({\rm mod}\ p_i^{k_i})$; 由 Fermat 可得 $g^{c_{ij}\frac{p-1}{p_i^{\alpha_i}}}\equiv a^{\frac{p-1}{p_i}^{\alpha_i}}({\rm mod}\ p)$. 遍历并得到 $0\leq c_{ij}\leq p_i^{\alpha_i}-1$; 对 $k$ 个同余式使用CRT即得到 $m$.</p>
 <h2 id="古典密码">古典密码</h2>
 <p>古典密码主要为置换密码和代换密码.</p>
-<p>置换密码: $\sigma$ 为 $M$ 上一个置换(到自身的双射).</p>
 <ul>
-<li>加密: $(c_i)=E_{k}((m_i))=\sigma_{k_i}((m_i))$.</li>
-<li>解密: $(m_i)=D_{k}((c-i))=\sigma_{k_i}^{-1}((c_i))$.</li>
-</ul>
-<p>代换密码</p>
-<ul>
-<li>加密: $c_i=E_{k}(m_i)\equiv f(m_i,k)({\rm mod}\ 26)$.</li>
-<li>解密: $m_i=E_{k}(c_i)\equiv f^{-1}(c_i,k^{-1})({\rm mod}\ 26)$.</li>
+<li>
+<p>置换密码: $\sigma$ 为 $M$ 上一个置换(到自身的双射). <br />
+加密: $(c_i)=E_{k}((m_i))=\sigma_{k_i}((m_i))$. <br />
+解密: $(m_i)=D_{k}((c-i))=\sigma_{k_i}^{-1}((c_i))$.</p>
+</li>
+<li>
+<p>代换密码 <br />
+加密: $c_i=E_{k}(m_i)\equiv f(m_i,k)({\rm mod}\ 26)$. <br />
+解密: $m_i=E_{k}(c_i)\equiv f^{-1}(c_i,k^{-1})({\rm mod}\ 26)$.</p>
+</li>
 </ul>
 <p>单表代换可以直接通过字母频率分析破解.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">freqAnalyze</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">count</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">!=</span> <span class="sc">&#39;\0&#39;</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">count</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">num</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">freqAnalyze</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">long</span> <span class="o">*</span><span class="n">cnt</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">cipher</span><span class="p">[</span><span class="n">n</span><span class="p">];</span> <span class="o">++</span><span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">n</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cnt</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">n</span><span class="p">])){</span>
+</span></span><span class="line"><span class="cl">            <span class="n">cnt</span><span class="p">[</span><span class="n">cipher</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">num</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>粗糙度: ${\rm M.R}=\sum_{i=0}^25(p_i-\frac{1}{26})^2=\sum_{i=0}^25p_i^2-0.0385$. 明文或单表代换时 ${\rm M.R}\approx 0.027$, 更接近 $0$ 则更可能为多表代换.</p>
 <p>重合指数: ${\rm IC}=\sum_{i=0}^25p_i^2$. 多表代换时 ${\rm IC}\approx 0.0655$. 相同字母间隔为 $d_1,&hellip;,d_n$, 则密钥可能长度为 ${\rm gcd}(d_1,&hellip;,d_n)$.</p>
-<h3 id="仿射密码">仿射密码</h3>
-<p>单表代换的代表.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineEn</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">plain</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyA</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">plain</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">keyA</span><span class="o">*</span><span class="p">(</span><span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">keyB</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">affineDe</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">cipher</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">plain</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyAReverse</span><span class="p">,</span> <span class="kt">int</span> <span class="n">keyB</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">long</span> <span class="n">length</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">cipher</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="nf">isupper</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;A&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;A&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nf">islower</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">])){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">keyAReverse</span><span class="o">*</span><span class="p">(</span><span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">-</span><span class="n">keyB</span><span class="p">))</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">26</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="sc">&#39;a&#39;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">plain</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">cipher</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="vernam密码">Vernam密码</h3>
-<p>序列密码的基础.</p>
 <h2 id="自同步序列密码">自同步序列密码</h2>
-<p>异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 无条件安全; 可逆.</p>
-<p>与同步序列密码相比, 传输产生的错误有界.</p>
-<p>种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&hellip;$.</p>
+<p>异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 无条件安全; 可逆. <br />
+与同步序列密码相比, 传输产生的错误有界.</p>
 <ul>
-<li>加密 $c_i=E_{k}(m)=m_i\oplus k_i$.</li>
-<li>解密 $m_i=D_{k}(m)=c_i\oplus k_i$.</li>
+<li>种子密钥通过LFSR(线性反馈移位寄存器)生成伪随机密钥序列 $k=k_0k_1k_2&hellip;$. <br />
+加密 $c_i=E_{k}(m)=m_i\oplus k_i$. <br />
+解密 $m_i=D_{k}(m)=c_i\oplus k_i$.</li>
 </ul>
 <p>LFSR: 状态 $(s_0,s_1,&hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i$, $s_i,g_i,x_i\in GF(2)$.</p>
 <blockquote>
-<p><img src="/img/post-crypto-sym-LFSR.png"
+<p><img src="/img/post-sec-crypto-LFSR.png"
 	
 	
 	
@@ -1413,7 +1344,6 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 e.g. $\ g(x)=1+x+x^2+x^5$, $s_{5+i}=s_{i}+s_{1+i}+s_{4+i}$. <br />
 $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 </blockquote>
-<p>使用verligo实现LFSR.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1433,9 +1363,11 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
+</span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 32-bit long
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 使用verligo实现LFSR.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 32-bit long
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">module</span> <span class="nf">lfsr</span><span class="p">(</span><span class="mi">32</span><span class="p">)(</span><span class="n">clk</span><span class="p">,</span> <span class="n">reset</span><span class="p">,</span> <span class="n">lfsr</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">  <span class="n">input</span> <span class="n">clk</span><span class="p">,</span> <span class="n">reset</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">  <span class="n">output</span> <span class="n">reg</span> <span class="p">[</span><span class="mi">31</span><span class="o">:</span><span class="mi">0</span><span class="p">]</span> <span class="n">lfsr</span><span class="p">;</span>
@@ -1454,11 +1386,9 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&hellip;$, $T=8$.</p>
 </span></span><span class="line"><span class="cl"><span class="n">endmodule</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>定理: $n$ 次特征多项式为 $GF(2^n)$ 上本原多项式时, 输出 $\max T=2^n-1$ 序列($m$ 序列).</p>
-<ol>
-<li>将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解;</li>
-<li>保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&lt;a&lt;2^n-1$ 的因式.</li>
-</ol>
+</div><p>定理: $n$ 次特征多项式为 $GF(2^n)$ 上本原多项式时, 输出 $\max T=2^n-1$ 序列($m$ 序列). <br />
+将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解; <br />
+保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&lt;a&lt;2^n-1$ 的因式.</p>
 <p>截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&hellip;,S_{i+n+1}$ 个状态; <br />
 记 $X=(S_i,&hellip;,S_n)$, $Y=(S_{i+1},&hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. <br />
 $m$ 序列时, $X$满秩, $H\equiv YX^{-1}({\rm mod}\ 2)$ 为特征多项式的友矩阵.</p>
@@ -1470,381 +1400,39 @@ $m$ 序列时, $X$满秩, $H\equiv YX^{-1}({\rm mod}\ 2)$ 为特征多项式的�
 g_0 &amp; g_1 &amp; g_2 &amp; &hellip; &amp; g_{n-1}
 \end{array}\right )$$</p>
 <p>可引入非线性运算增加复杂性: 与AND($GF(2)$上乘法) $\otimes$.</p>
-<h3 id="ad5">AD5</h3>
-<p>欧洲移动通信GSM标准, 手机到基站间的链路语音加密. <br />
-由19位, 22位, 23位3个LSR组成; 时钟控制信号来自LSR1第8位, LSR2第10位, LSR3第10位; 若三者相同则均移位, 若两者相同则相同的移位, 不同的不移位; 即每个时钟至少有两个LSR移位.</p>
-<p>不同文献的连接多项式不同, 其中一个为:</p>
-<p>$$\begin{cases}
-g_1(x)=x^{19}+x^{18}+x^{17}+x^{14}+1 \\
-g_2(x)=x^{22}+x^{21}+1 \\
-g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
-\end{cases}$$</p>
-<p>安全问题: 三个LSR长度过短; 种子密钥不同也会产生相同的密钥序列; 以目前计算能力不安全.</p>
 <h3 id="rc4">RC4</h3>
-<p>基于非线性数据表变换. 密钥流产生分为2个阶段: 输入密钥并初始化排列S表; S表不断置换产生密钥流.</p>
-<ol>
-<li>初始化: 线性填充256字节S表, 密钥循环填充T表. $i$ 遍历 $0-255$, $j=(j+S[i]+T[i])\%256$, 交换 $S[i]$ 和 $S[j]$.</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">uint8</span> <span class="o">*</span><span class="n">S</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">key</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">T</span><span class="p">[</span><span class="mi">256</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;Key:&#34;</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">fgets</span><span class="p">(</span><span class="n">key</span><span class="p">,</span><span class="mi">256</span><span class="p">,</span><span class="n">stdin</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">keyLen</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="n">keyLen</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">256</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">T</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="mi">256</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="2">
-<li>产生密钥流: $i$ 循环遍历 $0-255$, $j=(j+S[i])\%256$, 交换 $S[i]$ 和 $S[j]$, $t=(S[i]+S[j])\%256$, $k_i=S[t]$.</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">rc4EnDe</span><span class="p">(</span><span class="n">uint8</span> <span class="o">*</span><span class="n">S</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">text</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">result</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">t</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">tmp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">len</span><span class="p">;</span> <span class="o">++</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">256</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">j</span> <span class="o">=</span> <span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">%</span><span class="mi">256</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">S</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">%</span><span class="n">tmp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">result</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">text</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">^</span><span class="n">S</span><span class="p">[</span><span class="n">t</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>安全问题: 存在弱密钥使得初始化置换后 $S$ 表顺序不变; 存在弱密钥使得密钥流在100万字节内完全重复; 密钥较短的容易被攻击, 但长度超过128位的密钥依然有效.</p>
+<p>基于非线性数据表变换. 密钥流产生分为2个阶段: <br />
+(1) 输入密钥并初始化排列S表; <br />
+(2) S表不断置换产生密钥流.</p>
+<ul>
+<li>
+<p>初始化: 线性填充256字节S表, 密钥循环填充T表. $i$ 遍历 $0-255$, $j=(j+S[i]+T[i])\%256$, 交换 $S[i]$ 和 $S[j]$.</p>
+</li>
+<li>
+<p>产生密钥流: $i$ 循环遍历 $0-255$, $j=(j+S[i])\%256$, 交换 $S[i]$ 和 $S[j]$, $t=(S[i]+S[j])\%256$, $k_i=S[t]$.</p>
+</li>
+</ul>
+<p>安全问题: 存在弱密钥使得初始化置换后 $S$ 表顺序不变; 存在弱密钥使得密钥流在100万字节内完全重复; 密钥较短的容易被攻击, 但长度超过128位的密钥依然有效.</p>
 <h3 id="zuc">ZUC</h3>
 <p>LTE-4G国际标准, 包含机密性128-EEA3和完整性128-EIA3, 基于LFSR的非线性组合逻辑结构. <br />
 分为三层结构: LSFR, Bit重组, 非线性F函数. <br />
 符号约定: $\boxplus$ 为$GF(2^{32})$ 上加法; $|$ 为连接字符串; $_H$ 为高位16位; $_L$ 为低位16位; $&lt; &lt;_o$ 为循环左移.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">uint32</span> <span class="n">a</span><span class="p">,</span> <span class="n">uint32</span> <span class="n">b</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">c</span><span class="o">&amp;</span><span class="mh">0x7fffffff</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">c</span><span class="o">&gt;&gt;</span><span class="mi">31</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">exp</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">((</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="n">exp</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="mi">31</span><span class="o">-</span><span class="n">exp</span><span class="p">)))</span><span class="o">&amp;</span><span class="mh">0xfffffff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">rot</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">mov</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="n">mov</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="mi">31</span><span class="o">-</span><span class="n">mov</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<ul>
 <li>
 <p>输入参数: COUNT 计数器 32bit; BEARER 传载层标识 5bit; DIRECTION 传输方向标志 1bit; CK 密钥 128bit; IBS 输入比特流(明文或密文).</p>
 </li>
 <li>
 <p>密钥装入: 128bit扩展为16个31bit, $k=k_0|k_1|&hellip;|k_{15}$, $v=v_0|v_1|&hellip;|v_{15}$; 其中 $iv_0={\rm COUNT}[0]$, $iv_1={\rm COUNT}[1]$, $iv_2={\rm COUNT}[2]$, $iv_3={\rm COUNT}[3]$, $iv_4={\rm BEARER}|{\rm DIRECTION}|00$, $iv_5=iv_6=iv_7=00000000$, $iv_{j+8}=iv_j$, $j=8,9,&hellip;,15$.</p>
 </li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="n">key</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(((</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">10</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">+</span><span class="p">((</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">10</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">iv</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(((</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">10</span><span class="p">))</span><span class="o">&lt;&lt;</span><span class="mi">4</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">            <span class="o">+</span><span class="p">((</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="sc">&#39;9&#39;</span><span class="p">)</span> <span class="o">?</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">:</span> <span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="sc">&#39;a&#39;</span><span class="o">+</span><span class="mi">10</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>LSFR: 连接多项式为 $GF(2^{31}-1)$ 上本原多项式 $g(x)=x^{16}-2^{15}x^{15}-2^{17}x^{13}-2^{21}x^{10}-2^{20}x^{4}-2^8-1$; 输出 $m$ 序列周期 $T=(2^{31}-1)^{16}-1$; 生成16个31bit LFSR块.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
-</span><span class="lnt">46
-</span><span class="lnt">47
-</span><span class="lnt">48
-</span><span class="lnt">49
-</span><span class="lnt">50
-</span><span class="lnt">51
-</span><span class="lnt">52
-</span><span class="lnt">53
-</span><span class="lnt">54
-</span><span class="lnt">55
-</span><span class="lnt">56
-</span><span class="lnt">57
-</span><span class="lnt">58
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LFSRInitMode</span><span class="p">(</span><span class="n">uint32</span> <span class="n">u</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="mi">20</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="mi">21</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span><span class="mi">17</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">u</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">v</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">LFSR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">LFSR</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">LFSRWorkMode</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span><span class="mi">20</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span><span class="mi">21</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span><span class="mi">17</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="n">tmp</span> <span class="o">=</span> <span class="nf">mod2ExpMulti</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">15</span><span class="p">],</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">v</span> <span class="o">=</span> <span class="nf">modAdd</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">==</span> <span class="mi">0</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">        <span class="n">v</span> <span class="o">=</span> <span class="mh">0x7fffffff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">LFSR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">LFSR</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>Bit重组: $X_0=S[15]_H|S[14]_L$, $X_1=S[11]_L|S[9]_H$ ,$X_2=S[7]_L|S[5]_H$, $X_3=S[2]_L|S[0]_H$.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">bitRecons</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0x7fff8000</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">1</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span><span class="o">&amp;</span><span class="mh">0x0000ffff</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">LFSR</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&gt;&gt;</span><span class="mi">15</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>非线性F函数: $W=(X_0\oplus R_1)\boxplus R_2$, $W_1=R_1\boxplus X_1$, $W_2=R_2\boxplus X_2$, $R_1=S(L_1(W_{1L}|W_{2H}))$, $R_2=S(L_2(W_{2L}|W_{1H}))$; 其中 $L_1(a)=a\oplus(a&lt; &lt;_o 2)\oplus(a&lt; &lt;_o 10)\oplus(a&lt; &lt;_o 18)\oplus(a&lt; &lt;_o 24)$, $L_2(a)=a\oplus(a&lt; &lt;_o 8)\oplus(a&lt; &lt;_o 14)\oplus(a&lt; &lt;_o 22)\oplus(a&lt; &lt;_o 30)$; $S$ 盒为 $(S_0,S_1,S_0,S_1)$, 每8bit作为索引, 返回 $S$ 盒中对应的8bit数值.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">F</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">W1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">W2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">W</span> <span class="o">=</span> <span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">^</span><span class="n">R1</span><span class="p">)</span><span class="o">+</span><span class="n">R2</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">W1</span> <span class="o">=</span> <span class="n">R1</span><span class="o">+</span><span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">W2</span> <span class="o">=</span> <span class="n">R2</span><span class="o">+</span><span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">R1</span> <span class="o">=</span> <span class="nf">S</span><span class="p">(</span><span class="nf">L1</span><span class="p">((</span><span class="n">W1</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">W2</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">R2</span> <span class="o">=</span> <span class="nf">S</span><span class="p">(</span><span class="nf">L2</span><span class="p">((</span><span class="n">W1</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">W2</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">L1</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">18</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">24</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">L2</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">x</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">14</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">22</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">S</span><span class="p">(</span><span class="n">uint32</span> <span class="n">a</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">x</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">y</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">&gt;&gt;</span><span class="mi">24</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S0</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">S1</span><span class="p">[</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">|</span><span class="n">y</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<li>
+<p>LSFR: 连接多项式为 $GF(2^{31}-1)$ 上本原多项式 $g(x)=x^{16}-2^{15}x^{15}-2^{17}x^{13}-2^{21}x^{10}-2^{20}x^{4}-2^8-1$; 输出 $m$ 序列周期 $T=(2^{31}-1)^{16}-1$; 生成16个31bit LFSR块.</p>
+</li>
+<li>
+<p>Bit重组: $X_0=S[15]_H|S[14]_L$, $X_1=S[11]_L|S[9]_H$ ,$X_2=S[7]_L|S[5]_H$, $X_3=S[2]_L|S[0]_H$.</p>
+</li>
+<li>
+<p>非线性F函数: $W=(X_0\oplus R_1)\boxplus R_2$, $W_1=R_1\boxplus X_1$, $W_2=R_2\boxplus X_2$, $R_1=S(L_1(W_{1L}|W_{2H}))$, $R_2=S(L_2(W_{2L}|W_{1H}))$; 其中 $L_1(a)=a\oplus(a&lt; &lt;_o 2)\oplus(a&lt; &lt;_o 10)\oplus(a&lt; &lt;_o 18)\oplus(a&lt; &lt;_o 24)$, $L_2(a)=a\oplus(a&lt; &lt;_o 8)\oplus(a&lt; &lt;_o 14)\oplus(a&lt; &lt;_o 22)\oplus(a&lt; &lt;_o 30)$; $S$ 盒为 $(S_0,S_1,S_0,S_1)$, 每8bit作为索引, 返回 $S$ 盒中对应的8bit数值.</p>
+</li>
 <li>
 <p>密钥流输出: $K=W\oplus X[3]$, 每个时钟节拍产生32bit密钥流.</p>
 </li>
@@ -1852,156 +1440,37 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <p>输出参数: OBS 输出比特流(密文或明文).</p>
 </li>
 </ul>
-<p>ZUC生成密钥流分为5个阶段: $ck$ 和 $iv$ 装载到LFSR; 寄存器 $R_1,R_2$ 置空; 初始化模式运行32次; 工作模式运行1次并舍弃输出; 持续工作模式产生密钥流.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span><span class="lnt">30
-</span><span class="lnt">31
-</span><span class="lnt">32
-</span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 1. 装载LFSR
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">keyIVInsert</span><span class="p">(</span><span class="n">uint8</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">uint8</span> <span class="o">*</span><span class="n">iv</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">LFSR</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">23</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">)</span><span class="o">|</span><span class="n">iv</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 2. 置空寄存器
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">uint32</span> <span class="n">R1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">R2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 3. 初始化模式运行32次 
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="n">uint8</span> <span class="o">*</span><span class="n">k</span><span class="p">,</span> <span class="n">uint8</span> <span class="o">*</span><span class="n">iv</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">keyIVInsert</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">iv</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">R1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">R2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitRecons</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">F</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">LFSRInitMode</span><span class="p">(</span><span class="n">W</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="o">*</span><span class="nf">keyStreamGenerate</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">keyLen</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="o">*</span><span class="n">keyStream</span> <span class="o">=</span> <span class="p">(</span><span class="n">uint32</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">keyLen</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="n">uint32</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 4. 工作模式运行1次并舍弃输出
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">bitRecons</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">F</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">LFSRWorkMode</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 5. 持续工作模式产生密钥流
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keyLen</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitRecons</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">F</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">        <span class="n">keyStream</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">W</span><span class="o">^</span><span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">LFSRWorkMode</span><span class="p">();</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">keyStream</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>安全问题: 能够抵御多种已知针对序列密码的攻击, 主要威胁是侧信道攻击.</p>
+<p>ZUC生成密钥流分为5个阶段: <br />
+(1) $ck$ 和 $iv$ 装载到LFSR; <br />
+(2) 寄存器 $R_1,R_2$ 置空; <br />
+(3) 初始化模式运行32次; <br />
+(4) 工作模式运行1次并舍弃输出; <br />
+(5) 持续工作模式产生密钥流.</p>
+<p>安全问题: 能够抵御多种已知针对序列密码的攻击, 主要威胁是侧信道攻击.</p>
 <h2 id="分组密码">分组密码</h2>
-<p>本质为单表代换, 复杂多轮非线性, 通过混淆和扩散实现. </pr>
+<p>本质为单表代换, 复杂多轮非线性, 通过混淆和扩散实现. <br />
 组件: S盒(混淆扩散), P置换(扩散), 轮函数F, 密钥扩展.</p>
-<p>结构模型</p>
 <ul>
-<li>S-P网络: 每轮异或密钥后, S盒分组小块混淆扩散, P置换整体扩散, $N_i=F(N_{i-1}\oplus K_i)$.</li>
-<li>Feistel网络: 分为左右两部分, $R_i=F(R_{i-1},K_i)\oplus L_{i-1}$, $L_i=R_{i-1}$, 最后一轮不做对换; 同个算法实现加解密.</li>
-</ul>
-<p>工作模式:</p>
-<ul>
-<li>ECB(电子密码本): 分组用相同密钥加密; 相同明文产生相同密文; 可并行.</li>
-<li>CBC(密码分组链接): 初始化 $iv$ 得到第一组密文, 第一组密文与第二组明文异或后再加密; TSL及IPSEc协议推荐; 仅解密支持并行.</li>
-<li>CFB(密文反馈): 初始化 $iv$ 得到密文 $E$, $vi$ 左移 $n$ 位, 密文 $E$ 与明文异或后得到密文 $C$, $C$ 高位 $n$ 位填入 $vi$; 流式数据, 错误有界; 仅解密支持并行.</li>
-<li>OFB(输出反馈): 初始化 $iv$ 得到密文 $E$, $vi$ 左移 $n$ 位, 密文 $E$ 与高位 $n$ 位填入 $vi$, 密文 $E$ 与明文异或后得到密文 $C$; 流式数据, 错误有界; 不支持并行.</li>
-<li>CTR(计数器): 自增算子加密后与明文异或得到密文; 相当于一次一密; 简单快速安全可并行.</li>
+<li>
+<p>结构模型 <br />
+S-P网络: 每轮异或密钥后, S盒分组小块混淆扩散, P置换整体扩散, $N_i=F(N_{i-1}\oplus K_i)$. <br />
+Feistel网络: 分为左右两部分, $R_i=F(R_{i-1},K_i)\oplus L_{i-1}$, $L_i=R_{i-1}$, 最后一轮不做对换; 同个算法实现加解密.</p>
+</li>
+<li>
+<p>工作模式: <br />
+ECB(电子密码本): 分组用相同密钥加密; 相同明文产生相同密文; 可并行. <br />
+CBC(密码分组链接): 初始化 $iv$ 得到第一组密文, 第一组密文与第二组明文异或后再加密; TSL及IPSEc协议推荐; 仅解密支持并行. <br />
+CFB(密文反馈): 初始化 $iv$ 得到密文 $E$, $vi$ 左移 $n$ 位, 密文 $E$ 与明文异或后得到密文 $C$, $C$ 高位 $n$ 位填入 $vi$; 流式数据, 错误有界; 仅解密支持并行. <br />
+OFB(输出反馈): 初始化 $iv$ 得到密文 $E$, $vi$ 左移 $n$ 位, 密文 $E$ 与高位 $n$ 位填入 $vi$, 密文 $E$ 与明文异或后得到密文 $C$; 流式数据, 错误有界; 不支持并行. <br />
+CTR(计数器): 自增算子加密后与明文异或得到密文; 相当于一次一密; 简单快速安全可并行. <br /></p>
+</li>
 </ul>
 <h3 id="des">DES</h3>
 <p>数据加密标准(Data Encryption Standard), 体现Shannon密码设计思想, 公开密码算法先例, 16轮Feistel网络对合加解密.</p>
 <ul>
-<li>密钥扩展: 初始密钥(64bit)经PC1表置换得到 $C_i$ 和 $D_i$ (各28bit), 循环左移 $ls_i$ 位, 经PC2表置换得到第 $i$ 轮子密钥 $K_i$ (48bit); 置换表中元素 $pt_{i}$ 意为将待置换中的第 $pt_{i}$ 位置换到第$i$位.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">tablePermute</span><span class="p">(</span><span class="n">bit1</span> <span class="o">*</span><span class="n">permuted</span><span class="p">,</span> <span class="n">bit1</span> <span class="o">*</span><span class="n">origin</span><span class="p">,</span> <span class="n">bit8</span> <span class="o">*</span><span class="n">table</span><span class="p">,</span> <span class="n">bit8</span> <span class="n">size</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">origin</span><span class="p">[</span><span class="n">table</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">bitCopy</span><span class="p">(</span><span class="n">permuted</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="n">size</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">keyExp</span><span class="p">(</span><span class="n">bit8</span> <span class="o">*</span><span class="n">key</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="n">keyPerRound</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="o">*</span><span class="n">keyPrL</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">keyPerRound</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="o">*</span><span class="n">keyPrR</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">keyPerRound</span><span class="p">[</span><span class="mi">28</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">byteToBit</span><span class="p">(</span><span class="n">keyPerRound</span><span class="p">,</span><span class="n">key</span><span class="p">,</span><span class="mi">8</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">keyPerRound</span><span class="p">,</span><span class="n">keyPerRound</span><span class="p">,</span><span class="n">PC1</span><span class="p">,</span><span class="mi">56</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitRot</span><span class="p">(</span><span class="n">keyPrL</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="n">LS</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitRot</span><span class="p">(</span><span class="n">keyPrR</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="n">LS</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">tablePermute</span><span class="p">(</span><span class="n">subKey</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">keyPerRound</span><span class="p">,</span><span class="n">PC2</span><span class="p">,</span><span class="mi">48</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<li>
+<p>密钥扩展: 初始密钥(64bit)经PC1表置换得到 $C_i$ 和 $D_i$ (各28bit), 循环左移 $ls_i$ 位, 经PC2表置换得到第 $i$ 轮子密钥 $K_i$ (48bit); 置换表中元素 $pt_{i}$ 意为将待置换中的第 $pt_{i}$ 位置换到第$i$位.</p>
+</li>
 <li>
 <p>初始置换与结束逆置换: 明(密)文(64bit)经IP表置换进入加密, 完成加(解)密后经IPR表置换得到密(明)文(64bit).</p>
 </li>
@@ -2009,504 +1478,37 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <p>轮函数: 32bit输入经E表置换扩充到48bit, 与子密钥(48bit)异或后, 经S盒压缩回32bit(<strong>混淆</strong>), 再经P表置换得到32bit输出(<strong>扩散</strong>); S盒6位输入 $b_1b_2b_3b_4b_5b_6$, 输出$s_{b_1b_6, b_2b_3b_4b_5}$.</p>
 </li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">SPermute</span><span class="p">(</span><span class="n">bit1</span> <span class="o">*</span><span class="n">permuted</span><span class="p">,</span> <span class="n">bit1</span> <span class="o">*</span><span class="n">origin</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="o">*</span><span class="n">p1</span> <span class="o">=</span> <span class="n">origin</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="o">*</span><span class="n">p2</span> <span class="o">=</span> <span class="n">permuted</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">row</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p1</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">col</span> <span class="o">=</span> <span class="mi">8</span> <span class="o">*</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">p1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">p1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="n">p1</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">byteToBit</span><span class="p">(</span><span class="n">permuted</span><span class="p">,</span><span class="o">&amp;</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">row</span><span class="p">][</span><span class="n">col</span><span class="p">],</span><span class="mi">4</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">p1</span> <span class="o">+=</span> <span class="mi">6</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">p2</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">F</span><span class="p">(</span><span class="n">bit1</span> <span class="o">*</span><span class="n">output</span><span class="p">,</span> <span class="n">bit1</span> <span class="o">*</span><span class="n">input</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">bit1</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">48</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">input</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="mi">48</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">bitXor</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">input</span><span class="p">,</span><span class="mi">48</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">SPermute</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">tmp</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">output</span><span class="p">,</span><span class="n">P</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 加密
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">textBit</span><span class="p">,</span><span class="n">textBit</span><span class="p">,</span><span class="n">IP</span><span class="p">,</span><span class="mi">64</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="mi">15</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitCopy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">textBitR</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">F</span><span class="p">(</span><span class="n">textBitR</span><span class="p">,</span><span class="n">subKey</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitXor</span><span class="p">(</span><span class="n">textBitR</span><span class="p">,</span><span class="n">textBitL</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitCopy</span><span class="p">(</span><span class="n">textBitL</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">textBit</span><span class="p">,</span><span class="n">textBit</span><span class="p">,</span><span class="n">IPR</span><span class="p">,</span><span class="mi">64</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 解密, 密钥顺序相反
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">textBit</span><span class="p">,</span><span class="n">textBit</span><span class="p">,</span><span class="n">IP</span><span class="p">,</span><span class="mi">64</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitCopy</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">textBitL</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">F</span><span class="p">(</span><span class="n">textBitL</span><span class="p">,</span><span class="n">subKey</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitXor</span><span class="p">(</span><span class="n">textBitL</span><span class="p">,</span><span class="n">textBitR</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">bitCopy</span><span class="p">(</span><span class="n">textBitR</span><span class="p">,</span><span class="n">tmp</span><span class="p">,</span><span class="mi">32</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">tablePermute</span><span class="p">(</span><span class="n">textBit</span><span class="p">,</span><span class="n">textBit</span><span class="p">,</span><span class="n">IPR</span><span class="p">,</span><span class="mi">64</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>S盒是DES中唯一非线性变换, 设计准则: 改变1bit输入至少2bit发生变化; $S(x)$ 和 $S(x\oplus 001100)$ 至少2bit发生变化; $S(x)\neq S(x\oplus 11ef00)$, $e,f\in{0,1}$; 改变5bit输入, 输出的0和1数目大致相等; 足够的非线性度以抵抗线性攻击; 差分性均匀以抵抗差分攻击; 足够的代数次数和项目以抵抗插值攻击和高阶差分攻击.</p>
+<p>S盒是DES中唯一非线性变换, 设计准则: 改变1bit输入至少2bit发生变化; $S(x)$ 和 $S(x\oplus 001100)$ 至少2bit发生变化; $S(x)\neq S(x\oplus 11ef00)$, $e,f\in{0,1}$; 改变5bit输入, 输出的0和1数目大致相等; 足够的非线性度以抵抗线性攻击; 差分性均匀以抵抗差分攻击; 足够的代数次数和项目以抵抗插值攻击和高阶差分攻击.</p>
 <p>攻击类型: 穷钥攻击; 侧信道攻击(能量分析, 故障注入分析); 差分攻击; 线性攻击.</p>
 <p>安全问题: 密钥太短(有效仅56bit); 存在弱密钥; 互补对称性(异或运算).</p>
 <p>3-DES: 112(1和3轮密钥相同)/256bit密钥; 加解密速度慢.</p>
 <h3 id="aes">AES</h3>
-<p><em>(something wrong in the AES code)</em></p>
 <p>高级数据加密标准(Advanced Encryption Standard), 采用10/12/14轮S-P网络非对合加解密(对应128/192/256bit密钥).</p>
 <p>$GF(2)$ 上多项式域 $GF(2^8)\cong  GF(2)[x]/(x^8+x^4+x^3+x+1)$ 中元素为 $b_{(8)}=b_7x^7+b_6x^6+b_5x^5+b_4x^4+b_3x^3+b_2x^2+b_1x+b_0$, 乘法需对既约多项式 $m(x)=x^8+x^4+x^3+x+1$ 取模, 乘法逆元可由扩展Euclid算法得到. <br />
 考虑 $xb_{(8)}=(b_{(8)}&lt; &lt; 1)\oplus m(x)$, 高次乘法可重复 $x$ 乘实现.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint8</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">uint8</span> <span class="n">x</span><span class="p">,</span> <span class="n">uint8</span> <span class="n">y</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tmp</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">&amp;</span><span class="mh">0x01</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">ans</span> <span class="o">^=</span> <span class="n">y</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">y</span><span class="o">&amp;</span><span class="mh">0x80</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">y</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">            <span class="n">y</span> <span class="o">^=</span> <span class="mh">0x1B</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">        <span class="n">x</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)/[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
+<p>$GF(2^8)$ 上 $degf\leq 3$ 多项式环 $GF(2^8)/[x^4+1]$ 中元素为 $b_{(32)}=B_3x^3+B_2x^2+B_1x+B_0$, 乘法需对 $x^4+1$ 取模.
 考虑 $xb_{(32)}=b_{(32)}&gt; &gt;8$, 高次乘法可视为 $GF(2^8)$ 上矩阵乘法.</p>
 <ul>
-<li>状态矩阵: 128bit明(密)文和密钥按列优先载入4阶方阵, 每列32bit称为&quot;字&quot;, 加(解)密后按列优先输出密(明)文.</li>
+<li>
+<p>状态矩阵: 128bit明(密)文和密钥按列优先载入4阶方阵, 每列32bit称为&quot;字&quot;, 加(解)密后按列优先输出密(明)文.</p>
+</li>
+<li>
+<p>密钥扩展: 4字输入, 扩展为44字输出; $w[i]=w[i-1]\oplus w[i-4]$, $i\% 4 \ne 0$; $w[i]=w[i-4]\oplus S(w&rsquo;[i-1])\oplus Rcon[i]$, $i \% 4 = 0$, 即每个字循环左移1字节后进行S盒置换.</p>
+</li>
+<li>
+<p>轮函数: 主要包括(逆)字节代换, (逆)行位移, (逆)列混合, 轮密钥加(即子密钥异或).</p>
+</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">loadState</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">],</span> <span class="n">uint8</span><span class="o">*</span> <span class="n">text</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">state</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="n">text</span><span class="o">++</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">storeState</span><span class="p">(</span><span class="n">uint8</span><span class="o">*</span> <span class="n">text</span><span class="p">,</span> <span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="o">*</span><span class="p">(</span><span class="n">text</span><span class="o">++</span><span class="p">)</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>密钥扩展: 4字输入, 扩展为44字输出; $w[i]=w[i-1]\oplus w[i-4]$, $i\% 4 \ne 0$; $w[i]=w[i-4]\oplus S(w&rsquo;[i-1])\oplus Rcon[i]$, $i \% 4 = 0$, 即每个字循环左移1字节后进行S盒置换.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">mixRoll</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub1</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">24</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">24</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub2</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">16</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">16</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub3</span> <span class="o">=</span> <span class="n">S</span><span class="p">[(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">)</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="mi">8</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">sub4</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">x</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">sub1</span><span class="o">&amp;</span><span class="mh">0xff000000</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub2</span><span class="o">&amp;</span><span class="mh">0xff0000</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub3</span><span class="o">&amp;</span><span class="mh">0xff00</span><span class="p">)</span><span class="o">^</span><span class="p">(</span><span class="n">sub4</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">keyExp</span><span class="p">(</span><span class="n">uint8</span><span class="o">*</span> <span class="n">key</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">load</span><span class="p">(</span><span class="o">&amp;</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">key</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">=</span> <span class="mi">4</span><span class="o">*</span><span class="n">i</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">[</span><span class="mi">4</span><span class="o">+</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="n">m</span><span class="p">]</span><span class="o">^</span> <span class="nf">mixRol1</span><span class="p">(</span><span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="n">m</span><span class="p">])</span><span class="o">^</span><span class="n">rotConst</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">[</span><span class="mi">5</span><span class="o">+</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="mi">1</span><span class="o">+</span><span class="n">m</span><span class="p">]</span><span class="o">^</span><span class="n">w</span><span class="p">[</span><span class="mi">4</span><span class="o">+</span><span class="n">m</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">[</span><span class="mi">6</span><span class="o">+</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="mi">2</span><span class="o">+</span><span class="n">m</span><span class="p">]</span><span class="o">^</span><span class="n">w</span><span class="p">[</span><span class="mi">5</span><span class="o">+</span><span class="n">m</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="n">w</span><span class="p">[</span><span class="mi">7</span><span class="o">+</span><span class="n">m</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span><span class="p">[</span><span class="mi">3</span><span class="o">+</span><span class="n">m</span><span class="p">]</span><span class="o">^</span><span class="n">w</span><span class="p">[</span><span class="mi">6</span><span class="o">+</span><span class="n">m</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>轮函数: 主要包括(逆)字节代换, (逆)行位移, (逆)列混合, 轮密钥加(即子密钥异或).</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 加密: 字节代换, 行位移, 列混合, 轮密钥加, 最后一轮跳过列混合
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">loadState</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">pPlain</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pW</span> <span class="o">+=</span> <span class="mi">4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">subBytes</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">shiftRows</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">mixCols</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">subBytes</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">shiftRows</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="o">+</span><span class="mi">4</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">storeState</span><span class="p">(</span><span class="n">pCipher</span><span class="p">,</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">// 解密: 密钥顺序相反, 逆行位移, 逆字节代换, 轮密钥加, 逆列混合, 最后一轮跳过逆列混合
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="nf">loadState</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">pCipher</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">pW</span> <span class="o">-=</span> <span class="mi">4</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">shiftRowsInv</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">subBytesInv</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">mixColsInv</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">shiftRowsInv</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">subBytesInv</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">addRoundKey</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">pW</span><span class="o">-</span><span class="mi">4</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">storeState</span><span class="p">(</span><span class="n">pPlain</span><span class="p">,</span><span class="n">state</span><span class="p">);</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>字节代换即取求每个字节在 $GF(2^8)$ 上的逆后进行仿射变换, 可等效为S盒置换; 逆字节代换即逆仿射变换再取逆, 可等效为逆S盒置换.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">subBytes</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">subBytesInv</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">SInv</span><span class="p">[</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>行位移即第 $i=0,1,2,3$ 个字循环右移 $i$ 字节; 逆行位移即第 $i$ 个字循环左移 $i$ 字节.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">rol</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">,</span> <span class="n">uint8</span> <span class="n">n</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="n">n</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">n</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">ror</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">,</span> <span class="n">uint8</span> <span class="n">n</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="o">&gt;&gt;</span><span class="n">n</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">x</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">n</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">shiftRows</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">load</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">rol</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">8</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">store</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">shiftRowsInv</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">load</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">ror</span><span class="p">(</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="mi">8</span><span class="o">*</span><span class="n">i</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="nf">store</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="o">&amp;</span><span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>列混合即按列的字在  $GF(2^8)[x^4+1]$ 上与 $a(x)={\rm 0x03}x^3+{\rm 0x01}x^2+{\rm 0x01}x+{\rm 0x02}$ 相乘; 逆列混合即与 $a^{-1}(x)={\rm 0x0B}x^3+{\rm 0x0D}x^2+{\rm 0x09}x+{\rm 0x0E}$ 相乘; 均可等效为 $GF(2^8)$ 上的矩阵乘法.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span><span class="lnt">29
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">mixCols</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span>
-</span></span><span class="line"><span class="cl">                          <span class="nf">modMulti</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">mixColsInv</span><span class="p">(</span><span class="n">uint8</span> <span class="n">state</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint8</span> <span class="n">tmp</span><span class="p">[</span><span class="mi">4</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">tmp</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">            <span class="n">state</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">DInv</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">DInv</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span>
-</span></span><span class="line"><span class="cl">                          <span class="nf">modMulti</span><span class="p">(</span><span class="n">DInv</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="n">j</span><span class="p">])</span> <span class="o">^</span> <span class="nf">modMulti</span><span class="p">(</span><span class="n">DInv</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">3</span><span class="p">],</span><span class="n">tmp</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="n">j</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>安全问题: 主要威胁是侧信道攻击.</p>
+<p>字节代换即取求每个字节在 $GF(2^8)$ 上的逆后进行仿射变换, 可等效为S盒置换; 逆字节代换即逆仿射变换再取逆, 可等效为逆S盒置换. <br />
+行位移即第 $i=0,1,2,3$ 个字循环右移 $i$ 字节; 逆行位移即第 $i$ 个字循环左移 $i$ 字节. <br />
+列混合即按列的字在  $GF(2^8)[x^4+1]$ 上与 $a(x)={\rm 0x03}x^3+{\rm 0x01}x^2+{\rm 0x01}x+{\rm 0x02}$ 相乘; 逆列混合即与 $a^{-1}(x)={\rm 0x0B}x^3+{\rm 0x0D}x^2+{\rm 0x09}x+{\rm 0x0E}$ 相乘; 均可等效为 $GF(2^8)$ 上的矩阵乘法.</p>
+<p>安全问题: 主要威胁是侧信道攻击.</p>
 <h3 id="sm4">SM4</h3>
 <p>128bit密钥32轮非平衡Feistel网络. 1字$=$4字节$=$32bit.</p>
 <ul>
-<li>密钥扩展: 初始密钥 $(MK_0,MK_1,MK_2,MK_3)$, $K_i=MK_i\oplus FK_i$ ,$rk_i = K_{i+4} = K_i\oplus T(K_{i+1}\oplus K_{i+2}\oplus K_{i+3}\oplus CK_i)$; FK_i 为系统参数, CK_i 为固定参数; 以每个字节前4bit作为行, 后4bit作为列, 进行非线性的S盒置换; 再对字进行线性变换 $B\oplus (B &lt; &lt;_o 13)\oplus (B &lt; &lt;_o 23)$.</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">TKey</span><span class="p">(</span><span class="n">uint32</span> <span class="n">k</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sk</span> <span class="o">=</span> <span class="nf">SPermute</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sk</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sk</span><span class="p">,</span><span class="mi">23</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">generateRk</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="n">uint32</span> <span class="n">K</span><span class="p">[</span><span class="mi">35</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">MK</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">^</span><span class="n">FK</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">K</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="nf">TKey</span><span class="p">(</span><span class="n">K</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">K</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">K</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">CK</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">rk</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">K</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<li>
+<p>密钥扩展: 初始密钥 $(MK_0,MK_1,MK_2,MK_3)$, $K_i=MK_i\oplus FK_i$ ,$rk_i = K_{i+4} = K_i\oplus T(K_{i+1}\oplus K_{i+2}\oplus K_{i+3}\oplus CK_i)$; FK_i 为系统参数, CK_i 为固定参数; 以每个字节前4bit作为行, 后4bit作为列, 进行非线性的S盒置换; 再对字进行线性变换 $B\oplus (B &lt; &lt;_o 13)\oplus (B &lt; &lt;_o 23)$.</p>
+</li>
 <li>
 <p>轮函数: $X_{i+4} = X_i\oplus T&rsquo;(X_{i+1}\oplus X_{i+2}\oplus X_{i+3}\oplus rK_i)$; 进行非线性的S盒置换后, 再对字进行线性变换 $B\oplus (B &lt; &lt;_o 2)\oplus (B &lt; &lt;_o 10)\oplus (B &lt; &lt;_o 18)\oplus (B &lt; &lt;_o 24)$.</p>
 </li>
@@ -2514,66 +1516,33 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <p>反序输出: 输入 $(X_1,X_2,X_3,X_4)$, 输出 $(Y_1,Y_2,Y_3,Y_4)=(X_{35},X_{34},X_{33},X_{32})$.</p>
 </li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">uint32</span> <span class="nf">T</span><span class="p">(</span><span class="n">uint32</span> <span class="n">x</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sx</span> <span class="o">=</span> <span class="nf">SPermute</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">sx</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sx</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sx</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sx</span><span class="p">,</span><span class="mi">18</span><span class="p">)</span><span class="o">^</span><span class="nf">rot</span><span class="p">(</span><span class="n">sx</span><span class="p">,</span><span class="mi">24</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">F32</span><span class="p">(</span><span class="kt">void</span><span class="p">){</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">X</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="nf">T</span><span class="p">(</span><span class="n">X</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">X</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">X</span><span class="p">[(</span><span class="n">i</span><span class="o">+</span><span class="mi">3</span><span class="p">)</span><span class="o">%</span><span class="mi">4</span><span class="p">]</span><span class="o">^</span><span class="n">rk</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="o">-</span><span class="n">i</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>安全问题: 主要威胁是侧信道攻击(故障注入分析).</p>
+<p>安全问题: 主要威胁是侧信道攻击(故障注入分析).</p>
 <h2 id="公钥密码">公钥密码</h2>
-<h3 id="基础">基础</h3>
 <p>使用对称加密, $n$ 个实体的网络需要 $\frac{(n-1)n}{2}$ 个密钥及同等数量的保密信道, 密钥管理困难. <br />
 对称加密也难以解决签名和认证问题: 接收方可以伪造原文; 发送方可以否认行为.</p>
 <p>非对称加密基本条件: (1)安全 $k_e\ne k_d$ 且由 $k_e$ 不能得到 $k_d$; (2) 保密: $D(E(m))=m$; (3)E和D高效; (4) 保真: $E(D(m))=m$.</p>
 <p>单向陷门函数: $y=f(x)$ 满足: (1)给定 $x$, 计算 $y$ 很容易; (2)给定$y$, 不掌握陷门, 计算 $x=f^{-1}(y)$ 很困难; (3)给定$y$, 掌握陷门, 计算 $xf^{-1}(y)$ 很容易.</p>
-<p>数学难题</p>
 <ul>
-<li>大合数分解难题: 大素数乘积容易 $p\times q=n$, 大合数分解困难 $n=p\times q$.</li>
-<li>离散对数难题(DLP): 有限域 $GF(p)$ 上生成元幂乘容易 $a^b=c$, 求对数困难 $\log_a c=b$.</li>
-<li>椭圆曲线离散对数难题(ECDLP): 椭圆曲线群 $E_p(a,b)$ 中基点倍乘容易 $dP=Q$, 求倍数困难 $d=\frac{Q}{P}$.</li>
-<li>误差还原难题(LWE): 有限域 $GF(p)$ 上矩阵乘法加误差容易 $v=As+e$, 解带噪音的线性方程组困难 $s=A^{-1}(v-e)$.</li>
-</ul>
-<p>工作方式</p>
-<ul>
-<li>发送方 $A$: 先用发送方私钥 $k_{Ad}$ 签名 $s=D(m,k_{Ad})$, 再用接收方公钥 $k_{Be}$ 加密 $c=E(s,k_{Be})$.</li>
-<li>接收方 $B$: 先用接收方私钥 $k_{Bd}$ 解密 $s=E(c,k_{Bd})$, 再用发送方公钥 $k_{Ae}$ 验证 $m=D(s,k_{Ae})$.</li>
-<li>机密性: 公钥加密, 私钥解密.</li>
-<li>真实性: 私钥签名, 公钥验证.</li>
+<li>
+<p>数学难题 <br />
+大合数分解难题: 大素数乘积容易 $p\times q=n$, 大合数分解困难 $n=p\times q$. <br />
+离散对数难题(DLP): 有限域 $GF(p)$ 上生成元幂乘容易 $a^b=c$, 求对数困难 $\log_a c=b$. <br />
+椭圆曲线离散对数难题(ECDLP): 椭圆曲线群 $E_p(a,b)$ 中基点倍乘容易 $dP=Q$, 求倍数困难 $d=\frac{Q}{P}$. <br />
+误差还原难题(LWE): 有限域 $GF(p)$ 上矩阵乘法加误差容易 $v=As+e$, 解带噪音的线性方程组困难 $s=A^{-1}(v-e)$. <br /></p>
+</li>
+<li>
+<p>工作方式 <br />
+发送方 $A$: 先用发送方私钥 $k_{Ad}$ 签名 $s=D(m,k_{Ad})$, 再用接收方公钥 $k_{Be}$ 加密 $c=E(s,k_{Be})$. <br />
+接收方 $B$: 先用接收方私钥 $k_{Bd}$ 解密 $s=E(c,k_{Bd})$, 再用发送方公钥 $k_{Ae}$ 验证 $m=D(s,k_{Ae})$. <br />
+机密性: 公钥加密, 私钥解密. <br />
+真实性: 私钥签名, 公钥验证. <br /></p>
+</li>
 </ul>
 <h3 id="rsa">RSA</h3>
-<p>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.</p>
 <ul>
-<li>公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$.</li>
-<li>私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)$</li>
+<li>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.  <br />
+公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$. <br />
+私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)$ <br /></li>
 </ul>
 <blockquote>
 <p>证明: $D_{d,n}(E_{e,n}(m))=m$, $E_{e,n}(D_{d,n}(c))=c$.</p>
@@ -2582,9 +1551,9 @@ g_3(x)=x^{23}+x^{22}+x^{21}+x^8+1
 <p>${\rm gcd}(M,n)\ne 1$ 时, 由于 $m\leq n$, 不妨设 $m = ap$, $a\in\mathbb{Z}$, 有 $m^{\varphi(q)}\equiv 1({\rm mod}\ q)$, 即 $m^t{\varphi(n)}=bq+1$, $b\in\mathbb{Z}$, 故 $m^t{\varphi(n)+1} = abn+M$.</p>
 </blockquote>
 <ul>
-<li>参数选取</li>
-</ul>
-<p>$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. <br />
+<li>
+<p>参数选取 <br />
+$p,q$ 足够大, 一般场景使 $n$ 达到1024bit, 重要场景2048bit. <br />
 $p,q$ 为强素数, $p-1,p+1,q-1,q+1$ 中均无除 $2$ 外的小因子. <br />
 $p,q$ 位数不能相差过大或过小. <br />
 私钥 $d\ne e$. <br />
@@ -2592,7 +1561,7 @@ ${\rm gcd}(p-1,q-1)$ 尽可能小, 最好为2; 以避免密文迭代攻击. <br 
 $e$ 应保证 $m^e\ll n$; 有人建议为素数 $2^{16}+1=65537$, 二进制表示中仅含两位 $1$, 加密速度较快. <br />
 $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. <br />
 多个用户不得共用同一个模 $n$; 以避免共模攻击.</p>
-<ul>
+</li>
 <li>
 <p>大素数产生: Miller-Rabin测试.</p>
 </li>
@@ -2607,8 +1576,75 @@ $d$ 应较小以保证解密速度, 但确保$d\ll \frac{n}{4}$. <br />
 记 $a&rsquo;\equiv aR({\rm mod}\ m)$, $b&rsquo;\equiv bR({\rm mod}\ m)$, $R=2^k&gt;m$, $m$ 为奇数, 即 ${\rm gcd}(R,m)=1$; 此时 $a&rsquo;R^{-1}=a&rsquo;&gt; &gt;k$, $abR\equiv (a&rsquo;b&rsquo;)R^{-1}({\rm mod}\ m)$, $ab\equiv (abR)^R{-1}({\rm mod}\ m)$. <br />
 $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&lt;2m$; 不妨设 $xR-ym=1$, $0&lt;y&lt;R$, $0&lt;x&lt;m$, 有 $q\equiv ay({\rm mod}\ R)$, 其中 $y\equiv -m^{-1}({\rm mod}\ R)$.</p>
 <h3 id="elgamal型">ElGamal型</h3>
-<h3 id="ntru">NTRU</h3>
+<ul>
+<li>
+<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$.
+公钥 $(p,g)$, 私钥 $x,y$. <br />
+握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$. <br />
+密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$. <br /></p>
+</li>
+<li>
+<p>ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-1$. <br />
+公钥 $(p,G)$, 私钥 $x,y$.
+握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$.
+密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.</p>
+</li>
+<li>
+<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
+公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$, $k\ne a$. <br />
+私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$. <br />
+参数选取: $p$ 足够大, 一般场景512bit, 重要场景1024bit.</p>
+</li>
+<li>
+<p>ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$. <br />
+公钥 $(P,G,E,q)$, 加密 $C_1=rG$, $C_2=M+rP$, $c=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-1$, $r\ne d$. <br />
+私钥 $d$, 解密 $M=D_{E_p,d}(C)=C_2-dC_1$. <br />
+参数选取: $p$ 足够大, 一般为160bit; 余因子 $h=\frac{|E_p|}{|G|}\leq 4$; 避免选用超奇异和反常椭圆曲线.</p>
+</li>
+</ul>
+<h2 id="sm2">SM2</h2>
+<p>SM2本质为ECEG.</p>
+<ul>
+<li>
+<p>初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. <br />
+选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\ne O$. <br />
+公钥 $(P,G,E,q)$, 私钥 $d$. <br /></p>
+</li>
+<li>
+<p>加密: 生成 $2\leq r\leq q-1$, $r\ne d$, $(x_1,y_1)=rG$, $(x_2,y_2)=rP$, $t=k(x_2 || y_2)$. <br />
+密钥派生函数 $k$: 32bit计数器 ${\rm ct}={\rm 0x01}$, 得到 $\rfloor\frac{{\rm len}}{v}$ 个hash值 $h=H(x_2 || y_2 || {\rm ct})$, 并截断为 ${\rm len}$; 其中 ${\rm len}$ 为 $m$ 长度, $v$ 为hash值长度, 一般采用SM3. <br />
+$C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_3$</p>
+</li>
+<li>
+<p>解密: $(x_2,y_2)=dC_1$, $t=k(x_2 || y_2)$, $m=C_2\oplus t$; $u=H(x_2 || m || y_2)$, 验证 $u=C_3$.</p>
+</li>
+</ul>
 <h2 id="hash函数">Hash函数</h2>
+<p>Hash/杂凑/散列: 将任意长度消息变为固定长度的信息摘要/数字指纹/Hash值/杂凑值/散列值, 记 $h=H(m)$.</p>
+<p>单向性(抗原像攻击): 给定 $h$, 找到 $m&rsquo;$ 有 $h(m&rsquo;)=h$ 在计算上不可行. <br />
+抗弱碰撞性(抗第二原像攻击):  给定 $m$, 找到另一 $m&rsquo;$ 有 $H(m)=H(m&rsquo;)$ 在计算上不可行. <br />
+抗强碰撞性: 找到一对 $(m,m&rsquo;)$ 有 $H(m)=H(m&rsquo;)$ 在计算上不可行. <br />
+随机性: 输出具有伪随机性. <br />
+有效性: 运算高效. <br />
+错误检测: 输入发生很小变化都会使得输出很大不同.</p>
+<p><img src="/img/post-sec-crypto-hash.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="HashStructure"
+	
+	
+></p>
+<p>应用: 完整性保护; 消息认证码(MAC); 辅助公钥加密, 数字签名, 密钥交换.</p>
+<p>消息填充: 加密分组为 $n$ bit, 最后 $m$ bit 存放消息长度, 将原消息填充到 $s$ bit, 有 $n|s+m$.</p>
+<h3 id="sha-256">SHA-256</h3>
+<h3 id="sm3">SM3</h3>
+<h3 id="hmac">HMAC</h3>
+<h2 id="数字签名">数字签名</h2>
+<h2 id="身份认证">身份认证</h2>
+<h2 id="密钥管理">密钥管理</h2>
 
 </section>
 

@@ -793,7 +793,7 @@
 &lt;td&gt;适配器&lt;/td&gt;
 &lt;td&gt;默认底层为vector大根堆&lt;/td&gt;
 &lt;td&gt;出队 $O(\log m)$&lt;/td&gt;
-&lt;td&gt;入队 $O(\log n)$&lt;/td&gt;
+&lt;td&gt;入队 $O(\log m)$&lt;/td&gt;
 &lt;td&gt;不支持&lt;/td&gt;
 &lt;td&gt;不支持&lt;/td&gt;
 &lt;td&gt;不支持&lt;/td&gt;
@@ -812,7 +812,7 @@
 &lt;p&gt;&lt;strong&gt;环形链表&lt;/strong&gt;: 返回链表中单环的入点. 时间复杂度 $O(n)$.
 &lt;small&gt;代码待更新&lt;/small&gt;&lt;/p&gt;
 &lt;h3 id=&#34;滑动窗口&#34;&gt;滑动窗口&lt;/h3&gt;
-&lt;p&gt;满足条件的最小连续子串/子数组：扩大窗口找到可行解, 缩小窗口优化可行解. &lt;br /&gt;
+&lt;p&gt;满足条件的最小连续子串/子数组: 扩大窗口找到可行解, 缩小窗口优化可行解. &lt;br /&gt;
 满足条件的最小连续子串/子数组: 扩大窗口直至不满足条件, 再进行移动. &lt;br /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;最小连续子数组&lt;/strong&gt;: 返回数组中和为 $s$ 的最小连续长度子数组. 时间复杂度 $O(n)$.
 &lt;small&gt;代码待更新&lt;/small&gt;&lt;/p&gt;
