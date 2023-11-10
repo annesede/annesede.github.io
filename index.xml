@@ -1281,12 +1281,14 @@ $C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_
 &gt;&lt;/p&gt;
 &lt;p&gt;应用: 完整性保护; 消息认证码(MAC); 辅助公钥加密, 数字签名, 密钥交换.&lt;/p&gt;
 &lt;p&gt;消息填充: 加密分组为 $n$ bit, 最后 $m$ bit 存放消息长度, 将原消息填充到 $s$ bit, 有 $n|s+m$.&lt;/p&gt;
+&lt;h3 id=&#34;md5&#34;&gt;MD5&lt;/h3&gt;
 &lt;h3 id=&#34;sha-256&#34;&gt;SHA-256&lt;/h3&gt;
 &lt;h3 id=&#34;sm3&#34;&gt;SM3&lt;/h3&gt;
 &lt;h3 id=&#34;hmac&#34;&gt;HMAC&lt;/h3&gt;
-&lt;h2 id=&#34;数字签名&#34;&gt;数字签名&lt;/h2&gt;
-&lt;h2 id=&#34;身份认证&#34;&gt;身份认证&lt;/h2&gt;
-&lt;h2 id=&#34;密钥管理&#34;&gt;密钥管理&lt;/h2&gt;
+&lt;h2 id=&#34;密码学应用&#34;&gt;密码学应用&lt;/h2&gt;
+&lt;h3 id=&#34;数字签名&#34;&gt;数字签名&lt;/h3&gt;
+&lt;h3 id=&#34;身份认证&#34;&gt;身份认证&lt;/h3&gt;
+&lt;h3 id=&#34;密钥管理&#34;&gt;密钥管理&lt;/h3&gt;
 </description>
         </item>
         <item>

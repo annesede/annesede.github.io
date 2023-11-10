@@ -280,14 +280,19 @@
     <li><a href="#sm2">SM2</a></li>
     <li><a href="#hash函数">Hash函数</a>
       <ol>
+        <li><a href="#md5">MD5</a></li>
         <li><a href="#sha-256">SHA-256</a></li>
         <li><a href="#sm3">SM3</a></li>
         <li><a href="#hmac">HMAC</a></li>
       </ol>
     </li>
-    <li><a href="#数字签名">数字签名</a></li>
-    <li><a href="#身份认证">身份认证</a></li>
-    <li><a href="#密钥管理">密钥管理</a></li>
+    <li><a href="#密码学应用">密码学应用</a>
+      <ol>
+        <li><a href="#数字签名">数字签名</a></li>
+        <li><a href="#身份认证">身份认证</a></li>
+        <li><a href="#密钥管理">密钥管理</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -1639,12 +1644,14 @@ $C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_
 ></p>
 <p>应用: 完整性保护; 消息认证码(MAC); 辅助公钥加密, 数字签名, 密钥交换.</p>
 <p>消息填充: 加密分组为 $n$ bit, 最后 $m$ bit 存放消息长度, 将原消息填充到 $s$ bit, 有 $n|s+m$.</p>
+<h3 id="md5">MD5</h3>
 <h3 id="sha-256">SHA-256</h3>
 <h3 id="sm3">SM3</h3>
 <h3 id="hmac">HMAC</h3>
-<h2 id="数字签名">数字签名</h2>
-<h2 id="身份认证">身份认证</h2>
-<h2 id="密钥管理">密钥管理</h2>
+<h2 id="密码学应用">密码学应用</h2>
+<h3 id="数字签名">数字签名</h3>
+<h3 id="身份认证">身份认证</h3>
+<h3 id="密钥管理">密钥管理</h3>
 
 </section>
 
