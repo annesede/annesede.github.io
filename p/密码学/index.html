@@ -275,9 +275,9 @@
       <ol>
         <li><a href="#rsa">RSA</a></li>
         <li><a href="#elgamal型">ElGamal型</a></li>
+        <li><a href="#sm2">SM2</a></li>
       </ol>
     </li>
-    <li><a href="#sm2">SM2</a></li>
     <li><a href="#hash函数">Hash函数</a>
       <ol>
         <li><a href="#md5">MD5</a></li>
@@ -286,13 +286,14 @@
         <li><a href="#hmac">HMAC</a></li>
       </ol>
     </li>
-    <li><a href="#密码学应用">密码学应用</a>
+    <li><a href="#数字签名">数字签名</a>
       <ol>
-        <li><a href="#数字签名">数字签名</a></li>
-        <li><a href="#身份认证">身份认证</a></li>
-        <li><a href="#密钥管理">密钥管理</a></li>
+        <li><a href="#rsa签名">RSA签名</a></li>
+        <li><a href="#elgamal型签名">ElGamal型签名</a></li>
       </ol>
     </li>
+    <li><a href="#身份认证">身份认证</a></li>
+    <li><a href="#密钥管理">密钥管理</a></li>
   </ol>
 </nav>
         </div>
@@ -361,7 +362,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 22 分钟
+                    阅读时长: 23 分钟
                 </time>
             </div>
         
@@ -949,14 +950,14 @@ $g$ 为模 $m$ 原根时, $x,y\in\mathbb{Z}$, $g^x\equiv g^y({\rm mod}\ m) \iff 
 </div>
 </div><ul>
 <li>
-<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$. <br />
+<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-2$. <br />
 公钥 $(p,g)$, 私钥 $x,y$. <br />
 握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$. <br />
 密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$.</p>
 </li>
 <li>
-<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
-公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$. <br />
+<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-2$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
+公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-2$. <br />
 私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$. <br /></p>
 </li>
 </ul>
@@ -971,6 +972,10 @@ Abel群: 满足交换律的群. <br />
 消去律: 可由结合律和逆元推得.</p>
 <p>元素的阶: $|a|=\inf \{n\in\mathbb{N}_+\ |\ a^n = e\}$ 或 $\infty$; <br />
 $|a^{-1}|=|a|$, $|a^d|=\frac{|a|}{{\rm gcd}(|a|,d)}$; 若 $n\in\mathbb{Z}$, $a^n=e$ 则 $|a||n$.</p>
+<blockquote>
+<p>不妨设 $|a|=n$, $|a^d|=m$, 由于 $a^{dm}=e$, 即 $n|dm$, 进而 $\frac{n}{{\rm gcd}(n,d)}|\frac{d}{{\rm gcd}(n,d)}m$, 即 $\frac{n}{{\rm gcd}(n,d)}|m$.</p>
+<p>同时 $(a^d)^{\frac{n}{{\rm gcd}(n,d)}}=e$, 即 $m|\frac{n}{{\rm gcd}(n,d)}$.</p>
+</blockquote>
 <p>子群: 群 $G$ 的非空子集 $H$ 关于 $G$ 的代数运算构成群, 记 $H&lt;G$; 真子群即非平凡子群({e},G); <br />
 $H&lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&lt;G \iff \forall a,b\in H$, $ab^{-1}\in H$.</p>
 <p>循环群: 群 $G$ 的非空子集 $S$, 生成子群 $\langle S\rangle=\bigcap_{S\subset H&lt;G}H=\{\prod a_i^{l_i}\ |\ a_i\in S, l_i=\pm 1\}$; <br />
@@ -1053,7 +1058,7 @@ $f(x),g(x)\in K[x]$, $g(x)|f(x)\iff r(x)=0$. <br />
 $f(x)\in K[x]$, $\forall K[x]$ 上不可约多项式 $p(x)$, ${\rm deg}p\leq {\rm deg}f$, s.t. $p(x)\nmid f(x)$, 则 $f(x)$ 为 $K[x]$ 上不可约多项式.</p>
 <p>定理: 域 $F$ 上 $F[x]$, $f(x)\in F(x)$, 则 $F[x]/f(x)$ 为域 $\iff f(x)$ 为 $F[x]$ 上不可约多项式. <br />
 特别有素数 $p$ 和 $F[x]$ 上不可约多项式 $degr=n$, $F_p[x]/&lt;r(x)&gt;=\{\sum_{i=0}^{n-1}a_0x^i\ |\ a_i\in F_p\}\cong F_{p^n}$, 即有 $|F_p[x]/&lt;r(x)&gt;|=p^n$.</p>
-<p>有限域结构: $\forall$ 素数 $p$, $n\in\mathbb{Z}_+$, 存在同构意义下唯一的有限域 $F_{p^n}$ s.t. $|F_{p^n}|=p^n$, ${\rm char}(F_{p^m})=p$.</p>
+<p>有限域结构: $\forall$ 素数 $p$, $n\in\mathbb{Z}_+$, 存在同构意义下唯一的有限域 $F_{p^n}$ s.t. $|F_{p^n}|=p^n$, ${\rm char}(F_{p^n})=p$.</p>
 <ul>
 <li>NTRU: 环 $L=\mathbb{Z}[x]/(x^n-1)$, $n$ 为大素数; 选取大数 $p,q$, 有 ${\rm gcd}(p,q)=1$ 且 $q\ll p$; 选取 $f(x),g(x)\in L$, 有 ${\rm deg}f={\rm deg}g=n-1$. <br />
 $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $q$ 逆; $h(x)\equiv f^{-1}_q(x)({\rm mod}\ q)$. <br />
@@ -1063,13 +1068,13 @@ $f^{-1}_p(x)$ 为 $f(x)$ 系数模 $p$ 逆, $f^{-1}_q(x)$ 为 $f(x)$ 系数模 $
 <h3 id="椭圆曲线群">椭圆曲线群</h3>
 <p>定义: 域 $F$, $a,b,c,d,e\in F$, 满足Weierstrass方程 $E=y^2+axy+by=x^3+cx^2+dx+e$ 所有点 $(x,y)$ 和无穷远点 $O$ 的集合.</p>
 <p>Hasse定理: 有限域 $GF(p)$ 上椭圆曲线, $n$ 为 $E$ 上点 $(x,y)$, $x,y\in\mathbb{Z}_p$ 的个数, 则 $|n-(p+1)|\leq 2\sqrt p$.</p>
-<p>有限域上椭圆曲线: 有限域 $GF(p)$ 上椭圆曲线 $y^2\equiv x^2+ax+b({\rm mod}\ p)$, $a,b,x,y\in GF(P)$, 且满足 $4a^2+27b^2\not\equiv 0({\rm mod}\ p)$ (此时无重根), 记为 $E_p(a,b)$.</p>
+<p>有限域上椭圆曲线: 有限域 $GF(p)$ 上椭圆曲线 $y^2\equiv x^2+ax+b({\rm mod}\ p)$, $a,b,x,y\in GF(P)$, 且满足 $4a^3+27b^2\not\equiv 0({\rm mod}\ p)$ (此时无重根), 记为 $E_p(a,b)$.</p>
 <p>构造: $x$ 遍历 $\in\mathbb{Z}_p$, $t_x\equiv x^3+ax+b({\rm mod}\ p)$, $a,b\in GF(p)$; Euler保留所有模 $p$ 二次剩余的 $t_x$, 并求出两根; $t=0$ 时只有一根 $y=0$.</p>
 <p>定理: $E_p(a,b)$ 关于点的加法构成Abel群. <br />
 无穷远点 $O$ 为单位元, 逆元为关于 $x$ 轴对称点, 横坐标不同的点(相同的只有自身和逆元)相加为连线延长线与曲线交点关于 $x$ 轴的对称点, 相同点相加为该点处切线与曲线交点关于 $x$ 轴的对称点.</p>
 <blockquote>
 <p>不妨设 $P,Q\in E_p(a,b)$, $P,Q\ne O$, $P=(x_1,y_1)$, $Q=(x_2,y_2)$, $R=P+Q=(x_3,y_3)\ne O$.</p>
-<p>则 $x_3=\lambda^2-x_1-x_2$, $y_3=\lambda(x_1-x_3)-y_1$, 其中 $\lambda=\frac{y_2-y_1}{x_2-x_1}\ (P\ne Q);\ \frac{3x^2_2+a}{2y_1}\ (P=Q)$.</p>
+<p>则 $x_3=\lambda^2-x_1-x_2$, $y_3=\lambda(x_1-x_3)-y_1$, 其中 $\lambda=\frac{y_2-y_1}{x_2-x_1}\ (P\ne Q);\ \frac{3x_1^2+a}{2y_1}\ (P=Q)$.</p>
 </blockquote>
 <ul>
 <li>
@@ -1336,7 +1341,7 @@ $p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\e
 </ul>
 <p>LFSR: 状态 $(s_0,s_1,&hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i$, $s_i,g_i,x_i\in GF(2)$.</p>
 <blockquote>
-<p><img src="/img/post-sec-crypto-LFSR.png"
+<p><img src="/img/post-sec-crypt-LFSR.png"
 	
 	
 	
@@ -1547,7 +1552,7 @@ CTR(计数器): 自增算子加密后与明文异或得到密文; 相当于一�
 <ul>
 <li>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.  <br />
 公钥 $(e,n)$, 加密 $c=E_{e,n}(m)\equiv m^e({\rm mod}\ n)$. <br />
-私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)$ <br /></li>
+私钥$d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 解密 $m=D_{d,n}(m)\equiv m^d({\rm mod}\ n)$ <br /></li>
 </ul>
 <blockquote>
 <p>证明: $D_{d,n}(E_{e,n}(m))=m$, $E_{e,n}(D_{d,n}(c))=c$.</p>
@@ -1583,41 +1588,41 @@ $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&lt;2m$; 不妨设 $xR-ym=1$, $0
 <h3 id="elgamal型">ElGamal型</h3>
 <ul>
 <li>
-<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-1$.
+<p>D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-2$.
 公钥 $(p,g)$, 私钥 $x,y$. <br />
 握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$. <br />
 密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$. <br /></p>
 </li>
 <li>
-<p>ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-1$. <br />
+<p>ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-2$. <br />
 公钥 $(p,G)$, 私钥 $x,y$.
 握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$.
 密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.</p>
 </li>
 <li>
-<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-1$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
-公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-1$, $k\ne a$. <br />
+<p>ElGamal: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq a\leq p-2$, $Y_a\equiv g^a({\rm mod}\ p)$. <br />
+公钥 $(p,g,Y_a)$, 加密 $u\equiv g^k({\rm mod}\ p)$, $v\equiv mY_a^k({\rm mod}\ p)$, $c=E_{p,g,Y_a,k}(m)=(u,v)$, 任选 $2\leq k\leq p-2$, $k\ne a$. <br />
 私钥 $a$, 解密 $m\equiv D_a(c)\equiv \frac{v}{u^a}({\rm mod}\ p)$. <br />
 参数选取: $p$ 足够大, 一般场景512bit, 重要场景1024bit.</p>
 </li>
 <li>
-<p>ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$. <br />
-公钥 $(P,G,E,q)$, 加密 $C_1=rG$, $C_2=M+rP$, $c=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-1$, $r\ne d$. <br />
+<p>ECEG: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-2$, $P=dG$. <br />
+公钥 $(P,G,E,q)$, 加密 $C_1=rG$, $C_2=M+rP$, $c=E_{E_p,P,G,r}(M)=\{C_1,C_2\}$, 任选 $2\leq r\leq q-2$, $r\ne d$. <br />
 私钥 $d$, 解密 $M=D_{E_p,d}(C)=C_2-dC_1$. <br />
 参数选取: $p$ 足够大, 一般为160bit; 余因子 $h=\frac{|E_p|}{|G|}\leq 4$; 避免选用超奇异和反常椭圆曲线.</p>
 </li>
 </ul>
-<h2 id="sm2">SM2</h2>
+<h3 id="sm2">SM2</h3>
 <p>SM2本质为ECEG.</p>
 <ul>
 <li>
 <p>初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. <br />
-选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\ne O$. <br />
+选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\neq O$. <br />
 公钥 $(P,G,E,q)$, 私钥 $d$. <br /></p>
 </li>
 <li>
 <p>加密: 生成 $2\leq r\leq q-1$, $r\ne d$, $(x_1,y_1)=rG$, $(x_2,y_2)=rP$, $t=k(x_2 || y_2)$. <br />
-密钥派生函数 $k$: 32bit计数器 ${\rm ct}={\rm 0x01}$, 得到 $\rfloor\frac{{\rm len}}{v}$ 个hash值 $h=H(x_2 || y_2 || {\rm ct})$, 并截断为 ${\rm len}$; 其中 ${\rm len}$ 为 $m$ 长度, $v$ 为hash值长度, 一般采用SM3. <br />
+密钥派生函数 $k$: 32bit计数器 ${\rm ct}={\rm 0x01}$, 得到 $\lfloor\frac{{\rm len}}{v}\rfloor$ 个hash值 $h=H(x_2 || y_2 || {\rm ct})$, 并截断为 ${\rm len}$; 其中 ${\rm len}$ 为 $m$ 长度, $v$ 为hash值长度, 一般采用SM3. <br />
 $C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_3$</p>
 </li>
 <li>
@@ -1632,7 +1637,10 @@ $C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_
 随机性: 输出具有伪随机性. <br />
 有效性: 运算高效. <br />
 错误检测: 输入发生很小变化都会使得输出很大不同.</p>
-<p><img src="/img/post-sec-crypto-hash.png"
+<p>应用: 完整性保护; 消息认证码(MAC); 辅助公钥加密, 数字签名, 密钥交换.</p>
+<p>消息填充: 加密分组为 $l$ bit, 最后 $m$ bit 存放消息长度, 将原消息填充到 $s$ bit, 有 $l|s+m$. <br />
+迭代型结构(Merkle-Damgard): 每轮 $l$ bit和上一轮输出一同加密得到下一轮输出.</p>
+<p><img src="/img/post-sec-crypt-hash.png"
 	
 	
 	
@@ -1642,16 +1650,107 @@ $C_1=x_1 || y_1$, $C_2=m\oplus t$, $C_3=h(x_2 || m || y_2)$, $c=C_1 || C_2 || C_
 	
 	
 ></p>
-<p>应用: 完整性保护; 消息认证码(MAC); 辅助公钥加密, 数字签名, 密钥交换.</p>
-<p>消息填充: 加密分组为 $n$ bit, 最后 $m$ bit 存放消息长度, 将原消息填充到 $s$ bit, 有 $n|s+m$.</p>
 <h3 id="md5">MD5</h3>
+<p>Message-Digest Algorithm(消息摘要算法).</p>
+<p>消息填充后(长度以小端序存储), 以512bit分组, 每轮对4个寄存器各1word(32bit)进行16轮迭代, 最后得到128bit输出.</p>
+<p><img src="/img/post-sec-crypt-md5.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="MD5"
+	
+	
+></p>
 <h3 id="sha-256">SHA-256</h3>
+<p>Secure Hash Algorithm(安全Hash算法).</p>
+<p>消息填充后(长度以大端序存储), 以512bit分组, 每组扩展为64word(2048bit), 每轮对8个寄存器各1word(32bit)进行64轮迭代, 最后得到256bit(8word)输出.</p>
+<p><img src="/img/post-sec-crypt-sha256-1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="SHA256"
+	
+	
+>
+<img src="/img/post-sec-crypt-sha256-2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="SHA256"
+	
+	
+></p>
 <h3 id="sm3">SM3</h3>
+<p>消息填充后(长度以大端序存储), 以512bit分组, 每组扩展为132word(4224bit), 每轮对8个寄存器各1word(32bit)进行64轮迭代, 最后得到256bit(8word)输出.</p>
+<p><img src="/img/post-sec-crypt-sm3-1.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="SM3"
+	
+	
+>
+<img src="/img/post-sec-crypt-sm3-2.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="SM3"
+	
+	
+></p>
 <h3 id="hmac">HMAC</h3>
-<h2 id="密码学应用">密码学应用</h2>
-<h3 id="数字签名">数字签名</h3>
-<h3 id="身份认证">身份认证</h3>
-<h3 id="密钥管理">密钥管理</h3>
+<p>Message Authentication Code(消息认证码/密码校验和): 验证消息真实性 <br />
+共享密钥 $k$, 发送方发送 $({\rm MAC}=C_k(m),m)$, 接收方比较 $C_k(m&rsquo;)={\rm MAC}&rsquo;$.</p>
+<p>HMAC: 基于Hash函数的MAC. <br />
+${\rm HMAC}_k=H[(k^+\oplus {\rm opad}) || H[(k^+\oplus {\rm ipad}) || M]]$ <br />
+Hash分组大小为 $l$ bit$: k^+$ 为左侧填充0至 $l$ bit; ${\rm opad}$ 为 01011010 循环填充到 $l$ bit; ${\rm ipad}$ 为 00110110 循环填充到 $l$ bit.</p>
+<h2 id="数字签名">数字签名</h2>
+<p>数字签名: 验证消息真实性和身份合法性. <br />
+特点: 签名与文件绑定; 不可抵赖性; 不可伪造性; 第三方可验证性. <br />
+发送方签名 $\delta={\rm sgn}(m,k_d)$, 接收方比较 ${\rm vrf}(m&rsquo;,k_e)=\delta&rsquo;$.</p>
+<h3 id="rsa签名">RSA签名</h3>
+<ul>
+<li>RSA: 素数$p,q$, $n=pq$, ${\rm gcd}(e,\varphi(n))=1$, $\varphi(n)=(p-1)(q-1)$.  <br />
+私钥 $d\equiv e^{-1}({\rm mod}\ \varphi(n))$, 签名 $\delta={\rm sgn}(m,d)\equiv m^d({\rm mod}\ n)$. <br />
+公钥 $e$, 验证 $m&rsquo;={\rm vrf}(m&rsquo;,e)\equiv \delta^e({\rm mod}\ n)$.</li>
+</ul>
+<p>安全性: 依赖于大整数因子分解 <br />
+共模伪造: $\delta_1\equiv m_1^d({\rm mod}\ n)$, $\delta_2\equiv m_2^d({\rm mod}\ n)$, 可得 $\delta_1\delta_2\equiv (m_1m_2)^d({\rm mod}\ n)$. <br />
+中间人攻击: 加密信息 $c\equiv m^e({\rm mod}\ n)$, 伪造信息 $c&rsquo;\equiv r^em^e({\rm mod}\ n)$, 签名 $(c&rsquo;)^d\equiv rm({\rm mod}\ n)$, 造成 $m$ 泄漏. <br />
+一般不对消息直接签名, 而对消息的hash值签名; 加密密钥对和签名密钥对分离; 先签名再加密.</p>
+<p>现实: 加密 RSA-OAEP; 签名 RSA-PSS/PLCS.</p>
+<h3 id="elgamal型签名">ElGamal型签名</h3>
+<ul>
+<li>ElGamal: 大素数 $p$, 有循环群 $F_p^*=\langle g\rangle$. <br />
+私钥 $2\leq x\leq p-2$, 签名 $(m,\delta=(r,s))$, 其中 $r\equiv g^k({\rm mod}\ p)$, $s\equiv k^{-1}(m-rx)({\rm mod}\ p-1)$, 选取 $2\leq k\leq p-2$ 且 ${\rm gcd}(k,p-1)=1$. <br />
+公钥 $y\equiv g^x({\rm mod}\ p)$, 验证 $g^m\equiv r^sy^r({\rm mod}\ p)$.</li>
+</ul>
+<p>安全性: 依赖于(EC)DLP <br />
+$k$ 一次性, 否则联立 $\delta_1 \equiv k^{-1}(m_1-rx)({\rm mod}\ p-1)$ 和 $\delta_1 \equiv k^{-1}(m_2-rx)({\rm mod}\ p-1)$, 造成私钥 $x$ 泄漏.</p>
+<ul>
+<li>
+<p>DSA: 大素数 $p$ 且大素因子 $q|p-1$, $q$ 至少160bit, 生成元 $g\equiv h^{\frac{p-1}{q}}({\rm mod}\ p)&gt;1$, 即 $|g|=q$. <br />
+私钥 $2\leq x\leq p-2$, 签名 $(m,\delat=(r,s))$, 其中 $r\equiv (g^k({\rm mod}\ p))({\rm mod}\ q)$, $s=k^{-1}(H(m)+rx)({\rm mod}\ q)$, 选取 $2\leq k\leq q-2$.
+公钥 $y=g^x({\rm mod}\ p)$, 验证 $r\equiv g^uy^v({\rm mod}\ q)$, 其中 $u\equiv H(m)s^{-1}({\rm mod}\ q)$, $v\equiv rs^{-1}({\rm mod}\ q)$.</p>
+</li>
+<li>
+<p>ECDSA: 椭圆曲线群 $E_p(a,b)$, 基点 $|G|=n$, 余因子 $h=\frac{|E_p|}{p}$. <br />
+私钥 $2\leq d\leq n-2$, 签名 $(m,\delta=(r,s))$, 其中 $kG=(x1,y1)$, $r\equiv x_1({\rm mod}\ n)$, $s\equiv k^{-1}(H(m)+rd)({\rm mod}\ n)$, 选取 $2\leq k\leq n-2$.
+公钥 $P=dG$, 验证 $r\equiv x_2({\rm mod}\ n)$, 其中 $u\equiv H(m)s^{-1}({\rm mod}\ n)$, $v\equiv rs^{-1}({\rm mod}\ n)$, $uG+vP=(x_2,y_2)$.</p>
+</li>
+</ul>
+<h2 id="身份认证">身份认证</h2>
+<h2 id="密钥管理">密钥管理</h2>
 
 </section>
 
