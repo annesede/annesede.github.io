@@ -294,6 +294,16 @@
     <li><a href="#行列式值">行列式值</a></li>
     <li><a href="#货运优化">货运优化</a></li>
     <li><a href="#素数筛法">素数筛法</a></li>
+    <li><a href="#字符串替换">字符串替换</a></li>
+    <li><a href="#删除前后缀">删除前后缀</a></li>
+    <li><a href="#大小写交换">大小写交换</a></li>
+    <li><a href="#前后缀移除">前后缀移除</a></li>
+    <li><a href="#字符串后缀">字符串后缀</a></li>
+    <li><a href="#atol转换">Atol转换</a></li>
+    <li><a href="#元宇宙ab">元宇宙A+B</a></li>
+    <li><a href="#字符串切片">字符串切片</a></li>
+    <li><a href="#分离字符串">分离字符串</a></li>
+    <li><a href="#kids-ab">Kids A+B</a></li>
   </ol>
 </nav>
         </div>
@@ -362,7 +372,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 14 分钟
+                    阅读时长: 15 分钟
                 </time>
             </div>
         
@@ -522,11 +532,11 @@
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="nf">strchr</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span> <span class="c1">// strchr()在头文件&lt;string.h&gt;中
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">if</span><span class="p">(</span><span class="n">find</span><span class="p">)</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="nf">strchr</span><span class="p">(</span><span class="n">num</span><span class="p">,</span><span class="sc">&#39;\n&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span><span class="p">(</span><span class="n">find</span><span class="p">)</span> <span class="o">*</span><span class="n">find</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>使用&quot;strlen()&ldquo;获取长度, 也需引入头文件&lt;string.h&gt;.</p>
+</div><p>使用&quot;strlen()&ldquo;获取长度.</p>
 <p>翻转分为数字改变和位置改变. 数字(实则为字符)改变为: &lsquo;6&rsquo;-&gt;&lsquo;9&rsquo;, &lsquo;9&rsquo;-&gt;&lsquo;6&rsquo;, &lsquo;0&rsquo;-&gt;&lsquo;0&rsquo;, &lsquo;1&rsquo;-&gt;&lsquo;1&rsquo;, &lsquo;8&rsquo;-&gt;&lsquo;8&rsquo;. 位置改变为第i位换到第(len-i-1)位.</p>
 <p>可使用switch-case翻转后再逐位判断, 或直接判断; 包含其他数字时(default)则直接输出&quot;No&rdquo;.</p>
 <p><del>偷分寄巧: 由于该题样例只有三位数, 可直接暴力判断</del></p>
@@ -611,7 +621,7 @@ $b=2k+1$ 时, 有 $a^b\equiv(a^k)^2\times a ({\rm mod}\ m)$.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// 以下四种方法任选其一
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="n">t</span><span class="p">];</span> <span class="c1">// 1. MSVC会报错, 但GCC支持, 可以AC
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">));</span> <span class="c1">// 2. MSVC和GCC均支持, 但需引入头文件&lt;malloc.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="n">n</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">t</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">));</span> <span class="c1">// 2. MSVC和GCC均支持
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span><span class="p">[</span><span class="mi">100000</span><span class="p">]</span> <span class="c1">// 3. 足够大的数组, 不会溢出, 不会超出内存限制
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">t</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">);</span> <span class="c1">// 4. 循环读取输入并输出
 </span></span></span></code></pre></td></tr></table>
@@ -894,8 +904,8 @@ k+1, \ n=2k+1 \\
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">prime</span><span class="p">(</span><span class="n">uint64</span> <span class="n">n</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">bool</span> <span class="n">isPrime</span><span class="p">[</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">isPrime</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 需引入头文件&lt;string.h&gt;
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">uint64</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">memset</span><span class="p">(</span><span class="n">isPrime</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">uint64</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">isPrime</span><span class="p">[</span><span class="n">i</span><span class="p">]){</span>
 </span></span><span class="line"><span class="cl">            <span class="k">for</span> <span class="p">(</span><span class="n">uint64</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">j</span><span class="o">*</span><span class="n">i</span> <span class="o">&lt;=</span> <span class="n">b</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">){</span>
@@ -1109,8 +1119,8 @@ k+1, \ n=2k+1 \\
 </div><h2 id="航空旅行">航空旅行</h2>
 <p>共三种情况, 三个&quot;if&quot;判断即可.</p>
 <h2 id="蒙特卡罗法求积分">蒙特卡罗法求积分</h2>
-<p><strong>目前WA</strong>(疑似样例错误)</p>
 <p>随机选取&quot;x = (double)rand()/RAND_MAX * w + a&quot;.</p>
+<p>采样 $n-1$ 次但除以 $n$. <small>虽然我也不知道为什么.</small></p>
 <h2 id="飞机起飞速度">飞机起飞速度</h2>
 <p><strong>目前WA</strong>(疑似样例错误)</p>
 <p>用到的矩阵如下, 可直接复制粘贴.</p>
@@ -1506,6 +1516,104 @@ k+1, \ n=2k+1 \\
 <p>贪心策略. $6,5,4$ 各需要一个包裹, 每4个 $3$ 需要一个包裹; $4$ 和 $3$ 的空余补 $2$; 全部空余补 $1$.</p>
 <h2 id="素数筛法">素数筛法</h2>
 <p>同素数.</p>
+<h2 id="字符串替换">字符串替换</h2>
+<p>目前WA.</p>
+<p>使用&quot;scanf(&quot;%[^\n]&quot;, str)&ldquo;读取字符串, 而非&quot;gets()&rdquo;, 下同.</p>
+<h2 id="删除前后缀">删除前后缀</h2>
+<p>可采用双指针遍历.</p>
+<h2 id="大小写交换">大小写交换</h2>
+<p>直接判断并转换, 或引入头文件&quot;ctype.h&quot;.</p>
+<h2 id="前后缀移除">前后缀移除</h2>
+<p>遍历(反向遍历)第一行字符串时判断是否在第二行字符串中出现, 并将字符串左移(截断).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="n">mov</span><span class="p">)</span> <span class="nf">memmove</span><span class="p">(</span><span class="n">str</span> <span class="o">-</span> <span class="n">mov</span><span class="p">,</span> <span class="n">str</span><span class="p">,</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span> <span class="err">\\</span> <span class="err">左移</span><span class="n">mov</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">*</span><span class="p">(</span><span class="n">str</span> <span class="o">+</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="o">-</span> <span class="n">len</span><span class="p">)</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span> <span class="err">\\</span> <span class="err">截断</span><span class="n">len</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串后缀">字符串后缀</h2>
+<p>从&quot;str + strlen(str) - strlen(suffix)&ldquo;处开始逐字符判断.</p>
+<h2 id="atol转换">Atol转换</h2>
+<p>跳过空格符.</p>
+<p>判断范围可采用&quot;INT_MAX&quot;及&quot;INT_MIN&rdquo;.</p>
+<p>字符串转换为数字.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">num</span> <span class="o">=</span> <span class="p">(</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;0&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">num</span> <span class="o">*</span> <span class="mi">10</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="元宇宙ab">元宇宙A+B</h2>
+<p>字符转换.</p>
+<p>高精度加法.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#define SACLE 36
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">A</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">B</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">},</span> <span class="n">C</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lenA</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">lenB</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lenA</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">strToDec</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">lenA</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lenB</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nf">strToDec</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">lenB</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">carry</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">lenC</span> <span class="o">=</span> <span class="n">lenA</span> <span class="o">&gt;</span> <span class="n">lenB</span> <span class="o">?</span> <span class="nl">lenA</span> <span class="p">:</span> <span class="n">lenB</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">lenC</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">carry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">carry</span> <span class="o">=</span> <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">SCALE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">%=</span> <span class="n">SCALE</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">carry</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span><span class="p">[</span><span class="n">lenC</span><span class="p">]</span> <span class="o">=</span> <span class="n">carry</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">++</span><span class="n">lenC</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">lenC</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">decToStr</span><span class="p">[</span><span class="n">C</span><span class="p">[</span><span class="n">lenC</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">c</span><span class="p">[</span><span class="n">lenC</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="字符串切片">字符串切片</h2>
+<p>&ldquo;iter &lt; 0&quot;有&quot;iter -= str(len)&rdquo;, 余下正常遍历或反向遍历.</p>
+<h2 id="分离字符串">分离字符串</h2>
+<p>&ldquo;strstr()&ldquo;找到子串并返回首字符位置, &ldquo;memcpy()&ldquo;拷贝并输出, &ldquo;memmove()&ldquo;原字符串左移.</p>
+<h2 id="kids-ab">Kids A+B</h2>
+<p>无聊的打表题. <small>出题人闲着没事干系列</small></p>
 
 </section>
 
