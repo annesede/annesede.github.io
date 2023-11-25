@@ -328,7 +328,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 6 分钟
+                    阅读时长: 7 分钟
                 </time>
             </div>
         
@@ -543,22 +543,32 @@
 </span><span class="lnt">13
 </span><span class="lnt">14
 </span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;random&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">static</span> <span class="kt">void</span> <span class="nf">quickRecur</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="n">quickRecur</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">){</span>
 </span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">right</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">random_device</span> <span class="n">seed</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="n">ranlux48</span> <span class="n">engine</span><span class="p">(</span><span class="n">seed</span><span class="p">());</span>
+</span></span><span class="line"><span class="cl">    <span class="n">random_device</span> <span class="n">seed</span><span class="p">;</span> <span class="n">ranlux48</span> <span class="nf">engine</span><span class="p">(</span><span class="n">seed</span><span class="p">());</span>
 </span></span><span class="line"><span class="cl">    <span class="n">uniform_int_distribution</span><span class="o">&lt;&gt;</span> <span class="n">distrib</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">right</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">distrib</span><span class="p">(</span><span class="n">engine</span><span class="p">)],</span> <span class="n">head</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">right</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Type</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">distrib</span><span class="p">(</span><span class="n">engine</span><span class="p">)];</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">head</span> <span class="o">=</span> <span class="n">left</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">right</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">head</span> <span class="o">&lt;</span> <span class="n">tail</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="n">head</span><span class="o">++</span><span class="p">;</span> <span class="k">while</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">head</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">flag</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl">        <span class="k">do</span> <span class="n">tail</span><span class="o">--</span><span class="p">;</span> <span class="k">while</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">tail</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">flag</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">        <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">head</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">tail</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">head</span> <span class="o">&lt;</span> <span class="n">tail</span><span class="p">)</span> <span class="n">swap</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">head</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">tail</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
-</span></span><span class="line"><span class="cl">    <span class="n">quickSort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">tail</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">quickSort</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">tail</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quickRecur</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">tail</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quickRecur</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">tail</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="n">quick</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">quickRecur</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
