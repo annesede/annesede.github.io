@@ -255,6 +255,7 @@
     <li><a href="#逻辑短路">逻辑短路</a></li>
     <li><a href="#内存溢出和内存泄漏">内存溢出和内存泄漏</a></li>
     <li><a href="#二维数组">二维数组</a></li>
+    <li><a href="#c风格字符串">C风格字符串</a></li>
   </ol>
 </nav>
         </div>
@@ -323,7 +324,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 9 分钟
                 </time>
             </div>
         
@@ -1339,8 +1340,114 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
+</div><h2 id="c风格字符串">C风格字符串</h2>
+<p>C风格的字符串必须以&rsquo;\0&rsquo;(即NULL或0)结尾. 本质为一个指向连续内存的头指针, 并以&rsquo;\0&rsquo;标志结尾. 必要时可以再设置一个尾指针, 指向结尾处的&rsquo;\0'.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 声明字符串: 初始化
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">calloc</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 读入字符串(常用)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">scanf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span> <span class="c1">// 遇到空白符(如&#34; &#34;&#34;\r&#34;&#34;\n&#34;等)会停止读入, 不会读入空白符.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">scanf</span><span class="p">(</span><span class="o">%</span><span class="p">[</span><span class="o">^</span><span class="err">\</span><span class="n">n</span><span class="p">],</span> <span class="n">str</span><span class="p">);</span> <span class="c1">// 读到&#34;\n&#34;时才停止读入, 不会读入&#34;\n&#34;, 本质为正则表达式.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">fgets</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">stdin</span><span class="p">);</span> <span class="c1">// 读到&#34;\n&#34;时停止读入, 但会读入&#34;\n&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="n">ch</span> <span class="o">=</span> <span class="n">str</span><span class="p">;</span> <span class="k">while</span><span class="p">((</span><span class="o">*</span><span class="n">ch</span> <span class="o">=</span> <span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">)</span> <span class="o">++</span><span class="n">ch</span><span class="p">;</span> <span class="o">*</span><span class="n">ch</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span> <span class="c1">// 手动逐字符读入.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">gets</span><span class="p">(</span><span class="n">str</span><span class="p">);</span> <span class="c1">// 不安全的函数, 已被C11取消支持, NOJ禁用.
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 输出字符串(常用)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">fputs</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span> <span class="c1">// 输出直到遇到&#34;\0&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span> <span class="c1">// 输出直到遇到&#34;\0&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">puts</span><span class="p">(</span><span class="n">str</span><span class="p">);</span> <span class="c1">//不推荐的函数, NOJ偶尔无法使用.
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 字符操作函数(常用)
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;ctype.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="kt">int</span> <span class="nf">isalnum</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 数字或字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">isalpha</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">isprint</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 可打印函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">islower</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 小写字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">isupper</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 大写字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">isxdigit</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 十六进制数字
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">tolower</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 转换为小写字母
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">toupper</span><span class="p">(</span><span class="kt">int</span> <span class="n">c</span><span class="p">)</span> <span class="c1">// 转换为大写字母
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 字符串操作函数(常用)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 为避免内存泄漏和野指针问题, 通常只能对开在栈上字符串使用, 而不能对开在堆上的字符串使用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp"># include &lt;string.h&gt;
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1">// 失败时均返回NULL
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="o">*</span><span class="nf">memset</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 复制字符c到str的前n个字符.
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 使用memset对数组初始化时, 字符c只能为0或-1或0x3f.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="o">*</span><span class="nf">memcpy</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 从src复制n个字符到dest, 一般不用于src和dest内存重叠的情况.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="o">*</span><span class="nf">memmove</span><span class="p">(</span><span class="kt">void</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">n</span><span class="p">);</span> <span class="c1">// 从src复制n个字符到dest, src和dest内存重叠时推荐使用.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">size_t</span> <span class="nf">strlen</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">);</span> <span class="c1">// 返回str长度, 即头指针到&#39;\0&#39;的距离(但不包含&#39;\0&#39;).
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="nf">strcat</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">);</span> <span class="c1">// 将src追加到dest结尾.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="nf">strchr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">);</span> <span class="c1">// 返回str中第一次出现字符c的位置.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="nf">strstr</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">haystack</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">needle</span><span class="p">);</span> <span class="c1">// 返回在haystack中第一次出现needle的起始位置.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">size_t</span> <span class="nf">strspn</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str1</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str2</span><span class="p">);</span> <span class="c1">// str1中第一个不在str2出现的字符的下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="nf">strtok</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">delim</span><span class="p">);</span> <span class="c1">// 以delim为分隔, 分解str.
+</span></span></span></code></pre></td></tr></table>
+</div>
 </div><blockquote>
-<p>待更新内容: 聚合体与字节序, 副作用, 按位运算妙用, 宏函数, 变长参数, 线程</p>
+<p>待更新内容: 聚合体与字节序, 副作用, 按位运算妙用, 不安全函数, 宏函数, 变长参数, 线程</p>
 </blockquote>
 
 </section>
