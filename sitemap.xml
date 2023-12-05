@@ -8,9 +8,6 @@
     <loc>https://example.com/tags/c/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/tags/c&#43;&#43;/</loc>
-    <lastmod>2023-11-03T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://example.com/tags/cpp/</loc>
     <lastmod>2023-11-02T00:00:00+00:00</lastmod>
   </url><url>
@@ -23,7 +20,7 @@
     <loc>https://example.com/categories/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6/</loc>
+    <loc>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AF%BC%E5%BC%95/</loc>
     <lastmod>2023-11-03T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://example.com/tags/%E6%95%B0%E5%AD%A6/</loc>

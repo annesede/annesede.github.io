@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <copyright>annesede</copyright>
         <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>密码学</title>
-        <link>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6/</link>
+        <title>密码学导引</title>
+        <link>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AF%BC%E5%BC%95/</link>
         <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6/</guid>
+        <guid>https://example.com/p/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%AF%BC%E5%BC%95/</guid>
         <description>&lt;p&gt;&lt;small&gt;(C11 - GCC8.1.0)&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;基本属性: 信息机密性, 信息真实性, 数据完整性, 行为不可否认性.&lt;/p&gt;
 &lt;p&gt;体制: $(M,C,K_1,K_2,E,D)$ 明文空间, 密文空间, 加密密钥空间, 解密密钥空间, 加密空间, 解密空间; 加密变换 $c=E_{k_1}(m)$, 解密变换 $m=D_{k_2}(c)$.&lt;/p&gt;
@@ -1252,7 +1252,7 @@ $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&amp;lt;2m$; 不妨设 $xR-ym=1$
 &lt;p&gt;SM2本质为ECEG.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-1$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. &lt;br /&gt;
+&lt;p&gt;初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-2$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. &lt;br /&gt;
 选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\neq O$. &lt;br /&gt;
 公钥 $(P,G,E,q)$, 私钥 $d$. &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
@@ -1385,8 +1385,53 @@ $k$ 一次性, 否则联立 $\delta_1 \equiv k^{-1}(m_1-rx)({\rm mod}\ p-1)$ 和
 公钥 $P=dG$, 验证 $r\equiv x_2({\rm mod}\ n)$, 其中 $u\equiv H(m)s^{-1}({\rm mod}\ n)$, $v\equiv rs^{-1}({\rm mod}\ n)$, $uG+vP=(x_2,y_2)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;sm2签名&#34;&gt;SM2签名&lt;/h3&gt;
+&lt;p&gt;在SM2加密算法的基础上, 本质为ECEG.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-2$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. &lt;br /&gt;
+选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\neq O$. &lt;br /&gt;
+公钥 $(P,G,E,q)$, 私钥 $d$. &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;签名: $(m,\delta=(r,s))$, 其中 $kG=(x1,y1)$, $r\equiv H(Z||M)+x_1({\rm mod}\ q)$ 且 $r\ne 0$ 及 $r+k\ne q$, $s\equiv (1+d)^{-1}(k-rd)({\rm mod}\ q)$ 且 $s\ne 0$, 选取 $2\leq k\leq q-2$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;验证: $r+s\not\equiv 0({\rm mod}\ q)$ 且 $r\equiv x_2({\rm mod}\ q)$, 其中 $sG+(r+s)P=(x_2, y_2)$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 &lt;h2 id=&#34;身份认证&#34;&gt;身份认证&lt;/h2&gt;
-&lt;h2 id=&#34;密钥管理&#34;&gt;密钥管理&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;口令 &lt;br /&gt;
+安全问题: 弱口令易被暴力破解和字典攻击; 口令明文传输和明文保存易导致泄漏. &lt;br /&gt;
+解决办法: 口令加盐Hash存储; 通过TSL传输.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;挑战-应答 &lt;br /&gt;
+实现方案: 数字签名. &lt;br /&gt;
+安全问题: 依赖于密钥管理; 需确保用户公钥的真实性和完整性以避免中间人攻击.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;ZKP(零知识证明): 使验证者(V)确信证明者(P)能够证明某一信息, 但无法获得其他任何信息.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;基于DLP的认证协议: P向V证明知道私钥 $x$, 而不泄露 $x$; $p$ 为大素数, 公钥 $y\equiv g^x({\rm mod}\ p)$. &lt;br /&gt;
+承诺: P随机选取 $2\leq k\leq p-2$ 并发送 $r\equiv g^k({\rm mod}\ p)$. &lt;br /&gt;
+挑战: V随机发送 $b\in{0,1}$. &lt;br /&gt;
+应答: P发送 ${\rm sgn}\equiv k+bx({\rm mod}\ p-1)$. &lt;br /&gt;
+验证: V验证 $g^s\equiv ry^b({\rm mod}\ p)$. &lt;br /&gt;
+重复 $t$ 次, P欺骗成功概率为 $\frac{1}{2^t}$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Schnorr协议: P向V证明知道私钥 $x$, 而不泄露 $x$; $p$ 为大素数, 大素数 $q|p-q$, $g$ 为模 $q$ 原根, 公钥 $y\equiv g^x({\rm mod}\ p)$. &lt;br /&gt;
+承诺: P随机选取 $2\leq k\leq q-2$ 并发送 $r\equiv g^k({\rm mod}\ p)$. &lt;br /&gt;
+挑战: V随机发送 $1\leq e\leq 2^t&amp;lt;q$. &lt;br /&gt;
+应答: P发送 $s\equiv k-ex({\rm mod}\ q)$. &lt;br /&gt;
+验证: V验证 $r\equiv g^sy^e({\rm mod}\ p)$. &lt;br /&gt;
+无需重复, P欺骗成功概率为 $\frac{1}{2^t}$.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
         </item>
         
