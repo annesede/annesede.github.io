@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>计算机基础 on annesede的博客</title>
+        <link>https://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/</link>
+        <description>Recent content in 计算机基础 on annesede的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>zh-cn</language>
+        <copyright>annesede</copyright>
+        <lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>计算机网路基础</title>
+        <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;网络构成 &lt;br /&gt;
+节点: 主机及进程(端系统, host/end system), 交换设备(路由器/交换机, switch). &lt;br /&gt;
+边: 通信链路; 接入网链路(主机接入), 主干链路(交换设备间); 传输速率=带宽(bps). &lt;br /&gt;
+协议(protocol): 对等层实体通信中遵循的规则集合; 格式(语法, 语义), 次序, 动作; TCP/IP(Transmission Control Protocol/Internet Protocol). &lt;br /&gt;
+服务描述: 分布式应用进程; 提供接口(面向连接服务/无连接服务)的通信基础设施; 嵌套字接口(socket interface). &lt;br /&gt;
+结构: 网络边缘(edge, 主机及进程); 网络核心(core, 交换设备及主干链路); 接入网及物理媒体(接入网链路). &lt;br /&gt;
+Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). &lt;br /&gt;
+Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;网络边缘 &lt;br /&gt;
+客户端-服务器模式(client-service); 对等模式(peer-peer). &lt;br /&gt;
+面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). &lt;br /&gt;
+无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;网络核心-电路交换(circuit switching) &lt;br /&gt;
+为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). &lt;br /&gt;
+资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. &lt;br /&gt;
+不合适计算机间通信: 连接建立时间长, 共用时间 $=$ 建立连接时间 $+$ 传输时间; 通信有突发性, 资源浪费较多; 可靠性不高, 单点故障影响范围大. &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;网络核心-分组交换(packet) &lt;br /&gt;
+以分组为单位存储-转发: 传输数据分组; 传输时使用全部带宽; 统计多路复用, 不固定的时分. &lt;br /&gt;
+资源共享, 按需使用: 分组延时; 节点总时延(total nodal delay) $=$ 处理时延(processing) $+$ 传输(transmission) $+$ 排队(queuing) $+$ 传播(propagation). &lt;br /&gt;
+处理时延: 分组每次移动称为一跳(hop), 转发前节点收到整个分组. &lt;br /&gt;
+传输时延: 速率 $R$ bps 链路, 长度 $L$ bits 分组, 存储-转发延时为 $L/R$ s. &lt;br /&gt;
+排队时延: 到达速率 $&amp;gt;$ 输出速率, 缓存用完时新到达分组被丢弃(drop)即丢包(loss); 链路宽度 $R$ bps, 分组长度 $L$ bits, 分组到达队列平均速率 $a$, 流量强度为 $0&amp;lt;La/R&amp;lt;1$. &lt;br /&gt;
+传播时延: 物理链路长度 $d$ m, 物理媒体传播速度 $s$ mps, 传播延时为 $d/s$ s. &lt;br /&gt;
+关键功能: 路由, 决定分组采用的源到目标的路径(路由算法-路由表); 转发. &lt;br /&gt;
+同样网络资源(带宽)支持更多用户使用: 总用户数 $M$, 最大同时用户数 $N$, 排队延时发生概率 $1-\sum_{i=0}^N\tbinom{M}{i} p^i(1-p)^{M-i}$; 但过度使用会造成拥塞(congestion). &lt;br /&gt;
+数据报(datagram): 目标地址决定下一跳, 路由无状态. &lt;br /&gt;
+虚电路(virtual circuit): 呼叫时决定路径, 信令(Signaling)控制, 路由维持通信状态. &lt;br /&gt;
+吞吐量(throughput): 瞬时(instantaneous), 平均; 取决于瓶颈链路(bottleneck link).&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ICMP(Internet Control Message Protocol): Head-目标IP地址, TTL(Time To Live, 生存时间); Body-RTT(Round Trip Time, 往返时间), 目标端口不可达(destination port unreachable, 结束测试标识).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute target_name &lt;span class=&#34;c1&#34;&gt;# linux&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tracert &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-d&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-h maximum_hops&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-j computer-list&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-w timeout&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; target_name &lt;span class=&#34;c1&#34;&gt;# windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;接入网: 接入带宽; 共享/独享. &lt;br /&gt;
+调制解调器(modem, 电话线): 调制加载到音频信号上, 音频信号解调; 调频, 调幅, 调相位, 综合调制; 拨号(带宽最高56 Kpbs, 不能同时在线), DLS(Didital Subcriber Line, 上行最高 1Mbps, 下行最高 10Mbps). &lt;br /&gt;
+同轴线缆(有线电视): FDM, 共享带宽, HFC(Hybrid Fiber Coax, 上行最高 2Mbps, 下行最高 30Mbps). &lt;br /&gt;
+电缆(Cable Internet Access). 光纤到户(FTTH, Fiber To The Home). &lt;br /&gt;
+无线: 无线LANs; 广域无线(Wide-Area), 电信运营商提供(cellular).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;物理媒体: 传输Bit; 物理链路. &lt;br /&gt;
+导引型媒体: 双绞线(TP, 5类 100Mbps, 6类 10Gbps), 同轴电缆(双向; 基带 Ethernet, 宽带 HFC), 光缆(光脉冲, 高速, 低误码率, 安全). &lt;br /&gt;
+非导引型媒体: 开放空间传播, 环境效应(反射, 吸收, 干扰); 地面微波, LAN(WiFi), 广域(3G, LTE, 4G, 5G), 卫星.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;协议层次 &lt;br /&gt;
+复杂网络分层, 通过接口利用下层提供的服务 SAP(Service Access Point), 层间交互形式为原语(primitive, 如Socket函数), 对等层交互为协议; 本层协议通过下层提供服务实现, 为上层协议提供更高级服务. &lt;br /&gt;
+数据单元(DU, Data Unit): $n+1$ 层 IDU(Interface) $=$ ICI(Interface Control Information) + SDU(service), $n$ 层 PDU(protocol) $=$ Header $+$ SDU. &lt;br /&gt;
+Internet协议栈(TCP/IP模型): 应用层(报文, message), 传输层(段, segment, 进程到进程, 可靠通信服务), 网络层(分组/数据报, packet, 端到端), 链路层(帧, frame, 点到点), 物理层(bit). &lt;br /&gt;
+ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. &lt;br /&gt;
+封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;应用层&#34;&gt;应用层&lt;/h2&gt;
+&lt;h2 id=&#34;传输层&#34;&gt;传输层&lt;/h2&gt;
+&lt;h2 id=&#34;网络层-数据平面&#34;&gt;网络层-数据平面&lt;/h2&gt;
+&lt;h2 id=&#34;网络层-控制平面&#34;&gt;网络层-控制平面&lt;/h2&gt;
+&lt;h2 id=&#34;链路层-局域网&#34;&gt;链路层-局域网&lt;/h2&gt;
+&lt;h2 id=&#34;网络安全&#34;&gt;网络安全&lt;/h2&gt;
+</description>
+        </item>
+        
+    </channel>
+</rss>

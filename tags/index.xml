@@ -7,12 +7,52 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C</title>
         <link>https://example.com/tags/c/</link>
-        <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/c/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>编译</title>
+        <link>https://example.com/tags/%E7%BC%96%E8%AF%91/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E7%BC%96%E8%AF%91/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>操作系统</title>
+        <link>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>汇编</title>
+        <link>https://example.com/tags/%E6%B1%87%E7%BC%96/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E6%B1%87%E7%BC%96/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>网络</title>
+        <link>https://example.com/tags/%E7%BD%91%E7%BB%9C/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E7%BD%91%E7%BB%9C/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>微机</title>
+        <link>https://example.com/tags/%E5%BE%AE%E6%9C%BA/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/%E5%BE%AE%E6%9C%BA/</guid>
         <description></description>
         </item>
         <item>
@@ -37,14 +77,6 @@
         <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/8086/</guid>
-        <description></description>
-        </item>
-        <item>
-        <title>汇编</title>
-        <link>https://example.com/tags/%E6%B1%87%E7%BC%96/</link>
-        <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/tags/%E6%B1%87%E7%BC%96/</guid>
         <description></description>
         </item>
         <item>

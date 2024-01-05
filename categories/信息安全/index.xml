@@ -965,8 +965,8 @@ $p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\e
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;粗糙度: ${\rm M.R}=\sum_{i=0}^25(p_i-\frac{1}{26})^2=\sum_{i=0}^25p_i^2-0.0385$. 明文或单表代换时 ${\rm M.R}\approx 0.027$, 更接近 $0$ 则更可能为多表代换.&lt;/p&gt;
-&lt;p&gt;重合指数: ${\rm IC}=\sum_{i=0}^25p_i^2$. 多表代换时 ${\rm IC}\approx 0.0655$. 相同字母间隔为 $d_1,&amp;hellip;,d_n$, 则密钥可能长度为 ${\rm gcd}(d_1,&amp;hellip;,d_n)$.&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;粗糙度: ${\rm M.R}=\sum_{i=0}^{25}(p_i-\frac{1}{26})^2=\sum_{i=0}^25p_i^2-0.0385$. 明文或单表代换时 ${\rm M.R}\approx 0.027$, 更接近 $0$ 则更可能为多表代换.&lt;/p&gt;
+&lt;p&gt;重合指数: ${\rm IC}=\sum_{i=0}^{25}p_i^2$. 多表代换时 ${\rm IC}\approx 0.0655$. 相同字母间隔为 $d_1,&amp;hellip;,d_n$, 则密钥可能长度为 ${\rm gcd}(d_1,&amp;hellip;,d_n)$.&lt;/p&gt;
 &lt;h2 id=&#34;自同步序列密码&#34;&gt;自同步序列密码&lt;/h2&gt;
 &lt;p&gt;异或$\rm XOR$ ($GF(2)$加法) $\oplus$ 加密: 无条件安全; 可逆. &lt;br /&gt;
 与同步序列密码相比, 传输产生的错误有界.&lt;/p&gt;
@@ -975,7 +975,7 @@ $p-1=\prod_{i=1}^k p_i^{\alpha_i}$ 中均为小素数, 有 $k$ 个同余式 $m\e
 加密 $c_i=E_{k}(m)=m_i\oplus k_i$. &lt;br /&gt;
 解密 $m_i=D_{k}(m)=c_i\oplus k_i$.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;LFSR: 状态 $(s_0,s_1,&amp;hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&amp;hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i$, $s_i,g_i,x_i\in GF(2)$.&lt;/p&gt;
+&lt;p&gt;LFSR: 状态 $(s_0,s_1,&amp;hellip;,s_{n-1})$, 递推关系式 $s_{n+k}=\bigoplus g_is_i$, 反馈函数 $f(s_0,s_1,&amp;hellip;,s_{n-1})=\sum g_is_i$, 连接多项式(特征多项式) $g(x)=\sum g_ix_i^i$, $s_i,g_i,x_i\in GF(2)$.&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;img src=&#34;https://example.com/img/post-sec-crypt-LFSR.png&#34;
 	
@@ -1035,7 +1035,7 @@ $S_0=(1,0,1,1,1)$, $k=101110111011101110111&amp;hellip;$, $T=8$.&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;定理: $n$ 次特征多项式为 $GF(2^n)$ 上本原多项式时, 输出 $\max T=2^n-1$ 序列($m$ 序列). &lt;br /&gt;
 将 $x^{2^n-1}-1$ 在 $GF(2^n)$ 上因式分解; &lt;br /&gt;
 保留次数为 $n$ 且不能在 $GF(2^n)$ 上整除 $x^a-1,n&amp;lt;a&amp;lt;2^n-1$ 的因式.&lt;/p&gt;
-&lt;p&gt;截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有 $S_i,&amp;hellip;,S_{i+n+1}$ 个状态; &lt;br /&gt;
+&lt;p&gt;截获长度 $l\geq 2(2^n-1)$ 的明密文对 $(c,m)$, 则 $k=c\oplus m$, 有状态 $S_i,&amp;hellip;,S_{i+n+1}$; &lt;br /&gt;
 记 $X=(S_i,&amp;hellip;,S_n)$, $Y=(S_{i+1},&amp;hellip;,S_{i+n+1})$, 有 $Y\equiv HX({\rm mod}\ 2)$. &lt;br /&gt;
 $m$ 序列时, $X$满秩, $H\equiv YX^{-1}({\rm mod}\ 2)$ 为特征多项式的友矩阵.&lt;/p&gt;
 &lt;p&gt;$$H=\left( \begin{array}{}
@@ -1153,10 +1153,10 @@ CTR(计数器): 自增算子加密后与明文异或得到密文; 相当于一�
 &lt;p&gt;128bit密钥32轮非平衡Feistel网络. 1字$=$4字节$=$32bit.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;密钥扩展: 初始密钥 $(MK_0,MK_1,MK_2,MK_3)$, $K_i=MK_i\oplus FK_i$ ,$rk_i = K_{i+4} = K_i\oplus T(K_{i+1}\oplus K_{i+2}\oplus K_{i+3}\oplus CK_i)$; FK_i 为系统参数, CK_i 为固定参数; 以每个字节前4bit作为行, 后4bit作为列, 进行非线性的S盒置换; 再对字进行线性变换 $B\oplus (B &amp;lt; &amp;lt;_o 13)\oplus (B &amp;lt; &amp;lt;_o 23)$.&lt;/p&gt;
+&lt;p&gt;密钥扩展: 初始密钥 $(MK_0,MK_1,MK_2,MK_3)$, $K_i=MK_i\oplus FK_i$ ,$rk_i = K_{i+4} = K_i\oplus T(K_{i+1}\oplus K_{i+2}\oplus K_{i+3}\oplus CK_i)$; $FK_i$ 为系统参数, $CK_i$ 为固定参数; 以每个字节前4bit作为行, 后4bit作为列, 进行非线性的S盒置换; 再对字进行线性变换 $B\oplus (B &amp;lt; &amp;lt;_o 13)\oplus (B &amp;lt; &amp;lt;_o 23)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;轮函数: $X_{i+4} = X_i\oplus T&amp;rsquo;(X_{i+1}\oplus X_{i+2}\oplus X_{i+3}\oplus rK_i)$; 进行非线性的S盒置换后, 再对字进行线性变换 $B\oplus (B &amp;lt; &amp;lt;_o 2)\oplus (B &amp;lt; &amp;lt;_o 10)\oplus (B &amp;lt; &amp;lt;_o 18)\oplus (B &amp;lt; &amp;lt;_o 24)$.&lt;/p&gt;
+&lt;p&gt;轮函数: $X_{i+4} = X_i\oplus T&amp;rsquo;(X_{i+1}\oplus X_{i+2}\oplus X_{i+3}\oplus rK_i)$; S盒8位输入 $b_1b_2b_3b_4b_5b_6b_7b_8$ 输出$s_{b_1b_2b_3b_4, b_5b_6b_7b_8}$, 再对字进行线性变换 $B\oplus (B &amp;lt; &amp;lt;_o 2)\oplus (B &amp;lt; &amp;lt;_o 10)\oplus (B &amp;lt; &amp;lt;_o 18)\oplus (B &amp;lt; &amp;lt;_o 24)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;反序输出: 输入 $(X_1,X_2,X_3,X_4)$, 输出 $(Y_1,Y_2,Y_3,Y_4)=(X_{35},X_{34},X_{33},X_{32})$.&lt;/p&gt;
@@ -1224,14 +1224,14 @@ $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&amp;lt;2m$; 不妨设 $xR-ym=1$
 &lt;h3 id=&#34;elgamal型&#34;&gt;ElGamal型&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-2$.
+&lt;p&gt;D-H协议: 大素数 $p$ 和模 $p$ 原根 $g$, 任选 $2\leq x,y\leq p-2$. &lt;br /&gt;
 公钥 $(p,g)$, 私钥 $x,y$. &lt;br /&gt;
 握手: $k_{X\to Y}\equiv g^x({\rm mod}\ p)$, $k_{Y\to X}\equiv g^y({\rm mod}\ p)$. &lt;br /&gt;
 密钥: $k\equiv k_{Y\to X}^x\equiv k_{X\to Y}^y \equiv g^{xy}({\rm mod}\ p)$. &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;ECDH: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq a,b\leq q-2$. &lt;br /&gt;
-公钥 $(p,G)$, 私钥 $x,y$.
+公钥 $(p,G)$, 私钥 $x,y$. &lt;br /&gt;
 握手: $k_{A\to B}=aG$, $k_{B\to A}=bG$.
 密钥: $k=ak_{B\to A}=bk_{A\to B}=(ab)G$.&lt;/p&gt;
 &lt;/li&gt;
@@ -1253,7 +1253,7 @@ $\exists q$ s.t. $R|a+qm$, 有 $y=\frac{a+qm}{R}&amp;lt;2m$; 不妨设 $xR-ym=1$
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;初始化: 椭圆曲线群 $E_p$, $G\in E_p$, $|G|=q$ 为大素数, 任选 $2\leq d\leq q-2$, $P=dG$, $h=\frac{|E_p|}{|G|}\leq 4$. &lt;br /&gt;
-选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\neq O$. &lt;br /&gt;
+避免选取非超奇异和反常椭圆曲线, $p$ 达到 160bit, $h\leq 4$, $S=hP\neq O$. &lt;br /&gt;
 公钥 $(P,G,E,q)$, 私钥 $d$. &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
@@ -1376,12 +1376,12 @@ $k$ 一次性, 否则联立 $\delta_1 \equiv k^{-1}(m_1-rx)({\rm mod}\ p-1)$ 和
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;DSA: 大素数 $p$ 且大素因子 $q|p-1$, $q$ 至少160bit, 生成元 $g\equiv h^{\frac{p-1}{q}}({\rm mod}\ p)&amp;gt;1$, 即 $|g|=q$. &lt;br /&gt;
-私钥 $2\leq x\leq p-2$, 签名 $(m,\delat=(r,s))$, 其中 $r\equiv (g^k({\rm mod}\ p))({\rm mod}\ q)$, $s=k^{-1}(H(m)+rx)({\rm mod}\ q)$, 选取 $2\leq k\leq q-2$.
+私钥 $2\leq x\leq p-2$, 签名 $(m,\delat=(r,s))$, 其中 $r\equiv (g^k({\rm mod}\ p))({\rm mod}\ q)$, $s=k^{-1}(H(m)+rx)({\rm mod}\ q)$, 选取 $2\leq k\leq q-2$. &lt;br /&gt;
 公钥 $y=g^x({\rm mod}\ p)$, 验证 $r\equiv g^uy^v({\rm mod}\ q)$, 其中 $u\equiv H(m)s^{-1}({\rm mod}\ q)$, $v\equiv rs^{-1}({\rm mod}\ q)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;ECDSA: 椭圆曲线群 $E_p(a,b)$, 基点 $|G|=n$, 余因子 $h=\frac{|E_p|}{p}$. &lt;br /&gt;
-私钥 $2\leq d\leq n-2$, 签名 $(m,\delta=(r,s))$, 其中 $kG=(x1,y1)$, $r\equiv x_1({\rm mod}\ n)$, $s\equiv k^{-1}(H(m)+rd)({\rm mod}\ n)$, 选取 $2\leq k\leq n-2$.
+私钥 $2\leq d\leq n-2$, 签名 $(m,\delta=(r,s))$, 其中 $kG=(x_1,y_1)$, $r\equiv x_1({\rm mod}\ n)$, $s\equiv k^{-1}(H(m)+rd)({\rm mod}\ n)$, 选取 $2\leq k\leq n-2$. &lt;br /&gt;
 公钥 $P=dG$, 验证 $r\equiv x_2({\rm mod}\ n)$, 其中 $u\equiv H(m)s^{-1}({\rm mod}\ n)$, $v\equiv rs^{-1}({\rm mod}\ n)$, $uG+vP=(x_2,y_2)$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -1394,7 +1394,7 @@ $k$ 一次性, 否则联立 $\delta_1 \equiv k^{-1}(m_1-rx)({\rm mod}\ p-1)$ 和
 公钥 $(P,G,E,q)$, 私钥 $d$. &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;签名: $(m,\delta=(r,s))$, 其中 $kG=(x1,y1)$, $r\equiv H(Z||M)+x_1({\rm mod}\ q)$ 且 $r\ne 0$ 及 $r+k\ne q$, $s\equiv (1+d)^{-1}(k-rd)({\rm mod}\ q)$ 且 $s\ne 0$, 选取 $2\leq k\leq q-2$.&lt;/p&gt;
+&lt;p&gt;签名: $(m,\delta=(r,s))$, 其中 $kG=(x_1,y_1)$, $r\equiv H(Z||M)+x_1({\rm mod}\ q)$ 且 $r\ne 0$ 及 $r+k\ne q$, $s\equiv (1+d)^{-1}(k-rd)({\rm mod}\ q)$ 且 $s\ne 0$, 选取 $2\leq k\leq q-2$.&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;验证: $r+s\not\equiv 0({\rm mod}\ q)$ 且 $r\equiv x_2({\rm mod}\ q)$, 其中 $sG+(r+s)P=(x_2, y_2)$.&lt;/p&gt;
