@@ -1,0 +1,1712 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Git, CMake, Doxygen, Unit Test, RDP &amp; more details.'>
+<title>记录第一次项目开发</title>
+
+<link rel='canonical' href='https://example.com/p/%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='记录第一次项目开发'>
+<meta property='og:description' content='Git, CMake, Doxygen, Unit Test, RDP &amp; more details.'>
+<meta property='og:url' content='https://example.com/p/%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/'>
+<meta property='og:site_name' content='annesede的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='Git' /><meta property='article:published_time' content='2023-11-14T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-11-14T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="记录第一次项目开发">
+<meta name="twitter:description" content="Git, CMake, Doxygen, Unit Test, RDP &amp; more details.">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">⭐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">annesede的博客</a></h1>
+            <h2 class="site-description">Some words were just written here to fill the blank.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/annesede'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#oop">OOP</a></li>
+    <li><a href="#git">Git</a></li>
+    <li><a href="#项目结构">项目结构</a></li>
+    <li><a href="#gcc---makefile---cmake">GCC -&gt; Makefile -&gt; CMake</a></li>
+    <li><a href="#自动生成文档-doxygen">自动生成文档 (Doxygen)</a></li>
+    <li><a href="#单元测试">单元测试</a></li>
+    <li><a href="#远程桌面-rdp-over-ssh">远程桌面 (RDP over SSH)</a></li>
+    <li><a href="#项目细节">项目细节</a>
+      <ol>
+        <li><a href="#命令行参数解释">命令行参数解释</a></li>
+        <li><a href="#内存问题">内存问题</a></li>
+        <li><a href="#文件读写">文件读写</a></li>
+        <li><a href="#base64读写">Base64读写</a></li>
+        <li><a href="#单元转换">单元转换</a></li>
+        <li><a href="#字节流">字节流</a></li>
+        <li><a href="#bit-padding">Bit Padding</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" >
+                语言基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">记录第一次项目开发</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            Git, CMake, Doxygen, Unit Test, RDP &amp; more details.
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-11-14</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 10 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <small>
+系统: windows10 <br />
+语言: C11 <br />
+编译: GCC13.1.0 <br />
+构建: CMake3.26 <br />
+IDE: CLion2023.2.1 <br />
+版本: Git2.41.0 <br />
+文档: Doxygen1.9.8 <br />
+</small>
+<h2 id="oop">OOP</h2>
+<p><small>由于C模拟OOP较为复杂, 此处仅简要记录, 实际开发未能使用.</small></p>
+<p>object-oriented programming, 面向对象编程.</p>
+<p>对象: 某一类事物的抽象概念. <br />
+类: 对象的表现; 具有属性(变量)和方法(函数). <br />
+实例: 根据类构建出的具体事物. <br /></p>
+<p>封装: 不需要被外界访问的属性和方法私有化(private); 接口与实现分离, 只暴露接口, 无需关心实现; 良好封装可以解耦合. <br />
+继承: 从现有类构造出新的类, 属性和方法(protected)被继承; 破坏了封装, 父类实现对子类暴露; 强耦合, 父类改变时子类随之而变. <br />
+多态: 具体类型和方法在编程时不确定, 运行时(编译时)可选择多个状态并最终确定; 编译时多态即函数重载/符号重载.</p>
+<h2 id="git">Git</h2>
+<p>记录快照和hash值.</p>
+<p>modified &ndash;(add)&ndash;&gt; staged &ndash;(commit)&ndash;&gt; committed</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 配置</span>
+</span></span><span class="line"><span class="cl">git config
+</span></span><span class="line"><span class="cl">		   --list <span class="c1"># 查看配置</span>
+</span></span><span class="line"><span class="cl">		   --global user.name <span class="o">[</span><span class="s2">&#34;用户名&#34;</span><span class="o">]</span>
+</span></span><span class="line"><span class="cl">		   --global user.email <span class="o">[</span>邮箱<span class="o">]</span>
+</span></span><span class="line"><span class="cl">		   &lt;key&gt; <span class="c1"># 查看某项配置</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 基本</span>
+</span></span><span class="line"><span class="cl">git init
+</span></span><span class="line"><span class="cl">git diff <span class="c1"># 未暂存的改动</span>
+</span></span><span class="line"><span class="cl">	diff --staged <span class="c1"># 或&#34;--cached&#34;, 已暂存的改动</span>
+</span></span><span class="line"><span class="cl">git add <span class="o">[</span>文件名<span class="o">]</span> <span class="c1"># 暂存, &#34;.&#34;通配</span>
+</span></span><span class="line"><span class="cl">git status <span class="c1"># 暂存文件</span>
+</span></span><span class="line"><span class="cl">git reset <span class="o">[</span>文件名<span class="o">]</span> <span class="c1"># 撤销暂存</span>
+</span></span><span class="line"><span class="cl">git rm --cached <span class="o">[</span>文件名<span class="o">]</span> <span class="c1"># 从暂存区移除</span>
+</span></span><span class="line"><span class="cl">git commit -m <span class="s2">&#34;提交信息&#34;</span>
+</span></span><span class="line"><span class="cl">           --amend <span class="c1"># 补充提交, 新提交覆盖旧提交</span>
+</span></span><span class="line"><span class="cl">git rm -f <span class="o">[</span>文件名<span class="o">]</span> <span class="c1"># 不再追踪</span>
+</span></span><span class="line"><span class="cl">git log --patch <span class="c1"># 提交记录, 补丁形式</span>
+</span></span><span class="line"><span class="cl">        --stat <span class="c1"># 文件总结</span>
+</span></span><span class="line"><span class="cl">		--grep <span class="o">[</span>字符串<span class="o">]</span> <span class="c1"># 提交说明中包含指定内容</span>
+</span></span><span class="line"><span class="cl">		-S <span class="o">[</span>字符串<span class="o">]</span> <span class="c1"># 添加或删除内容中包含指定内容</span>
+</span></span><span class="line"><span class="cl">		-<span class="o">[</span>n<span class="o">]</span> <span class="c1"># 最近的n条提交</span>
+</span></span><span class="line"><span class="cl">		--after <span class="o">[</span>时间<span class="o">]</span> <span class="c1"># 指定时间后的提交</span>
+</span></span><span class="line"><span class="cl">		--before <span class="o">[</span>时间<span class="o">]</span> <span class="c1"># 指定时间前的提交</span>
+</span></span><span class="line"><span class="cl">		--pretty<span class="o">=</span>format:<span class="s2">&#34;%h - %cd, %s&#34;</span> --graph <span class="c1"># 图形显示提交hash简写, 日期, 说明</span>
+</span></span><span class="line"><span class="cl">git reset <span class="c1"># 默认&#34;--mixed&#34;, 回滚, 差异放在工作区</span>
+</span></span><span class="line"><span class="cl">		  --soft <span class="c1"># 回滚, 差异放在暂存区</span>
+</span></span><span class="line"><span class="cl">		  --hard <span class="c1"># 回滚, 不保存差异</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># .gitignore 忽略文件, glob模式匹配, !表示取反</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 远程仓库</span>
+</span></span><span class="line"><span class="cl">git remote add <span class="o">[</span>简称<span class="o">]</span> <span class="o">[</span>链接<span class="o">]</span>
+</span></span><span class="line"><span class="cl">		   -v <span class="c1"># 远程简称和对应链接</span>
+</span></span><span class="line"><span class="cl">		   rename <span class="o">[</span>旧简称<span class="o">]</span> <span class="o">[</span>新简称<span class="o">]</span>
+</span></span><span class="line"><span class="cl">		   show <span class="o">[</span>简称<span class="o">]</span>
+</span></span><span class="line"><span class="cl">		   remove <span class="o">[</span>简称<span class="o">]</span> <span class="c1"># 移除</span>
+</span></span><span class="line"><span class="cl">git clone <span class="o">[</span>链接<span class="o">]</span> <span class="o">[</span>本地路径<span class="o">]</span>
+</span></span><span class="line"><span class="cl">git fetch <span class="o">[</span>简称<span class="o">]</span> <span class="c1"># 拉取(不合并)</span>
+</span></span><span class="line"><span class="cl">git pull <span class="o">[</span>简称<span class="o">]</span> <span class="c1"># 合并</span>
+</span></span><span class="line"><span class="cl">git push <span class="o">[</span>简称<span class="o">]</span> <span class="o">[</span>分支<span class="o">]</span> <span class="c1"># 提交</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 分支</span>
+</span></span><span class="line"><span class="cl">git branch <span class="o">[</span>分支<span class="o">]</span> <span class="c1"># 新建</span>
+</span></span><span class="line"><span class="cl">git	branch -a <span class="c1"># 查看全部</span>
+</span></span><span class="line"><span class="cl">		   --merged <span class="c1"># 查看已合并</span>
+</span></span><span class="line"><span class="cl">		   --no-merged <span class="c1"># 查看未合并</span>
+</span></span><span class="line"><span class="cl">		   -d <span class="o">[</span>分支<span class="o">]</span> <span class="c1"># 删除</span>
+</span></span><span class="line"><span class="cl">git log --decorate <span class="c1"># 各个分支所指对象</span>
+</span></span><span class="line"><span class="cl">git checkout <span class="o">[</span>分支<span class="o">]</span> <span class="c1"># 切换</span>
+</span></span><span class="line"><span class="cl">			 -b <span class="o">[</span>分支<span class="o">]</span> <span class="c1"># 新建并切换</span>
+</span></span><span class="line"><span class="cl">git merge <span class="o">[</span>合入分支<span class="o">]</span> <span class="c1"># 快速合并</span>
+</span></span><span class="line"><span class="cl">          --no-ff <span class="o">[</span>合入分支<span class="o">]</span> <span class="c1"># 非快速合并, 合并到当前分支的新节点</span>
+</span></span><span class="line"><span class="cl">		  --squash <span class="o">[</span>合入分支<span class="o">]</span> <span class="c1"># 压缩合并, 合并到当前分支的新节点, 但不保留对合入分支的引用</span>
+</span></span><span class="line"><span class="cl">		  --rebase <span class="o">[</span>合入分支<span class="o">]</span> <span class="c1"># 变基合并, 合入分支变基到当前节点</span>
+</span></span><span class="line"><span class="cl">git cherry-pick -<span class="o">[</span>n<span class="o">]</span> commit <span class="c1"># 拣选n个节点合并</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>提交信息格式(推荐): &ldquo;&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;&rdquo; <br />
+&lt;type&gt;: feat(feature) 新功能; fix/to 修复bug; docs 文档; style 修改格式; refactor 重构; perf 优化; test 增加测试; chore 构建过程或辅助工具变动; revert 回滚; merge 合并分支. <br />
+&lt;scope&gt;: 影响范围.</p>
+<p>项目分支管理 (非快速合并)</p>
+<p><img src="/img/post-lang-firstProject-git-branch.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="git-branch"
+	
+	
+></p>
+<h2 id="项目结构">项目结构</h2>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>函数接口</th>
+<th>函数实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>头文件(.h)</td>
+<td>源文件(.c)/静态链接库(.a/.lib)/动态链接库(.so/.ddl)</td>
+</tr>
+</tbody>
+</table></div>
+<p>库文件: 目标文件(.o)的压缩. <br />
+静态链接库: 生成的可执行文件可独立运行; 重复调用的模块在链接时被多次复制, 造成代码冗余. <br />
+动态链接库(共享链接库): 链接时记录模块位置; 生成的可执行文件无法独立运行. <br /></p>
+<p>目录结构 <br />
+xxx-build/: 构建和编译目录; 下有子目录debug/和release/;在clion中为自动生成; 一般无需追踪 <br />
+.git/和.gitignore: 版本控制 <br />
+dist/: 分发目录, 最终发布版本; 下可按版本号划分子目录 <br />
+docs/: 文档目录 <br />
+include/: 公共头文件目录; 下可按模块划分子目录 <br />
+lib/: 外部依赖库目录 <br />
+src/: 源文件目录; 与头文件目录同结构同名 <br />
+samples/: 样例程序目录 <br />
+tests/: 测试文件目录 <br />
+tools/: 支撑工具目录 <br />
+copyright: 版权声明文件 <br />
+CMakeLists.txt或Makefile: 构建配置文件 <br />
+README: 说明文件 <br /></p>
+<h2 id="gcc---makefile---cmake">GCC -&gt; Makefile -&gt; CMake</h2>
+<p>编译过程: .c &ndash;(预处理)&ndash;&gt; .i &ndash;(编译egcs)&ndash;&gt; .s &ndash;(汇编as)&ndash;&gt; .o &ndash;(链接ld)&ndash;&gt; 可执行文件.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">ar rcs <span class="o">[</span>libxxx.a<span class="o">]</span> <span class="o">[</span>.o<span class="o">]</span> <span class="c1"># 生成静态链接库, 名称必须以&#34;lib&#34;开头, win下为&#34;libxxx.lib&#34;</span>
+</span></span><span class="line"><span class="cl">gcc -fPIC -shared <span class="o">[</span>.c<span class="o">]</span> -o <span class="o">[</span>libxxx.so<span class="o">]</span> <span class="c1"># 生成动态链接库, 名称必须以&#34;lib&#34;开头, win下为&#34;libxxx.dll&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 基本</span>
+</span></span><span class="line"><span class="cl">gcc -E <span class="o">[</span>.c<span class="o">]</span> -o <span class="o">[</span>.i<span class="o">]</span> <span class="c1"># 仅预处理, 需重定向输出</span>
+</span></span><span class="line"><span class="cl">	-S <span class="o">[</span>.c/.i<span class="o">]</span> -o <span class="o">[</span>.s<span class="o">]</span> <span class="c1"># 预处理和编译, 生成.s</span>
+</span></span><span class="line"><span class="cl">	-c <span class="o">[</span>.c/.i/.s<span class="o">]</span> -o <span class="o">[</span>.o<span class="o">]</span> <span class="c1"># 预处理, 编译, 汇编, 生成.o</span>
+</span></span><span class="line"><span class="cl">	<span class="o">[</span>.c/.i/.s/.o<span class="o">]</span> -o <span class="o">[</span>out<span class="o">]</span> <span class="c1"># 预处理, 编译, 汇编, 生成可执行文件</span>
+</span></span><span class="line"><span class="cl">	-I <span class="o">[</span>path<span class="o">]</span> <span class="o">[</span>.o<span class="o">]</span> <span class="c1"># 指明头文件路径</span>
+</span></span><span class="line"><span class="cl">	-staic <span class="o">[</span>.o<span class="o">]</span> <span class="o">[</span>libxxx.a<span class="o">]</span> <span class="c1"># 链接静态库</span>
+</span></span><span class="line"><span class="cl">    	   -L <span class="o">[</span>path<span class="o">]</span> -l<span class="o">[</span>xxx<span class="o">]</span> <span class="c1"># 指明静态库路径和静态库</span>
+</span></span><span class="line"><span class="cl">	<span class="o">[</span>.c<span class="o">]</span> <span class="o">[</span>.so<span class="o">]</span> -o <span class="o">[</span>out<span class="o">]</span> <span class="c1"># 链接动态库</span>
+</span></span><span class="line"><span class="cl">ldd <span class="o">[</span>out<span class="o">]</span> <span class="c1"># 查看运行时所需的动态链接库及位置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 动态链接库生成的可执行文件无法单独运行</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="nv">$LD_LIBRARY_PATH</span>:xxx <span class="c1"># 仅当前Terminal生效</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行时链接动态库</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># linux: &lt;dlfcn.h&gt; dlopen, dlsym, dlclose, dlerror</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># windows: &lt;windows.h&gt; LoadLibraryA, GetProcAddress, FreeLibrary</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调试和功能</span>
+</span></span><span class="line"><span class="cl">-v <span class="c1"># 输出详细编译过程</span>
+</span></span><span class="line"><span class="cl">-Q <span class="c1"># 输出编译相关统计信息</span>
+</span></span><span class="line"><span class="cl">-Wall <span class="c1"># 输出警告</span>
+</span></span><span class="line"><span class="cl">-Werror <span class="c1"># 警告视为错误</span>
+</span></span><span class="line"><span class="cl">-g <span class="c1"># &#34;-ggdb&#34;或&#34;-g2&#34;, 生成可调式的执行文件, debug模式</span>
+</span></span><span class="line"><span class="cl">-O <span class="c1"># &#34;-O1&#34;, 基本优化</span>
+</span></span><span class="line"><span class="cl">-O2 <span class="c1"># 进一步优化, 会增加文件大小, release模式</span>
+</span></span><span class="line"><span class="cl">-O3 <span class="c1"># 较激进优化, 会增加文件大小</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># makefile (仅linux)</span>
+</span></span><span class="line"><span class="cl">make
+</span></span><span class="line"><span class="cl">make clean
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 版本1</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>out<span class="o">]</span>: <span class="o">[</span>.c<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	gcc -o <span class="o">[</span>out<span class="o">]</span> <span class="o">[</span>.c<span class="o">]</span> <span class="c1"># tab缩进, 不能使用空格, 下同</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 版本2</span>
+</span></span><span class="line"><span class="cl"><span class="nv">C</span> <span class="o">=</span> gcc
+</span></span><span class="line"><span class="cl"><span class="nv">TARGET</span> <span class="o">=</span> <span class="o">[</span>out<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ</span> <span class="o">=</span> <span class="o">[</span>.o<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">$(</span>TARGET<span class="k">)</span>: <span class="k">$(</span>OBJ<span class="k">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> -o <span class="k">$(</span>TARGET<span class="k">)</span> <span class="k">$(</span>OBJ<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>.o<span class="o">]</span>: <span class="o">[</span>.c<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> -c <span class="o">[</span>.c<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 版本3</span>
+</span></span><span class="line"><span class="cl"><span class="nv">C</span> <span class="o">=</span> gcc
+</span></span><span class="line"><span class="cl"><span class="nv">TARGET</span> <span class="o">=</span> <span class="o">[</span>out<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ</span> <span class="o">=</span> <span class="o">[</span>.o<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">CFLAGS</span> <span class="o">=</span> -c -Wall
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">$(</span>TARGET<span class="k">)</span>: <span class="k">$(</span>OBJ<span class="k">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">%.o: %.c
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.PHONY: clean <span class="c1"># 避免文件名为clean造成二重含义</span>
+</span></span><span class="line"><span class="cl">clean:
+</span></span><span class="line"><span class="cl">	rm -f *.o <span class="k">$(</span>TARGET<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 版本4</span>
+</span></span><span class="line"><span class="cl"><span class="nv">C</span> <span class="o">=</span> gcc
+</span></span><span class="line"><span class="cl"><span class="nv">TARGET</span> <span class="o">=</span> <span class="o">[</span>out<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">SRC</span> <span class="o">=</span> <span class="k">$(</span>wildcar *.c<span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OBJ</span> <span class="o">=</span> <span class="k">$(</span>patsubst %.cpp, %.o, <span class="k">$(</span>SRC<span class="k">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">CFLAGS</span> <span class="o">=</span> -c -Wall
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">$(</span>TARGET<span class="k">)</span>: <span class="k">$(</span>OBJ<span class="k">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> -o <span class="nv">$@</span> $^
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">%.o: %.c
+</span></span><span class="line"><span class="cl">	<span class="k">$(</span>C<span class="k">)</span> <span class="k">$(</span>CFLAGS<span class="k">)</span> $&lt; -o <span class="nv">$@</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.PHONY: clean
+</span></span><span class="line"><span class="cl">clean:
+</span></span><span class="line"><span class="cl">	rm -f *.o <span class="k">$(</span>TARGET<span class="k">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Shell" data-lang="Shell"><span class="line"><span class="cl">cmake -S . -B cmake-build -D<span class="o">[</span>CACHE<span class="o">]=[</span>value<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 现代CMake: 基于target和module</span>
+</span></span><span class="line"><span class="cl">cmake_minimum_required<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">project<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_subdirectory<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">add_library<span class="o">()</span> <span class="c1"># STATIC/SHARED</span>
+</span></span><span class="line"><span class="cl">add_executable<span class="o">()</span>
+</span></span><span class="line"><span class="cl">target_include_directions<span class="o">()</span> <span class="c1"># PRIVATE/PUBLIC/INTERFACE</span>
+</span></span><span class="line"><span class="cl">target_include_directories<span class="o">()</span>
+</span></span><span class="line"><span class="cl">target_compile_features<span class="o">()</span>
+</span></span><span class="line"><span class="cl">target_compile_options<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">include<span class="o">(</span>CTest<span class="o">)</span>
+</span></span><span class="line"><span class="cl">enable_testing<span class="o">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 变量 set(); option(); list()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 条件 if()/elseif()/else()/endif()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 循环 foreach()/endforeach(); while()/endwhile(); continue(); break()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 宏 marco()/endmacro()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 函数 function()/endfunction()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 输出 message()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 文件操作 file()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 支持glob模式匹配, bash调用方式 ${file_name}; GLOB_RECURSE递归匹配</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># pch: 预编译头文件</span>
+</span></span><span class="line"><span class="cl">target_precompile_headers<span class="o">()</span> <span class="c1"># REUSE_FROM</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 自定义命令</span>
+</span></span><span class="line"><span class="cl">add_custom_command<span class="o">()</span> <span class="c1"># COMMAND</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="自动生成文档-doxygen">自动生成文档 (Doxygen)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cm">/** 文件注释
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @file
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @brief
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @details
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @author
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @version
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @date
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @copyright
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">/// 变量或常量前注释
+</span></span></span><span class="line"><span class="cl"><span class="c1">///&lt; 变量或常量后注释
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="cm">/** 函数注释
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @brief
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @details
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @param[in]
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @param[out]
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @return
+</span></span></span><span class="line"><span class="cl"><span class="cm">* 	@retval
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @attention
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @warning
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @exception
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cm">/** 可选项
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @note
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @remarks
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @example
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @see
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @var
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @enum
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @code @endcode
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @bug
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @todo
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @pre
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @post
+</span></span></span><span class="line"><span class="cl"><span class="cm">* @deprecated
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 特殊标识
+</span></span></span><span class="line"><span class="cl"><span class="c1">// TODO 代办
+</span></span></span><span class="line"><span class="cl"><span class="c1">// FIXME 需修正
+</span></span></span><span class="line"><span class="cl"><span class="c1">// XXX 实现了功能, 但有待改进
+</span></span></span><span class="line"><span class="cl"><span class="c1">// HACK 需根据需求调整
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="单元测试">单元测试</h2>
+<p>对每个单元(函数/方法/类/子模块)的输出和异常进行测试.</p>
+<p><small>以下为goolgetest方法, 由于兼容问题实际并未使用.</small></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// MACRO
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">TEST</span> <span class="p">(</span><span class="n">globalConfigurationTest</span><span class="p">,</span> <span class="n">configurationDataTest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Assert: [(non)fatal]_[type]
+</span></span></span><span class="line"><span class="cl"><span class="c1">// (non)Fatal: ASSERT_, fatal; EXPECT_, nonfatal
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Basic: _TRUE(condition); _FALSE(condition)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Binary: _EQ(var1, var2), equal; _NE(var1, var2), not equal
+</span></span></span><span class="line"><span class="cl"><span class="c1">//         _LT(var1, var2), less than; _LE(var1, var2), less equal
+</span></span></span><span class="line"><span class="cl"><span class="c1">//		   _GT(var1, var2), big than; _GE(var1, var2), big equal
+</span></span></span><span class="line"><span class="cl"><span class="c1">// String: _STREQ(str1, str2), same content; _STRNE(str1, str2), different content
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 		   _STRCASEEQ(str1, str2), same ignoring case; _STRCASENE(str1, str2), different ignoring content
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Float: _FLOAT_EQ(var1, var2), almost equal 4ULP; _DOUBLE_EQ(var1, var2), almost equal 4ULP
+</span></span></span><span class="line"><span class="cl"><span class="c1">//		  _NEAR()_EQ(var1, var2, abs_error), almost equal
+</span></span></span><span class="line"><span class="cl"><span class="c1">// Exception: _THROW(statement, exception_type); _ANY_THROW(statement); _NO_THROW(statement)
+</span></span></span><span class="line"><span class="cl"><span class="c1">// SUCESS(); FAIL(), fatal; ADD_FAIL, nonfatal
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="远程桌面-rdp-over-ssh">远程桌面 (RDP over SSH)</h2>
+<p><small>需求为win10客户端远程连接win10服务端.</small></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-WindowsCapability</span> <span class="n">-Online</span> <span class="p">|</span> <span class="nb">Where-Object</span> <span class="n">Name</span> <span class="o">-like</span> <span class="s1">&#39;OpenSSH*&#39;</span> <span class="c"># 查询</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Client</span><span class="p">~~~~</span><span class="mf">0.0</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="py">0</span> <span class="c"># 安装客户端</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Add-WindowsCapability</span> <span class="n">-Online</span> <span class="n">-Name</span> <span class="n">OpenSSH</span><span class="p">.</span><span class="n">Server</span><span class="p">~~~~</span><span class="mf">0.0</span><span class="p">.</span><span class="py">1</span><span class="p">.</span><span class="py">0</span> <span class="c"># 安装服务端(客户端无需安装)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Set-Service</span> <span class="n">-Name</span> <span class="n">sshd</span> <span class="n">-StartupType</span> <span class="s1">&#39;Automatic&#39;</span> <span class="c"># 开机启动</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Start-Service</span> <span class="n">sshd</span> <span class="c"># 启动服务</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>修改&quot;C:\ProgramData\ssh\sshd_config&quot;文件, 若无权限保存则复制替换. <br />
+修改 Port 选项为55555. <br />
+修改 PermitRootLogin 选项为 no. <br />
+修改 PasswordAuthentication 选项为 no. <br />
+不注释 &ldquo;PubkeyAuthentication yes&rdquo;. <br />
+不注释 &ldquo;AuthorizedKeysFile .ssh/authorized_keys&rdquo;. <br />
+注释 &ldquo;Match Group administrators&rdquo;. <br />
+注释 &ldquo;AuthorizedKeysFile PROGRAMDATA/ssh/administrators_authorized_keys&rdquo;. <br /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">ssh-keygen</span> <span class="c"># 生成rsa密钥对</span>
+</span></span><span class="line"><span class="cl"><span class="c"># file 可选项, 默认为&#34;C:\Users\username/.ssh/id_rsa.&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># passphrase 可选项, 载入私钥时需要的口令, 主要为保障私钥安全</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="c"># 私钥拷贝至客户端</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 客户端建立ssh隧道</span>
+</span></span><span class="line"><span class="cl"><span class="n">ssh</span> <span class="p">&lt;</span><span class="n">username</span><span class="p">&gt;@&lt;</span><span class="n">Internet</span> <span class="n">ip</span><span class="p">&gt;</span> <span class="n">-p</span> <span class="mf">33333</span> <span class="n">-L</span> <span class="mf">12345</span><span class="err">:</span><span class="mf">127.0</span><span class="p">.</span><span class="py">0</span><span class="p">.</span><span class="mf">1</span><span class="err">:</span><span class="mf">55555</span> <span class="n">-N</span> <span class="n">-o</span> <span class="n">ServerAliveInterval</span><span class="p">=</span><span class="mf">60</span> <span class="n">-o</span> <span class="n">ServerAliveCountMax</span><span class="p">=</span><span class="mf">3</span> <span class="o">-f</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 公网IP可以通过内网穿透实现</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="项目细节">项目细节</h2>
+<h3 id="命令行参数解释">命令行参数解释</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 一般命令行参数解释</span>
+</span></span><span class="line"><span class="cl">main -s --long -n <span class="m">100</span> /src
+</span></span><span class="line"><span class="cl"><span class="c1">#  短参数 长参数 带值参数 捕获组</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#            &#34;-n 100&#34;, &#34;--std=c11&#34;, &#34;-lhello&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># option flag: 空格        等号         粘连</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 类型: bool, 数值, 字符串, 捕获组</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 扩展功能(用户层): 错误提示, 自动help, 子命令</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="内存问题">内存问题</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="c1">// 函数外部已经分配好的堆上/栈上字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">OpStr</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 函数内部需要分配堆上字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">OpStr2</span><span class="p">(</span><span class="kt">char</span> <span class="o">**</span><span class="n">dest</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">size_t</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="o">*</span><span class="n">dest</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="n">calloc</span><span class="p">(</span><span class="n">len</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="文件读写">文件读写</h3>
+<p>文件读入, 路径文件不存在时读入为字符串.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">char</span><span class="o">*</span> <span class="nf">GetStringFromFile</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">calloc</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="p">(</span><span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="o">++</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">==</span> <span class="n">begin</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="s">&#34;rb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fseek</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">SEEK_END</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">size_t</span> <span class="n">fileSize</span> <span class="o">=</span> <span class="nf">ftell</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span> <span class="nf">calloc</span><span class="p">(</span><span class="n">fileSize</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">str</span><span class="p">)</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">		<span class="nf">rewind</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">(</span><span class="nf">fread</span><span class="p">(</span><span class="n">str</span><span class="p">.</span><span class="n">Begin</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fileSize</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="o">!=</span> <span class="n">fileSize</span><span class="p">)</span> <span class="k">return</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">fclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">		<span class="nf">free</span><span class="p">(</span><span class="n">begin</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">else</span> <span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="n">begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>写入文件.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">PutStringToFile</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span><span class="o">*</span> <span class="n">begin</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">,</span> <span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="n">end</span> <span class="o">=</span> <span class="n">begin</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">calloc</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span> <span class="p">(</span><span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="p">)</span><span class="nf">getchar</span><span class="p">())</span> <span class="o">!=</span> <span class="sc">&#39;\n&#39;</span><span class="p">;</span> <span class="o">++</span><span class="n">end</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">end</span> <span class="o">==</span> <span class="n">begin</span><span class="p">)</span> <span class="nf">exit</span><span class="p">(</span><span class="n">EXIT_FAILURE</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="o">*</span><span class="n">end</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">FILE</span> <span class="o">*</span><span class="n">fp</span> <span class="o">=</span> <span class="nf">fopen</span><span class="p">(</span><span class="n">begin</span><span class="p">,</span> <span class="s">&#34;wb&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">size_t</span> <span class="n">size</span> <span class="o">=</span> <span class="nf">strlen</span><span class="p">(</span><span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="nf">fwrite</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span> <span class="o">!=</span> <span class="n">size</span><span class="p">)</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="base64读写">Base64读写</h3>
+<p>以ascii读入, 需要进行转换, 每4个base64字符为一组存入3个Byte.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Byte</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="k">static</span> <span class="n">Byte</span> <span class="n">ascii</span><span class="p">[</span><span class="mi">80</span><span class="p">]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">62</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">52</span><span class="p">,</span> <span class="mi">53</span><span class="p">,</span> <span class="mi">54</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">57</span><span class="p">,</span> <span class="mi">58</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="mi">61</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">65</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">18</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">24</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">27</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">32</span><span class="p">,</span> <span class="mi">33</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">39</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">41</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	<span class="mi">42</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">51</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;cat+&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">    <span class="n">Byte</span> <span class="n">trs</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">trs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">ascii</span><span class="p">[</span><span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="sc">&#39;+&#39;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// ascii从&#34;+&#34;开始
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">	<span class="n">Byte</span> <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B11111100</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B11110000</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B1111</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B11000000</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">trs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B111111</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%x %x %x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>末尾有2个&quot;=&ldquo;时, 最后一组只有1个Byte; 末尾有1个&rdquo;=&ldquo;时, 最后一组只有2个Byte.</p>
+<p>补尾规则: 1个&rdquo;=&ldquo;时, 最后字符补&quot;00&quot;得到, 即&rdquo;=&ldquo;前字符须整除4; 2个&rdquo;=&ldquo;时, 最后字符补&quot;0000&quot;得到, 即&rdquo;=&ldquo;前字符须整除16.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>bit</th>
+<th>Byte</th>
+<th>base64(&quot;=&rdquo;)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>64</td>
+<td>8</td>
+<td>12(1)</td>
+</tr>
+<tr>
+<td>128</td>
+<td>16</td>
+<td>24(2)</td>
+</tr>
+<tr>
+<td>256</td>
+<td>32</td>
+<td>44(1)</td>
+</tr>
+<tr>
+<td>512</td>
+<td>64</td>
+<td>88(2)</td>
+</tr>
+<tr>
+<td>1024</td>
+<td>128</td>
+<td>172(1)</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>base64(&quot;=&quot;)</th>
+<th>Byte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4n(0)</td>
+<td>3n</td>
+</tr>
+<tr>
+<td>4n(1)</td>
+<td>3n-1</td>
+</tr>
+<tr>
+<td>4n(2)</td>
+<td>3n-2</td>
+</tr>
+</tbody>
+</table></div>
+<p>每3个Byte为一组输出4个base64字符.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Byte</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="k">static</span> <span class="kt">char</span> <span class="n">base</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span> <span class="o">=</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;A&#39;</span><span class="p">,</span> <span class="sc">&#39;B&#39;</span><span class="p">,</span> <span class="sc">&#39;C&#39;</span><span class="p">,</span> <span class="sc">&#39;D&#39;</span><span class="p">,</span> <span class="sc">&#39;E&#39;</span><span class="p">,</span> <span class="sc">&#39;F&#39;</span><span class="p">,</span> <span class="sc">&#39;G&#39;</span><span class="p">,</span> <span class="sc">&#39;H&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;I&#39;</span><span class="p">,</span> <span class="sc">&#39;J&#39;</span><span class="p">,</span> <span class="sc">&#39;K&#39;</span><span class="p">,</span> <span class="sc">&#39;L&#39;</span><span class="p">,</span> <span class="sc">&#39;M&#39;</span><span class="p">,</span> <span class="sc">&#39;N&#39;</span><span class="p">,</span> <span class="sc">&#39;O&#39;</span><span class="p">,</span> <span class="sc">&#39;P&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;Q&#39;</span><span class="p">,</span> <span class="sc">&#39;R&#39;</span><span class="p">,</span> <span class="sc">&#39;S&#39;</span><span class="p">,</span> <span class="sc">&#39;T&#39;</span><span class="p">,</span> <span class="sc">&#39;U&#39;</span><span class="p">,</span> <span class="sc">&#39;V&#39;</span><span class="p">,</span> <span class="sc">&#39;W&#39;</span><span class="p">,</span> <span class="sc">&#39;X&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;Y&#39;</span><span class="p">,</span> <span class="sc">&#39;Z&#39;</span><span class="p">,</span> <span class="sc">&#39;a&#39;</span><span class="p">,</span> <span class="sc">&#39;b&#39;</span><span class="p">,</span> <span class="sc">&#39;c&#39;</span><span class="p">,</span> <span class="sc">&#39;d&#39;</span><span class="p">,</span> <span class="sc">&#39;e&#39;</span><span class="p">,</span> <span class="sc">&#39;f&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;g&#39;</span><span class="p">,</span> <span class="sc">&#39;h&#39;</span><span class="p">,</span> <span class="sc">&#39;i&#39;</span><span class="p">,</span> <span class="sc">&#39;j&#39;</span><span class="p">,</span> <span class="sc">&#39;k&#39;</span><span class="p">,</span> <span class="sc">&#39;l&#39;</span><span class="p">,</span> <span class="sc">&#39;m&#39;</span><span class="p">,</span> <span class="sc">&#39;n&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;o&#39;</span><span class="p">,</span> <span class="sc">&#39;p&#39;</span><span class="p">,</span> <span class="sc">&#39;q&#39;</span><span class="p">,</span> <span class="sc">&#39;r&#39;</span><span class="p">,</span> <span class="sc">&#39;s&#39;</span><span class="p">,</span> <span class="sc">&#39;t&#39;</span><span class="p">,</span> <span class="sc">&#39;u&#39;</span><span class="p">,</span> <span class="sc">&#39;v&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;w&#39;</span><span class="p">,</span> <span class="sc">&#39;x&#39;</span><span class="p">,</span> <span class="sc">&#39;y&#39;</span><span class="p">,</span> <span class="sc">&#39;z&#39;</span><span class="p">,</span> <span class="sc">&#39;0&#39;</span><span class="p">,</span> <span class="sc">&#39;1&#39;</span><span class="p">,</span> <span class="sc">&#39;2&#39;</span><span class="p">,</span> <span class="sc">&#39;3&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">		<span class="sc">&#39;4&#39;</span><span class="p">,</span> <span class="sc">&#39;5&#39;</span><span class="p">,</span> <span class="sc">&#39;6&#39;</span><span class="p">,</span> <span class="sc">&#39;7&#39;</span><span class="p">,</span> <span class="sc">&#39;8&#39;</span><span class="p">,</span> <span class="sc">&#39;9&#39;</span><span class="p">,</span> <span class="sc">&#39;+&#39;</span><span class="p">,</span> <span class="sc">&#39;/&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Byte</span> <span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mh">0x71</span><span class="p">,</span> <span class="mh">0xab</span><span class="p">,</span> <span class="mh">0x7e</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">Byte</span> <span class="n">trs</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">	<span class="n">trs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B111111</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">trs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B110000</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B1111</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">trs</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">((</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B111100</span><span class="p">)</span> <span class="o">+</span> <span class="p">((</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;&gt;</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B11</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">	<span class="n">trs</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">B111111</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kt">char</span> <span class="n">str</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">str</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">base</span><span class="p">[</span><span class="n">trs</span><span class="p">[</span><span class="n">i</span><span class="p">]];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">str</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>Byte</th>
+<th>base64(&quot;=&quot;)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3n</td>
+<td>4n(0)</td>
+</tr>
+<tr>
+<td>3n+1</td>
+<td>4n+4(2)</td>
+</tr>
+<tr>
+<td>3n+2</td>
+<td>4n+4(1)</td>
+</tr>
+</tbody>
+</table></div>
+<p>剩余1Byte时, 增加1个空Byte, 末尾补2个&quot;=&quot;, 剩余2Byte时, 增加1个空Byte, 末尾补1个&quot;=&quot;.</p>
+<h3 id="单元转换">单元转换</h3>
+<p>当最小操作单元与最小读写单元一致时, 小端序或大端序实现均不会影响结果.</p>
+<p>当最小操作单元与最小读写单元不一致时, 需要进行单元转换; 而直接修改指针类型会由于小端序而错误读取.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Byte</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">Word</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">example</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// Word to Byte
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Word</span> <span class="n">a</span> <span class="o">=</span> <span class="mh">0x12345678</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Byte</span> <span class="n">d</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">&gt;&gt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">a</span> <span class="o">&amp;</span> <span class="mh">0xff</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%x %x %x %x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// Byte to Word
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">Word</span> <span class="n">g</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">+=</span> <span class="p">((</span><span class="n">Word</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">4</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">+=</span> <span class="p">((</span><span class="n">Word</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">+=</span> <span class="p">((</span><span class="n">Word</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">g</span> <span class="o">+=</span> <span class="p">(</span><span class="n">Word</span><span class="p">)</span> <span class="n">d</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">g</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="字节流">字节流</h3>
+<p>为便于 Bit Padding 和加解密处理, 和出于安全考虑, 对比特流加密前先将字符串型转换为字节流, 结构如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">Byte</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Byte</span><span class="o">*</span> <span class="n">begin</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="n">Byte</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">ByteStream</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>对 begin 使用内存分配函数, end 始终指向字节流末尾.</p>
+<h3 id="bit-padding">Bit Padding</h3>
+<p>可分为直接填充和保留长度信息填充, 直接填充即填充到分组的整数倍, 保留长度信息填充也填充到整数倍, 但最后预留一定位置存储长度信息.</p>
+<p>而保留长度填充可在直接填充基础上, 比较填充余量和长度预留, 不足时额外增加一个分组即可.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">size_t</span> <span class="nf">BitPadding</span><span class="p">(</span><span class="kt">int</span> <span class="n">strSize</span><span class="p">,</span> <span class="kt">int</span> <span class="n">blockSize</span><span class="p">,</span> <span class="kt">int</span> <span class="n">remains</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">strSize</span> <span class="o">%</span> <span class="n">blockSize</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">size_t</span> <span class="n">padSize</span> <span class="o">=</span> <span class="p">(</span><span class="n">strSize</span> <span class="o">/</span> <span class="n">blockSize</span> <span class="o">+</span> <span class="n">flag</span><span class="p">)</span> <span class="o">*</span> <span class="n">blockSize</span> <span class="o">-</span> <span class="n">strSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="p">(</span><span class="n">remains</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">padSize</span> <span class="o">%</span> <span class="n">blockSize</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">remains</span><span class="p">)</span> <span class="n">padSize</span> <span class="o">+=</span> <span class="n">blockSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kt">size_t</span> <span class="n">newSize</span> <span class="o">=</span> <span class="n">strSize</span> <span class="o">+</span> <span class="n">padSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="n">newSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c/">C</a>
+        
+            <a href="/tags/git/">Git</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/c%E6%9D%82%E8%B0%88/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">C杂谈</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">正则表达式</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/%E6%B1%87%E7%BC%96%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">汇编快速入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">python快速入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
+    <a href="/p/sql%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">SQL快速入门</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 annesede
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

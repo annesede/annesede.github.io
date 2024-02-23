@@ -7,12 +7,20 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>C</title>
         <link>https://example.com/tags/c/</link>
-        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/tags/c/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>CPP</title>
+        <link>https://example.com/tags/cpp/</link>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/tags/cpp/</guid>
         <description></description>
         </item>
         <item>
@@ -56,11 +64,11 @@
         <description></description>
         </item>
         <item>
-        <title>CPP</title>
-        <link>https://example.com/tags/cpp/</link>
-        <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
+        <title>Git</title>
+        <link>https://example.com/tags/git/</link>
+        <pubDate>Tue, 14 Nov 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/tags/cpp/</guid>
+        <guid>https://example.com/tags/git/</guid>
         <description></description>
         </item>
         <item>

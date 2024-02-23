@@ -249,13 +249,12 @@
     <li><a href="#赋值语句">赋值语句</a></li>
     <li><a href="#不同数据类型的运算">不同数据类型的运算</a></li>
     <li><a href="#内存对齐">内存对齐</a></li>
-    <li><a href="#动态数组">动态数组</a></li>
     <li><a href="#深入理解指针">深入理解指针</a></li>
-    <li><a href="#字符串长度">字符串长度</a></li>
     <li><a href="#逻辑短路">逻辑短路</a></li>
     <li><a href="#内存溢出和内存泄漏">内存溢出和内存泄漏</a></li>
-    <li><a href="#二维数组">二维数组</a></li>
+    <li><a href="#数组">数组</a></li>
     <li><a href="#c风格字符串">C风格字符串</a></li>
+    <li><a href="#未定义行为">未定义行为</a></li>
   </ol>
 </nav>
         </div>
@@ -324,7 +323,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 9 分钟
+                    阅读时长: 10 分钟
                 </time>
             </div>
         
@@ -342,7 +341,8 @@
     <p><small> (C11 - GCC13.1.0/MSVC1937) <br />
 内容不分先后顺序, 请按需查阅. </small></p>
 <h2 id="cmake">CMAKE</h2>
-<p>使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE.</p>
+<p>使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE. <br />
+请注意, 如下写法并非现代用法.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -493,7 +493,8 @@
 </div><p>来自: <a class="link" href="https://www.bennyhuo.com/"  target="_blank" rel="noopener"
     >https://www.bennyhuo.com/</a></p>
 <h2 id="赋值语句">赋值语句</h2>
-<p>在赋值语句中, 左值(&quot;=&ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&quot;=&ldquo;右边)可以为数值或变量.</p>
+<p><small> 该部分内容待更新 </small></p>
+<p>在赋值语句中, 左值(&quot;=&ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&quot;=&ldquo;右边)可以为数值或变量. <br /></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -526,7 +527,27 @@
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">*++</span><span class="n">p</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span> <span class="c1">// 合法
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="不同数据类型的运算">不同数据类型的运算</h2>
+</div><p>副作用: 表达式不仅计算数值还修改了环境; 序点间对对象同时读写, 则读必须为了写, 否则为未定义行为.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// 合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">++</span><span class="n">i</span><span class="p">;</span> <span class="c1">// 合法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">i</span><span class="o">++</span><span class="p">);</span> <span class="c1">// 未定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 未定义
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">i</span><span class="o">++</span><span class="p">;</span> <span class="c1">// 未定义
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考: <a class="link" href="https://zh.cppreference.com/w/c/language/eval_order"  target="_blank" rel="noopener"
+    >https://zh.cppreference.com/w/c/language/eval_order</a></p>
+<h2 id="不同数据类型的运算">不同数据类型的运算</h2>
+<p><small> 该部分内容待更新 </small></p>
 <p>整型提升: <br />
 表达式中存在(unsigned) int, 则 (unsigned) char, (unsigned) short int, enum 均转换为int, 不足时转换为 unsigned int.</p>
 <div class="highlight"><div class="chroma">
@@ -819,60 +840,6 @@ GCC和MSVC中默认对齐系数均为4, 可以通过预编译&rdquo;#pragma pack
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h2 id="动态数组">动态数组</h2>
-<p>有时在声明数组时无法确定数组长度, 需要传入参数.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>GCC可以编译通过; 但MSVC不支持变长数组, 会报错. <br />
-可以考虑用内存分配函数实现, 调用方式同数组.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
 </div><h2 id="深入理解指针">深入理解指针</h2>
 <p>声明变量时, 如&quot;int a;&rdquo;, 在运行时会为变量a开辟一块内存空间, 但值不能确定. 用scanf写入时, 用&rdquo;&amp;a&quot;表示写入到变量a所在的地址. 地址的数据类型即为指针类型, 即指针类型的变量存放的数据为内存地址.</p>
 <p>数据类型包含两个信息: 内存占用大小; 读写时遵循的规则. 定义一个指针类型时, 还需要给出指向的数据类型. 这是因为指针仅指向一个内存单元, 也就是CPU读写的起始位置(小端序下的数据低位); 只有给出指向的数据类型, CPU才能知道读写的终止位置和读写遵循的规则.</p>
@@ -1080,53 +1047,8 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 <p>函数也存在地址, 自然也可以有指向函数的指针. 但声明函数指针时, 运算优先级问题往往让人感到困惑: 如参数列表&rdquo;()&ldquo;的优先级高于&rdquo;*&rdquo;. <br />
 在分析函数声明时, 可以借助网站: <a class="link" href="https://cdecl.org/"  target="_blank" rel="noopener"
     >https://cdecl.org/</a>.</p>
-<h2 id="字符串长度">字符串长度</h2>
-<p>C中字符串应以&quot;NULL&rdquo;(或&rdquo;\0&quot;或0)结尾, 字符串的长度应当包含结尾的&quot;NULL&quot;, 但使用&lt;string.h&gt;库中的&quot;strlen()&ldquo;函数时, 返回的是字符串的有效长度: 如在第n-1位遇到NULL, 则返回n.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
-</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;string&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%llu&#34;</span><span class="p">,</span><span class="nf">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>字符串和数组一样有多种声明方式. <br />
-以长度声明字符串时, 需注意留一位给末尾的&quot;NULL&rdquo;. 动态长度字符串同数组, 同时使用&quot;memset()&ldquo;函数初始化. <br />
-若用&quot;strlen()&ldquo;得到其他字符串输出时, 想要得到相同有效长度的字符串需要声明长度为&quot;strlen(string)+1&rdquo;. <br />
-尽管不以&quot;NULL&quot;结尾有时不会得到错误的输出, 但应当避免不规范的使用. <br />
-仅以字符串值声明字符串时, 编译器会默认在结尾添加&quot;NULL&rdquo;, 无论字符串值末尾是否有&quot;\0&quot;.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
-</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;C is the best language!</span><span class="se">\0</span><span class="s">&#34;</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">    <span class="c1">// 此处打断点调试, 发现字符串长度为25, 但有效字符只有23个, 最后两个均为&#34;NULL&#34;.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h2 id="逻辑短路">逻辑短路</h2>
-<p>对于逻辑运算符与&quot;&amp;&amp;&ldquo;和或&rdquo;||&ldquo;存在短路规则, &ldquo;&amp;&amp;&ldquo;前若已为假则忽略后续直接返回&quot;fasle&rdquo;, 同理&rdquo;||&ldquo;前若已为真则忽略后续直接返回&quot;true&rdquo;.</p>
+<h2 id="逻辑短路">逻辑短路</h2>
+<p>对于逻辑运算符与&rdquo;&amp;&amp;&ldquo;和或&rdquo;||&ldquo;存在短路规则, &ldquo;&amp;&amp;&ldquo;前若已为假则忽略后续直接返回&quot;fasle&rdquo;, 同理&rdquo;||&ldquo;前若已为真则忽略后续直接返回&quot;true&rdquo;.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1206,8 +1128,61 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>防止内存泄漏的核心思想是: 进行任何内存有关的操作时, 始终确保每个已分配的内存都有指针指向.</p>
-<h2 id="二维数组">二维数组</h2>
-<p>C中二维数组按行存储, 故声明和传参时, 第二维度不可省略.</p>
+<h2 id="数组">数组</h2>
+<p>有时在声明数组时无法确定数组长度, 需要传入参数.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>GCC可以编译通过; 但MSVC不支持变长数组, 会报错. <br />
+可以考虑用内存分配函数实现, 调用方式同数组.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="o">*</span><span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="n">n</span><span class="o">*</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%d&#34;</span><span class="p">,</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">free</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>C中二维数组按行存储, 故声明和传参时, 第二维度不可省略.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -1312,15 +1287,15 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span>
 </span></span><span class="line"><span class="cl"><span class="kt">int</span><span class="o">**</span> <span class="nf">declare</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">    <span class="kt">int</span><span class="o">**</span> <span class="n">arr</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">**</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span><span class="p">));</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">int</span><span class="o">*</span><span class="p">)</span><span class="nf">malloc</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">m</span><span class="p">));</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">arr</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">int</span><span class="o">**</span> <span class="n">arr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">;</span> <span class="o">++</span><span class="n">j</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">            <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">        <span class="p">}</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
@@ -1352,6 +1327,48 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 <pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 声明字符串: 初始化
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="kt">char</span> <span class="o">*</span><span class="n">str</span> <span class="o">=</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="nf">calloc</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>但使用&lt;string.h&gt;库中的&quot;strlen()&ldquo;函数时, 返回的是字符串的有效长度: 如在第n-1位遇到NULL, 则返回n.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;string.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#34;string&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%llu&#34;</span><span class="p">,</span><span class="nf">strlen</span><span class="p">(</span><span class="n">a</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>若用&quot;strlen()&ldquo;得到其他字符串输出时, 想要得到相同有效长度的字符串需要声明长度为&quot;strlen(string)+1&rdquo;. <br />
+尽管不以&quot;NULL&quot;结尾有时不会得到错误的输出, 但应当避免不规范的使用. <br />
+仅以字符串值声明字符串时, 编译器会默认在结尾添加&quot;NULL&rdquo;, 无论字符串值末尾是否有&rdquo;\0&quot;.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">char</span> <span class="n">str</span><span class="p">[]</span> <span class="o">=</span> <span class="s">&#34;C is the best language!</span><span class="se">\0</span><span class="s">&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 此处打断点调试, 发现字符串长度为25, 但有效字符只有23个, 最后两个均为&#34;NULL&#34;.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><div class="highlight"><div class="chroma">
@@ -1446,8 +1463,14 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">char</span> <span class="o">*</span><span class="nf">strtok</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="n">str</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">delim</span><span class="p">);</span> <span class="c1">// 以delim为分隔, 分解str.
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><blockquote>
-<p>待更新内容: 聚合体与字节序, 副作用, 按位运算妙用, 不安全函数, 宏函数, 变长参数, 线程</p>
+</div><h2 id="未定义行为">未定义行为</h2>
+<p>C 标准中没有定义的实现, 造成的后果是难以预料的. <br />
+使用未定义行为时, 由于优化编译器可能并不会发出警告; 目前没有可靠的办法很好检查代码中是否使用了未定义行为;
+根本原因在于 C 并非一种安全的语言; 在编写过程中应当避免使用未定义行为.</p>
+<p>主要的未定义行为如下: 使用未初始化的变量; 有符号整型溢出; 过大的位移量; 解引用野指针或数组越界访问; 解引用空指针; 违反类型规则; 违反求值顺序规则.</p>
+<p>参考: Chris Lattner, What Every C Programmer Should Know About Undefined Behavior.</p>
+<blockquote>
+<p>待更新内容: 聚合体与字节序, 按位运算妙用, 不安全函数, 宏函数, 变长参数, 线程</p>
 </blockquote>
 
 </section>
@@ -1527,6 +1550,19 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
             
                 
 <article class="">
+    <a href="/p/%E8%AE%B0%E5%BD%95%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%A1%B9%E7%9B%AE%E5%BC%80%E5%8F%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">记录第一次项目开发</h2>
+        </div>
+    </a>
+</article>
+
+            
+                
+<article class="">
     <a href="/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/">
         
         
@@ -1572,19 +1608,6 @@ C可以返回结构体, 同时无法直接返回数组, 不使用指针时可以
 
         <div class="article-details">
             <h2 class="article-title">SQL快速入门</h2>
-        </div>
-    </a>
-</article>
-
-            
-                
-<article class="">
-    <a href="/p/css3/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">CSS3</h2>
         </div>
     </a>
 </article>

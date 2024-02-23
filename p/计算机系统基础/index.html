@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='持续更新中'>
+<title>计算机系统基础</title>
+
+<link rel='canonical' href='https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.abbd69b2908fdfcd5179898beaafd374514a86538d81639ddd2c58c06ae54e40.css"><meta property='og:title' content='计算机系统基础'>
+<meta property='og:description' content='持续更新中'>
+<meta property='og:url' content='https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='annesede的博客'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='汇编' /><meta property='article:tag' content='编译' /><meta property='article:tag' content='微机' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='网络' /><meta property='article:published_time' content='2023-12-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-06T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="计算机系统基础">
+<meta name="twitter:description" content="持续更新中">
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_huda2458f72ce188392d75c5d51cd8e24e_373_300x0_resize_box_3.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+                    <span class="emoji">⭐</span>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">annesede的博客</a></h1>
+            <h2 class="site-description">Some words were just written here to fill the blank.</h2>
+        </div>
+    </header><ol class="social-menu">
+            
+                <li>
+                    <a 
+                        href='https://github.com/annesede'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+
+        <div class="menu-bottom-section">
+            
+            
+                <li id="dark-mode-toggle">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                    <span>暗色模式</span>
+                </li>
+            
+        </div>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#信息表示和处理">信息表示和处理</a>
+      <ol>
+        <li><a href="#信息论">*信息论</a></li>
+        <li><a href="#数字逻辑">*数字逻辑</a></li>
+        <li><a href="#定点数表示与运算">定点数表示与运算</a></li>
+        <li><a href="#浮点数表示与运算">浮点数表示与运算</a></li>
+      </ol>
+    </li>
+    <li><a href="#程序的机器级表示">程序的机器级表示</a>
+      <ol>
+        <li><a href="#汇编基础">汇编基础</a></li>
+        <li><a href="#目标文件">目标文件</a></li>
+        <li><a href="#链接与装载">链接与装载</a></li>
+      </ol>
+    </li>
+    <li><a href="#硬件体系结构">硬件体系结构</a>
+      <ol>
+        <li><a href="#指令系统">指令系统</a></li>
+        <li><a href="#cpu-流水线技术">CPU 流水线技术</a></li>
+        <li><a href="#存储器层次结构">存储器层次结构</a></li>
+        <li><a href="#总线及io">总线及I/O</a></li>
+      </ol>
+    </li>
+    <li><a href="#系统抽象">系统抽象</a>
+      <ol>
+        <li><a href="#进程">进程</a></li>
+        <li><a href="#虚拟内存">虚拟内存</a></li>
+        <li><a href="#并发">并发</a></li>
+        <li><a href="#系统级io">系统级I/O</a></li>
+      </ol>
+    </li>
+    <li><a href="#性能优化">性能优化</a>
+      <ol>
+        <li><a href="#编译基础">编译基础</a></li>
+        <li><a href="#优化技巧">优化技巧</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" >
+                计算机基础
+            </a>
+        
+    </header>
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/">计算机系统基础</a>
+        </h2>
+    
+        
+        <h3 class="article-subtitle">
+            持续更新中
+        </h3>
+        
+    </div>
+
+    
+    
+    
+    
+    <footer class="article-time">
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+                <time class="article-time--published">2023-12-06</time>
+            </div>
+        
+
+        
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+                <time class="article-time--reading">
+                    阅读时长: 8 分钟
+                </time>
+            </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p><small>前置知识: C语言, 电路基础, 微积分, 代数学, 概率论.<br />
+*号章节为私货内容.<br />
+补充材料: <a class="link" href="https://zh.cppreference.com/w/c/language"  target="_blank" rel="noopener"
+    >C语言参考手册</a></small></p>
+<h2 id="信息表示和处理">信息表示和处理</h2>
+<h3 id="信息论">*信息论</h3>
+<h3 id="数字逻辑">*数字逻辑</h3>
+<p><small>$\bar{ }$ 逻辑/按位非, $+$ 逻辑/按位或, $\cdot$ 逻辑/按位与, $\oplus$ 逻辑/按位异或; <br />
+$\ll^L_{(n)}$ 逻辑左移 $n$ 位, $\ll_{(n)}$ 算术/按位左移 $n$ 位, $\lll_{(n)}$ 逻辑循环左移 $n$ 位, $\lll^\alpha_{(n)}$ 算术/按位循环左移 $n$ 位. </small></p>
+<p>Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. <br />
+恒等律: $b+0=b$, $b\cdot 1=b$. <br />
+0-1 律: $b+1=1$, $b\cdot 0=0$. <br />
+互补律: $b+\overline{b}=1$, $b\cdot\overline{b}=0$. <br />
+交换律: $b+c=c+b$, $b\cdot c=c\cdot b$. <br />
+结合律: $b +(c+d)=(b+c)+d$, $b\cdot (c\cdot d)=(b\cdot c)\cdot d$. <br />
+分配律: $b\cdot(c+d)=(b\cdot c)+(b\cdot d)$, $b+(c\cdot d)=(b+c)\cdot(b+d)$. <br />
+DeMorgan 律: $\overline{b+c}=\overline{b}\cdot\overline{c}$, $\overline{b\cdot c}=\overline{b}+\overline{c}$. <br />
+反演律 (广义 DeMorgan 律): 反演式等于原逻辑式; 交换 $+$ 和 $\cdot$, 所有变量取非. <br />
+对偶律: 相等逻辑式的对偶也相等; 交换 $+$ 和 $\cdot$, 交换 $0$ 和 $1$. <br />
+不难发现 $b\oplus c=(\overline{b}\cdot c)+(b\cdot\overline{c})$.</p>
+<p>有限域 ${\rm GF}(2) = ({0,1},\oplus, \cdot)$, $a,b\in GF(2)$. <br />
+注意到 $a+b=(a\oplus b)\oplus(a\cdot b)$. <br />
+${\rm GF}(2)^n = \{(b_{n-1},&hellip;,b_1,b_0)\ |\ b_i\in GF(2)\}$. <br />
+${\rm GF}(2)[x]/\langle p(x)\rangle: ({\rm deg}p=n)=\{\sum_{i=0}^{n-1}b_ix^i\ |\ b_i\in GF(2)\}$. <br />
+类似可将 Bool 代数扩展到 $n$ 位, 继而有逻辑函数 $f: \mathcal{B}^n\to \mathcal{B}^m$.</p>
+<p>组合逻辑(combinational): 不包含存储器件, 对于相同的输入总能得到相同的输出. (assign 模块) <br />
+时序逻辑(sequential): 包含存储器件, 输出取决于输入和当前存储内容. (always 模块) <br />
+门电路: 实现逻辑函数的电路设备.</p>
+<p><img src="/img/post-basic-system-basicMOSGate.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="basicMOSGate"
+	
+	
+></p>
+<p>译码器(decoder): $\mathcal{B}^n\to \mathcal{B}^{2^n}$, $(x_{n-1},&hellip;,x_1,x_0)\mapsto (0,0,&hellip;,0,y_{\sum_{i=0}^{n-1} b_i2^i}=1,0,&hellip;,0,0)$; 逆函数为解码器(encoder). <br />
+选择器(mux, Multiplexer): $\mathcal{B}^{nm+\lceil\log_2 n\rceil}\to \mathcal{B}^m$, $(X_{n-1},&hellip;,X_1,X_0,S)\mapsto X_{S\ (2)}$. <br />
+PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任意); 析取(sum of product)-对与求或, 合取(product of sum)-对或求与. <br />
+无关项: 通过去除输出无关项和输出无关项简化逻辑式. <br /></p>
+<p><img src="/img/post-basic-system-basicComb.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="basicComb"
+	
+	
+></p>
+<h3 id="定点数表示与运算">定点数表示与运算</h3>
+<p>十进制转换: $b_n&hellip;b_1b_0.b_{-1}&hellip;b_{-m}\ (R)=\sum_{i=-m}^n b_iR^i\ (10)$.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>2 进制</th>
+<th>8 进制</th>
+<th>2 进制</th>
+<th>16 进制</th>
+<th>2 进制</th>
+<th>16 进制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>001</td>
+<td>1</td>
+<td>0001</td>
+<td>1</td>
+<td>1001</td>
+<td>9</td>
+</tr>
+<tr>
+<td>010</td>
+<td>2</td>
+<td>0010</td>
+<td>2</td>
+<td>1010</td>
+<td>A</td>
+</tr>
+<tr>
+<td>011</td>
+<td>3</td>
+<td>0011</td>
+<td>3</td>
+<td>1011</td>
+<td>B</td>
+</tr>
+<tr>
+<td>100</td>
+<td>4</td>
+<td>0100</td>
+<td>4</td>
+<td>1100</td>
+<td>C</td>
+</tr>
+<tr>
+<td>101</td>
+<td>5</td>
+<td>0101</td>
+<td>5</td>
+<td>1101</td>
+<td>D</td>
+</tr>
+<tr>
+<td>110</td>
+<td>6</td>
+<td>0110</td>
+<td>6</td>
+<td>1110</td>
+<td>E</td>
+</tr>
+<tr>
+<td>111</td>
+<td>7</td>
+<td>0111</td>
+<td>7</td>
+<td>1111</td>
+<td>F</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>1000</td>
+<td>8</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>二进制编码(BCD, Binary Coded Decimal): $\{0,1\}^n\to \{x\in \mathbb{Z}\ |\ T_{\min}\leq x\leq T_{\max}\}$. <br />
+原码($n$ bit): $b_{n-1}b_{n-2}&hellip;b_1b_0\mapsto (-1)^{b_{n-1}}\sum_{i=0}^{n-2} b_i2^i$; $\ T_{\min}=1-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&hellip;0\mapsto +0$, $10&hellip;0\mapsto -0$. <br />
+补码: $0b_{n-2}&hellip;b_1b_0\mapsto \sum_{i=0}^{n-2} b_i2^i$, $\ 1b_{n-2}&hellip;b_1b_0\mapsto\sum_{i=0}^{n-2} b_i2^i -2^n$; $\ T_{\min}=-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&hellip;0\mapsto +0$, $11&hellip;1\mapsto -1$, $10&hellip;0\mapsto -2^{n-1}$; 双射. <br />
+反码: $0b_{n-2}&hellip;b_1b_0\mapsto \sum_{i=0}^{n-2} b_i2^i$, $\ 1b_{n-2}&hellip;b_1b_0\mapsto\sum_{i=0}^{n-2} b_i2^i-2^n+1$; $\ T_{\min}=1-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&hellip;0\mapsto +0$, $11&hellip;1\mapsto -0$. <br />
+移码: $b_{n-1}b_{n-1}&hellip;b_1b_0\mapsto \sum_{i=0}^{n-1} b_i2^i -(2^{n-1}-1)$; $\ T_{\min}=-2^{n-1}+1$; $\ T_{\max}=2^{n-1}$; $\ 01&hellip;1\mapsto 0$; 双射. <br />
+左移补 $0$; 逻辑右移补 $0$; 算术右移(按位右移)补最高位. <br />
+补码(C): $x\gets \sim x+1 \iff x\gets -x$.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 无符号型与带符号型转换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;-1U = %u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;(int)2147483648U = %d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="mi">2147483648U</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;-2147483647U = %u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2147483647</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;-2147483647-1U = %u</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="o">-</span><span class="mi">2147483647</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 扩展, 提升, 截断
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">signed</span> <span class="kt">char</span> <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="mi">97</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">signed</span> <span class="kt">char</span> <span class="n">b</span> <span class="o">=</span> <span class="o">-</span><span class="mi">34</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">signed</span> <span class="kt">char</span> <span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;c=%d, d=%d</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;c=0x%x, d=0x%x</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>小端序(small-end): 字节低位在低地址, 高位在高地址; 绝大多数CPU采用. <br />
+大端序(big-end): 字节低位在高地址, 高位在低地址; 网络传输.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 测试字节序模式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">union</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">num</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="n">End</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">End</span> <span class="n">test</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="n">test</span><span class="p">.</span><span class="n">num</span> <span class="o">=</span> <span class="mh">0x12345678</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">printf</span><span class="p">(</span><span class="s">&#34;%X</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span> <span class="n">test</span><span class="p">.</span><span class="n">ch</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>异号相加, 同号相减, 永不溢出. <br />
+正溢: 正数相加为负, 即正数减负数为负. <br />
+负溢: 负数相加为正, 即负数减正数为正.</p>
+<p>半加器(HA, half adder): ${\rm sum}=a\oplus b$, $c=a\cdot b$. <br />
+全加器(FA, full adder): ${\rm sum}_{i}=a_i\oplus b_i\oplus c_i, {\rm c_i}=(a_i\oplus b_i)\cdot c_{i-1}+a_i\cdot b_i$. <br />
+带标志加法器: $(a,b,{\rm SUB})\mapsto ({\rm sum}, {\rm ZF}, {\rm OF}, {\rm SF}, {\rm CF})$; ${\rm SUB}=1$ 时为减法. <br />
+进位保留加法器(CAS, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. <br />
+并行进位加法器: 记 $g_i=a_i\cdot b_i$, $p_i=a_i\oplus b_i$, 则 $c_i=g_i+p_ic_{i-1}$, 将 $c_{i-1}$ 依次展开. <br />
+分组跳跃加法器(并行串行相结合): 每 4bit 为一小组串行, 每 4 小组为一大组串行.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>加法器标志</th>
+<th>为 $1$ 时含义</th>
+<th>逻辑式($n$ bit)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ZF 零标志</td>
+<td>为 $0$</td>
+<td>$\overline{{\rm sum}_{n-1}+&hellip;+{\rm sum}_0}$</td>
+</tr>
+<tr>
+<td>OF 溢出标志</td>
+<td>溢出(带符号); 最高位进位/错位(无符号)</td>
+<td>$c_{n-1}\oplus c_{n-2}$</td>
+</tr>
+<tr>
+<td>SF 符号标志</td>
+<td>为负</td>
+<td>${\rm sum}_{n-1}$</td>
+</tr>
+<tr>
+<td>CF 进位/错位标志</td>
+<td>溢出(无符号); 最高位进位/错位(带符号)</td>
+<td>$c_{n-1}\oplus{\rm SUB}$</td>
+</tr>
+</tbody>
+</table></div>
+<p>乘法: 补码 $x\mapsto x({\rm mod}\ 2^n)$, 显然 $x({\rm mod}\ 2^n)\times y({\rm mod}\ 2^n)=xy({\rm mod}\ 2^n)$. <br />
+短常数乘法: $a=\sum_{i=0}^w b_i2^i$, 则 $ax=\sum_{b_i \ne 0}x\ll_{(i)}$. <br />
+Booth 乘法: 乘法中累加次数取决于乘数中 $1$ 的数量, 考虑到 $&hellip;01&hellip;10&hellip;=&hellip;10&hellip;00&hellip;-&hellip;00&hellip;01&hellip;$ 可将任意连续 $w$ 次连续累加变为 2 数相减. <br />
+4-Booth 编码: 不妨设 $b=b_{2n-1}&hellip;b_1b_0$, 有扩展 $\dot{b}=b_{2n+1}b_{2n}b_{2n-1}&hellip;b_1b_0b_{-1}$ 其中 $b_{2n+1}=b_{2n}=b_{2n-1},b_{-1}=0$, 则 $a\times b=a\times\dot{b}=a\times[\sum_{i=0}^n(b_{2i-1}+b_{2i}-2b_{2i+1})]$. <br />
+Wallace 树压缩: 多个 CSA 组成为树型结构, 三数一组并行迭代计算多个数相加. <br />
+Booth 乘法器(muliplier): 乘数 4-Booth 编码 $\to$ 生成部分积 $\to$ Wallace 数压缩 $\to$ 最后的 ${\rm carry}$ 与 ${\rm sum}$ 全加.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 串行乘法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">Multi</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">31</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">m</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">m</span> <span class="o">&lt;&lt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">&gt;&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="o">--</span><span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">c</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 短常数乘法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">Multi15</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="o">~</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>乘积项 $(b_{2i+1}b_{2i}b_{2i-1})$</th>
+<th>输出</th>
+<th>乘积项 $(b_{2i+1}b_{2i}b_{2i-1})$</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$000$</td>
+<td>$0$</td>
+<td>$100$</td>
+<td>$-2a$</td>
+</tr>
+<tr>
+<td>$001$</td>
+<td>$a$</td>
+<td>$101$</td>
+<td>$-a$</td>
+</tr>
+<tr>
+<td>$010$</td>
+<td>$a$</td>
+<td>$110$</td>
+<td>$-a$</td>
+</tr>
+<tr>
+<td>$011$</td>
+<td>$2a$</td>
+<td>$111$</td>
+<td>$0$</td>
+</tr>
+</tbody>
+</table></div>
+<p>除法溢出 $T_{\min}/(-1)\to T_{\min}$; 除 $0$ 异常. <br />
+无符号恢复余数除法 (restoring remainder): $a=qb+r$: 除数 $t\gets b&laquo;_{({\rm count})}$, 被除数 $a\gets a-t$: $a\geq 0$, $q_i=1$; $a&lt;0$, 恢复余数 $a\gets a+t$; $n\gets n-1$$ 直至 $t=0$, 此时 $r=a$. <br />
+不恢复余数除法: 在前者基础上, 改为判断余数与除数符号, 同号相减取 $1$, 异号相加取 $0$. <br /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// 恢复余数除法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">unsigned</span> <span class="nf">DivR</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">m</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">n</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">cnt</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">unsigned</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">quot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">cnt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">,</span> <span class="n">m</span> <span class="o">-=</span> <span class="n">tmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="n">quot</span> <span class="o">+=</span> <span class="mi">0</span><span class="n">B01</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span><span class="n">m</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">tmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">--</span><span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">quot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 不恢复余数除法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">Div</span><span class="p">(</span><span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cnt</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">quot</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">while</span><span class="p">(</span><span class="n">cnt</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">tmp</span> <span class="o">=</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">((</span><span class="n">m</span> <span class="o">&amp;</span> <span class="n">tmp</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">)</span> <span class="n">m</span> <span class="o">-=</span> <span class="n">tmp</span><span class="p">,</span> <span class="n">quot</span> <span class="o">+=</span> <span class="mi">0</span><span class="n">B01</span> <span class="o">&lt;&lt;</span> <span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span> <span class="n">m</span> <span class="o">+=</span> <span class="n">tmp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">--</span><span class="n">cnt</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">quot</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 模 2 幂
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="nf">rempwr2</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">s</span> <span class="o">=</span> <span class="n">x</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span> <span class="o">^</span> <span class="n">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">&amp;=</span> <span class="p">((</span><span class="o">~</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">n</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span><span class="n">x</span> <span class="o">^</span> <span class="n">s</span><span class="p">)</span><span class="o">+</span> <span class="o">~</span><span class="n">s</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><small>补充材料: <a class="link" href="https://graphics.stanford.edu/~seander/bithacks.html"  target="_blank" rel="noopener"
+    >位运算妙用</a></small></p>
+<h3 id="浮点数表示与运算">浮点数表示与运算</h3>
+<p>浮点数: $\mathbb{R}\mapsto \{0,1\}^w$, $x\mapsto (s,e,d,R)\mapsto s\times\sum_{i=-m}^0 d_iR^i\times R^e=\hat{x}$. <br />
+加法及乘法满足交换律, 但不满足结合律. <br />
+ULP(units in last place): ${\rm err}=|\hat{x}-x/R^e|/R^m$.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>值类型</th>
+<th>符号($1$ bit)</th>
+<th>阶码($n$ bit)</th>
+<th>尾数($m$ bit)</th>
+<th>值(偏置 $E=2^{n-1}-1$)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>规格化非零数</td>
+<td>$0$ 或 $1$</td>
+<td>$0&lt;e&lt;2^n-1$</td>
+<td>任意</td>
+<td>$(-1)^s\times2^{e-E}\times(1.f)$</td>
+</tr>
+<tr>
+<td>正零</td>
+<td>$0$</td>
+<td>$0$</td>
+<td>$0$</td>
+<td>$+0$</td>
+</tr>
+<tr>
+<td>负零</td>
+<td>$1$</td>
+<td>$0$</td>
+<td>$0$</td>
+<td>$-0$</td>
+</tr>
+<tr>
+<td>正无穷大</td>
+<td>$0$</td>
+<td>全 $1$, 即 $2^n-1$</td>
+<td>$0$</td>
+<td>$+\infty$</td>
+</tr>
+<tr>
+<td>负无穷大</td>
+<td>$1$</td>
+<td>全 $1$</td>
+<td>$0$</td>
+<td>$-\infty$</td>
+</tr>
+<tr>
+<td>非规划化数</td>
+<td>$0$ 或 $1$</td>
+<td>$0$</td>
+<td>非 $0$</td>
+<td>下溢, $(-1)^s\times2^{-E+1}\times(0.f)$</td>
+</tr>
+<tr>
+<td>非数</td>
+<td>$0$ 或 $1$</td>
+<td>全 $1$</td>
+<td>非 $0$</td>
+<td>${\rm NaN}$</td>
+</tr>
+</tbody>
+</table></div>
+<p>IEEE754: FP16 - $n=5$, $m=10$; FP32 - $n=8$, $m=23$; ${\rm err}&lt;1/2 {\rm ULP}$. <br />
+Google: BF16 - $n=8$, $m=7$; 可视为 FP32 尾数直接截断得到, 牺牲精度以扩大范围.</p>
+<p>加减法: 对阶(小阶向大阶对齐) $\to$ 尾数加减 $\to$ 左规(阶码递减; 下溢)/右规(阶码递增; 上溢; 舍入) $\to$ 尾数舍入($0$ 舍 $1$ 入; 向 $+\infty$ 舍入; 向 $-\infty$ 舍入; 向 $0$ 舍入; 置 $1$; 截断) - 保护位(guard), 警戒位(round), 粘位(sticky); 溢出判断. <br />
+乘除法: 阶码加减(可能溢出) $\to$ 尾数乘除 $\to$ 规格化 $\to$ 尾数舍入. <br />
+Newton-Rahpson 方法: $f(x)=\sum_{i=0}^{\infty}f^i(x_0)(x-x_0)^i/i!=0$, 有迭代式 $x_{n+1}=x_n-f(x_n)/f&rsquo;(x_n)$. <br />
+确保操作数均为规格化浮点数; 除 $0$ 得到无穷.</p>
+<p><small>*补充材料: COMPUTER ARITHMETIC: Algorithms and Hardware Designs</small></p>
+<h2 id="程序的机器级表示">程序的机器级表示</h2>
+<h3 id="汇编基础">汇编基础</h3>
+<p><small>以 IA-32 为例, 比较 AT&amp;T 和 Intel 风格.</small></p>
+<p>汇编指令: &ldquo;[标签: ]指令助记符 [操作数助记符1] [操作数助记符2]&rdquo; <br />
+指令类型: 传送(数据/地址/标志/IO); 定点算术运算(加减乘除/自增自减/取负/比较); 按位运算(逻辑/移位); 控制转移(无条件转移/条件转移/条件设置/条件传送/中断); x87 浮点数处理; MMX/SSE. <br />
+操作数类型: 立即数; 寄存器; 主存地址. <br />
+寄存器类型: 定点(通用; 指针指令; 标志/状态; 段); 浮点; MMX; x86-64(调试; 控制; 系统表指针; 特殊模块). <br />
+实模式寻址(兼容 8086/8088): (CS) $\ll 4+$ (IP), 代码段寄存器, 偏移地址. <br />
+保护模式寻址(80286 及以上): 立即寻址; 寄存器寻址; 相对寻址 (PC) $+$ X, 程序计数器, 位移; 复杂寻址 (SR) $+$ (B) $+$ (I) $\times$ S $+$ X, 段寄存器, 基址寄存器, 变址寄存器, 比例系数, 位移.</p>
+<p><img src="/img/post-basic-system-fixedRegister.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="fixedRegister"
+	
+	
+></p>
+<p><img src="/img/post-basic-system-flags.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="flags"
+	
+	
+></p>
+<p>通用数据传送: MOV, MOVS(符号扩展), MOVZ(零扩展), XCHG(数据交换), PUSH(压栈), POP(出栈). <br />
+地址传送: LEA(Load Effect Address), LDS, LSS. <br />
+标志传送: PUSHF, POPF. <br />
+IO: IN, OUT. <br />
+定点算术运算: ADD, SUB, MUL, IMUL(带符号), DIV, IDIV(带符号), INC, DEC, NEG, CMP. <br />
+逻辑运算: NOT, AND, OR, XOR, TEST. <br />
+移位: SHL(逻辑), SHR(逻辑), SAL(算术), SAR(算术), ROL(循环), ROR(循环), RCL(带循环), RCR(带循环). <br />
+无条件转移: JMP(SHORT, NEAR, WORD, FAR, DWORD), CALL(NEAR, WORD, FAR, DWORD), RET. <br />
+条件设置: SET&lt;flag&gt;. <br />
+条件传送: CMOV&lt;flag&gt;. <br />
+中断: INT. <br />
+空操作: NOP.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>条件转移</th>
+<th>转移标志</th>
+<th>说明</th>
+<th>取反</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>JC</td>
+<td>CF $=1$</td>
+<td>有进/错位</td>
+<td>JNC</td>
+</tr>
+<tr>
+<td>JE/JZ</td>
+<td>ZF $=1$</td>
+<td>相等/等于 $0$</td>
+<td>JNE/JNZ</td>
+</tr>
+<tr>
+<td>JS</td>
+<td>SF $=1$</td>
+<td>为负</td>
+<td>JNS</td>
+</tr>
+<tr>
+<td>JO</td>
+<td>OF $=1$</td>
+<td>溢出</td>
+<td>JNO</td>
+</tr>
+<tr>
+<td>JA/JNBE</td>
+<td>CF $=0$ AND ZF $=0$</td>
+<td>无符号大于</td>
+<td>JBE/JNA</td>
+</tr>
+<tr>
+<td>JAE/JNB</td>
+<td>CF $=0$ OR ZF $=1$</td>
+<td>无符号大于等于</td>
+<td>JB/JNAE</td>
+</tr>
+<tr>
+<td>JG/JNLE</td>
+<td>SF $=$ OF AND ZF $=0$</td>
+<td>带符号大于</td>
+<td>JLE/JNG</td>
+</tr>
+<tr>
+<td>JGE/JNL</td>
+<td>SF $=$ OF OR ZF $=1$</td>
+<td>带符号大于等于</td>
+<td>JL/JNGE</td>
+</tr>
+</tbody>
+</table></div>
+<p>过程: 每个未运行完函数在内存中对应一个栈帧, 保存栈底, 栈顶, (被)调用者保存寄存器, (传入参数), (返回地址), (局部变量). <br />
+准备: 形成新栈底 (PUSH, MOV); 生成栈帧 (SUB; AND); 保存现场 (PUSH). <br />
+过程: 分配局部变量 (auto); 处理具体逻辑; 发生新调用时(准备参数, CALL); 准备返回值 (EAX). <br />
+结束: 出栈/销毁 (LEAVE; POP); 取返回地址返回 (RET).</p>
+<p><img src="/img/post-basic-system-stack.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="stack"
+	
+	
+></p>
+<p>分支: 条件传送实现(避免跳转导致的流水线预测低效); jump-table 实现(switch-case); 条件转移实现. <br />
+循环: jump-to-middle 实现; guarded-do 实现. <br />
+数组/字符串/结构体/联合体: 连续内存, 首地址确定. <br />
+地址传参: 保存地址, 再由地址传值. <br />
+内存对齐: 结构体对齐到 4bytes; 堆栈边界对齐到 16bytes; 便于寻址和正确运行.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>汇编风格</th>
+<th>AT&amp;T</th>
+<th>Intel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作数方向</td>
+<td>op src,dst</td>
+<td>op dst,src</td>
+</tr>
+<tr>
+<td>寄存器表示</td>
+<td>%reg</td>
+<td>reg</td>
+</tr>
+<tr>
+<td>立即数表示</td>
+<td>$num</td>
+<td>num</td>
+</tr>
+<tr>
+<td>主存地址表示</td>
+<td>offset(%base,%index,scale)</td>
+<td>[base+index*scale+offset]</td>
+</tr>
+<tr>
+<td>读写长度表示</td>
+<td>-b, -w, -l</td>
+<td>byte, word, dword</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>编译选项</th>
+<th>-m32</th>
+<th>Defualt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指针大小</td>
+<td>32bit</td>
+<td>64bit</td>
+</tr>
+<tr>
+<td>出入栈基本单位</td>
+<td>32bit</td>
+<td>64bit</td>
+</tr>
+<tr>
+<td>函数传参</td>
+<td>调用时压栈</td>
+<td>寄存器优先 (rdi, rsi, rdx, rcx, r8, r9)</td>
+</tr>
+</tbody>
+</table></div>
+<p>越界访问: 数组越界; 野指针. <br />
+缓冲区溢出: 堆溢出(篡改 hook); 栈溢出(不安全的读写函数); 内核. <br />
+避免缓冲区溢出: 避免使用不安全的函数; 启用 ASLR(Address Space Layout Randomization); 堆栈权限保护(读, 写, 执行权限分离); 溢出检测(canary). <br />
+反调试: 调试痕迹识别; 识别调试器行为; 干扰调试器功能.</p>
+<p><small>补充材料: <a class="link" href="https://sourceware.org/gdb/current/onlinedocs/gdb.html/"  target="_blank" rel="noopener"
+    >GDB Documentation</a><br />
+*补充材料: <a class="link" href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html"  target="_blank" rel="noopener"
+    >Intel 64 and IA-32 Manuals</a></small></p>
+<h3 id="目标文件">目标文件</h3>
+<p>源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(linke) $\to$ 可执行文件. <br />
+目标文件类型: PE-COFF(Portable Executable-Common File Formart) - Windows; ELF(Executable Linkable Format) - Linux. <br /></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>ELF 文件类型</th>
+<th>Linux 实例</th>
+<th>Windows 实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>可重定位(Relocatable)</td>
+<td>.o</td>
+<td>.obj</td>
+</tr>
+<tr>
+<td>可执行(Executable)</td>
+<td>无扩展名/.out</td>
+<td>.exe</td>
+</tr>
+<tr>
+<td>共享目标(Shared Object)</td>
+<td>.so</td>
+<td>.dll</td>
+</tr>
+<tr>
+<td>核心转储(Core Dump)</td>
+<td>core dump</td>
+<td>-</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/img/post-basic-system-ELF&amp;PECOFF.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="ELF&PECOFF"
+	
+	
+></p>
+<p><small>*补充资料: <a class="link" href="https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"  target="_blank" rel="noopener"
+    >PE Format</a></small></p>
+<h3 id="链接与装载">链接与装载</h3>
+<p>(elf)
+静态链接: 地址和空间分配, 符号决议, 重定位
+装载
+动态链接</p>
+<h2 id="硬件体系结构">硬件体系结构</h2>
+<h3 id="指令系统">指令系统</h3>
+<p>RISC-V</p>
+<h3 id="cpu-流水线技术">CPU 流水线技术</h3>
+<p>流水线原理, 预测并行</p>
+<h3 id="存储器层次结构">存储器层次结构</h3>
+<h3 id="总线及io">总线及I/O</h3>
+<h2 id="系统抽象">系统抽象</h2>
+<h3 id="进程">进程</h3>
+<h3 id="虚拟内存">虚拟内存</h3>
+<h3 id="并发">并发</h3>
+<h3 id="系统级io">系统级I/O</h3>
+<p><small>*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook</small></p>
+<h2 id="性能优化">性能优化</h2>
+<h3 id="编译基础">编译基础</h3>
+<h3 id="优化技巧">优化技巧</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/c/">C</a>
+        
+            <a href="/tags/%E6%B1%87%E7%BC%96/">汇编</a>
+        
+            <a href="/tags/%E7%BC%96%E8%AF%91/">编译</a>
+        
+            <a href="/tags/%E5%BE%AE%E6%9C%BA/">微机</a>
+        
+            <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+        
+            <a href="/tags/%E7%BD%91%E7%BB%9C/">网络</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+        <link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.css"integrity="sha256-J&#43;iAE0sgH8QSz9hpcDxXIftnj65JEZgNhGcgReTTK9s="crossorigin="anonymous"
+            ><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/katex.min.js"integrity="sha256-InsNdER1b2xUewP&#43;pKCUJpkhiqwHgqiPXDlIk7GzBu4="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/katex@0.15.6/dist/contrib/auto-render.min.js"integrity="sha256-y39Mpg7V3D4lhBX4x6O0bUqTV4pSrfgwEfGKfxkOdgI="crossorigin="anonymous"
+                defer
+                >
+            </script><script>
+    window.addEventListener("DOMContentLoaded", () => {
+        renderMathInElement(document.querySelector(`.article-content`), {
+            delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\(", right: "\\)", display: false },
+                { left: "\\[", right: "\\]", display: true }
+            ],
+            ignoredClasses: ["gist"]
+        });})
+</script>
+    
+</article>
+
+    
+
+    
+
+<aside class="related-content--wrapper">
+    <h2 class="section-title">相关文章</h2>
+    <div class="related-content">
+        <div class="flex article-list--tile">
+            
+                
+<article class="">
+    <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">计算机网络基础</h2>
+        </div>
+    </a>
+</article>
+
+            
+        </div>
+    </div>
+</aside>
+
+     
+    
+        
+    <div class="disqus-container">
+    <div id="disqus_thread"></div>
+<script type="application/javascript">
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "stack" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+</div>
+
+<style>
+    .disqus-container {
+        background-color: var(--card-background);
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        padding: var(--card-padding);
+    }
+</style>
+
+<script>
+    window.addEventListener('onColorSchemeChange', (e) => {
+        if (typeof DISQUS == 'object') {
+            DISQUS.reset({
+                reload: true
+            });
+        }
+    })
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2023 - 
+        
+        2024 annesede
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.20.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

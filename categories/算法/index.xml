@@ -7,7 +7,23 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Thu, 02 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 15 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/categories/%E7%AE%97%E6%B3%95/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>串</title>
+        <link>https://example.com/p/%E4%B8%B2/</link>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/%E4%B8%B2/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>树</title>
+        <link>https://example.com/p/%E6%A0%91/</link>
+        <pubDate>Mon, 15 Jan 2024 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/%E6%A0%91/</guid>
+        <description></description>
+        </item>
+        <item>
         <title>线性表</title>
         <link>https://example.com/p/%E7%BA%BF%E6%80%A7%E8%A1%A8/</link>
         <pubDate>Thu, 02 Nov 2023 00:00:00 +0000</pubDate>
@@ -832,8 +848,7 @@
         <pubDate>Thu, 12 Oct 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E6%8E%92%E5%BA%8F/</guid>
-        <description>&lt;p&gt;&lt;small&gt;(CXX17 - G++13.1.0)&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;稳定是指关键字相同的记录在排序后保持原有相对次序不变, 只有在原有相对次序有意义时需要考虑.&lt;/p&gt;
+        <description>&lt;p&gt;稳定是指关键字相同的记录在排序后保持原有相对次序不变, 只有在原有相对次序有意义时需要考虑.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
 &lt;tr&gt;

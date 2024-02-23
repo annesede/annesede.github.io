@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <copyright>annesede</copyright>
         <lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E6%B1%87%E7%BC%96/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>计算机网路基础</title>
-        <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80/</link>
+        <title>计算机网络基础</title>
+        <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link>
         <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E8%B7%AF%E5%9F%BA%E7%A1%80/</guid>
+        <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid>
         <description>&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
 &lt;ul&gt;
 &lt;li&gt;
@@ -92,6 +92,764 @@ ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层
 &lt;h2 id=&#34;网络层-控制平面&#34;&gt;网络层-控制平面&lt;/h2&gt;
 &lt;h2 id=&#34;链路层-局域网&#34;&gt;链路层-局域网&lt;/h2&gt;
 &lt;h2 id=&#34;网络安全&#34;&gt;网络安全&lt;/h2&gt;
+</description>
+        </item>
+        <item>
+        <title>计算机系统基础</title>
+        <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</link>
+        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        
+        <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</guid>
+        <description>&lt;p&gt;&lt;small&gt;前置知识: C语言, 电路基础, 微积分, 代数学, 概率论.&lt;br /&gt;
+*号章节为私货内容.&lt;br /&gt;
+补充材料: &lt;a class=&#34;link&#34; href=&#34;https://zh.cppreference.com/w/c/language&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;C语言参考手册&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;h2 id=&#34;信息表示和处理&#34;&gt;信息表示和处理&lt;/h2&gt;
+&lt;h3 id=&#34;信息论&#34;&gt;*信息论&lt;/h3&gt;
+&lt;h3 id=&#34;数字逻辑&#34;&gt;*数字逻辑&lt;/h3&gt;
+&lt;p&gt;&lt;small&gt;$\bar{ }$ 逻辑/按位非, $+$ 逻辑/按位或, $\cdot$ 逻辑/按位与, $\oplus$ 逻辑/按位异或; &lt;br /&gt;
+$\ll^L_{(n)}$ 逻辑左移 $n$ 位, $\ll_{(n)}$ 算术/按位左移 $n$ 位, $\lll_{(n)}$ 逻辑循环左移 $n$ 位, $\lll^\alpha_{(n)}$ 算术/按位循环左移 $n$ 位. &lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. &lt;br /&gt;
+恒等律: $b+0=b$, $b\cdot 1=b$. &lt;br /&gt;
+0-1 律: $b+1=1$, $b\cdot 0=0$. &lt;br /&gt;
+互补律: $b+\overline{b}=1$, $b\cdot\overline{b}=0$. &lt;br /&gt;
+交换律: $b+c=c+b$, $b\cdot c=c\cdot b$. &lt;br /&gt;
+结合律: $b +(c+d)=(b+c)+d$, $b\cdot (c\cdot d)=(b\cdot c)\cdot d$. &lt;br /&gt;
+分配律: $b\cdot(c+d)=(b\cdot c)+(b\cdot d)$, $b+(c\cdot d)=(b+c)\cdot(b+d)$. &lt;br /&gt;
+DeMorgan 律: $\overline{b+c}=\overline{b}\cdot\overline{c}$, $\overline{b\cdot c}=\overline{b}+\overline{c}$. &lt;br /&gt;
+反演律 (广义 DeMorgan 律): 反演式等于原逻辑式; 交换 $+$ 和 $\cdot$, 所有变量取非. &lt;br /&gt;
+对偶律: 相等逻辑式的对偶也相等; 交换 $+$ 和 $\cdot$, 交换 $0$ 和 $1$. &lt;br /&gt;
+不难发现 $b\oplus c=(\overline{b}\cdot c)+(b\cdot\overline{c})$.&lt;/p&gt;
+&lt;p&gt;有限域 ${\rm GF}(2) = ({0,1},\oplus, \cdot)$, $a,b\in GF(2)$. &lt;br /&gt;
+注意到 $a+b=(a\oplus b)\oplus(a\cdot b)$. &lt;br /&gt;
+${\rm GF}(2)^n = \{(b_{n-1},&amp;hellip;,b_1,b_0)\ |\ b_i\in GF(2)\}$. &lt;br /&gt;
+${\rm GF}(2)[x]/\langle p(x)\rangle: ({\rm deg}p=n)=\{\sum_{i=0}^{n-1}b_ix^i\ |\ b_i\in GF(2)\}$. &lt;br /&gt;
+类似可将 Bool 代数扩展到 $n$ 位, 继而有逻辑函数 $f: \mathcal{B}^n\to \mathcal{B}^m$.&lt;/p&gt;
+&lt;p&gt;组合逻辑(combinational): 不包含存储器件, 对于相同的输入总能得到相同的输出. (assign 模块) &lt;br /&gt;
+时序逻辑(sequential): 包含存储器件, 输出取决于输入和当前存储内容. (always 模块) &lt;br /&gt;
+门电路: 实现逻辑函数的电路设备.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-basicMOSGate.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;basicMOSGate&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;译码器(decoder): $\mathcal{B}^n\to \mathcal{B}^{2^n}$, $(x_{n-1},&amp;hellip;,x_1,x_0)\mapsto (0,0,&amp;hellip;,0,y_{\sum_{i=0}^{n-1} b_i2^i}=1,0,&amp;hellip;,0,0)$; 逆函数为解码器(encoder). &lt;br /&gt;
+选择器(mux, Multiplexer): $\mathcal{B}^{nm+\lceil\log_2 n\rceil}\to \mathcal{B}^m$, $(X_{n-1},&amp;hellip;,X_1,X_0,S)\mapsto X_{S\ (2)}$. &lt;br /&gt;
+PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任意); 析取(sum of product)-对与求或, 合取(product of sum)-对或求与. &lt;br /&gt;
+无关项: 通过去除输出无关项和输出无关项简化逻辑式. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-basicComb.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;basicComb&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;定点数表示与运算&#34;&gt;定点数表示与运算&lt;/h3&gt;
+&lt;p&gt;十进制转换: $b_n&amp;hellip;b_1b_0.b_{-1}&amp;hellip;b_{-m}\ (R)=\sum_{i=-m}^n b_iR^i\ (10)$.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;2 进制&lt;/th&gt;
+&lt;th&gt;8 进制&lt;/th&gt;
+&lt;th&gt;2 进制&lt;/th&gt;
+&lt;th&gt;16 进制&lt;/th&gt;
+&lt;th&gt;2 进制&lt;/th&gt;
+&lt;th&gt;16 进制&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;001&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0001&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;1001&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;010&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;0010&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;1010&lt;/td&gt;
+&lt;td&gt;A&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;011&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;0011&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;1011&lt;/td&gt;
+&lt;td&gt;B&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;0100&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;1100&lt;/td&gt;
+&lt;td&gt;C&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;101&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;0101&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;1101&lt;/td&gt;
+&lt;td&gt;D&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;110&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;0110&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;1110&lt;/td&gt;
+&lt;td&gt;E&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;111&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;0111&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;1111&lt;/td&gt;
+&lt;td&gt;F&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;1000&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;二进制编码(BCD, Binary Coded Decimal): $\{0,1\}^n\to \{x\in \mathbb{Z}\ |\ T_{\min}\leq x\leq T_{\max}\}$. &lt;br /&gt;
+原码($n$ bit): $b_{n-1}b_{n-2}&amp;hellip;b_1b_0\mapsto (-1)^{b_{n-1}}\sum_{i=0}^{n-2} b_i2^i$; $\ T_{\min}=1-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&amp;hellip;0\mapsto +0$, $10&amp;hellip;0\mapsto -0$. &lt;br /&gt;
+补码: $0b_{n-2}&amp;hellip;b_1b_0\mapsto \sum_{i=0}^{n-2} b_i2^i$, $\ 1b_{n-2}&amp;hellip;b_1b_0\mapsto\sum_{i=0}^{n-2} b_i2^i -2^n$; $\ T_{\min}=-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&amp;hellip;0\mapsto +0$, $11&amp;hellip;1\mapsto -1$, $10&amp;hellip;0\mapsto -2^{n-1}$; 双射. &lt;br /&gt;
+反码: $0b_{n-2}&amp;hellip;b_1b_0\mapsto \sum_{i=0}^{n-2} b_i2^i$, $\ 1b_{n-2}&amp;hellip;b_1b_0\mapsto\sum_{i=0}^{n-2} b_i2^i-2^n+1$; $\ T_{\min}=1-2^{n-1}$; $\ T_{\max}=2^{n-1}-1$; $\ 00&amp;hellip;0\mapsto +0$, $11&amp;hellip;1\mapsto -0$. &lt;br /&gt;
+移码: $b_{n-1}b_{n-1}&amp;hellip;b_1b_0\mapsto \sum_{i=0}^{n-1} b_i2^i -(2^{n-1}-1)$; $\ T_{\min}=-2^{n-1}+1$; $\ T_{\max}=2^{n-1}$; $\ 01&amp;hellip;1\mapsto 0$; 双射. &lt;br /&gt;
+左移补 $0$; 逻辑右移补 $0$; 算术右移(按位右移)补最高位. &lt;br /&gt;
+补码(C): $x\gets \sim x+1 \iff x\gets -x$.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 无符号型与带符号型转换
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;-1U = %u&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;(int)2147483648U = %d&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2147483648U&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;-2147483647U = %u&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2147483647&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;-2147483647-1U = %u&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2147483647&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 扩展, 提升, 截断
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;signed&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;97&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;signed&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;34&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;signed&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;b&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;c=%d, d=%d&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;c=0x%x, d=0x%x&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;d&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;小端序(small-end): 字节低位在低地址, 高位在高地址; 绝大多数CPU采用. &lt;br /&gt;
+大端序(big-end): 字节低位在高地址, 高位在低地址; 网络传输.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 测试字节序模式
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;#include&lt;/span&gt; &lt;span class=&#34;cpf&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&#34;cp&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;cp&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;typedef&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;union&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;num&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;End&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;End&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;num&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0x12345678&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;nf&#34;&gt;printf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;%X&lt;/span&gt;&lt;span class=&#34;se&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;test&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;异号相加, 同号相减, 永不溢出. &lt;br /&gt;
+正溢: 正数相加为负, 即正数减负数为负. &lt;br /&gt;
+负溢: 负数相加为正, 即负数减正数为正.&lt;/p&gt;
+&lt;p&gt;半加器(HA, half adder): ${\rm sum}=a\oplus b$, $c=a\cdot b$. &lt;br /&gt;
+全加器(FA, full adder): ${\rm sum}_{i}=a_i\oplus b_i\oplus c_i, {\rm c_i}=(a_i\oplus b_i)\cdot c_{i-1}+a_i\cdot b_i$. &lt;br /&gt;
+带标志加法器: $(a,b,{\rm SUB})\mapsto ({\rm sum}, {\rm ZF}, {\rm OF}, {\rm SF}, {\rm CF})$; ${\rm SUB}=1$ 时为减法. &lt;br /&gt;
+进位保留加法器(CAS, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. &lt;br /&gt;
+并行进位加法器: 记 $g_i=a_i\cdot b_i$, $p_i=a_i\oplus b_i$, 则 $c_i=g_i+p_ic_{i-1}$, 将 $c_{i-1}$ 依次展开. &lt;br /&gt;
+分组跳跃加法器(并行串行相结合): 每 4bit 为一小组串行, 每 4 小组为一大组串行.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;加法器标志&lt;/th&gt;
+&lt;th&gt;为 $1$ 时含义&lt;/th&gt;
+&lt;th&gt;逻辑式($n$ bit)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ZF 零标志&lt;/td&gt;
+&lt;td&gt;为 $0$&lt;/td&gt;
+&lt;td&gt;$\overline{{\rm sum}_{n-1}+&amp;hellip;+{\rm sum}_0}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;OF 溢出标志&lt;/td&gt;
+&lt;td&gt;溢出(带符号); 最高位进位/错位(无符号)&lt;/td&gt;
+&lt;td&gt;$c_{n-1}\oplus c_{n-2}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SF 符号标志&lt;/td&gt;
+&lt;td&gt;为负&lt;/td&gt;
+&lt;td&gt;${\rm sum}_{n-1}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CF 进位/错位标志&lt;/td&gt;
+&lt;td&gt;溢出(无符号); 最高位进位/错位(带符号)&lt;/td&gt;
+&lt;td&gt;$c_{n-1}\oplus{\rm SUB}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;乘法: 补码 $x\mapsto x({\rm mod}\ 2^n)$, 显然 $x({\rm mod}\ 2^n)\times y({\rm mod}\ 2^n)=xy({\rm mod}\ 2^n)$. &lt;br /&gt;
+短常数乘法: $a=\sum_{i=0}^w b_i2^i$, 则 $ax=\sum_{b_i \ne 0}x\ll_{(i)}$. &lt;br /&gt;
+Booth 乘法: 乘法中累加次数取决于乘数中 $1$ 的数量, 考虑到 $&amp;hellip;01&amp;hellip;10&amp;hellip;=&amp;hellip;10&amp;hellip;00&amp;hellip;-&amp;hellip;00&amp;hellip;01&amp;hellip;$ 可将任意连续 $w$ 次连续累加变为 2 数相减. &lt;br /&gt;
+4-Booth 编码: 不妨设 $b=b_{2n-1}&amp;hellip;b_1b_0$, 有扩展 $\dot{b}=b_{2n+1}b_{2n}b_{2n-1}&amp;hellip;b_1b_0b_{-1}$ 其中 $b_{2n+1}=b_{2n}=b_{2n-1},b_{-1}=0$, 则 $a\times b=a\times\dot{b}=a\times[\sum_{i=0}^n(b_{2i-1}+b_{2i}-2b_{2i+1})]$. &lt;br /&gt;
+Wallace 树压缩: 多个 CSA 组成为树型结构, 三数一组并行迭代计算多个数相加. &lt;br /&gt;
+Booth 乘法器(muliplier): 乘数 4-Booth 编码 $\to$ 生成部分积 $\to$ Wallace 数压缩 $\to$ 最后的 ${\rm carry}$ 与 ${\rm sum}$ 全加.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 串行乘法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Multi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sum&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 短常数乘法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Multi15&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;乘积项 $(b_{2i+1}b_{2i}b_{2i-1})$&lt;/th&gt;
+&lt;th&gt;输出&lt;/th&gt;
+&lt;th&gt;乘积项 $(b_{2i+1}b_{2i}b_{2i-1})$&lt;/th&gt;
+&lt;th&gt;输出&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$000$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$100$&lt;/td&gt;
+&lt;td&gt;$-2a$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$001$&lt;/td&gt;
+&lt;td&gt;$a$&lt;/td&gt;
+&lt;td&gt;$101$&lt;/td&gt;
+&lt;td&gt;$-a$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$010$&lt;/td&gt;
+&lt;td&gt;$a$&lt;/td&gt;
+&lt;td&gt;$110$&lt;/td&gt;
+&lt;td&gt;$-a$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;$011$&lt;/td&gt;
+&lt;td&gt;$2a$&lt;/td&gt;
+&lt;td&gt;$111$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;除法溢出 $T_{\min}/(-1)\to T_{\min}$; 除 $0$ 异常. &lt;br /&gt;
+无符号恢复余数除法 (restoring remainder): $a=qb+r$: 除数 $t\gets b&amp;laquo;_{({\rm count})}$, 被除数 $a\gets a-t$: $a\geq 0$, $q_i=1$; $a&amp;lt;0$, 恢复余数 $a\gets a+t$; $n\gets n-1$$ 直至 $t=0$, 此时 $r=a$. &lt;br /&gt;
+不恢复余数除法: 在前者基础上, 改为判断余数与除数符号, 同号相减取 $1$, 异号相加取 $0$. &lt;br /&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-C&#34; data-lang=&#34;C&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 恢复余数除法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;DivR&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;unsigned&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B01&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 不恢复余数除法
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;Div&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;B01&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;m&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;o&#34;&gt;--&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;cnt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;quot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 模 2 幂
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rempwr2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;kt&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;31&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;^&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;amp;=&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;^&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;s&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;s&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;small&gt;补充材料: &lt;a class=&#34;link&#34; href=&#34;https://graphics.stanford.edu/~seander/bithacks.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;位运算妙用&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;h3 id=&#34;浮点数表示与运算&#34;&gt;浮点数表示与运算&lt;/h3&gt;
+&lt;p&gt;浮点数: $\mathbb{R}\mapsto \{0,1\}^w$, $x\mapsto (s,e,d,R)\mapsto s\times\sum_{i=-m}^0 d_iR^i\times R^e=\hat{x}$. &lt;br /&gt;
+加法及乘法满足交换律, 但不满足结合律. &lt;br /&gt;
+ULP(units in last place): ${\rm err}=|\hat{x}-x/R^e|/R^m$.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;值类型&lt;/th&gt;
+&lt;th&gt;符号($1$ bit)&lt;/th&gt;
+&lt;th&gt;阶码($n$ bit)&lt;/th&gt;
+&lt;th&gt;尾数($m$ bit)&lt;/th&gt;
+&lt;th&gt;值(偏置 $E=2^{n-1}-1$)&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;规格化非零数&lt;/td&gt;
+&lt;td&gt;$0$ 或 $1$&lt;/td&gt;
+&lt;td&gt;$0&amp;lt;e&amp;lt;2^n-1$&lt;/td&gt;
+&lt;td&gt;任意&lt;/td&gt;
+&lt;td&gt;$(-1)^s\times2^{e-E}\times(1.f)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;正零&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$+0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;负零&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$-0$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;正无穷大&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;全 $1$, 即 $2^n-1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$+\infty$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;负无穷大&lt;/td&gt;
+&lt;td&gt;$1$&lt;/td&gt;
+&lt;td&gt;全 $1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;$-\infty$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;非规划化数&lt;/td&gt;
+&lt;td&gt;$0$ 或 $1$&lt;/td&gt;
+&lt;td&gt;$0$&lt;/td&gt;
+&lt;td&gt;非 $0$&lt;/td&gt;
+&lt;td&gt;下溢, $(-1)^s\times2^{-E+1}\times(0.f)$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;非数&lt;/td&gt;
+&lt;td&gt;$0$ 或 $1$&lt;/td&gt;
+&lt;td&gt;全 $1$&lt;/td&gt;
+&lt;td&gt;非 $0$&lt;/td&gt;
+&lt;td&gt;${\rm NaN}$&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;IEEE754: FP16 - $n=5$, $m=10$; FP32 - $n=8$, $m=23$; ${\rm err}&amp;lt;1/2 {\rm ULP}$. &lt;br /&gt;
+Google: BF16 - $n=8$, $m=7$; 可视为 FP32 尾数直接截断得到, 牺牲精度以扩大范围.&lt;/p&gt;
+&lt;p&gt;加减法: 对阶(小阶向大阶对齐) $\to$ 尾数加减 $\to$ 左规(阶码递减; 下溢)/右规(阶码递增; 上溢; 舍入) $\to$ 尾数舍入($0$ 舍 $1$ 入; 向 $+\infty$ 舍入; 向 $-\infty$ 舍入; 向 $0$ 舍入; 置 $1$; 截断) - 保护位(guard), 警戒位(round), 粘位(sticky); 溢出判断. &lt;br /&gt;
+乘除法: 阶码加减(可能溢出) $\to$ 尾数乘除 $\to$ 规格化 $\to$ 尾数舍入. &lt;br /&gt;
+Newton-Rahpson 方法: $f(x)=\sum_{i=0}^{\infty}f^i(x_0)(x-x_0)^i/i!=0$, 有迭代式 $x_{n+1}=x_n-f(x_n)/f&amp;rsquo;(x_n)$. &lt;br /&gt;
+确保操作数均为规格化浮点数; 除 $0$ 得到无穷.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;*补充材料: COMPUTER ARITHMETIC: Algorithms and Hardware Designs&lt;/small&gt;&lt;/p&gt;
+&lt;h2 id=&#34;程序的机器级表示&#34;&gt;程序的机器级表示&lt;/h2&gt;
+&lt;h3 id=&#34;汇编基础&#34;&gt;汇编基础&lt;/h3&gt;
+&lt;p&gt;&lt;small&gt;以 IA-32 为例, 比较 AT&amp;amp;T 和 Intel 风格.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;汇编指令: &amp;ldquo;[标签: ]指令助记符 [操作数助记符1] [操作数助记符2]&amp;rdquo; &lt;br /&gt;
+指令类型: 传送(数据/地址/标志/IO); 定点算术运算(加减乘除/自增自减/取负/比较); 按位运算(逻辑/移位); 控制转移(无条件转移/条件转移/条件设置/条件传送/中断); x87 浮点数处理; MMX/SSE. &lt;br /&gt;
+操作数类型: 立即数; 寄存器; 主存地址. &lt;br /&gt;
+寄存器类型: 定点(通用; 指针指令; 标志/状态; 段); 浮点; MMX; x86-64(调试; 控制; 系统表指针; 特殊模块). &lt;br /&gt;
+实模式寻址(兼容 8086/8088): (CS) $\ll 4+$ (IP), 代码段寄存器, 偏移地址. &lt;br /&gt;
+保护模式寻址(80286 及以上): 立即寻址; 寄存器寻址; 相对寻址 (PC) $+$ X, 程序计数器, 位移; 复杂寻址 (SR) $+$ (B) $+$ (I) $\times$ S $+$ X, 段寄存器, 基址寄存器, 变址寄存器, 比例系数, 位移.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-fixedRegister.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;fixedRegister&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-flags.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;flags&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;通用数据传送: MOV, MOVS(符号扩展), MOVZ(零扩展), XCHG(数据交换), PUSH(压栈), POP(出栈). &lt;br /&gt;
+地址传送: LEA(Load Effect Address), LDS, LSS. &lt;br /&gt;
+标志传送: PUSHF, POPF. &lt;br /&gt;
+IO: IN, OUT. &lt;br /&gt;
+定点算术运算: ADD, SUB, MUL, IMUL(带符号), DIV, IDIV(带符号), INC, DEC, NEG, CMP. &lt;br /&gt;
+逻辑运算: NOT, AND, OR, XOR, TEST. &lt;br /&gt;
+移位: SHL(逻辑), SHR(逻辑), SAL(算术), SAR(算术), ROL(循环), ROR(循环), RCL(带循环), RCR(带循环). &lt;br /&gt;
+无条件转移: JMP(SHORT, NEAR, WORD, FAR, DWORD), CALL(NEAR, WORD, FAR, DWORD), RET. &lt;br /&gt;
+条件设置: SET&amp;lt;flag&amp;gt;. &lt;br /&gt;
+条件传送: CMOV&amp;lt;flag&amp;gt;. &lt;br /&gt;
+中断: INT. &lt;br /&gt;
+空操作: NOP.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;条件转移&lt;/th&gt;
+&lt;th&gt;转移标志&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;取反&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;JC&lt;/td&gt;
+&lt;td&gt;CF $=1$&lt;/td&gt;
+&lt;td&gt;有进/错位&lt;/td&gt;
+&lt;td&gt;JNC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JE/JZ&lt;/td&gt;
+&lt;td&gt;ZF $=1$&lt;/td&gt;
+&lt;td&gt;相等/等于 $0$&lt;/td&gt;
+&lt;td&gt;JNE/JNZ&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JS&lt;/td&gt;
+&lt;td&gt;SF $=1$&lt;/td&gt;
+&lt;td&gt;为负&lt;/td&gt;
+&lt;td&gt;JNS&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JO&lt;/td&gt;
+&lt;td&gt;OF $=1$&lt;/td&gt;
+&lt;td&gt;溢出&lt;/td&gt;
+&lt;td&gt;JNO&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JA/JNBE&lt;/td&gt;
+&lt;td&gt;CF $=0$ AND ZF $=0$&lt;/td&gt;
+&lt;td&gt;无符号大于&lt;/td&gt;
+&lt;td&gt;JBE/JNA&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JAE/JNB&lt;/td&gt;
+&lt;td&gt;CF $=0$ OR ZF $=1$&lt;/td&gt;
+&lt;td&gt;无符号大于等于&lt;/td&gt;
+&lt;td&gt;JB/JNAE&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JG/JNLE&lt;/td&gt;
+&lt;td&gt;SF $=$ OF AND ZF $=0$&lt;/td&gt;
+&lt;td&gt;带符号大于&lt;/td&gt;
+&lt;td&gt;JLE/JNG&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;JGE/JNL&lt;/td&gt;
+&lt;td&gt;SF $=$ OF OR ZF $=1$&lt;/td&gt;
+&lt;td&gt;带符号大于等于&lt;/td&gt;
+&lt;td&gt;JL/JNGE&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;过程: 每个未运行完函数在内存中对应一个栈帧, 保存栈底, 栈顶, (被)调用者保存寄存器, (传入参数), (返回地址), (局部变量). &lt;br /&gt;
+准备: 形成新栈底 (PUSH, MOV); 生成栈帧 (SUB; AND); 保存现场 (PUSH). &lt;br /&gt;
+过程: 分配局部变量 (auto); 处理具体逻辑; 发生新调用时(准备参数, CALL); 准备返回值 (EAX). &lt;br /&gt;
+结束: 出栈/销毁 (LEAVE; POP); 取返回地址返回 (RET).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-stack.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;stack&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;分支: 条件传送实现(避免跳转导致的流水线预测低效); jump-table 实现(switch-case); 条件转移实现. &lt;br /&gt;
+循环: jump-to-middle 实现; guarded-do 实现. &lt;br /&gt;
+数组/字符串/结构体/联合体: 连续内存, 首地址确定. &lt;br /&gt;
+地址传参: 保存地址, 再由地址传值. &lt;br /&gt;
+内存对齐: 结构体对齐到 4bytes; 堆栈边界对齐到 16bytes; 便于寻址和正确运行.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;汇编风格&lt;/th&gt;
+&lt;th&gt;AT&amp;amp;T&lt;/th&gt;
+&lt;th&gt;Intel&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;操作数方向&lt;/td&gt;
+&lt;td&gt;op src,dst&lt;/td&gt;
+&lt;td&gt;op dst,src&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;寄存器表示&lt;/td&gt;
+&lt;td&gt;%reg&lt;/td&gt;
+&lt;td&gt;reg&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;立即数表示&lt;/td&gt;
+&lt;td&gt;$num&lt;/td&gt;
+&lt;td&gt;num&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;主存地址表示&lt;/td&gt;
+&lt;td&gt;offset(%base,%index,scale)&lt;/td&gt;
+&lt;td&gt;[base+index*scale+offset]&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;读写长度表示&lt;/td&gt;
+&lt;td&gt;-b, -w, -l&lt;/td&gt;
+&lt;td&gt;byte, word, dword&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;编译选项&lt;/th&gt;
+&lt;th&gt;-m32&lt;/th&gt;
+&lt;th&gt;Defualt&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;指针大小&lt;/td&gt;
+&lt;td&gt;32bit&lt;/td&gt;
+&lt;td&gt;64bit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;出入栈基本单位&lt;/td&gt;
+&lt;td&gt;32bit&lt;/td&gt;
+&lt;td&gt;64bit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;函数传参&lt;/td&gt;
+&lt;td&gt;调用时压栈&lt;/td&gt;
+&lt;td&gt;寄存器优先 (rdi, rsi, rdx, rcx, r8, r9)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;越界访问: 数组越界; 野指针. &lt;br /&gt;
+缓冲区溢出: 堆溢出(篡改 hook); 栈溢出(不安全的读写函数); 内核. &lt;br /&gt;
+避免缓冲区溢出: 避免使用不安全的函数; 启用 ASLR(Address Space Layout Randomization); 堆栈权限保护(读, 写, 执行权限分离); 溢出检测(canary). &lt;br /&gt;
+反调试: 调试痕迹识别; 识别调试器行为; 干扰调试器功能.&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;补充材料: &lt;a class=&#34;link&#34; href=&#34;https://sourceware.org/gdb/current/onlinedocs/gdb.html/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;GDB Documentation&lt;/a&gt;&lt;br /&gt;
+*补充材料: &lt;a class=&#34;link&#34; href=&#34;https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;Intel 64 and IA-32 Manuals&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;h3 id=&#34;目标文件&#34;&gt;目标文件&lt;/h3&gt;
+&lt;p&gt;源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(linke) $\to$ 可执行文件. &lt;br /&gt;
+目标文件类型: PE-COFF(Portable Executable-Common File Formart) - Windows; ELF(Executable Linkable Format) - Linux. &lt;br /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;ELF 文件类型&lt;/th&gt;
+&lt;th&gt;Linux 实例&lt;/th&gt;
+&lt;th&gt;Windows 实例&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;可重定位(Relocatable)&lt;/td&gt;
+&lt;td&gt;.o&lt;/td&gt;
+&lt;td&gt;.obj&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;可执行(Executable)&lt;/td&gt;
+&lt;td&gt;无扩展名/.out&lt;/td&gt;
+&lt;td&gt;.exe&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;共享目标(Shared Object)&lt;/td&gt;
+&lt;td&gt;.so&lt;/td&gt;
+&lt;td&gt;.dll&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;核心转储(Core Dump)&lt;/td&gt;
+&lt;td&gt;core dump&lt;/td&gt;
+&lt;td&gt;-&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-ELF&amp;amp;PECOFF.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ELF&amp;PECOFF&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;*补充资料: &lt;a class=&#34;link&#34; href=&#34;https://learn.microsoft.com/en-us/windows/win32/debug/pe-format&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;PE Format&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
+&lt;h3 id=&#34;链接与装载&#34;&gt;链接与装载&lt;/h3&gt;
+&lt;p&gt;(elf)
+静态链接: 地址和空间分配, 符号决议, 重定位
+装载
+动态链接&lt;/p&gt;
+&lt;h2 id=&#34;硬件体系结构&#34;&gt;硬件体系结构&lt;/h2&gt;
+&lt;h3 id=&#34;指令系统&#34;&gt;指令系统&lt;/h3&gt;
+&lt;p&gt;RISC-V&lt;/p&gt;
+&lt;h3 id=&#34;cpu-流水线技术&#34;&gt;CPU 流水线技术&lt;/h3&gt;
+&lt;p&gt;流水线原理, 预测并行&lt;/p&gt;
+&lt;h3 id=&#34;存储器层次结构&#34;&gt;存储器层次结构&lt;/h3&gt;
+&lt;h3 id=&#34;总线及io&#34;&gt;总线及I/O&lt;/h3&gt;
+&lt;h2 id=&#34;系统抽象&#34;&gt;系统抽象&lt;/h2&gt;
+&lt;h3 id=&#34;进程&#34;&gt;进程&lt;/h3&gt;
+&lt;h3 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h3&gt;
+&lt;h3 id=&#34;并发&#34;&gt;并发&lt;/h3&gt;
+&lt;h3 id=&#34;系统级io&#34;&gt;系统级I/O&lt;/h3&gt;
+&lt;p&gt;&lt;small&gt;*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook&lt;/small&gt;&lt;/p&gt;
+&lt;h2 id=&#34;性能优化&#34;&gt;性能优化&lt;/h2&gt;
+&lt;h3 id=&#34;编译基础&#34;&gt;编译基础&lt;/h3&gt;
+&lt;h3 id=&#34;优化技巧&#34;&gt;优化技巧&lt;/h3&gt;
 </description>
         </item>
         <item>
