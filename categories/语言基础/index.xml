@@ -1084,89 +1084,6 @@ README: 说明文件 &lt;br /&gt;&lt;/p&gt;
 &lt;/div&gt;</description>
         </item>
         <item>
-        <title>正则表达式</title>
-        <link>https://example.com/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</link>
-        <pubDate>Sat, 28 Oct 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/p/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/</guid>
-        <description>&lt;h2 id=&#34;基础语法&#34;&gt;基础语法&lt;/h2&gt;
-&lt;p&gt;/pattern/flags: 匹配模式/修饰符&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;修饰符&lt;/strong&gt; &lt;br /&gt;
-:  默认只匹配第一个 &lt;br /&gt;
-g: 全局匹配 &lt;br /&gt;
-i: 不区分大小写 &lt;br /&gt;
-m: 多行匹配 &lt;br /&gt;
-s: 使 . 中包含\r\n &lt;br /&gt;
-u: 能够正确处理UTF-16  &lt;br /&gt;
-y: 从剩余第一个位置开始匹配&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;转义符&lt;/strong&gt; &lt;br /&gt;
-\特殊字符: 转义字符, 匹配特殊字符自身&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;字符&lt;/strong&gt; &lt;br /&gt;
-普通字符: 匹配字符字面意义 &lt;br /&gt;
-\cx: 匹配x指向的控制符 &lt;br /&gt;
-\xn: 匹配16进制下ASCII编码中n指向的字符 &lt;br /&gt;
-\un: 匹配16进制下Unicode编码中n指向的字符 &lt;br /&gt;
-\f: 匹配换页符, 相当于\x0c和\cL &lt;br /&gt;
-\n: 匹配换行符, 相当于\x0a和\cJ &lt;br /&gt;
-\r: 匹配回车符, 相当于\x0d和\cM &lt;br /&gt;
-\t: 匹配制表符, 相当于\x09和\cl &lt;br /&gt;
-\v: 匹配垂直制表符, 相当于\x0b和\cK &lt;br /&gt;
-\0: 匹配NULL, 相当于\u0000 &lt;br /&gt;
-[\b]: 匹配退格符, 相当于\u0008&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;字符类&lt;/strong&gt; &lt;br /&gt;
-[ ]: 匹配方括号内任意字符 &lt;br /&gt;
-[ - ]: 匹配方括号内字符范围 &lt;br /&gt;
-[^ ]: 匹配方括号内字符以外的字符 &lt;br /&gt;
-\d: 匹配任意数字, 等价于[0-9] &lt;br /&gt;
-\D: 匹配任意非数字, 等价于[^0-9] &lt;br /&gt;
-\s: 匹配任意控制符, 等价于[\f\n\r\t\v] &lt;br /&gt;
-\S: 匹配任意非控制符, 等价于[^\f\n\r\t\v] &lt;br /&gt;
-\w: 匹配任意数字字母下划线, 等价于[A-Za-z0-9_] &lt;br /&gt;
-\W: 匹配任意非数字字母下划线, 等价于[^A-Za-z0-9_]  &lt;br /&gt;
-.: 通配, 等价于[^\r\n\u2028\u2029]&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;定位符&lt;/strong&gt; &lt;br /&gt;
-^: 匹配字符串开始位置 &lt;br /&gt;
-$: 匹配字符串结束位置 &lt;br /&gt;
-\b: 匹配单词边界 &lt;br /&gt;
-\B: 匹配非单词边界 &lt;br /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;量词&lt;/strong&gt;：默认贪婪, 匹配尽可能多的字符 &lt;br /&gt;
-*: 匹配前面模式0次或多次 &lt;br /&gt;
-+: 匹配前面模式至少1次 &lt;br /&gt;
-?: 匹配前面模式至多1次 &lt;br /&gt;
-{n}: 匹配前面模式恰好n次 &lt;br /&gt;
-{n,}: 匹配前面模式至少n次 &lt;br /&gt;
-{n,m}: 匹配前面模式至少n次, 至多m次 &lt;br /&gt;
-?: 加在限定符后, 惰性, 匹配最少的字符&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分组符&lt;/strong&gt;  &lt;br /&gt;
-(exp): 分组并捕获子表达式exp &lt;br /&gt;
-(?:exp): 分组但不捕获子表达式exp &lt;br /&gt;
-(exp)\n: 分组并引用第n个捕获子表达式exp &lt;br /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;断言符&lt;/strong&gt; &lt;br /&gt;
-exp1(?=exp2): 先行断言, 匹配在exp2前的exp1 &lt;br /&gt;
-exp1(?!exp2): 先行否定断言, 匹配不在exp2前的exp2 &lt;br /&gt;
-(?&amp;lt;=exp2)exp2: 后行断言, 匹配在exp2后的exp1 &lt;br /&gt;
-(?&amp;lt;!exp2)exp2: 后行否定断言, 匹配不在exp2后的exp2&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分支符&lt;/strong&gt; &lt;br /&gt;
-|: 匹配前面模式或后面模式&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;优先级&lt;/strong&gt; &lt;br /&gt;
-转义符 &lt;br /&gt;
-字符类, 分组符, 断言符 &lt;br /&gt;
-量词 &lt;br /&gt;
-定位符, 字符 &lt;br /&gt;
-分支符&lt;/p&gt;
-&lt;h2 id=&#34;匹配原理&#34;&gt;匹配原理&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;DFA&lt;/strong&gt;(Deterministic Finite Automata): 相同的输入总是转移到相同的状态. &lt;br /&gt;
-机制: 先看字符串再看正则表达式, 不会发生回溯, 即已经匹配过的字符不会匹配多次. &lt;br /&gt;
-语言: MySQL, awk, egrep, flex, lex.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;NFA&lt;/strong&gt;(Nondeterministic Finite Automata): 相同输入可以转移到不同状态, 无输入时也可以转移状态. &lt;br /&gt;
-机制: 先看正则表达式再看字符串, 会发生回溯, 速度较慢. &lt;br /&gt;
-传统: 分支懒惰; Go, PCRE, Perl, PHP, Java, Python, Ruby, grep, less, more, .Net, vi. &lt;br /&gt;
-POSIX: 分支贪婪; mawk.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;贪婪与懒惰&lt;/strong&gt;: 限定符默认为贪婪模式; 传统NFA默认为懒惰模式.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;回溯陷阱&lt;/strong&gt;: NFA实现的语言应当尽量避免回溯的发生以提高性能.&lt;/p&gt;
-</description>
-        </item>
-        <item>
         <title>python快速入门</title>
         <link>https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
         <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
@@ -3226,7 +3143,8 @@ DCL(data control language): COMMIT; ROLLBACK; GRANT; REVOKE.&lt;/p&gt;
         <pubDate>Sat, 16 Sep 2023 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/c%E6%9D%82%E8%B0%88/</guid>
-        <description>&lt;p&gt;&lt;small&gt; (C11 - GCC13.1.0/MSVC1937) &lt;br /&gt;
+        <description>&lt;p&gt;&lt;strong&gt;请注意: 这是一个过时的blog, 内容问题较多, 全新的C杂谈在编写中.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt; (C11 - GCC13.1.0/MSVC1937) &lt;br /&gt;
 内容不分先后顺序, 请按需查阅. &lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;cmake&#34;&gt;CMAKE&lt;/h2&gt;
 &lt;p&gt;使用CLion或VS时, 可以考虑如下CMAKE配置; 会自动获取项目名与文件名, 每次修改项目名文件名或新建文件时, 只需重新加载CMAKE. &lt;br /&gt;
@@ -3381,7 +3299,6 @@ DCL(data control language): COMMIT; ROLLBACK; GRANT; REVOKE.&lt;/p&gt;
 &lt;/div&gt;&lt;p&gt;来自: &lt;a class=&#34;link&#34; href=&#34;https://www.bennyhuo.com/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;https://www.bennyhuo.com/&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;赋值语句&#34;&gt;赋值语句&lt;/h2&gt;
-&lt;p&gt;&lt;small&gt; 该部分内容待更新 &lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;在赋值语句中, 左值(&amp;quot;=&amp;ldquo;左边)必须是一个变量或说内存, 不能为数值; 右值(&amp;quot;=&amp;ldquo;右边)可以为数值或变量. &lt;br /&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
 &lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
