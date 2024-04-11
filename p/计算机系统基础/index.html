@@ -10,7 +10,7 @@
 <meta property='og:description' content='持续更新中'>
 <meta property='og:url' content='https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/'>
 <meta property='og:site_name' content='annesede的博客'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='汇编' /><meta property='article:tag' content='编译' /><meta property='article:tag' content='微机' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='网络' /><meta property='article:published_time' content='2023-12-06T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2023-12-06T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='C' /><meta property='article:tag' content='汇编' /><meta property='article:tag' content='编译' /><meta property='article:tag' content='微机' /><meta property='article:tag' content='操作系统' /><meta property='article:tag' content='网络' /><meta property='article:published_time' content='2024-03-01T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2024-04-11T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="计算机系统基础">
 <meta name="twitter:description" content="持续更新中">
     </head>
@@ -252,33 +252,36 @@
         <li><a href="#浮点数表示与运算">浮点数表示与运算</a></li>
       </ol>
     </li>
-    <li><a href="#程序的机器级表示">程序的机器级表示</a>
+    <li><a href="#程序机器级表示">程序机器级表示</a>
       <ol>
         <li><a href="#汇编基础">汇编基础</a></li>
-        <li><a href="#目标文件">目标文件</a></li>
+        <li><a href="#目标文件-未完">目标文件 (未完)</a></li>
         <li><a href="#链接与装载">链接与装载</a></li>
+        <li><a href="#编译基础">编译基础</a></li>
       </ol>
     </li>
     <li><a href="#硬件体系结构">硬件体系结构</a>
       <ol>
-        <li><a href="#指令系统">指令系统</a></li>
         <li><a href="#cpu-流水线技术">CPU 流水线技术</a></li>
         <li><a href="#存储器层次结构">存储器层次结构</a></li>
         <li><a href="#总线及io">总线及I/O</a></li>
       </ol>
     </li>
-    <li><a href="#系统抽象">系统抽象</a>
+    <li><a href="#系统层级抽象">系统层级抽象</a>
       <ol>
-        <li><a href="#进程">进程</a></li>
-        <li><a href="#虚拟内存">虚拟内存</a></li>
+        <li><a href="#进程调度">进程调度</a></li>
+        <li><a href="#内存虚拟化">内存虚拟化</a></li>
         <li><a href="#并发">并发</a></li>
         <li><a href="#系统级io">系统级I/O</a></li>
       </ol>
     </li>
-    <li><a href="#性能优化">性能优化</a>
+    <li><a href="#网络通信">网络通信</a>
       <ol>
-        <li><a href="#编译基础">编译基础</a></li>
-        <li><a href="#优化技巧">优化技巧</a></li>
+        <li><a href="#概述">概述</a></li>
+        <li><a href="#应用层">应用层</a></li>
+        <li><a href="#传输层">传输层</a></li>
+        <li><a href="#网络层">网络层</a></li>
+        <li><a href="#链路层">链路层</a></li>
       </ol>
     </li>
   </ol>
@@ -334,7 +337,7 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2023-12-06</time>
+                <time class="article-time--published">2024-03-01</time>
             </div>
         
 
@@ -349,7 +352,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 8 分钟
+                    阅读时长: 13 分钟
                 </time>
             </div>
         
@@ -370,10 +373,12 @@
     >C语言参考手册</a></small></p>
 <h2 id="信息表示和处理">信息表示和处理</h2>
 <h3 id="信息论">*信息论</h3>
+<p>无损压缩: 游程, Haufmann</p>
+<p>纠错码: Hamming, CRC</p>
 <h3 id="数字逻辑">*数字逻辑</h3>
 <p><small>$\bar{ }$ 逻辑/按位非, $+$ 逻辑/按位或, $\cdot$ 逻辑/按位与, $\oplus$ 逻辑/按位异或; <br />
 $\ll^L_{(n)}$ 逻辑左移 $n$ 位, $\ll_{(n)}$ 算术/按位左移 $n$ 位, $\lll_{(n)}$ 逻辑循环左移 $n$ 位, $\lll^\alpha_{(n)}$ 算术/按位循环左移 $n$ 位. </small></p>
-<p>Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. <br />
+<p>平凡 Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. <br />
 恒等律: $b+0=b$, $b\cdot 1=b$. <br />
 0-1 律: $b+1=1$, $b\cdot 0=0$. <br />
 互补律: $b+\overline{b}=1$, $b\cdot\overline{b}=0$. <br />
@@ -404,6 +409,7 @@ ${\rm GF}(2)[x]/\langle p(x)\rangle: ({\rm deg}p=n)=\{\sum_{i=0}^{n-1}b_ix^i\ |\
 ></p>
 <p>译码器(decoder): $\mathcal{B}^n\to \mathcal{B}^{2^n}$, $(x_{n-1},&hellip;,x_1,x_0)\mapsto (0,0,&hellip;,0,y_{\sum_{i=0}^{n-1} b_i2^i}=1,0,&hellip;,0,0)$; 逆函数为解码器(encoder). <br />
 选择器(mux, Multiplexer): $\mathcal{B}^{nm+\lceil\log_2 n\rceil}\to \mathcal{B}^m$, $(X_{n-1},&hellip;,X_1,X_0,S)\mapsto X_{S\ (2)}$. <br />
+三态缓冲器: 使能状态时, 输出等同于输入; 否则输出高阻态, 等效于断路. <br />
 PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任意); 析取(sum of product)-对与求或, 合取(product of sum)-对或求与. <br />
 无关项: 通过去除输出无关项和输出无关项简化逻辑式. <br /></p>
 <p><img src="/img/post-basic-system-basicComb.png"
@@ -413,6 +419,20 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 	loading="lazy"
 	
 		alt="basicComb"
+	
+	
+></p>
+<p>锁存器(latch): 使能状态时(${\rm OE}=1$ 即 $\overline{\rm OE}=0$), 输出随输入改变; 否则输出不变. <br />
+触发器(filp-flop): 时钟上升或下降边沿的瞬间(脉冲, ${\rm CLK}$), 输出随输入改变; 否则输出不变. <br />
+建立时间 - 时钟边沿前保持有效输入最短时间; 保持时间 - 时钟边沿后保持有效输入时间. <br />
+寄存器堆(register file): D触发器为基本单元; 地址(Addr), 写入使能(WE), 读出使能(OE), 数据(Data).</p>
+<p><img src="/img/post-basic-system-basicSeq.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="basicSeq"
 	
 	
 ></p>
@@ -601,7 +621,7 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 <p>半加器(HA, half adder): ${\rm sum}=a\oplus b$, $c=a\cdot b$. <br />
 全加器(FA, full adder): ${\rm sum}_{i}=a_i\oplus b_i\oplus c_i, {\rm c_i}=(a_i\oplus b_i)\cdot c_{i-1}+a_i\cdot b_i$. <br />
 带标志加法器: $(a,b,{\rm SUB})\mapsto ({\rm sum}, {\rm ZF}, {\rm OF}, {\rm SF}, {\rm CF})$; ${\rm SUB}=1$ 时为减法. <br />
-进位保留加法器(CAS, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. <br />
+进位保留加法器(CSA, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. <br />
 并行进位加法器: 记 $g_i=a_i\cdot b_i$, $p_i=a_i\oplus b_i$, 则 $c_i=g_i+p_ic_{i-1}$, 将 $c_{i-1}$ 依次展开. <br />
 分组跳跃加法器(并行串行相结合): 每 4bit 为一小组串行, 每 4 小组为一大组串行.</p>
 <div class="table-wrapper"><table>
@@ -857,7 +877,7 @@ Google: BF16 - $n=8$, $m=7$; 可视为 FP32 尾数直接截断得到, 牺牲精�
 Newton-Rahpson 方法: $f(x)=\sum_{i=0}^{\infty}f^i(x_0)(x-x_0)^i/i!=0$, 有迭代式 $x_{n+1}=x_n-f(x_n)/f&rsquo;(x_n)$. <br />
 确保操作数均为规格化浮点数; 除 $0$ 得到无穷.</p>
 <p><small>*补充材料: COMPUTER ARITHMETIC: Algorithms and Hardware Designs</small></p>
-<h2 id="程序的机器级表示">程序的机器级表示</h2>
+<h2 id="程序机器级表示">程序机器级表示</h2>
 <h3 id="汇编基础">汇编基础</h3>
 <p><small>以 IA-32 为例, 比较 AT&amp;T 和 Intel 风格.</small></p>
 <p>汇编指令: &ldquo;[标签: ]指令助记符 [操作数助记符1] [操作数助记符2]&rdquo; <br />
@@ -1047,8 +1067,8 @@ IO: IN, OUT. <br />
     >GDB Documentation</a><br />
 *补充材料: <a class="link" href="https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html"  target="_blank" rel="noopener"
     >Intel 64 and IA-32 Manuals</a></small></p>
-<h3 id="目标文件">目标文件</h3>
-<p>源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(linke) $\to$ 可执行文件. <br />
+<h3 id="目标文件-未完">目标文件 (未完)</h3>
+<p>源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(link) $\to$ 可执行文件. <br />
 目标文件类型: PE-COFF(Portable Executable-Common File Formart) - Windows; ELF(Executable Linkable Format) - Linux. <br /></p>
 <div class="table-wrapper"><table>
 <thead>
@@ -1094,26 +1114,288 @@ IO: IN, OUT. <br />
 <p><small>*补充资料: <a class="link" href="https://learn.microsoft.com/en-us/windows/win32/debug/pe-format"  target="_blank" rel="noopener"
     >PE Format</a></small></p>
 <h3 id="链接与装载">链接与装载</h3>
-<p>(elf)
-静态链接: 地址和空间分配, 符号决议, 重定位
-装载
-动态链接</p>
+<p>(elf) <br />
+静态链接: 地址和空间分配, 符号决议, 重定位 <br />
+装载 <br />
+动态链接 <br /></p>
+<h3 id="编译基础">编译基础</h3>
 <h2 id="硬件体系结构">硬件体系结构</h2>
-<h3 id="指令系统">指令系统</h3>
-<p>RISC-V</p>
 <h3 id="cpu-流水线技术">CPU 流水线技术</h3>
-<p>流水线原理, 预测并行</p>
+<p>流水线原理, 预测并行, 性能评价</p>
 <h3 id="存储器层次结构">存储器层次结构</h3>
+<p>性能评价: 存储容量, 单位成本, 存储速度(读/写时间, 读/写周期, 带宽). <br />
+层次结构: 越上层速度越快, 容量越小, 位价越贵; 上层可作为下层的 Cache. <br />
+寄存器 - 多级高速缓存(SRAM) - 主存/内存(DRAM, ROM) - 本地二级存储/外存/辅存(SSD, HDD, Flash, 光盘, 软盘, 磁带) - 远程二级存储(分布式文件系统, web服务器).</p>
+<p>RAM(Random Access Memory): 二维阵列, 行列地址分别传入以定位超单元(supercell), 地址译码器实现片选 - 地址线(片选线), 容量扩展; 并列模块和数据字长一致 - 数据线, 字长扩展; 读出/写入使能信号 - 控制线, 存储时序及周期; 易失(断电后信息消失). <br />
+SRAM(Static): 双稳态触发器实现(如寄存器堆). <br />
+DRAM(Dynamic): 栅极电容实现; 读出具有破坏性, 电容本身漏电 - 刷新策略(集中 - 逐行; 分散 - 每行单独; 异步 - 前两者结合); 行列地址先后传送 - 地址线复用. <br />
+双端: 不同地址可同时读写; 同地址仅可同时读出 - &ldquo;读者-写者问题&rdquo;. <br />
+多体并行(多通道): 低位编址效率更高(空间局部性); 流水线方式并行(体数 $=$ 存储周期 $/$ 存储时间或总线传输周期); 控制器 - 排队器 - 存控标记触发器 - 节拍发生器. <br />
+SDRAM(Synchronous): 与CPU数据交换同步于系统时钟信号; 突发/猝发(Burst), 同一行中相邻数据连续访问, 一个地址可连续访问一个数据块 - 预加载(Prefetch)实现. <br />
+DDR(Double Data Rate SDRAM): 在一个时钟周期内的上升沿和下降沿各传一次数据.</p>
+<p><img src="/img/post-basic-system-MemClock.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Memory Clock"
+	
+	
+></p>
+<p>ROM(Read Only Memory): 非易失性(nonvolatile); 系统固件 (firmware). <br />
+MROM(Mask-programmed): 掩膜生产时直接写入, 无法修改. <br />
+PROM(Programmable): 熔丝烧断型, PN结击穿型; 仅能写入一次. <br />
+EPROM(Erasable Programmble): 紫外线擦除型, 电擦除型; 修改次数有限, 写入速度慢. <br />
+Flash: 写入速度快; 以block为单位擦除(全部设为 &ldquo;1&rdquo;), 以page为单位读写(只能将&quot;1&quot;修改为&quot;0&quot;); 擦除会造成磨损 - 平均磨损算法(动态; 静态); package - target - lun(logical unit) - plane(面) - block(块) - page(页) - cell(单元). <br />
+SSD(Solid State Drive): 转换层及Flash; 随机访问性能高, 读写速度快, 电路控制访问位置, 安静无噪音, 耐摔抗震; chip(芯片) - die(颗粒) - plane - block - page - cell.</p>
+<p><img src="/img/post-basic-system-DiskRecord.png"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Disk Record"
+	
+	
+></p>
+<p>磁记录: 归零制(RZ), 不归零制(NRZ), 1翻不归零制(NRZ1), 调相制(PM), 调频制(FM), 改进调频制(MFM); 编码效率, 自同步能力(从读出的脉冲序列提取同步时钟脉冲; 最小磁化翻转间隔与最大之比). <br />
+HDD(Hard Disk Drive): 旋转结构(rotating); platter(盘片) - surface(盘面) - spindle(主轴) - track(磁道) - sector(扇区) - gap(间隔) - read/write heads(读写头) - arm(传动臂力). <br />
+读写时序: 寻道(seek), 读写头找到磁道 $\to$ 旋转(rotation), 主轴旋转盘片将扇区送到读写头下 $\to$ 传送(transfer). <br />
+RAID(Redundant Array of Independetn Disks): 0 - 数据置于统一条带, 一块损坏则数据全部丢失; 1 - 互相备份; 3 - 0 $+$ 奇偶检验; 5 - 数据和奇偶校验置于同一条带; 6 - 双重奇偶校验; 01 - 内层0, 外层1; 10 - 内层1, 外层 0.</p>
+<p>局部性(locality): 时间(temporal), 访问内存位置在短期内将重复访问; 空间(spatial), 附近内存位置在短期内将访问. <br />
+缓存命中(hit): 需要 $k+1$ 层的数据 $d$ 恰好缓存在第 $k$ 层中. <br />
+缓存不命中(miss): 强制/冷不命中(compulsory/cold), 缓存为空时; 冲突不命中(conflict), 缓存不为空时. <br />
+替换/驱逐策略(replacement/eviction): 随机(RAND); 先进先出(FIFO); 近期最少使用(LRU) - 符合局部性原理; 最不经常使用(LFU). <br />
+通用组织: 四元组 $(S,E,B,m)$; $S$ 组(set), 每组 $E$ 行(line), 每行包括 $1$ 个有效位(valid), $t$ 个标记位(tag), $B$ 字节数据块(block); $m$ 位地址被划分为 $t$ 个标记位, $s$ 个组索引位, $b$ 个块偏移位. <br />
+地址映射(mapped): 直接映射(direct), $E=1$, $m=t||s||b$; 全相联(fully associative), $S=1$, $m=t||b$; 组相连(set), $S&gt;1$, $E&gt;1$, $m=t||s||b$. <br />
+写策略/一致性: 写命中时, 写穿透/全写/直写(write through), 立即将缓存写主存到中, 增加FIFO写缓冲(buffer)来减少时间损耗; 写回/回写(back), 发生替换时才写到主存中, 需额外维护修改位/脏位(dirty). 写不命中时, 写分配(allocate), 将主存块调入缓存; 非写分配, 只更新主存. 写分配 $+$ 写回; 非写分配 $+$ 写穿透. <br />
+CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.</p>
 <h3 id="总线及io">总线及I/O</h3>
-<h2 id="系统抽象">系统抽象</h2>
-<h3 id="进程">进程</h3>
-<h3 id="虚拟内存">虚拟内存</h3>
+<p>总线: 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. <br />
+层次: 片内总线 - 寄存器与ALU; 系统总线 - 数据, 地址, 控制(时钟, 复位, 总线请求, 总线允许, 总线忙碌, 中断请求, 中断响应, 存储器读/写, I/O读/写, 传输相应); I/O总线 - 中低速I/O设备; 通信总线. <br />
+性能评价: 时钟周期/频率, 传输周期/工作频率, 宽度, 带宽, 复用, 信号线数, 同步/异步, 串行/并行; 带宽 $=$ 工作频率 $\times$ 宽度. <br />
+结构: 单总线 - 系统总线; 双总线 - 主存总线 $+$ I/O总线; 三总线 - 主存总线 $+$ I/O总线 $+$ DMA总线. <br />
+事务/操作周期: 请求/申请 $\to$ 仲裁/分配 $\to$ 寻址 $\to$ 传输 $\to$ 释放/结束. <br />
+仲裁/判优: 链式查询, 按离控制器远近顺序依次查询请求, 仅需 $2$ 根控制线; 计数器定时查询, 计数器循环自增直至地址信号与设备地址线一致, 需 $\log_{2}{n}$ 根控制线; 独立请求方式, 根据请求优先次序排队, 需 $2n$ 根控制线. <br />
+定时/通信: 同步, 统一时钟协调发收双方; 异步, 不互锁(&ldquo;请求&quot;和&quot;回答&quot;均一段时间后撤销), 半互锁(&ldquo;请求&quot;在发出&quot;回答&quot;后撤销, &ldquo;回答&quot;一段时间后撤销), 全互锁(&ldquo;请求&quot;在收到&quot;回答&quot;后撤销, &ldquo;回答&quot;在&quot;请求&quot;撤销后撤销); 半同步, 增设&quot;等待&rdquo;(wait)响应信号线, 时钟前沿发送, 时钟后沿接收判别.</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>层次</th>
+<th>总线标准</th>
+<th>数据传输方式</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统</td>
+<td>ISA</td>
+<td>并行</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>EISA</td>
+<td>并行</td>
+<td>ISA基础上扩展位宽</td>
+</tr>
+<tr>
+<td></td>
+<td>FBS, QPI/multi-FBS</td>
+<td>串行</td>
+<td>连接CPU和北桥</td>
+</tr>
+<tr>
+<td>局部</td>
+<td>VESA</td>
+<td>并行</td>
+<td>传输图像</td>
+</tr>
+<tr>
+<td></td>
+<td>PCI</td>
+<td>并行</td>
+<td>CPU异步, 即插即用, 可连接显卡, 声卡, 网卡</td>
+</tr>
+<tr>
+<td></td>
+<td>AGP</td>
+<td>并行</td>
+<td>PCI2.1基础上扩展</td>
+</tr>
+<tr>
+<td></td>
+<td>PCI-E</td>
+<td>串行</td>
+<td>高频, 全双工通信</td>
+</tr>
+<tr>
+<td>设备/通信</td>
+<td>RS-232C</td>
+<td>串行</td>
+<td>极慢速打印机</td>
+</tr>
+<tr>
+<td></td>
+<td>SCSI</td>
+<td>并行</td>
+<td>可连接硬盘, 打印机, 扫描仪</td>
+</tr>
+<tr>
+<td></td>
+<td>PCMCIA</td>
+<td>并行</td>
+<td>可连接外部存储卡</td>
+</tr>
+<tr>
+<td></td>
+<td>USB</td>
+<td>串行</td>
+<td>高频, 采用差额信号, 每次传递1bit</td>
+</tr>
+<tr>
+<td></td>
+<td>IDE/Parallel-ATA</td>
+<td>并行</td>
+<td>可连接光驱, 硬盘</td>
+</tr>
+<tr>
+<td></td>
+<td>SATA/Serial-ATA</td>
+<td>串行</td>
+<td>可连接光驱, 硬盘</td>
+</tr>
+<tr>
+<td>视频线</td>
+<td>VGA/D-Sub</td>
+<td>串行</td>
+<td>模拟信号</td>
+</tr>
+<tr>
+<td></td>
+<td>DVI</td>
+<td>串行</td>
+<td>数字信号</td>
+</tr>
+<tr>
+<td></td>
+<td>HDMI</td>
+<td>串行</td>
+<td>数字信号, 声音信号</td>
+</tr>
+<tr>
+<td></td>
+<td>DP</td>
+<td>串行</td>
+<td>数字信号, 声音信号</td>
+</tr>
+</tbody>
+</table></div>
+<p>输入设备: 键盘; 鼠标. <br />
+输出设备: 显示器, CRT(阴极射线管), LCD(液晶), LED(发光二极管); 屏幕大小, 分辨率, 灰度级, 刷新率, VRAM(显示存储器; 容量 $=$ 分辨率 $\times$ 灰度级位数; 带宽 $=$ 容量 $\times$ 帧率). 打印机, 针式, 喷墨式, 激光. <br />
+外部存储器: 磁表面, HDD, 磁带; Flash, SSD; 光盘.</p>
+<p>I/O接口/控制器: 设备控制器; 数据缓冲寄存器, 控制寄存器, 状态寄存器; 数据格式转换(串行转并行, 并行转串行). <br />
+编址: 统一编址, 统一访存指令(存储器映射方式), 不同地址码区分内存和I/O设备; 独立编址, 设置专门I/O指令/(I/O映射方式), 不同指令区分内存和I/O设备. <br />
+查询: CPU轮询检查I/O状态寄存器; 独占查询(完全串行), 定时查询(保证数据不丢失). <br />
+中断(外中断): I/O完成后向CPU发出中断请求. <br />
+DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参数 - 预处理, 高速外设和主存直接数据读写 - 数据传送, 读写完成后向CPU发出中断请求 - 后处理; DMA请求触发器, 主存地址计数器(AR), 传送长度计数器(WC), 设备请求寄存器(DAR), 中断机构; MDA独占主存, DMA和CPU交替访存, 周期挪用/窃取(CPU访问间隔优先DMA). <br />
+通道: CPU向通道发出I/O指令, 通道控制并完成一系列I/O指令后向CPU发出中断请求(如南桥).</p>
+<p>中断系统: 请求 $\to$ 响应(关中断; 判优) $\to$ 处理(隐指令; 服务程序). <br />
+内中断/异常/例外/陷阱(exception/fualt/trap): 自愿, 陷阱指令; 强迫, 硬件(如缺页), 软件(如整数除 $0$). <br />
+外中断/中断(interrupt): I/O请求. <br />
+关中断: 标志位 ${\rm IF}=0$ 时, 不允许中断, 实现原子操作. <br />
+非屏蔽中断: 关中断时也会被响应(如掉电). <br />
+优先级: 硬件故障最高级; 非屏蔽优于可屏蔽; DMA优于I/O设备; 高速优于低速; 输入优于输出; 实时优于普通. <br />
+判优实现: 硬件排队器(向量地址), 屏蔽字(多重中断中屏蔽优先级更低者); 软件查询程序. <br />
+隐指令: 关中断 $\to$ 保存断点(保存原PC) $\to$ 引出服务程序(修改PC). <br />
+服务程序: 保护现场(保存通用寄存器和状态寄存器值) $\to$ 设备服务 $\to$ 恢复现场. <br /></p>
+<h2 id="系统层级抽象">系统层级抽象</h2>
+<h3 id="进程调度">进程调度</h3>
+<h3 id="内存虚拟化">内存虚拟化</h3>
 <h3 id="并发">并发</h3>
 <h3 id="系统级io">系统级I/O</h3>
 <p><small>*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook</small></p>
-<h2 id="性能优化">性能优化</h2>
-<h3 id="编译基础">编译基础</h3>
-<h3 id="优化技巧">优化技巧</h3>
+<h2 id="网络通信">网络通信</h2>
+<h3 id="概述">概述</h3>
+<p>网络构成 <br />
+节点: 主机及进程(端系统, host/end system), 交换设备(路由器/交换机, switch). <br />
+边: 通信链路; 接入网链路(主机接入), 主干链路(交换设备间); 传输速率=带宽(bps). <br />
+协议(protocol): 对等层实体通信中遵循的规则集合; 格式(语法, 语义), 次序, 动作; TCP/IP(Transmission Control Protocol/Internet Protocol). <br />
+服务描述: 分布式应用进程; 提供接口(面向连接服务/无连接服务)的通信基础设施; 嵌套字接口(socket interface). <br />
+结构: 网络边缘(edge, 主机及进程); 网络核心(core, 交换设备及主干链路); 接入网及物理媒体(接入网链路). <br />
+Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). <br />
+Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). <br /></p>
+<p>网络边缘 <br />
+客户端-服务器模式(client-service); 对等模式(peer-peer). <br />
+面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). <br />
+无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.</p>
+<p>网络核心-电路交换(circuit switching) <br />
+为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). <br />
+资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. <br />
+不合适计算机间通信: 连接建立时间长, 共用时间 $=$ 建立连接时间 $+$ 传输时间; 通信有突发性, 资源浪费较多; 可靠性不高, 单点故障影响范围大. <br /></p>
+<p>网络核心-分组交换(packet) <br />
+以分组为单位存储-转发: 传输数据分组; 传输时使用全部带宽; 统计多路复用, 不固定的时分. <br />
+资源共享, 按需使用: 分组延时; 节点总时延(total nodal delay) $=$ 处理时延(processing) $+$ 传输(transmission) $+$ 排队(queuing) $+$ 传播(propagation). <br />
+处理时延: 分组每次移动称为一跳(hop), 转发前节点收到整个分组. <br />
+传输时延: 速率 $R$ bps 链路, 长度 $L$ bits 分组, 存储-转发延时为 $L/R$ s. <br />
+排队时延: 到达速率 $&gt;$ 输出速率, 缓存用完时新到达分组被丢弃(drop)即丢包(loss); 链路宽度 $R$ bps, 分组长度 $L$ bits, 分组到达队列平均速率 $a$, 流量强度为 $0&lt;La/R&lt;1$. <br />
+传播时延: 物理链路长度 $d$ m, 物理媒体传播速度 $s$ mps, 传播延时为 $d/s$ s. <br />
+关键功能: 路由, 决定分组采用的源到目标的路径(路由算法-路由表); 转发. <br />
+同样网络资源(带宽)支持更多用户使用: 总用户数 $M$, 最大同时用户数 $N$, 排队延时发生概率 $1-\sum_{i=0}^N\tbinom{M}{i} p^i(1-p)^{M-i}$; 但过度使用会造成拥塞(congestion). <br />
+数据报(datagram): 目标地址决定下一跳, 路由无状态. <br />
+虚电路(virtual circuit): 呼叫时决定路径, 信令(Signaling)控制, 路由维持通信状态. <br />
+吞吐量(throughput): 瞬时(instantaneous), 平均; 取决于瓶颈链路(bottleneck link).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-Bash" data-lang="Bash"><span class="line"><span class="cl"><span class="c1"># ICMP(Internet Control Message Protocol): Head-目标IP地址, TTL(Time To Live, 生存时间);</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Body-RTT(Round Trip Time, 往返时间), 目标端口不可达(destination port unreachable, 结束测试标识).</span>
+</span></span><span class="line"><span class="cl">traceroute target_name <span class="c1"># linux</span>
+</span></span><span class="line"><span class="cl">tracert <span class="o">[</span>-d<span class="o">]</span> <span class="o">[</span>-h maximum_hops<span class="o">]</span> <span class="o">[</span>-j computer-list<span class="o">]</span> <span class="o">[</span>-w timeout<span class="o">]</span> target_name <span class="c1"># windows</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>接入网: 接入带宽; 共享/独享. <br />
+调制解调器(modem, 电话线): 调制加载到音频信号上, 音频信号解调; 调频, 调幅, 调相位, 综合调制; 拨号(带宽最高56 Kpbs, 不能同时在线), DLS(Didital Subcriber Line, 上行最高 1Mbps, 下行最高 10Mbps). <br />
+同轴线缆(有线电视): FDM, 共享带宽, HFC(Hybrid Fiber Coax, 上行最高 2Mbps, 下行最高 30Mbps). <br />
+电缆(Cable Internet Access). 光纤到户(FTTH, Fiber To The Home). <br />
+无线: 无线LANs; 广域无线(Wide-Area), 电信运营商提供(cellular).</p>
+<p>物理媒体: 传输Bit; 物理链路. <br />
+导引型媒体: 双绞线(TP, 5类 100Mbps, 6类 10Gbps), 同轴电缆(双向; 基带 Ethernet, 宽带 HFC), 光缆(光脉冲, 高速, 低误码率, 安全). <br />
+非导引型媒体: 开放空间传播, 环境效应(反射, 吸收, 干扰); 地面微波, LAN(WiFi), 广域(3G, LTE, 4G, 5G), 卫星.</p>
+<p>协议层次 <br />
+复杂网络分层, 通过接口利用下层提供的服务 SAP(Service Access Point), 层间交互形式为原语(primitive, 如Socket函数), 对等层交互为协议; 本层协议通过下层提供服务实现, 为上层协议提供更高级服务. <br />
+数据单元(DU, Data Unit): $n+1$ 层 IDU(Interface) $=$ ICI(Interface Control Information) + SDU(service), $n$ 层 PDU(protocol) $=$ Header $+$ SDU. <br />
+Internet协议栈(TCP/IP模型): 应用层(报文, message, 主机到主机), 传输层(段, segment, 进程到进程, 可靠通信服务), 网络层(分组/数据报, packet, 端到端), 链路层(帧, frame, 点到点), 物理层(bit). <br />
+ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. <br />
+封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.</p>
+<h3 id="应用层">应用层</h3>
+<p>原理: 状态, 请求/响应格式(报文)</p>
+<p>HTTP
+waiting socket, cookies</p>
+<p>FTP</p>
+<p>EMail
+提交 SMTP, 拉取 POP3 HTTP IMAP</p>
+<p>Telnet</p>
+<p>DNS
+非结构化 集中目录/完全分布(泛洪)/混合式, DHT</p>
+<p>P2P</p>
+<p>CDN</p>
+<p>socket</p>
+<h3 id="传输层">传输层</h3>
+<p>多路复用 - 解复用: 引入 port</p>
+<p>UDP - 校验和</p>
+<p>RDT(可靠数据传输)原理: FSM(有限状态自动机); 可靠信道 $\to$ 比特差错, ACK/NAK出错, NAK free $\to$ 分组丢失 $\to$ 流水线, 滑动窗口, GBN/SN协议</p>
+<p>TCP</p>
+<p>QUIC</p>
+<h3 id="网络层">网络层</h3>
+<h3 id="链路层">链路层</h3>
 
 </section>
 
@@ -1149,7 +1431,19 @@ IO: IN, OUT. <br />
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2024-04-11
+        </span>
+    </section></footer>
 
 
     
@@ -1187,19 +1481,6 @@ IO: IN, OUT. <br />
     <h2 class="section-title">相关文章</h2>
     <div class="related-content">
         <div class="flex article-list--tile">
-            
-                
-<article class="">
-    <a href="/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/">
-        
-        
-
-        <div class="article-details">
-            <h2 class="article-title">计算机网络基础</h2>
-        </div>
-    </a>
-</article>
-
             
                 
 <article class="">

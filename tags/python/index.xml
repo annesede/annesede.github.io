@@ -8,11 +8,11 @@
         <language>zh-cn</language>
         <copyright>annesede</copyright>
         <lastBuildDate>Sat, 14 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/python/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>python快速入门</title>
-        <link>https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</link>
+        <title>python初步</title>
+        <link>https://example.com/p/python%E5%88%9D%E6%AD%A5/</link>
         <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
         
-        <guid>https://example.com/p/python%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/</guid>
+        <guid>https://example.com/p/python%E5%88%9D%E6%AD%A5/</guid>
         <description>&lt;p&gt;&lt;small&gt; (3.9) &lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;运算&#34;&gt;运算&lt;/h2&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;

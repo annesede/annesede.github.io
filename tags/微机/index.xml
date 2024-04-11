@@ -7,97 +7,10 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>annesede</copyright>
-        <lastBuildDate>Wed, 06 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E5%BE%AE%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>计算机网络基础</title>
-        <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link>
-        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
-        
-        <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid>
-        <description>&lt;h2 id=&#34;概述&#34;&gt;概述&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;网络构成 &lt;br /&gt;
-节点: 主机及进程(端系统, host/end system), 交换设备(路由器/交换机, switch). &lt;br /&gt;
-边: 通信链路; 接入网链路(主机接入), 主干链路(交换设备间); 传输速率=带宽(bps). &lt;br /&gt;
-协议(protocol): 对等层实体通信中遵循的规则集合; 格式(语法, 语义), 次序, 动作; TCP/IP(Transmission Control Protocol/Internet Protocol). &lt;br /&gt;
-服务描述: 分布式应用进程; 提供接口(面向连接服务/无连接服务)的通信基础设施; 嵌套字接口(socket interface). &lt;br /&gt;
-结构: 网络边缘(edge, 主机及进程); 网络核心(core, 交换设备及主干链路); 接入网及物理媒体(接入网链路). &lt;br /&gt;
-Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). &lt;br /&gt;
-Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). &lt;br /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;网络边缘 &lt;br /&gt;
-客户端-服务器模式(client-service); 对等模式(peer-peer). &lt;br /&gt;
-面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). &lt;br /&gt;
-无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;网络核心-电路交换(circuit switching) &lt;br /&gt;
-为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). &lt;br /&gt;
-资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. &lt;br /&gt;
-不合适计算机间通信: 连接建立时间长, 共用时间 $=$ 建立连接时间 $+$ 传输时间; 通信有突发性, 资源浪费较多; 可靠性不高, 单点故障影响范围大. &lt;br /&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;网络核心-分组交换(packet) &lt;br /&gt;
-以分组为单位存储-转发: 传输数据分组; 传输时使用全部带宽; 统计多路复用, 不固定的时分. &lt;br /&gt;
-资源共享, 按需使用: 分组延时; 节点总时延(total nodal delay) $=$ 处理时延(processing) $+$ 传输(transmission) $+$ 排队(queuing) $+$ 传播(propagation). &lt;br /&gt;
-处理时延: 分组每次移动称为一跳(hop), 转发前节点收到整个分组. &lt;br /&gt;
-传输时延: 速率 $R$ bps 链路, 长度 $L$ bits 分组, 存储-转发延时为 $L/R$ s. &lt;br /&gt;
-排队时延: 到达速率 $&amp;gt;$ 输出速率, 缓存用完时新到达分组被丢弃(drop)即丢包(loss); 链路宽度 $R$ bps, 分组长度 $L$ bits, 分组到达队列平均速率 $a$, 流量强度为 $0&amp;lt;La/R&amp;lt;1$. &lt;br /&gt;
-传播时延: 物理链路长度 $d$ m, 物理媒体传播速度 $s$ mps, 传播延时为 $d/s$ s. &lt;br /&gt;
-关键功能: 路由, 决定分组采用的源到目标的路径(路由算法-路由表); 转发. &lt;br /&gt;
-同样网络资源(带宽)支持更多用户使用: 总用户数 $M$, 最大同时用户数 $N$, 排队延时发生概率 $1-\sum_{i=0}^N\tbinom{M}{i} p^i(1-p)^{M-i}$; 但过度使用会造成拥塞(congestion). &lt;br /&gt;
-数据报(datagram): 目标地址决定下一跳, 路由无状态. &lt;br /&gt;
-虚电路(virtual circuit): 呼叫时决定路径, 信令(Signaling)控制, 路由维持通信状态. &lt;br /&gt;
-吞吐量(throughput): 瞬时(instantaneous), 平均; 取决于瓶颈链路(bottleneck link).&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ICMP(Internet Control Message Protocol): Head-目标IP地址, TTL(Time To Live, 生存时间); Body-RTT(Round Trip Time, 往返时间), 目标端口不可达(destination port unreachable, 结束测试标识).&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute target_name &lt;span class=&#34;c1&#34;&gt;# linux&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tracert &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-d&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-h maximum_hops&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-j computer-list&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-w timeout&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; target_name &lt;span class=&#34;c1&#34;&gt;# windows&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;接入网: 接入带宽; 共享/独享. &lt;br /&gt;
-调制解调器(modem, 电话线): 调制加载到音频信号上, 音频信号解调; 调频, 调幅, 调相位, 综合调制; 拨号(带宽最高56 Kpbs, 不能同时在线), DLS(Didital Subcriber Line, 上行最高 1Mbps, 下行最高 10Mbps). &lt;br /&gt;
-同轴线缆(有线电视): FDM, 共享带宽, HFC(Hybrid Fiber Coax, 上行最高 2Mbps, 下行最高 30Mbps). &lt;br /&gt;
-电缆(Cable Internet Access). 光纤到户(FTTH, Fiber To The Home). &lt;br /&gt;
-无线: 无线LANs; 广域无线(Wide-Area), 电信运营商提供(cellular).&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;物理媒体: 传输Bit; 物理链路. &lt;br /&gt;
-导引型媒体: 双绞线(TP, 5类 100Mbps, 6类 10Gbps), 同轴电缆(双向; 基带 Ethernet, 宽带 HFC), 光缆(光脉冲, 高速, 低误码率, 安全). &lt;br /&gt;
-非导引型媒体: 开放空间传播, 环境效应(反射, 吸收, 干扰); 地面微波, LAN(WiFi), 广域(3G, LTE, 4G, 5G), 卫星.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;协议层次 &lt;br /&gt;
-复杂网络分层, 通过接口利用下层提供的服务 SAP(Service Access Point), 层间交互形式为原语(primitive, 如Socket函数), 对等层交互为协议; 本层协议通过下层提供服务实现, 为上层协议提供更高级服务. &lt;br /&gt;
-数据单元(DU, Data Unit): $n+1$ 层 IDU(Interface) $=$ ICI(Interface Control Information) + SDU(service), $n$ 层 PDU(protocol) $=$ Header $+$ SDU. &lt;br /&gt;
-Internet协议栈(TCP/IP模型): 应用层(报文, message), 传输层(段, segment, 进程到进程, 可靠通信服务), 网络层(分组/数据报, packet, 端到端), 链路层(帧, frame, 点到点), 物理层(bit). &lt;br /&gt;
-ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. &lt;br /&gt;
-封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;应用层&#34;&gt;应用层&lt;/h2&gt;
-&lt;h2 id=&#34;传输层&#34;&gt;传输层&lt;/h2&gt;
-&lt;h2 id=&#34;网络层-数据平面&#34;&gt;网络层-数据平面&lt;/h2&gt;
-&lt;h2 id=&#34;网络层-控制平面&#34;&gt;网络层-控制平面&lt;/h2&gt;
-&lt;h2 id=&#34;链路层-局域网&#34;&gt;链路层-局域网&lt;/h2&gt;
-&lt;h2 id=&#34;网络安全&#34;&gt;网络安全&lt;/h2&gt;
-</description>
-        </item>
-        <item>
+        <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://example.com/tags/%E5%BE%AE%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>计算机系统基础</title>
         <link>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</link>
-        <pubDate>Wed, 06 Dec 2023 00:00:00 +0000</pubDate>
+        <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
         
         <guid>https://example.com/p/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/</guid>
         <description>&lt;p&gt;&lt;small&gt;前置知识: C语言, 电路基础, 微积分, 代数学, 概率论.&lt;br /&gt;
@@ -106,10 +19,12 @@ ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层
     &gt;C语言参考手册&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
 &lt;h2 id=&#34;信息表示和处理&#34;&gt;信息表示和处理&lt;/h2&gt;
 &lt;h3 id=&#34;信息论&#34;&gt;*信息论&lt;/h3&gt;
+&lt;p&gt;无损压缩: 游程, Haufmann&lt;/p&gt;
+&lt;p&gt;纠错码: Hamming, CRC&lt;/p&gt;
 &lt;h3 id=&#34;数字逻辑&#34;&gt;*数字逻辑&lt;/h3&gt;
 &lt;p&gt;&lt;small&gt;$\bar{ }$ 逻辑/按位非, $+$ 逻辑/按位或, $\cdot$ 逻辑/按位与, $\oplus$ 逻辑/按位异或; &lt;br /&gt;
 $\ll^L_{(n)}$ 逻辑左移 $n$ 位, $\ll_{(n)}$ 算术/按位左移 $n$ 位, $\lll_{(n)}$ 逻辑循环左移 $n$ 位, $\lll^\alpha_{(n)}$ 算术/按位循环左移 $n$ 位. &lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. &lt;br /&gt;
+&lt;p&gt;平凡 Bool 代数: $\mathcal{B}=(\{0,1\},+,\cdot)$, $b,c,d\in \{0,1\}$. &lt;br /&gt;
 恒等律: $b+0=b$, $b\cdot 1=b$. &lt;br /&gt;
 0-1 律: $b+1=1$, $b\cdot 0=0$. &lt;br /&gt;
 互补律: $b+\overline{b}=1$, $b\cdot\overline{b}=0$. &lt;br /&gt;
@@ -140,6 +55,7 @@ ${\rm GF}(2)[x]/\langle p(x)\rangle: ({\rm deg}p=n)=\{\sum_{i=0}^{n-1}b_ix^i\ |\
 &gt;&lt;/p&gt;
 &lt;p&gt;译码器(decoder): $\mathcal{B}^n\to \mathcal{B}^{2^n}$, $(x_{n-1},&amp;hellip;,x_1,x_0)\mapsto (0,0,&amp;hellip;,0,y_{\sum_{i=0}^{n-1} b_i2^i}=1,0,&amp;hellip;,0,0)$; 逆函数为解码器(encoder). &lt;br /&gt;
 选择器(mux, Multiplexer): $\mathcal{B}^{nm+\lceil\log_2 n\rceil}\to \mathcal{B}^m$, $(X_{n-1},&amp;hellip;,X_1,X_0,S)\mapsto X_{S\ (2)}$. &lt;br /&gt;
+三态缓冲器: 使能状态时, 输出等同于输入; 否则输出高阻态, 等效于断路. &lt;br /&gt;
 PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任意); 析取(sum of product)-对与求或, 合取(product of sum)-对或求与. &lt;br /&gt;
 无关项: 通过去除输出无关项和输出无关项简化逻辑式. &lt;br /&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-basicComb.png&#34;
@@ -149,6 +65,20 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;basicComb&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;锁存器(latch): 使能状态时(${\rm OE}=1$ 即 $\overline{\rm OE}=0$), 输出随输入改变; 否则输出不变. &lt;br /&gt;
+触发器(filp-flop): 时钟上升或下降边沿的瞬间(脉冲, ${\rm CLK}$), 输出随输入改变; 否则输出不变. &lt;br /&gt;
+建立时间 - 时钟边沿前保持有效输入最短时间; 保持时间 - 时钟边沿后保持有效输入时间. &lt;br /&gt;
+寄存器堆(register file): D触发器为基本单元; 地址(Addr), 写入使能(WE), 读出使能(OE), 数据(Data).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-basicSeq.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;basicSeq&#34;
 	
 	
 &gt;&lt;/p&gt;
@@ -337,7 +267,7 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 &lt;p&gt;半加器(HA, half adder): ${\rm sum}=a\oplus b$, $c=a\cdot b$. &lt;br /&gt;
 全加器(FA, full adder): ${\rm sum}_{i}=a_i\oplus b_i\oplus c_i, {\rm c_i}=(a_i\oplus b_i)\cdot c_{i-1}+a_i\cdot b_i$. &lt;br /&gt;
 带标志加法器: $(a,b,{\rm SUB})\mapsto ({\rm sum}, {\rm ZF}, {\rm OF}, {\rm SF}, {\rm CF})$; ${\rm SUB}=1$ 时为减法. &lt;br /&gt;
-进位保留加法器(CAS, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. &lt;br /&gt;
+进位保留加法器(CSA, carry save adder): $(a,b,c)\mapsto ({\rm sum}, {\rm carry})$, ${\rm sum}=a\oplus b\oplus c$, ${\rm carry}$, ${\rm carry}=(a\cdot b+b\cdot c+c\cdot a)\ll_{(1)}$. &lt;br /&gt;
 并行进位加法器: 记 $g_i=a_i\cdot b_i$, $p_i=a_i\oplus b_i$, 则 $c_i=g_i+p_ic_{i-1}$, 将 $c_{i-1}$ 依次展开. &lt;br /&gt;
 分组跳跃加法器(并行串行相结合): 每 4bit 为一小组串行, 每 4 小组为一大组串行.&lt;/p&gt;
 &lt;table&gt;
@@ -593,7 +523,7 @@ Google: BF16 - $n=8$, $m=7$; 可视为 FP32 尾数直接截断得到, 牺牲精�
 Newton-Rahpson 方法: $f(x)=\sum_{i=0}^{\infty}f^i(x_0)(x-x_0)^i/i!=0$, 有迭代式 $x_{n+1}=x_n-f(x_n)/f&amp;rsquo;(x_n)$. &lt;br /&gt;
 确保操作数均为规格化浮点数; 除 $0$ 得到无穷.&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;*补充材料: COMPUTER ARITHMETIC: Algorithms and Hardware Designs&lt;/small&gt;&lt;/p&gt;
-&lt;h2 id=&#34;程序的机器级表示&#34;&gt;程序的机器级表示&lt;/h2&gt;
+&lt;h2 id=&#34;程序机器级表示&#34;&gt;程序机器级表示&lt;/h2&gt;
 &lt;h3 id=&#34;汇编基础&#34;&gt;汇编基础&lt;/h3&gt;
 &lt;p&gt;&lt;small&gt;以 IA-32 为例, 比较 AT&amp;amp;T 和 Intel 风格.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;汇编指令: &amp;ldquo;[标签: ]指令助记符 [操作数助记符1] [操作数助记符2]&amp;rdquo; &lt;br /&gt;
@@ -783,8 +713,8 @@ IO: IN, OUT. &lt;br /&gt;
     &gt;GDB Documentation&lt;/a&gt;&lt;br /&gt;
 *补充材料: &lt;a class=&#34;link&#34; href=&#34;https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;Intel 64 and IA-32 Manuals&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-&lt;h3 id=&#34;目标文件&#34;&gt;目标文件&lt;/h3&gt;
-&lt;p&gt;源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(linke) $\to$ 可执行文件. &lt;br /&gt;
+&lt;h3 id=&#34;目标文件-未完&#34;&gt;目标文件 (未完)&lt;/h3&gt;
+&lt;p&gt;源文件(.c) $-$ 预处理(prepress) $\to$ (.i) $-$ 编译(compile) $\to$ (.s) $-$ 汇编(assemble) $\to$ 目标文件(.o) $-$ 链接(link) $\to$ 可执行文件. &lt;br /&gt;
 目标文件类型: PE-COFF(Portable Executable-Common File Formart) - Windows; ELF(Executable Linkable Format) - Linux. &lt;br /&gt;&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -830,26 +760,288 @@ IO: IN, OUT. &lt;br /&gt;
 &lt;p&gt;&lt;small&gt;*补充资料: &lt;a class=&#34;link&#34; href=&#34;https://learn.microsoft.com/en-us/windows/win32/debug/pe-format&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;PE Format&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
 &lt;h3 id=&#34;链接与装载&#34;&gt;链接与装载&lt;/h3&gt;
-&lt;p&gt;(elf)
-静态链接: 地址和空间分配, 符号决议, 重定位
-装载
-动态链接&lt;/p&gt;
+&lt;p&gt;(elf) &lt;br /&gt;
+静态链接: 地址和空间分配, 符号决议, 重定位 &lt;br /&gt;
+装载 &lt;br /&gt;
+动态链接 &lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&#34;编译基础&#34;&gt;编译基础&lt;/h3&gt;
 &lt;h2 id=&#34;硬件体系结构&#34;&gt;硬件体系结构&lt;/h2&gt;
-&lt;h3 id=&#34;指令系统&#34;&gt;指令系统&lt;/h3&gt;
-&lt;p&gt;RISC-V&lt;/p&gt;
 &lt;h3 id=&#34;cpu-流水线技术&#34;&gt;CPU 流水线技术&lt;/h3&gt;
-&lt;p&gt;流水线原理, 预测并行&lt;/p&gt;
+&lt;p&gt;流水线原理, 预测并行, 性能评价&lt;/p&gt;
 &lt;h3 id=&#34;存储器层次结构&#34;&gt;存储器层次结构&lt;/h3&gt;
+&lt;p&gt;性能评价: 存储容量, 单位成本, 存储速度(读/写时间, 读/写周期, 带宽). &lt;br /&gt;
+层次结构: 越上层速度越快, 容量越小, 位价越贵; 上层可作为下层的 Cache. &lt;br /&gt;
+寄存器 - 多级高速缓存(SRAM) - 主存/内存(DRAM, ROM) - 本地二级存储/外存/辅存(SSD, HDD, Flash, 光盘, 软盘, 磁带) - 远程二级存储(分布式文件系统, web服务器).&lt;/p&gt;
+&lt;p&gt;RAM(Random Access Memory): 二维阵列, 行列地址分别传入以定位超单元(supercell), 地址译码器实现片选 - 地址线(片选线), 容量扩展; 并列模块和数据字长一致 - 数据线, 字长扩展; 读出/写入使能信号 - 控制线, 存储时序及周期; 易失(断电后信息消失). &lt;br /&gt;
+SRAM(Static): 双稳态触发器实现(如寄存器堆). &lt;br /&gt;
+DRAM(Dynamic): 栅极电容实现; 读出具有破坏性, 电容本身漏电 - 刷新策略(集中 - 逐行; 分散 - 每行单独; 异步 - 前两者结合); 行列地址先后传送 - 地址线复用. &lt;br /&gt;
+双端: 不同地址可同时读写; 同地址仅可同时读出 - &amp;ldquo;读者-写者问题&amp;rdquo;. &lt;br /&gt;
+多体并行(多通道): 低位编址效率更高(空间局部性); 流水线方式并行(体数 $=$ 存储周期 $/$ 存储时间或总线传输周期); 控制器 - 排队器 - 存控标记触发器 - 节拍发生器. &lt;br /&gt;
+SDRAM(Synchronous): 与CPU数据交换同步于系统时钟信号; 突发/猝发(Burst), 同一行中相邻数据连续访问, 一个地址可连续访问一个数据块 - 预加载(Prefetch)实现. &lt;br /&gt;
+DDR(Double Data Rate SDRAM): 在一个时钟周期内的上升沿和下降沿各传一次数据.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-MemClock.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Memory Clock&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;ROM(Read Only Memory): 非易失性(nonvolatile); 系统固件 (firmware). &lt;br /&gt;
+MROM(Mask-programmed): 掩膜生产时直接写入, 无法修改. &lt;br /&gt;
+PROM(Programmable): 熔丝烧断型, PN结击穿型; 仅能写入一次. &lt;br /&gt;
+EPROM(Erasable Programmble): 紫外线擦除型, 电擦除型; 修改次数有限, 写入速度慢. &lt;br /&gt;
+Flash: 写入速度快; 以block为单位擦除(全部设为 &amp;ldquo;1&amp;rdquo;), 以page为单位读写(只能将&amp;quot;1&amp;quot;修改为&amp;quot;0&amp;quot;); 擦除会造成磨损 - 平均磨损算法(动态; 静态); package - target - lun(logical unit) - plane(面) - block(块) - page(页) - cell(单元). &lt;br /&gt;
+SSD(Solid State Drive): 转换层及Flash; 随机访问性能高, 读写速度快, 电路控制访问位置, 安静无噪音, 耐摔抗震; chip(芯片) - die(颗粒) - plane - block - page - cell.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-DiskRecord.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Disk Record&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;磁记录: 归零制(RZ), 不归零制(NRZ), 1翻不归零制(NRZ1), 调相制(PM), 调频制(FM), 改进调频制(MFM); 编码效率, 自同步能力(从读出的脉冲序列提取同步时钟脉冲; 最小磁化翻转间隔与最大之比). &lt;br /&gt;
+HDD(Hard Disk Drive): 旋转结构(rotating); platter(盘片) - surface(盘面) - spindle(主轴) - track(磁道) - sector(扇区) - gap(间隔) - read/write heads(读写头) - arm(传动臂力). &lt;br /&gt;
+读写时序: 寻道(seek), 读写头找到磁道 $\to$ 旋转(rotation), 主轴旋转盘片将扇区送到读写头下 $\to$ 传送(transfer). &lt;br /&gt;
+RAID(Redundant Array of Independetn Disks): 0 - 数据置于统一条带, 一块损坏则数据全部丢失; 1 - 互相备份; 3 - 0 $+$ 奇偶检验; 5 - 数据和奇偶校验置于同一条带; 6 - 双重奇偶校验; 01 - 内层0, 外层1; 10 - 内层1, 外层 0.&lt;/p&gt;
+&lt;p&gt;局部性(locality): 时间(temporal), 访问内存位置在短期内将重复访问; 空间(spatial), 附近内存位置在短期内将访问. &lt;br /&gt;
+缓存命中(hit): 需要 $k+1$ 层的数据 $d$ 恰好缓存在第 $k$ 层中. &lt;br /&gt;
+缓存不命中(miss): 强制/冷不命中(compulsory/cold), 缓存为空时; 冲突不命中(conflict), 缓存不为空时. &lt;br /&gt;
+替换/驱逐策略(replacement/eviction): 随机(RAND); 先进先出(FIFO); 近期最少使用(LRU) - 符合局部性原理; 最不经常使用(LFU). &lt;br /&gt;
+通用组织: 四元组 $(S,E,B,m)$; $S$ 组(set), 每组 $E$ 行(line), 每行包括 $1$ 个有效位(valid), $t$ 个标记位(tag), $B$ 字节数据块(block); $m$ 位地址被划分为 $t$ 个标记位, $s$ 个组索引位, $b$ 个块偏移位. &lt;br /&gt;
+地址映射(mapped): 直接映射(direct), $E=1$, $m=t||s||b$; 全相联(fully associative), $S=1$, $m=t||b$; 组相连(set), $S&amp;gt;1$, $E&amp;gt;1$, $m=t||s||b$. &lt;br /&gt;
+写策略/一致性: 写命中时, 写穿透/全写/直写(write through), 立即将缓存写主存到中, 增加FIFO写缓冲(buffer)来减少时间损耗; 写回/回写(back), 发生替换时才写到主存中, 需额外维护修改位/脏位(dirty). 写不命中时, 写分配(allocate), 将主存块调入缓存; 非写分配, 只更新主存. 写分配 $+$ 写回; 非写分配 $+$ 写穿透. &lt;br /&gt;
+CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.&lt;/p&gt;
 &lt;h3 id=&#34;总线及io&#34;&gt;总线及I/O&lt;/h3&gt;
-&lt;h2 id=&#34;系统抽象&#34;&gt;系统抽象&lt;/h2&gt;
-&lt;h3 id=&#34;进程&#34;&gt;进程&lt;/h3&gt;
-&lt;h3 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h3&gt;
+&lt;p&gt;总线: 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. &lt;br /&gt;
+层次: 片内总线 - 寄存器与ALU; 系统总线 - 数据, 地址, 控制(时钟, 复位, 总线请求, 总线允许, 总线忙碌, 中断请求, 中断响应, 存储器读/写, I/O读/写, 传输相应); I/O总线 - 中低速I/O设备; 通信总线. &lt;br /&gt;
+性能评价: 时钟周期/频率, 传输周期/工作频率, 宽度, 带宽, 复用, 信号线数, 同步/异步, 串行/并行; 带宽 $=$ 工作频率 $\times$ 宽度. &lt;br /&gt;
+结构: 单总线 - 系统总线; 双总线 - 主存总线 $+$ I/O总线; 三总线 - 主存总线 $+$ I/O总线 $+$ DMA总线. &lt;br /&gt;
+事务/操作周期: 请求/申请 $\to$ 仲裁/分配 $\to$ 寻址 $\to$ 传输 $\to$ 释放/结束. &lt;br /&gt;
+仲裁/判优: 链式查询, 按离控制器远近顺序依次查询请求, 仅需 $2$ 根控制线; 计数器定时查询, 计数器循环自增直至地址信号与设备地址线一致, 需 $\log_{2}{n}$ 根控制线; 独立请求方式, 根据请求优先次序排队, 需 $2n$ 根控制线. &lt;br /&gt;
+定时/通信: 同步, 统一时钟协调发收双方; 异步, 不互锁(&amp;ldquo;请求&amp;quot;和&amp;quot;回答&amp;quot;均一段时间后撤销), 半互锁(&amp;ldquo;请求&amp;quot;在发出&amp;quot;回答&amp;quot;后撤销, &amp;ldquo;回答&amp;quot;一段时间后撤销), 全互锁(&amp;ldquo;请求&amp;quot;在收到&amp;quot;回答&amp;quot;后撤销, &amp;ldquo;回答&amp;quot;在&amp;quot;请求&amp;quot;撤销后撤销); 半同步, 增设&amp;quot;等待&amp;rdquo;(wait)响应信号线, 时钟前沿发送, 时钟后沿接收判别.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;层次&lt;/th&gt;
+&lt;th&gt;总线标准&lt;/th&gt;
+&lt;th&gt;数据传输方式&lt;/th&gt;
+&lt;th&gt;用途&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;系统&lt;/td&gt;
+&lt;td&gt;ISA&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;EISA&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;ISA基础上扩展位宽&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;FBS, QPI/multi-FBS&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;连接CPU和北桥&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;局部&lt;/td&gt;
+&lt;td&gt;VESA&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;传输图像&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;PCI&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;CPU异步, 即插即用, 可连接显卡, 声卡, 网卡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;AGP&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;PCI2.1基础上扩展&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;PCI-E&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;高频, 全双工通信&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;设备/通信&lt;/td&gt;
+&lt;td&gt;RS-232C&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;极慢速打印机&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;SCSI&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;可连接硬盘, 打印机, 扫描仪&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;PCMCIA&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;可连接外部存储卡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;USB&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;高频, 采用差额信号, 每次传递1bit&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;IDE/Parallel-ATA&lt;/td&gt;
+&lt;td&gt;并行&lt;/td&gt;
+&lt;td&gt;可连接光驱, 硬盘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;SATA/Serial-ATA&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;可连接光驱, 硬盘&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;视频线&lt;/td&gt;
+&lt;td&gt;VGA/D-Sub&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;模拟信号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;DVI&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;数字信号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;HDMI&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;数字信号, 声音信号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;DP&lt;/td&gt;
+&lt;td&gt;串行&lt;/td&gt;
+&lt;td&gt;数字信号, 声音信号&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;输入设备: 键盘; 鼠标. &lt;br /&gt;
+输出设备: 显示器, CRT(阴极射线管), LCD(液晶), LED(发光二极管); 屏幕大小, 分辨率, 灰度级, 刷新率, VRAM(显示存储器; 容量 $=$ 分辨率 $\times$ 灰度级位数; 带宽 $=$ 容量 $\times$ 帧率). 打印机, 针式, 喷墨式, 激光. &lt;br /&gt;
+外部存储器: 磁表面, HDD, 磁带; Flash, SSD; 光盘.&lt;/p&gt;
+&lt;p&gt;I/O接口/控制器: 设备控制器; 数据缓冲寄存器, 控制寄存器, 状态寄存器; 数据格式转换(串行转并行, 并行转串行). &lt;br /&gt;
+编址: 统一编址, 统一访存指令(存储器映射方式), 不同地址码区分内存和I/O设备; 独立编址, 设置专门I/O指令/(I/O映射方式), 不同指令区分内存和I/O设备. &lt;br /&gt;
+查询: CPU轮询检查I/O状态寄存器; 独占查询(完全串行), 定时查询(保证数据不丢失). &lt;br /&gt;
+中断(外中断): I/O完成后向CPU发出中断请求. &lt;br /&gt;
+DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参数 - 预处理, 高速外设和主存直接数据读写 - 数据传送, 读写完成后向CPU发出中断请求 - 后处理; DMA请求触发器, 主存地址计数器(AR), 传送长度计数器(WC), 设备请求寄存器(DAR), 中断机构; MDA独占主存, DMA和CPU交替访存, 周期挪用/窃取(CPU访问间隔优先DMA). &lt;br /&gt;
+通道: CPU向通道发出I/O指令, 通道控制并完成一系列I/O指令后向CPU发出中断请求(如南桥).&lt;/p&gt;
+&lt;p&gt;中断系统: 请求 $\to$ 响应(关中断; 判优) $\to$ 处理(隐指令; 服务程序). &lt;br /&gt;
+内中断/异常/例外/陷阱(exception/fualt/trap): 自愿, 陷阱指令; 强迫, 硬件(如缺页), 软件(如整数除 $0$). &lt;br /&gt;
+外中断/中断(interrupt): I/O请求. &lt;br /&gt;
+关中断: 标志位 ${\rm IF}=0$ 时, 不允许中断, 实现原子操作. &lt;br /&gt;
+非屏蔽中断: 关中断时也会被响应(如掉电). &lt;br /&gt;
+优先级: 硬件故障最高级; 非屏蔽优于可屏蔽; DMA优于I/O设备; 高速优于低速; 输入优于输出; 实时优于普通. &lt;br /&gt;
+判优实现: 硬件排队器(向量地址), 屏蔽字(多重中断中屏蔽优先级更低者); 软件查询程序. &lt;br /&gt;
+隐指令: 关中断 $\to$ 保存断点(保存原PC) $\to$ 引出服务程序(修改PC). &lt;br /&gt;
+服务程序: 保护现场(保存通用寄存器和状态寄存器值) $\to$ 设备服务 $\to$ 恢复现场. &lt;br /&gt;&lt;/p&gt;
+&lt;h2 id=&#34;系统层级抽象&#34;&gt;系统层级抽象&lt;/h2&gt;
+&lt;h3 id=&#34;进程调度&#34;&gt;进程调度&lt;/h3&gt;
+&lt;h3 id=&#34;内存虚拟化&#34;&gt;内存虚拟化&lt;/h3&gt;
 &lt;h3 id=&#34;并发&#34;&gt;并发&lt;/h3&gt;
 &lt;h3 id=&#34;系统级io&#34;&gt;系统级I/O&lt;/h3&gt;
 &lt;p&gt;&lt;small&gt;*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook&lt;/small&gt;&lt;/p&gt;
-&lt;h2 id=&#34;性能优化&#34;&gt;性能优化&lt;/h2&gt;
-&lt;h3 id=&#34;编译基础&#34;&gt;编译基础&lt;/h3&gt;
-&lt;h3 id=&#34;优化技巧&#34;&gt;优化技巧&lt;/h3&gt;
+&lt;h2 id=&#34;网络通信&#34;&gt;网络通信&lt;/h2&gt;
+&lt;h3 id=&#34;概述&#34;&gt;概述&lt;/h3&gt;
+&lt;p&gt;网络构成 &lt;br /&gt;
+节点: 主机及进程(端系统, host/end system), 交换设备(路由器/交换机, switch). &lt;br /&gt;
+边: 通信链路; 接入网链路(主机接入), 主干链路(交换设备间); 传输速率=带宽(bps). &lt;br /&gt;
+协议(protocol): 对等层实体通信中遵循的规则集合; 格式(语法, 语义), 次序, 动作; TCP/IP(Transmission Control Protocol/Internet Protocol). &lt;br /&gt;
+服务描述: 分布式应用进程; 提供接口(面向连接服务/无连接服务)的通信基础设施; 嵌套字接口(socket interface). &lt;br /&gt;
+结构: 网络边缘(edge, 主机及进程); 网络核心(core, 交换设备及主干链路); 接入网及物理媒体(接入网链路). &lt;br /&gt;
+Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). &lt;br /&gt;
+Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;网络边缘 &lt;br /&gt;
+客户端-服务器模式(client-service); 对等模式(peer-peer). &lt;br /&gt;
+面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). &lt;br /&gt;
+无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.&lt;/p&gt;
+&lt;p&gt;网络核心-电路交换(circuit switching) &lt;br /&gt;
+为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). &lt;br /&gt;
+资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. &lt;br /&gt;
+不合适计算机间通信: 连接建立时间长, 共用时间 $=$ 建立连接时间 $+$ 传输时间; 通信有突发性, 资源浪费较多; 可靠性不高, 单点故障影响范围大. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;网络核心-分组交换(packet) &lt;br /&gt;
+以分组为单位存储-转发: 传输数据分组; 传输时使用全部带宽; 统计多路复用, 不固定的时分. &lt;br /&gt;
+资源共享, 按需使用: 分组延时; 节点总时延(total nodal delay) $=$ 处理时延(processing) $+$ 传输(transmission) $+$ 排队(queuing) $+$ 传播(propagation). &lt;br /&gt;
+处理时延: 分组每次移动称为一跳(hop), 转发前节点收到整个分组. &lt;br /&gt;
+传输时延: 速率 $R$ bps 链路, 长度 $L$ bits 分组, 存储-转发延时为 $L/R$ s. &lt;br /&gt;
+排队时延: 到达速率 $&amp;gt;$ 输出速率, 缓存用完时新到达分组被丢弃(drop)即丢包(loss); 链路宽度 $R$ bps, 分组长度 $L$ bits, 分组到达队列平均速率 $a$, 流量强度为 $0&amp;lt;La/R&amp;lt;1$. &lt;br /&gt;
+传播时延: 物理链路长度 $d$ m, 物理媒体传播速度 $s$ mps, 传播延时为 $d/s$ s. &lt;br /&gt;
+关键功能: 路由, 决定分组采用的源到目标的路径(路由算法-路由表); 转发. &lt;br /&gt;
+同样网络资源(带宽)支持更多用户使用: 总用户数 $M$, 最大同时用户数 $N$, 排队延时发生概率 $1-\sum_{i=0}^N\tbinom{M}{i} p^i(1-p)^{M-i}$; 但过度使用会造成拥塞(congestion). &lt;br /&gt;
+数据报(datagram): 目标地址决定下一跳, 路由无状态. &lt;br /&gt;
+虚电路(virtual circuit): 呼叫时决定路径, 信令(Signaling)控制, 路由维持通信状态. &lt;br /&gt;
+吞吐量(throughput): 瞬时(instantaneous), 平均; 取决于瓶颈链路(bottleneck link).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-Bash&#34; data-lang=&#34;Bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ICMP(Internet Control Message Protocol): Head-目标IP地址, TTL(Time To Live, 生存时间);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Body-RTT(Round Trip Time, 往返时间), 目标端口不可达(destination port unreachable, 结束测试标识).&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;traceroute target_name &lt;span class=&#34;c1&#34;&gt;# linux&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;tracert &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-d&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-h maximum_hops&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-j computer-list&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;-w timeout&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; target_name &lt;span class=&#34;c1&#34;&gt;# windows&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;接入网: 接入带宽; 共享/独享. &lt;br /&gt;
+调制解调器(modem, 电话线): 调制加载到音频信号上, 音频信号解调; 调频, 调幅, 调相位, 综合调制; 拨号(带宽最高56 Kpbs, 不能同时在线), DLS(Didital Subcriber Line, 上行最高 1Mbps, 下行最高 10Mbps). &lt;br /&gt;
+同轴线缆(有线电视): FDM, 共享带宽, HFC(Hybrid Fiber Coax, 上行最高 2Mbps, 下行最高 30Mbps). &lt;br /&gt;
+电缆(Cable Internet Access). 光纤到户(FTTH, Fiber To The Home). &lt;br /&gt;
+无线: 无线LANs; 广域无线(Wide-Area), 电信运营商提供(cellular).&lt;/p&gt;
+&lt;p&gt;物理媒体: 传输Bit; 物理链路. &lt;br /&gt;
+导引型媒体: 双绞线(TP, 5类 100Mbps, 6类 10Gbps), 同轴电缆(双向; 基带 Ethernet, 宽带 HFC), 光缆(光脉冲, 高速, 低误码率, 安全). &lt;br /&gt;
+非导引型媒体: 开放空间传播, 环境效应(反射, 吸收, 干扰); 地面微波, LAN(WiFi), 广域(3G, LTE, 4G, 5G), 卫星.&lt;/p&gt;
+&lt;p&gt;协议层次 &lt;br /&gt;
+复杂网络分层, 通过接口利用下层提供的服务 SAP(Service Access Point), 层间交互形式为原语(primitive, 如Socket函数), 对等层交互为协议; 本层协议通过下层提供服务实现, 为上层协议提供更高级服务. &lt;br /&gt;
+数据单元(DU, Data Unit): $n+1$ 层 IDU(Interface) $=$ ICI(Interface Control Information) + SDU(service), $n$ 层 PDU(protocol) $=$ Header $+$ SDU. &lt;br /&gt;
+Internet协议栈(TCP/IP模型): 应用层(报文, message, 主机到主机), 传输层(段, segment, 进程到进程, 可靠通信服务), 网络层(分组/数据报, packet, 端到端), 链路层(帧, frame, 点到点), 物理层(bit). &lt;br /&gt;
+ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. &lt;br /&gt;
+封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.&lt;/p&gt;
+&lt;h3 id=&#34;应用层&#34;&gt;应用层&lt;/h3&gt;
+&lt;p&gt;原理: 状态, 请求/响应格式(报文)&lt;/p&gt;
+&lt;p&gt;HTTP
+waiting socket, cookies&lt;/p&gt;
+&lt;p&gt;FTP&lt;/p&gt;
+&lt;p&gt;EMail
+提交 SMTP, 拉取 POP3 HTTP IMAP&lt;/p&gt;
+&lt;p&gt;Telnet&lt;/p&gt;
+&lt;p&gt;DNS
+非结构化 集中目录/完全分布(泛洪)/混合式, DHT&lt;/p&gt;
+&lt;p&gt;P2P&lt;/p&gt;
+&lt;p&gt;CDN&lt;/p&gt;
+&lt;p&gt;socket&lt;/p&gt;
+&lt;h3 id=&#34;传输层&#34;&gt;传输层&lt;/h3&gt;
+&lt;p&gt;多路复用 - 解复用: 引入 port&lt;/p&gt;
+&lt;p&gt;UDP - 校验和&lt;/p&gt;
+&lt;p&gt;RDT(可靠数据传输)原理: FSM(有限状态自动机); 可靠信道 $\to$ 比特差错, ACK/NAK出错, NAK free $\to$ 分组丢失 $\to$ 流水线, 滑动窗口, GBN/SN协议&lt;/p&gt;
+&lt;p&gt;TCP&lt;/p&gt;
+&lt;p&gt;QUIC&lt;/p&gt;
+&lt;h3 id=&#34;网络层&#34;&gt;网络层&lt;/h3&gt;
+&lt;h3 id=&#34;链路层&#34;&gt;链路层&lt;/h3&gt;
 </description>
         </item>
         
