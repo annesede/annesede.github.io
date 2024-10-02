@@ -248,8 +248,8 @@
       <ol>
         <li><a href="#信息论">*信息论</a></li>
         <li><a href="#数字逻辑">*数字逻辑</a></li>
-        <li><a href="#定点数表示与运算">定点数表示与运算</a></li>
-        <li><a href="#浮点数表示与运算">浮点数表示与运算</a></li>
+        <li><a href="#定点数">定点数</a></li>
+        <li><a href="#浮点数">浮点数</a></li>
       </ol>
     </li>
     <li><a href="#程序机器级表示">程序机器级表示</a>
@@ -262,15 +262,15 @@
     </li>
     <li><a href="#硬件体系结构">硬件体系结构</a>
       <ol>
-        <li><a href="#cpu-流水线技术">CPU 流水线技术</a></li>
-        <li><a href="#存储器层次结构">存储器层次结构</a></li>
+        <li><a href="#cpu">CPU</a></li>
+        <li><a href="#存储器">存储器</a></li>
         <li><a href="#总线及io">总线及I/O</a></li>
       </ol>
     </li>
     <li><a href="#系统层级抽象">系统层级抽象</a>
       <ol>
-        <li><a href="#进程调度">进程调度</a></li>
-        <li><a href="#内存虚拟化">内存虚拟化</a></li>
+        <li><a href="#进程">进程</a></li>
+        <li><a href="#虚拟内存">虚拟内存</a></li>
         <li><a href="#并发">并发</a></li>
         <li><a href="#系统级io">系统级I/O</a></li>
       </ol>
@@ -352,7 +352,7 @@
 
 
                 <time class="article-time--reading">
-                    阅读时长: 13 分钟
+                    阅读时长: 14 分钟
                 </time>
             </div>
         
@@ -436,7 +436,7 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 	
 	
 ></p>
-<h3 id="定点数表示与运算">定点数表示与运算</h3>
+<h3 id="定点数">定点数</h3>
 <p>十进制转换: $b_n&hellip;b_1b_0.b_{-1}&hellip;b_{-m}\ (R)=\sum_{i=-m}^n b_iR^i\ (10)$.</p>
 <div class="table-wrapper"><table>
 <thead>
@@ -804,7 +804,7 @@ Booth 乘法器(muliplier): 乘数 4-Booth 编码 $\to$ 生成部分积 $\to$ Wa
 </div>
 </div><p><small>补充材料: <a class="link" href="https://graphics.stanford.edu/~seander/bithacks.html"  target="_blank" rel="noopener"
     >位运算妙用</a></small></p>
-<h3 id="浮点数表示与运算">浮点数表示与运算</h3>
+<h3 id="浮点数">浮点数</h3>
 <p>浮点数: $\mathbb{R}\mapsto \{0,1\}^w$, $x\mapsto (s,e,d,R)\mapsto s\times\sum_{i=-m}^0 d_iR^i\times R^e=\hat{x}$. <br />
 加法及乘法满足交换律, 但不满足结合律. <br />
 ULP(units in last place): ${\rm err}=|\hat{x}-x/R^e|/R^m$.</p>
@@ -1120,9 +1120,11 @@ IO: IN, OUT. <br />
 动态链接 <br /></p>
 <h3 id="编译基础">编译基础</h3>
 <h2 id="硬件体系结构">硬件体系结构</h2>
-<h3 id="cpu-流水线技术">CPU 流水线技术</h3>
-<p>流水线原理, 预测并行, 性能评价</p>
-<h3 id="存储器层次结构">存储器层次结构</h3>
+<h3 id="cpu">CPU</h3>
+<p>单周期: CPU结构图; 指令周期, 流程, 信号; 微操作序列; 数据通路</p>
+<p>控制器: 结构图, 硬布线设计表/组合逻辑(RISC), 微指令编码/下地址确定/补充(CISC)</p>
+<p>流水线: 性能(TP/S/E)，流水线三大冒险(数据/结构/控制)时空图，流水线分类/多发/多线程, 执行过程举例(MISP)</p>
+<h3 id="存储器">存储器</h3>
 <p>性能评价: 存储容量, 单位成本, 存储速度(读/写时间, 读/写周期, 带宽). <br />
 层次结构: 越上层速度越快, 容量越小, 位价越贵; 上层可作为下层的 Cache. <br />
 寄存器 - 多级高速缓存(SRAM) - 主存/内存(DRAM, ROM) - 本地二级存储/外存/辅存(SSD, HDD, Flash, 光盘, 软盘, 磁带) - 远程二级存储(分布式文件系统, web服务器).</p>
@@ -1172,7 +1174,7 @@ RAID(Redundant Array of Independetn Disks): 0 - 数据置于统一条带, 一块
 写策略/一致性: 写命中时, 写穿透/全写/直写(write through), 立即将缓存写主存到中, 增加FIFO写缓冲(buffer)来减少时间损耗; 写回/回写(back), 发生替换时才写到主存中, 需额外维护修改位/脏位(dirty). 写不命中时, 写分配(allocate), 将主存块调入缓存; 非写分配, 只更新主存. 写分配 $+$ 写回; 非写分配 $+$ 写穿透. <br />
 CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.</p>
 <h3 id="总线及io">总线及I/O</h3>
-<p>总线: 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. <br />
+<p>总线(bus): 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. <br />
 层次: 片内总线 - 寄存器与ALU; 系统总线 - 数据, 地址, 控制(时钟, 复位, 总线请求, 总线允许, 总线忙碌, 中断请求, 中断响应, 存储器读/写, I/O读/写, 传输相应); I/O总线 - 中低速I/O设备; 通信总线. <br />
 性能评价: 时钟周期/频率, 传输周期/工作频率, 宽度, 带宽, 复用, 信号线数, 同步/异步, 串行/并行; 带宽 $=$ 工作频率 $\times$ 宽度. <br />
 结构: 单总线 - 系统总线; 双总线 - 主存总线 $+$ I/O总线; 三总线 - 主存总线 $+$ I/O总线 $+$ DMA总线. <br />
@@ -1303,7 +1305,7 @@ CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.</p>
 DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参数 - 预处理, 高速外设和主存直接数据读写 - 数据传送, 读写完成后向CPU发出中断请求 - 后处理; DMA请求触发器, 主存地址计数器(AR), 传送长度计数器(WC), 设备请求寄存器(DAR), 中断机构; MDA独占主存, DMA和CPU交替访存, 周期挪用/窃取(CPU访问间隔优先DMA). <br />
 通道: CPU向通道发出I/O指令, 通道控制并完成一系列I/O指令后向CPU发出中断请求(如南桥).</p>
 <p>中断系统: 请求 $\to$ 响应(关中断; 判优) $\to$ 处理(隐指令; 服务程序). <br />
-内中断/异常/例外/陷阱(exception/fualt/trap): 自愿, 陷阱指令; 强迫, 硬件(如缺页), 软件(如整数除 $0$). <br />
+内中断/异常/例外/陷阱(exception/fault/trap): 自愿, 陷阱指令(trap); 强迫, 硬件(abort, 如缺页), 软件(fault, 如整数除 $0$). <br />
 外中断/中断(interrupt): I/O请求. <br />
 关中断: 标志位 ${\rm IF}=0$ 时, 不允许中断, 实现原子操作. <br />
 非屏蔽中断: 关中断时也会被响应(如掉电). <br />
@@ -1312,8 +1314,8 @@ DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参
 隐指令: 关中断 $\to$ 保存断点(保存原PC) $\to$ 引出服务程序(修改PC). <br />
 服务程序: 保护现场(保存通用寄存器和状态寄存器值) $\to$ 设备服务 $\to$ 恢复现场. <br /></p>
 <h2 id="系统层级抽象">系统层级抽象</h2>
-<h3 id="进程调度">进程调度</h3>
-<h3 id="内存虚拟化">内存虚拟化</h3>
+<h3 id="进程">进程</h3>
+<h3 id="虚拟内存">虚拟内存</h3>
 <h3 id="并发">并发</h3>
 <h3 id="系统级io">系统级I/O</h3>
 <p><small>*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook</small></p>
@@ -1328,9 +1330,9 @@ DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参
 Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). <br />
 Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). <br /></p>
 <p>网络边缘 <br />
-客户端-服务器模式(client-service); 对等模式(peer-peer). <br />
-面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). <br />
-无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.</p>
+客户端-服务器模式(client-service, C/S); 对等模式(peer-peer, P2P). <br />
+面向连接服务(connection-oriented): TCP(Transmission Control Protocol)[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). <br />
+无连接服务(connectionless): UDP(User Datagram Protocol)[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.</p>
 <p>网络核心-电路交换(circuit switching) <br />
 为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). <br />
 资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. <br />
@@ -1376,15 +1378,225 @@ Internet协议栈(TCP/IP模型): 应用层(报文, message, 主机到主机), �
 ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. <br />
 封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.</p>
 <h3 id="应用层">应用层</h3>
-<p>原理: 状态, 请求/响应格式(报文)</p>
-<p>HTTP
-waiting socket, cookies</p>
-<p>FTP</p>
-<p>EMail
-提交 SMTP, 拉取 POP3 HTTP IMAP</p>
-<p>Telnet</p>
-<p>DNS
-非结构化 集中目录/完全分布(泛洪)/混合式, DHT</p>
+<p>网络应用运行在端系统上, 网络核心没有应用层软件. <br />
+C-S: 服务器, 固定IP地址与端口号(port), 持续运行, 等待连接进程(响应报文), 扩展性差(服务器场); 客户端, 可以为动态IP, 间歇性连接, 发起通信进程(请求报文), 不与其他客户端通信. <br />
+P2P: 任意端系统间可进行通信; 每个结点既是客户端又是服务器(自扩展性); 参与主机间歇性连接, 可以为动态IP; 难以管理.</p>
+<p>进程表示和寻址依据: IP+port. <br />
+Socket API(套接字): 为使层间传输信息最小, 用整数代表通信双方或单方. <br />
+TCP socket: 四元组, 源IP, 源port, 目标IP, 目标port. <br />
+UDP socket: 二元组, 源IP, 源port. <br />
+传输层提供服务的指标: 数据丢失率, 延迟, 吞吐, 安全性(机密, 完整, 可认证).</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>端口类型</th>
+<th>范围</th>
+<th>分配方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>知名(Well-known)</td>
+<td>1-1023</td>
+<td>固定分配给特定应用</td>
+</tr>
+<tr>
+<td>用户(Registered)</td>
+<td>1024-49151</td>
+<td>IANA(Internet Assigned Numbers Authority) 分配</td>
+</tr>
+<tr>
+<td>动态(Dynamic)</td>
+<td>49152-65535</td>
+<td>不固定分配</td>
+</tr>
+</tbody>
+</table></div>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>传输层协议</th>
+<th>应用层协议</th>
+<th>提供服务</th>
+<th>默认端口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TCP</td>
+<td>HTTP</td>
+<td>Web</td>
+<td>80</td>
+</tr>
+<tr>
+<td></td>
+<td>HTTPS</td>
+<td>安全Web</td>
+<td>443</td>
+</tr>
+<tr>
+<td></td>
+<td>Telnet</td>
+<td>远程访问</td>
+<td>23</td>
+</tr>
+<tr>
+<td></td>
+<td>POP3</td>
+<td>E-mail拉取和管理</td>
+<td>110</td>
+</tr>
+<tr>
+<td></td>
+<td>SMTP</td>
+<td>E-mail发送</td>
+<td>25</td>
+</tr>
+<tr>
+<td></td>
+<td>IMAP</td>
+<td>E-mail拉取和管理</td>
+<td>143</td>
+</tr>
+<tr>
+<td></td>
+<td>FTP</td>
+<td>文件传输</td>
+<td>20(传输), 21(控制)</td>
+</tr>
+<tr>
+<td></td>
+<td>DNS</td>
+<td>域名区域传送</td>
+<td>53</td>
+</tr>
+<tr>
+<td>UDP</td>
+<td>NTP</td>
+<td>网络时间</td>
+<td>123</td>
+</tr>
+<tr>
+<td></td>
+<td>DNS</td>
+<td>域名解析</td>
+<td>53</td>
+</tr>
+<tr>
+<td></td>
+<td>SNMP</td>
+<td>网络管理</td>
+<td>161</td>
+</tr>
+<tr>
+<td></td>
+<td>DHCP</td>
+<td>IP地址动态管理</td>
+<td>67</td>
+</tr>
+<tr>
+<td></td>
+<td>TFTP</td>
+<td>简单文件传输</td>
+<td>69</td>
+</tr>
+<tr>
+<td></td>
+<td>Ipsec</td>
+<td>安全连接</td>
+<td>500</td>
+</tr>
+</tbody>
+</table></div>
+<p>Web: 页面由对象组成; 通过URL(Uniform Resource Locator)引用对象. <br />
+URL格式: &lt;协议名&gt;://&lt;用户名&gt;:&lt;口令&gt;@&lt;主机名&gt;/&lt;路径名&gt;:&lt;端口&gt;. <br />
+RRT(round-trip time): 信息从客户端到服务器再返回的时间. <br />
+HTTP1.0(Hyper Text Transfer Protocol)[RFC 1945]: 无状态(服务器不维护客户端历史信息), 非持久(最多只有一个对象在连接上发送)连接. <br />
+HTTP1.1[RFC 2068]: 无状态, 流水线式(客户端遇到引用对象立刻产生请求, 所有引用对象开销1RRT是可能的), 持久性(服务端响应后保持连接)连接. <br />
+请求方法: Post, 表单提交; Get, URL字段上截取; DELETE, 删除URL字段文件; HEAD, URL字段上截取, 只获取元数据(文件属性信息). <br />
+Cookie: 浏览器第一次访问时, 服务端创建并保存Cookie $\to$ 客户端接收Cookie信息, 再次访问时携带Cookie, 实现状态维护. <br />
+Session: 浏览器第一次访问时, 服务端创建并保存Session, 生成相应的Cookie $\to$ 客户端接收Cookie信息, 再次访问时携带Cookie $\to$ 服务端根据Cookie匹配Session, 实现状态维护. <br />
+缓存/代理服务器: 客户端通过缓存访问Web; 缓存中存在对象时直接返回, 不存在时从原始服务器拉取(缓存更新).</p>
+<p><img src="/img/post-basic-system-HttpRequest"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Http Request"
+	
+	
+>
+<img src="/img/post-basic-system-HttpRespond"
+	
+	
+	
+	loading="lazy"
+	
+		alt="Http Respond"
+	
+	
+></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>常见状态码</th>
+<th>英文</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>正常</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>请求对象被永久移动, 资源重定向</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>请求语法错误, 服务端无法理解</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务端理解请求, 但拒绝执行</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>请求失败, 资源无法找到</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器突发意外</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td>网关或代理服务器从上游接收到无效响应</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td>DNS查询超时</td>
+</tr>
+</tbody>
+</table></div>
+<p>FTP(File Transfer Protocol)[RFC 959]: 客户端通过控制连接(带外, out of band)身份认证, 浏览远程目录; 服务器开启数据连接传输文件; 有状态连接.</p>
+<p>EMail: 用户代理(邮件阅读编辑器); 邮件服务器(报文队列保持待发送邮件); 邮件传输. <br />
+邮件报文格式: 一般标准[RFC 822]; 多媒体扩展 MIME[RFC 2045, 2056]. <br />
+SMTP(Simple Mail Transfer Protocol)[RFC 2821]: 持久性连接; 7bits ASCII编码报文; 发送邮件到服务器, 服务器间传送邮件. <br />
+POP3(Post Office Protocol)[RFC 1939]: 用户身份认证, 并从服务端下载邮件; 无状态连接 <br />
+IMAP(Internet Mail Access Protocol)[RFC 1730]: Internet 邮件访问; 服务器上处理存储的报文; 有状态连接.</p>
+<p>DNS(Domain Name System): 分布式数据库完成域名到IP地址的转换, 基于域的分层命名机制, 网络核心功能但以应用层实现; 附带实现别名到正规名的转换, 负载均衡(Load Distribution). <br />
+命名空间: 倒序生长的树; 根下顶级域(通用: com, edu, gov, int, mil, net, org, firm, hsop, web, arts, rec; 国家: cn, us, nl, jp), 域下划分子域(subdomain), 叶子结点为主机; 遵从组织界限, 与物理网络无关. <br /></p>
+<p>非结构化 集中目录/完全分布(泛洪)/混合式, DHT</p>
 <p>P2P</p>
 <p>CDN</p>
 <p>socket</p>
@@ -1392,9 +1604,12 @@ waiting socket, cookies</p>
 <p>多路复用 - 解复用: 引入 port</p>
 <p>UDP - 校验和</p>
 <p>RDT(可靠数据传输)原理: FSM(有限状态自动机); 可靠信道 $\to$ 比特差错, ACK/NAK出错, NAK free $\to$ 分组丢失 $\to$ 流水线, 滑动窗口, GBN/SN协议</p>
-<p>TCP</p>
+<p>TCP: 段结构; 可靠性(重发, 快速重发), 流量控制, 连接建立(三次握手, 四次挥手), 拥塞控制</p>
 <p>QUIC</p>
 <h3 id="网络层">网络层</h3>
+<p>数据平面: 转发</p>
+<p>路由器: 结构, 匹配转发, 交换结构, 调度策略</p>
+<p>IP: 数据报格式, 分片, IPv4(子网掩码, CIDR, DHCP), NAT(网络地址转换), IPv6</p>
 <h3 id="链路层">链路层</h3>
 
 </section>

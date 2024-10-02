@@ -82,7 +82,7 @@ PLA(Programmable Logic Array): 只有一级与门和一级或门(非门位置任
 	
 	
 &gt;&lt;/p&gt;
-&lt;h3 id=&#34;定点数表示与运算&#34;&gt;定点数表示与运算&lt;/h3&gt;
+&lt;h3 id=&#34;定点数&#34;&gt;定点数&lt;/h3&gt;
 &lt;p&gt;十进制转换: $b_n&amp;hellip;b_1b_0.b_{-1}&amp;hellip;b_{-m}\ (R)=\sum_{i=-m}^n b_iR^i\ (10)$.&lt;/p&gt;
 &lt;table&gt;
 &lt;thead&gt;
@@ -450,7 +450,7 @@ Booth 乘法器(muliplier): 乘数 4-Booth 编码 $\to$ 生成部分积 $\to$ Wa
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;small&gt;补充材料: &lt;a class=&#34;link&#34; href=&#34;https://graphics.stanford.edu/~seander/bithacks.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;位运算妙用&lt;/a&gt;&lt;/small&gt;&lt;/p&gt;
-&lt;h3 id=&#34;浮点数表示与运算&#34;&gt;浮点数表示与运算&lt;/h3&gt;
+&lt;h3 id=&#34;浮点数&#34;&gt;浮点数&lt;/h3&gt;
 &lt;p&gt;浮点数: $\mathbb{R}\mapsto \{0,1\}^w$, $x\mapsto (s,e,d,R)\mapsto s\times\sum_{i=-m}^0 d_iR^i\times R^e=\hat{x}$. &lt;br /&gt;
 加法及乘法满足交换律, 但不满足结合律. &lt;br /&gt;
 ULP(units in last place): ${\rm err}=|\hat{x}-x/R^e|/R^m$.&lt;/p&gt;
@@ -766,9 +766,11 @@ IO: IN, OUT. &lt;br /&gt;
 动态链接 &lt;br /&gt;&lt;/p&gt;
 &lt;h3 id=&#34;编译基础&#34;&gt;编译基础&lt;/h3&gt;
 &lt;h2 id=&#34;硬件体系结构&#34;&gt;硬件体系结构&lt;/h2&gt;
-&lt;h3 id=&#34;cpu-流水线技术&#34;&gt;CPU 流水线技术&lt;/h3&gt;
-&lt;p&gt;流水线原理, 预测并行, 性能评价&lt;/p&gt;
-&lt;h3 id=&#34;存储器层次结构&#34;&gt;存储器层次结构&lt;/h3&gt;
+&lt;h3 id=&#34;cpu&#34;&gt;CPU&lt;/h3&gt;
+&lt;p&gt;单周期: CPU结构图; 指令周期, 流程, 信号; 微操作序列; 数据通路&lt;/p&gt;
+&lt;p&gt;控制器: 结构图, 硬布线设计表/组合逻辑(RISC), 微指令编码/下地址确定/补充(CISC)&lt;/p&gt;
+&lt;p&gt;流水线: 性能(TP/S/E)，流水线三大冒险(数据/结构/控制)时空图，流水线分类/多发/多线程, 执行过程举例(MISP)&lt;/p&gt;
+&lt;h3 id=&#34;存储器&#34;&gt;存储器&lt;/h3&gt;
 &lt;p&gt;性能评价: 存储容量, 单位成本, 存储速度(读/写时间, 读/写周期, 带宽). &lt;br /&gt;
 层次结构: 越上层速度越快, 容量越小, 位价越贵; 上层可作为下层的 Cache. &lt;br /&gt;
 寄存器 - 多级高速缓存(SRAM) - 主存/内存(DRAM, ROM) - 本地二级存储/外存/辅存(SSD, HDD, Flash, 光盘, 软盘, 磁带) - 远程二级存储(分布式文件系统, web服务器).&lt;/p&gt;
@@ -818,7 +820,7 @@ RAID(Redundant Array of Independetn Disks): 0 - 数据置于统一条带, 一块
 写策略/一致性: 写命中时, 写穿透/全写/直写(write through), 立即将缓存写主存到中, 增加FIFO写缓冲(buffer)来减少时间损耗; 写回/回写(back), 发生替换时才写到主存中, 需额外维护修改位/脏位(dirty). 写不命中时, 写分配(allocate), 将主存块调入缓存; 非写分配, 只更新主存. 写分配 $+$ 写回; 非写分配 $+$ 写穿透. &lt;br /&gt;
 CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.&lt;/p&gt;
 &lt;h3 id=&#34;总线及io&#34;&gt;总线及I/O&lt;/h3&gt;
-&lt;p&gt;总线: 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. &lt;br /&gt;
+&lt;p&gt;总线(bus): 分时, 同时刻只允许一个部件发送信息; 共享, 多个部件均可通过同组线路交换信息. &lt;br /&gt;
 层次: 片内总线 - 寄存器与ALU; 系统总线 - 数据, 地址, 控制(时钟, 复位, 总线请求, 总线允许, 总线忙碌, 中断请求, 中断响应, 存储器读/写, I/O读/写, 传输相应); I/O总线 - 中低速I/O设备; 通信总线. &lt;br /&gt;
 性能评价: 时钟周期/频率, 传输周期/工作频率, 宽度, 带宽, 复用, 信号线数, 同步/异步, 串行/并行; 带宽 $=$ 工作频率 $\times$ 宽度. &lt;br /&gt;
 结构: 单总线 - 系统总线; 双总线 - 主存总线 $+$ I/O总线; 三总线 - 主存总线 $+$ I/O总线 $+$ DMA总线. &lt;br /&gt;
@@ -949,7 +951,7 @@ CPU的L1缓存将指令与数据分离, 利用不同局部性优化性能.&lt;/p
 DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参数 - 预处理, 高速外设和主存直接数据读写 - 数据传送, 读写完成后向CPU发出中断请求 - 后处理; DMA请求触发器, 主存地址计数器(AR), 传送长度计数器(WC), 设备请求寄存器(DAR), 中断机构; MDA独占主存, DMA和CPU交替访存, 周期挪用/窃取(CPU访问间隔优先DMA). &lt;br /&gt;
 通道: CPU向通道发出I/O指令, 通道控制并完成一系列I/O指令后向CPU发出中断请求(如南桥).&lt;/p&gt;
 &lt;p&gt;中断系统: 请求 $\to$ 响应(关中断; 判优) $\to$ 处理(隐指令; 服务程序). &lt;br /&gt;
-内中断/异常/例外/陷阱(exception/fualt/trap): 自愿, 陷阱指令; 强迫, 硬件(如缺页), 软件(如整数除 $0$). &lt;br /&gt;
+内中断/异常/例外/陷阱(exception/fault/trap): 自愿, 陷阱指令(trap); 强迫, 硬件(abort, 如缺页), 软件(fault, 如整数除 $0$). &lt;br /&gt;
 外中断/中断(interrupt): I/O请求. &lt;br /&gt;
 关中断: 标志位 ${\rm IF}=0$ 时, 不允许中断, 实现原子操作. &lt;br /&gt;
 非屏蔽中断: 关中断时也会被响应(如掉电). &lt;br /&gt;
@@ -958,8 +960,8 @@ DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参
 隐指令: 关中断 $\to$ 保存断点(保存原PC) $\to$ 引出服务程序(修改PC). &lt;br /&gt;
 服务程序: 保护现场(保存通用寄存器和状态寄存器值) $\to$ 设备服务 $\to$ 恢复现场. &lt;br /&gt;&lt;/p&gt;
 &lt;h2 id=&#34;系统层级抽象&#34;&gt;系统层级抽象&lt;/h2&gt;
-&lt;h3 id=&#34;进程调度&#34;&gt;进程调度&lt;/h3&gt;
-&lt;h3 id=&#34;内存虚拟化&#34;&gt;内存虚拟化&lt;/h3&gt;
+&lt;h3 id=&#34;进程&#34;&gt;进程&lt;/h3&gt;
+&lt;h3 id=&#34;虚拟内存&#34;&gt;虚拟内存&lt;/h3&gt;
 &lt;h3 id=&#34;并发&#34;&gt;并发&lt;/h3&gt;
 &lt;h3 id=&#34;系统级io&#34;&gt;系统级I/O&lt;/h3&gt;
 &lt;p&gt;&lt;small&gt;*补充材料: The Linux Programming Interface: A Linux and UNIX System Programming Handbook&lt;/small&gt;&lt;/p&gt;
@@ -974,9 +976,9 @@ DMA(Direct Memory Access): 直接内存访问; CPU通过I/O总线发送读写参
 Internet: 网络的网络; 端系统经由ISP(Internet Service provider)接入, PoP(Point of Presence)接入上层ISP, IXP(Internet Exchange Point)ISP对等连接; 内容提供网络(content provider network); 局域网(LAN, Local Area Network), 城域网(MAN, Metropolitan), 广域网(WAN, Wide). &lt;br /&gt;
 Internet标准: IETF(Internet Engineering Task Force)-RFC(Request for comments). &lt;br /&gt;&lt;/p&gt;
 &lt;p&gt;网络边缘 &lt;br /&gt;
-客户端-服务器模式(client-service); 对等模式(peer-peer). &lt;br /&gt;
-面向连接服务(connection-oriented): TCP[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). &lt;br /&gt;
-无连接服务(connectionless): UDP[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.&lt;/p&gt;
+客户端-服务器模式(client-service, C/S); 对等模式(peer-peer, P2P). &lt;br /&gt;
+面向连接服务(connection-oriented): TCP(Transmission Control Protocol)[RFC 793]: 握手(数据传输前建立连接); 可靠保序(确认和重传), 流量控制(发送方不会淹没接收方), 拥塞控制(网络拥塞时发送方降低发送效率); HTTP(Web), FTP(文件传输), Talnet(远程登录), SMTP(E-mail). &lt;br /&gt;
+无连接服务(connectionless): UDP(User Datagram Protocol)[RFC 768]; 流媒体, 远程会议, DNS, Internet电话.&lt;/p&gt;
 &lt;p&gt;网络核心-电路交换(circuit switching) &lt;br /&gt;
 为呼叫预留端-端资源: 带宽(band-width)分片, 频分复用(Frequency-division multiplexing, FDM), 时分复用(TDM), 波分复用(WDM), 码分(CDM). &lt;br /&gt;
 资源专用不共享, 呼叫无数据则资源片空闲(silent period), 呼叫要建立连接, 性能有保证. &lt;br /&gt;
@@ -1022,15 +1024,225 @@ Internet协议栈(TCP/IP模型): 应用层(报文, message, 主机到主机), �
 ISO-OSI参考模型: 应用层, 表示层(解释数据, 表示转换), 会话层(同步, 检查, 恢复, 会话管理), 传输层, 网络层, 链路层, 物理层. &lt;br /&gt;
 封装(encapsulation): 源主机封装, 交换设备解封装再封装, 目标主机解封装.&lt;/p&gt;
 &lt;h3 id=&#34;应用层&#34;&gt;应用层&lt;/h3&gt;
-&lt;p&gt;原理: 状态, 请求/响应格式(报文)&lt;/p&gt;
-&lt;p&gt;HTTP
-waiting socket, cookies&lt;/p&gt;
-&lt;p&gt;FTP&lt;/p&gt;
-&lt;p&gt;EMail
-提交 SMTP, 拉取 POP3 HTTP IMAP&lt;/p&gt;
-&lt;p&gt;Telnet&lt;/p&gt;
-&lt;p&gt;DNS
-非结构化 集中目录/完全分布(泛洪)/混合式, DHT&lt;/p&gt;
+&lt;p&gt;网络应用运行在端系统上, 网络核心没有应用层软件. &lt;br /&gt;
+C-S: 服务器, 固定IP地址与端口号(port), 持续运行, 等待连接进程(响应报文), 扩展性差(服务器场); 客户端, 可以为动态IP, 间歇性连接, 发起通信进程(请求报文), 不与其他客户端通信. &lt;br /&gt;
+P2P: 任意端系统间可进行通信; 每个结点既是客户端又是服务器(自扩展性); 参与主机间歇性连接, 可以为动态IP; 难以管理.&lt;/p&gt;
+&lt;p&gt;进程表示和寻址依据: IP+port. &lt;br /&gt;
+Socket API(套接字): 为使层间传输信息最小, 用整数代表通信双方或单方. &lt;br /&gt;
+TCP socket: 四元组, 源IP, 源port, 目标IP, 目标port. &lt;br /&gt;
+UDP socket: 二元组, 源IP, 源port. &lt;br /&gt;
+传输层提供服务的指标: 数据丢失率, 延迟, 吞吐, 安全性(机密, 完整, 可认证).&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;端口类型&lt;/th&gt;
+&lt;th&gt;范围&lt;/th&gt;
+&lt;th&gt;分配方式&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;知名(Well-known)&lt;/td&gt;
+&lt;td&gt;1-1023&lt;/td&gt;
+&lt;td&gt;固定分配给特定应用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;用户(Registered)&lt;/td&gt;
+&lt;td&gt;1024-49151&lt;/td&gt;
+&lt;td&gt;IANA(Internet Assigned Numbers Authority) 分配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;动态(Dynamic)&lt;/td&gt;
+&lt;td&gt;49152-65535&lt;/td&gt;
+&lt;td&gt;不固定分配&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;传输层协议&lt;/th&gt;
+&lt;th&gt;应用层协议&lt;/th&gt;
+&lt;th&gt;提供服务&lt;/th&gt;
+&lt;th&gt;默认端口&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;TCP&lt;/td&gt;
+&lt;td&gt;HTTP&lt;/td&gt;
+&lt;td&gt;Web&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;HTTPS&lt;/td&gt;
+&lt;td&gt;安全Web&lt;/td&gt;
+&lt;td&gt;443&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Telnet&lt;/td&gt;
+&lt;td&gt;远程访问&lt;/td&gt;
+&lt;td&gt;23&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;POP3&lt;/td&gt;
+&lt;td&gt;E-mail拉取和管理&lt;/td&gt;
+&lt;td&gt;110&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;SMTP&lt;/td&gt;
+&lt;td&gt;E-mail发送&lt;/td&gt;
+&lt;td&gt;25&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;IMAP&lt;/td&gt;
+&lt;td&gt;E-mail拉取和管理&lt;/td&gt;
+&lt;td&gt;143&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;FTP&lt;/td&gt;
+&lt;td&gt;文件传输&lt;/td&gt;
+&lt;td&gt;20(传输), 21(控制)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;DNS&lt;/td&gt;
+&lt;td&gt;域名区域传送&lt;/td&gt;
+&lt;td&gt;53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UDP&lt;/td&gt;
+&lt;td&gt;NTP&lt;/td&gt;
+&lt;td&gt;网络时间&lt;/td&gt;
+&lt;td&gt;123&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;DNS&lt;/td&gt;
+&lt;td&gt;域名解析&lt;/td&gt;
+&lt;td&gt;53&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;SNMP&lt;/td&gt;
+&lt;td&gt;网络管理&lt;/td&gt;
+&lt;td&gt;161&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;DHCP&lt;/td&gt;
+&lt;td&gt;IP地址动态管理&lt;/td&gt;
+&lt;td&gt;67&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;TFTP&lt;/td&gt;
+&lt;td&gt;简单文件传输&lt;/td&gt;
+&lt;td&gt;69&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;td&gt;Ipsec&lt;/td&gt;
+&lt;td&gt;安全连接&lt;/td&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Web: 页面由对象组成; 通过URL(Uniform Resource Locator)引用对象. &lt;br /&gt;
+URL格式: &amp;lt;协议名&amp;gt;://&amp;lt;用户名&amp;gt;:&amp;lt;口令&amp;gt;@&amp;lt;主机名&amp;gt;/&amp;lt;路径名&amp;gt;:&amp;lt;端口&amp;gt;. &lt;br /&gt;
+RRT(round-trip time): 信息从客户端到服务器再返回的时间. &lt;br /&gt;
+HTTP1.0(Hyper Text Transfer Protocol)[RFC 1945]: 无状态(服务器不维护客户端历史信息), 非持久(最多只有一个对象在连接上发送)连接. &lt;br /&gt;
+HTTP1.1[RFC 2068]: 无状态, 流水线式(客户端遇到引用对象立刻产生请求, 所有引用对象开销1RRT是可能的), 持久性(服务端响应后保持连接)连接. &lt;br /&gt;
+请求方法: Post, 表单提交; Get, URL字段上截取; DELETE, 删除URL字段文件; HEAD, URL字段上截取, 只获取元数据(文件属性信息). &lt;br /&gt;
+Cookie: 浏览器第一次访问时, 服务端创建并保存Cookie $\to$ 客户端接收Cookie信息, 再次访问时携带Cookie, 实现状态维护. &lt;br /&gt;
+Session: 浏览器第一次访问时, 服务端创建并保存Session, 生成相应的Cookie $\to$ 客户端接收Cookie信息, 再次访问时携带Cookie $\to$ 服务端根据Cookie匹配Session, 实现状态维护. &lt;br /&gt;
+缓存/代理服务器: 客户端通过缓存访问Web; 缓存中存在对象时直接返回, 不存在时从原始服务器拉取(缓存更新).&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://example.com/img/post-basic-system-HttpRequest&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Http Request&#34;
+	
+	
+&gt;
+&lt;img src=&#34;https://example.com/img/post-basic-system-HttpRespond&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;Http Respond&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;常见状态码&lt;/th&gt;
+&lt;th&gt;英文&lt;/th&gt;
+&lt;th&gt;解释&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;200&lt;/td&gt;
+&lt;td&gt;OK&lt;/td&gt;
+&lt;td&gt;正常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;301&lt;/td&gt;
+&lt;td&gt;Moved Permanently&lt;/td&gt;
+&lt;td&gt;请求对象被永久移动, 资源重定向&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;400&lt;/td&gt;
+&lt;td&gt;Bad Request&lt;/td&gt;
+&lt;td&gt;请求语法错误, 服务端无法理解&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;403&lt;/td&gt;
+&lt;td&gt;Forbidden&lt;/td&gt;
+&lt;td&gt;服务端理解请求, 但拒绝执行&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;404&lt;/td&gt;
+&lt;td&gt;Not Found&lt;/td&gt;
+&lt;td&gt;请求失败, 资源无法找到&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;500&lt;/td&gt;
+&lt;td&gt;Internal Server Error&lt;/td&gt;
+&lt;td&gt;服务器突发意外&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;502&lt;/td&gt;
+&lt;td&gt;Bad Gateway&lt;/td&gt;
+&lt;td&gt;网关或代理服务器从上游接收到无效响应&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;504&lt;/td&gt;
+&lt;td&gt;Gateway Timeout&lt;/td&gt;
+&lt;td&gt;DNS查询超时&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;FTP(File Transfer Protocol)[RFC 959]: 客户端通过控制连接(带外, out of band)身份认证, 浏览远程目录; 服务器开启数据连接传输文件; 有状态连接.&lt;/p&gt;
+&lt;p&gt;EMail: 用户代理(邮件阅读编辑器); 邮件服务器(报文队列保持待发送邮件); 邮件传输. &lt;br /&gt;
+邮件报文格式: 一般标准[RFC 822]; 多媒体扩展 MIME[RFC 2045, 2056]. &lt;br /&gt;
+SMTP(Simple Mail Transfer Protocol)[RFC 2821]: 持久性连接; 7bits ASCII编码报文; 发送邮件到服务器, 服务器间传送邮件. &lt;br /&gt;
+POP3(Post Office Protocol)[RFC 1939]: 用户身份认证, 并从服务端下载邮件; 无状态连接 &lt;br /&gt;
+IMAP(Internet Mail Access Protocol)[RFC 1730]: Internet 邮件访问; 服务器上处理存储的报文; 有状态连接.&lt;/p&gt;
+&lt;p&gt;DNS(Domain Name System): 分布式数据库完成域名到IP地址的转换, 基于域的分层命名机制, 网络核心功能但以应用层实现; 附带实现别名到正规名的转换, 负载均衡(Load Distribution). &lt;br /&gt;
+命名空间: 倒序生长的树; 根下顶级域(通用: com, edu, gov, int, mil, net, org, firm, hsop, web, arts, rec; 国家: cn, us, nl, jp), 域下划分子域(subdomain), 叶子结点为主机; 遵从组织界限, 与物理网络无关. &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;非结构化 集中目录/完全分布(泛洪)/混合式, DHT&lt;/p&gt;
 &lt;p&gt;P2P&lt;/p&gt;
 &lt;p&gt;CDN&lt;/p&gt;
 &lt;p&gt;socket&lt;/p&gt;
@@ -1038,9 +1250,12 @@ waiting socket, cookies&lt;/p&gt;
 &lt;p&gt;多路复用 - 解复用: 引入 port&lt;/p&gt;
 &lt;p&gt;UDP - 校验和&lt;/p&gt;
 &lt;p&gt;RDT(可靠数据传输)原理: FSM(有限状态自动机); 可靠信道 $\to$ 比特差错, ACK/NAK出错, NAK free $\to$ 分组丢失 $\to$ 流水线, 滑动窗口, GBN/SN协议&lt;/p&gt;
-&lt;p&gt;TCP&lt;/p&gt;
+&lt;p&gt;TCP: 段结构; 可靠性(重发, 快速重发), 流量控制, 连接建立(三次握手, 四次挥手), 拥塞控制&lt;/p&gt;
 &lt;p&gt;QUIC&lt;/p&gt;
 &lt;h3 id=&#34;网络层&#34;&gt;网络层&lt;/h3&gt;
+&lt;p&gt;数据平面: 转发&lt;/p&gt;
+&lt;p&gt;路由器: 结构, 匹配转发, 交换结构, 调度策略&lt;/p&gt;
+&lt;p&gt;IP: 数据报格式, 分片, IPv4(子网掩码, CIDR, DHCP), NAT(网络地址转换), IPv6&lt;/p&gt;
 &lt;h3 id=&#34;链路层&#34;&gt;链路层&lt;/h3&gt;
 </description>
         </item>
@@ -1462,6 +1677,10 @@ sort()方法以快速排序为主, 辅以插入排序和堆排序.&lt;/p&gt;
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
 &lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class=&#34;lntd&#34;&gt;
 &lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-CPP&#34; data-lang=&#34;CPP&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
@@ -1480,6 +1699,10 @@ sort()方法以快速排序为主, 辅以插入排序和堆排序.&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;left&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;mid&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;push_back&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;left&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;while&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;right&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;end&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;push_back&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;right&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]);&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;// 将剩余元素序列的元素依次存入临时数组
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt; &lt;span class=&#34;nl&#34;&gt;i&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;tmp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;start&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;++&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;i&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;template&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;typename&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;merge&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;vector&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Type&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;amp;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;n&#34;&gt;mergeRecur&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;

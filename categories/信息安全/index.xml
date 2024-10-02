@@ -622,7 +622,7 @@ $H&amp;lt;G$ 则 $e\in H$, $e\in G$, 且 $\forall a\in H$, $a^{-1}\in G$; $H&amp
 &lt;p&gt;不妨设 $H&amp;lt;G=\langle a\rangle$, $H\ne {e}$, $\exists a^k\in H$, $a^{-k}\in H$, 则 $\exists r,t\in\mathbb{Z}_+$, $q\in\mathbb{Z}$ s.t. $a^r\in H$, $n=qr+t$; 进而 $a^n=a^{qr+t}\in H$ 即 $t=0$, 故 $H\subset \langle a^r\rangle$.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;陪集: $H&amp;lt;G$, $\forall a\in G$, $aH$ 为左陪集; &lt;br /&gt;
-$a\in aH$, $aH=H\iff a\in H$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigcup_{g\in G}gH$.&lt;/p&gt;
+$a\in G$, $aH=H\iff a,b\in G$, $aH=bH$ 或 $aH\cap bH=\empty$, $|H|=|aH|$; $G=\bigsqcup_{g\in G}gH$.&lt;/p&gt;
 &lt;p&gt;Lagrange: 记 $[G:H]=\frac{|G|}{|H|}$, $|G|=[G:H]|H|$; $|a|||G|$.&lt;/p&gt;
 &lt;p&gt;正规子群: $H&amp;lt;G$, $\forall a\in G$, $aH=Ha$, 记 $H\lhd G$; $H&amp;lt;G$, $\forall a\in G$, $H\lhd G \iff aHa^{-1}=H \iff aHa^{-1} \subset H \iff aha^{-1}\in H$, $\forall h\in H$.&lt;/p&gt;
 &lt;p&gt;商群: $H\lhd G$, $G/H=\{aH\ |\ a\in G\}$, $aH\ast bH=(ab)H$.&lt;/p&gt;

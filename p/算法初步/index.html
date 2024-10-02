@@ -800,6 +800,10 @@ sort()方法以快速排序为主, 辅以插入排序和堆排序.</p>
 </span><span class="lnt">15
 </span><span class="lnt">16
 </span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-CPP" data-lang="CPP"><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
@@ -818,6 +822,10 @@ sort()方法以快速排序为主, 辅以插入排序和堆排序.</p>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;=</span> <span class="n">mid</span><span class="p">)</span> <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">left</span><span class="o">++</span><span class="p">]);</span>
 </span></span><span class="line"><span class="cl">    <span class="k">while</span> <span class="p">(</span><span class="n">right</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="p">)</span> <span class="n">tmp</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">right</span><span class="o">++</span><span class="p">]);</span> <span class="c1">// 将剩余元素序列的元素依次存入临时数组
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">for</span> <span class="p">(</span><span class="n">Type</span> <span class="nl">i</span> <span class="p">:</span> <span class="n">tmp</span><span class="p">)</span> <span class="n">arr</span><span class="p">[</span><span class="n">start</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="n">Type</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="n">merge</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Type</span><span class="o">&gt;&amp;</span> <span class="n">arr</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mergeRecur</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">arr</span><span class="p">.</span><span class="n">size</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
